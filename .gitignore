@@ -2,6 +2,11 @@
 __pycache__
 *.pyc
 *.log
+
+.vim/.netrwhist
+.vim/bundle
+.vim/view
+
 .config
 !.config/alacritty/
 !.config/starship.toml

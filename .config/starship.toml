@@ -1,0 +1,10 @@
+[git_branch]
+symbol = "🐙 "
+
+[cmd_duration]
+disabled = true
+
+[line_break]
+disabled = false
+
+add_newline = false
