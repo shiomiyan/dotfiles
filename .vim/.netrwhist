@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
-let g:netrw_dirhist_3='/Users/sk/Documents/developments/scheduller/app_scheduler'
-let g:netrw_dirhist_2='/Users/sk/Documents/univ_assignment/2019-late/exercise-3b/ch03/problem02/fruit'
-let g:netrw_dirhist_1='/Users/sk/Documents/univ_assignment/2019-late/exercise-3b/ch03/problem02'
