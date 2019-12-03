@@ -4,8 +4,8 @@ __pycache__
 *.log
 
 .vim/.netrwhist
-.vim/bundle
-.vim/view
+.vim/bundle/
+.vim/view/
 
 .config
 !.config/alacritty/
