@@ -65,6 +65,7 @@ set list listchars=tab:\▸\-
 set clipboard+=unnamed
 set backspace=indent,start,eol
 set wildmode=longest:full,full
+set mouse=n
 
 " ===additional indent detection by file type===
 augroup fileTypeIndent
@@ -80,6 +81,10 @@ augroup END
 " ===key mappings===
 nnoremap j gj
 nnoremap k gk
+" ===Tab completion with asyncomplete.vim
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
 " practice Vim options
 nnoremap <Down> <Nop>
 nnoremap <Up> <Nop>

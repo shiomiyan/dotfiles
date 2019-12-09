@@ -20,6 +20,12 @@ alias cdd="cd ~/dev"
 alias pbc="pbcopy"
 alias jl="jupyter lab"
 alias vi="vim"
+function mkblog() {
+  cd "$HOME/dev/blog/";
+  hexo new $1;
+  vi "./source/_posts/$1.md";
+}
+alias mkblog=mkblog
 
 export PATH="/usr/local/bin:$PATH"
 
@@ -62,12 +68,6 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/sk/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 # auto start tmux
 # if [ $SHLVL = 1 ]; then
 #   tmux
@@ -75,3 +75,9 @@ if [ -f '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source
 
 # llvm
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/sk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sk/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
