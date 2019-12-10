@@ -26,6 +26,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ryanolsonx/vim-lsp-javascript'
 Plug 'ryanolsonx/vim-lsp-python'
+Plug 'ryanolsonx/vim-lsp-typescript'
 call plug#end()
 
 " === Vim appearance setting ===
@@ -166,6 +167,16 @@ if executable('clangd')
         \ 'name': 'clangd',
         \ 'cmd': {server_info->['clangd', '-background-index']},
         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
+
+" Typescript language server
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript', 'typescript.tsx'],
         \ })
 endif
 
