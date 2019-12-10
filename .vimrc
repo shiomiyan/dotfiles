@@ -7,6 +7,8 @@ Plug 'tomasr/molokai'
 Plug 'micha/vim-colors-solarized'
 Plug 'kristijanhusak/vim-hybrid-material'
 Plug 'morhetz/gruvbox'
+Plug 'luochen1990/rainbow'
+Plug 'airblade/vim-gitgutter'
 Plug 'sheerun/vim-polyglot' " language support
 Plug 'cohama/lexima.vim' " Complete parenthesis
 Plug 'rust-lang/rust.vim' " Rust dev pulgin
@@ -37,6 +39,7 @@ set laststatus=2
 set noshowmode
 set background=dark
 colorscheme gruvbox
+let g:rainbow_active = 1
 
 " ===Vim coding setting===
 set autoindent
