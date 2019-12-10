@@ -3,12 +3,12 @@ language C " set English document
 
 " === vim-plug setting ===
 call plug#begin()
-Plug 'tomasr/molokai'
-Plug 'micha/vim-colors-solarized'
-Plug 'kristijanhusak/vim-hybrid-material'
-Plug 'morhetz/gruvbox'
-Plug 'luochen1990/rainbow'
-Plug 'airblade/vim-gitgutter'
+Plug 'tomasr/molokai' " theme
+Plug 'micha/vim-colors-solarized' "theme
+Plug 'kristijanhusak/vim-hybrid-material' " theme
+Plug 'morhetz/gruvbox' " theme
+Plug 'luochen1990/rainbow' "bracket colorizer
+Plug 'airblade/vim-gitgutter' " git status on sidebar
 Plug 'sheerun/vim-polyglot' " language support
 Plug 'cohama/lexima.vim' " Complete parenthesis
 Plug 'rust-lang/rust.vim' " Rust dev pulgin
@@ -16,12 +16,12 @@ Plug 'racer-rust/vim-racer' " Rust code completion
 Plug 'fatih/vim-go' " Go lang dev plugin
 Plug 'ElmCast/elm-vim' " Elm dev plugin
 Plug 'mattn/sonictemplate-vim' " Template by file type
-Plug 'wakatime/vim-wakatime'
+Plug 'wakatime/vim-wakatime' " coding time management
 Plug 'itchyny/lightline.vim' " insane vim statusline
 Plug 'yuttie/comfortable-motion.vim' " smooth scroll
 Plug 'justinmk/vim-dirvish' " filer
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/async.vim' " for async complete
+Plug 'prabirshrestha/vim-lsp' " language server plugin
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ryanolsonx/vim-lsp-javascript'
