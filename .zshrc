@@ -19,7 +19,8 @@ setopt HIST_IGNORE_DUPS
 alias cdd="cd ~/dev"
 alias pbc="pbcopy"
 alias jl="jupyter lab"
-alias vi="vim"
+alias v="vim"
+alias g="git"
 function mkblog() {
   cd "$HOME/dev/blog/";
   hexo new $1;
