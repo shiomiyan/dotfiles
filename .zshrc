@@ -27,7 +27,7 @@ function mkblog() {
   vi "./source/_posts/$1.md";
 }
 alias mkblog=mkblog
-alias exa="exa --group-directories-first -l"
+alias exa="exa --group-directories-first"
 
 export PATH="/usr/local/bin:$PATH"
 
@@ -64,11 +64,6 @@ export PATH="/Users/sk/.local/bin:$PATH"
 
 # cloud_sql_proxy (GCP)
 export PATH="/Users/sk/:$PATH"
-
-# pyenv configuration
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 # auto start tmux
 # if [ $SHLVL = 1 ]; then
