@@ -69,7 +69,7 @@ set list listchars=tab:\▸\-
 set clipboard+=unnamed
 set backspace=indent,start,eol
 set wildmode=longest:full,full
-set mouse=n
+" set mouse=n
 set relativenumber
 
 " ===additional indent detection by file type===

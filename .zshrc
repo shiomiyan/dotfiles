@@ -27,6 +27,7 @@ function mkblog() {
   vi "./source/_posts/$1.md";
 }
 alias mkblog=mkblog
+alias exa="exa --group-directories-first -l"
 
 export PATH="/usr/local/bin:$PATH"
 
