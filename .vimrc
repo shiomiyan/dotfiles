@@ -27,6 +27,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ryanolsonx/vim-lsp-javascript'
 Plug 'ryanolsonx/vim-lsp-python'
 Plug 'ryanolsonx/vim-lsp-typescript'
+Plug 'luochen1990/rainbow'
 call plug#end()
 
 " === Vim appearance setting ===
@@ -39,7 +40,11 @@ set scrolloff=6
 set laststatus=2
 set noshowmode
 set background=dark
-colorscheme gruvbox
+colorscheme molokai
+highlight Normal ctermbg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guibg=NONE
+highlight SpecialKey ctermbg=NONE guibg=NONE
+
 let g:rainbow_active = 1
 
 " ===Vim coding setting===

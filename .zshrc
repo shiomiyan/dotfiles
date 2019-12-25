@@ -21,12 +21,11 @@ alias pbc="pbcopy"
 alias jl="jupyter lab"
 alias v="vim"
 alias g="git"
-function mkblog() {
+function blog() {
   cd "$HOME/dev/blog/";
   hexo new $1;
   vi "./source/_posts/$1.md";
 }
-alias mkblog=mkblog
 alias exa="exa --group-directories-first"
 
 export PATH="/usr/local/bin:$PATH"
@@ -66,9 +65,9 @@ export PATH="/Users/sk/.local/bin:$PATH"
 export PATH="/Users/sk/:$PATH"
 
 # auto start tmux
-# if [ $SHLVL = 1 ]; then
-#   tmux
-# fi
+if [ $SHLVL = 1 ]; then
+  tmux
+fi
 
 # llvm
 export PATH="/usr/local/opt/llvm/bin:$PATH"
