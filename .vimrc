@@ -202,4 +202,4 @@ let g:elm_format_autosave = 1
 let g:rustfmt_autosave = 1
 
 " Template for solving atcoder with Rust
-autocmd BufNewFile ~/Documents/competitive-programming/**/*.rs :0r ~/.vim/templates/atcoder.rs
+autocmd BufNewFile ~/dev/competitive-programming/**/*.rs :0r ~/.vim/templates/atcoder.rs
