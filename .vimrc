@@ -5,9 +5,8 @@ language C " set English document
 call plug#begin()
 Plug 'tomasr/molokai' " theme
 Plug 'micha/vim-colors-solarized' "theme
-Plug 'kristijanhusak/vim-hybrid-material' " theme
 Plug 'morhetz/gruvbox' " theme
-Plug 'luochen1990/rainbow' "bracket colorizer
+" Plug 'luochen1990/rainbow' "bracket colorizer
 Plug 'airblade/vim-gitgutter' " git status on sidebar
 Plug 'sheerun/vim-polyglot' " language support
 Plug 'cohama/lexima.vim' " Complete parenthesis
@@ -27,7 +26,6 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ryanolsonx/vim-lsp-javascript'
 Plug 'ryanolsonx/vim-lsp-python'
 Plug 'ryanolsonx/vim-lsp-typescript'
-Plug 'luochen1990/rainbow'
 call plug#end()
 
 " === Vim appearance setting ===
@@ -35,17 +33,19 @@ set showmode
 set showcmd
 set number
 set t_Co=256
-set cursorline
-set scrolloff=6
+" set cursorline
+set scrolloff=10
 set laststatus=2
 set noshowmode
+colorscheme gruvbox
 set background=dark
-colorscheme molokai
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
 highlight SpecialKey ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
+let base16colorspace=256
 
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 
 " ===Vim coding setting===
 set autoindent
@@ -183,6 +183,16 @@ if executable('typescript-language-server')
         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
         \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
         \ 'whitelist': ['typescript', 'typescript.tsx'],
+        \ })
+endif
+
+if executable('solargraph')
+    " gem install solargraph
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'solargraph',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'solargraph stdio']},
+        \ 'initialization_options': {"diagnostics": "true"},
+        \ 'whitelist': ['ruby'],
         \ })
 endif
 

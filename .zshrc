@@ -15,24 +15,6 @@ setopt HIST_IGNORE_DUPS
 # autoload -U promptinit; promptinit
 # prompt pure
 
-# alias
-alias cdd="cd ~/dev"
-alias pbc="pbcopy"
-alias jl="jupyter lab"
-alias v="vim"
-alias g="git"
-function blog() {
-  cd "$HOME/dev/blog/";
-  hexo new $1;
-  vi "./source/_posts/$1.md";
-}
-alias exa="exa --group-directories-first"
-
-export PATH="/usr/local/bin:$PATH"
-
-# opam configuration
-test -r /Users/sk/.opam/opam-init/init.zsh && . /Users/sk/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
 # Added by Zplugin's installer
 source '/Users/sk/.zplugin/bin/zplugin.zsh'
 autoload -Uz _zplugin
@@ -45,6 +27,28 @@ zplugin light zsh-users/zsh-syntax-highlighting
 
 # config starship
 eval "$(starship init zsh)"
+
+# alias
+alias cdd="cd ~/dev"
+alias pbc="pbcopy"
+alias jl="jupyter lab"
+alias v="vim"
+alias g="git"
+alias exa="exa --group-directories-first"
+function blog() {
+  cd "$HOME/dev/blog/"
+  hexo new $1
+  vi "./source/_posts/$1.md"
+}
+function atc() {
+  command rustc $1 -o atcexe && ./atcexe
+}
+
+export PATH="/usr/local/bin:$PATH"
+
+# opam configuration
+test -r /Users/sk/.opam/opam-init/init.zsh && . /Users/sk/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
 
 # cargo path
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -77,3 +81,13 @@ if [ -f '/Users/sk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sk
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+# pyenv setting
+unalias pyenv 2>/dev/null
+eval "$(pyenv init -)"
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+alias pyenv="SDKROOT=$(xcrun --show-sdk-path) pyenv"
+
+#rbenv
+eval "$(rbenv init -)"
