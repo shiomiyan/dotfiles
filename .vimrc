@@ -26,6 +26,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'ryanolsonx/vim-lsp-javascript'
 Plug 'ryanolsonx/vim-lsp-python'
 Plug 'ryanolsonx/vim-lsp-typescript'
+Plug 'psf/black' " Python format extension
 call plug#end()
 
 " === Vim appearance setting ===
@@ -33,7 +34,7 @@ set showmode
 set showcmd
 set number
 set t_Co=256
-" set cursorline
+set cursorline
 set scrolloff=10
 set laststatus=2
 set noshowmode
@@ -104,9 +105,6 @@ inoremap <Down> <Nop>
 inoremap <Up> <Nop>
 inoremap <Right> <Nop>
 inoremap <Left> <Nop>
-
-" === vim-racer configration ===
-" let g:racer_cmd = expand('~/.cargo/bin/racer')
 
 " === vim-lsp configuration ===
 let g:lsp_signs_enabled = 1
@@ -186,6 +184,7 @@ if executable('typescript-language-server')
         \ })
 endif
 
+" Ruby language server
 if executable('solargraph')
     " gem install solargraph
     au User lsp_setup call lsp#register_server({
@@ -196,11 +195,6 @@ if executable('solargraph')
         \ })
 endif
 
-" setting for Elm
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:elm_syntastic_show_warnings = 1
-
 " lightline configuration
 let g:lightline = {
       \ 'colorscheme': 'powerline',
@@ -210,11 +204,14 @@ let g:lightline = {
       \ },
       \ }
 
-" elm-format config
+" Elm format config
 let g:elm_format_autosave = 1
 
-" rust auto formatting when saved
+" Rust auto formatting when saved
 let g:rustfmt_autosave = 1
 
+" Python auto formatting when saved
+autocmd BufWritePre *.py execute ':Black
+'
 " Template for solving atcoder with Rust
 autocmd BufNewFile ~/dev/competitive-programming/**/*.rs :0r ~/.vim/templates/atcoder.rs
