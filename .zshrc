@@ -1,6 +1,11 @@
 export LANG=ja_JP.UTF-8
 PROMPT='%F{6}%c%f $ '
 
+# brew completion
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
 # enable input candidates
 autoload -Uz compinit
 compinit
