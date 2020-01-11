@@ -35,7 +35,7 @@ set showcmd
 set number
 set t_Co=256
 set cursorline
-set scrolloff=10
+set scrolloff=16
 set laststatus=2
 set noshowmode
 colorscheme gruvbox
@@ -211,7 +211,7 @@ let g:elm_format_autosave = 1
 let g:rustfmt_autosave = 1
 
 " Python auto formatting when saved
-autocmd BufWritePre *.py execute ':Black
+autocmd BufWritePre *.py execute ':Black'
 '
 " Template for solving atcoder with Rust
 autocmd BufNewFile ~/dev/competitive-programming/**/*.rs :0r ~/.vim/templates/atcoder.rs
