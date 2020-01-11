@@ -43,6 +43,7 @@ alias jl="jupyter lab"
 alias v="vim"
 alias g="git"
 alias exa="exa --group-directories-first"
+alias rb="ruby"
 function blog() {
   cd "$HOME/dev/blog/"
   hexo new $1
@@ -75,6 +76,10 @@ export PATH="/Users/sk/.local/bin:$PATH"
 
 # cloud_sql_proxy (GCP)
 export PATH="/Users/sk/:$PATH"
+
+# Go lang
+export GOPATH="~/go"
+export PATH="~/go/bin/:$PATH"
 
 # auto start tmux
 if [[ ! -n $TMUX && $- == *l* ]]; then
