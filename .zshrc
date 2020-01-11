@@ -24,7 +24,7 @@ setopt share_history
 # prompt pure
 
 # Added by Zplugin's installer
-source '/Users/sk/.zplugin/bin/zplugin.zsh'
+source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 # End of Zplugin's installer chunk
@@ -56,7 +56,7 @@ function atc() {
 export PATH="/usr/local/bin:$PATH"
 
 # opam configuration
-test -r /Users/sk/.opam/opam-init/init.zsh && . /Users/sk/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 
 # cargo path
@@ -66,16 +66,16 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="/usr/local/opt/binutils/bin:$PATH"
 
 # laravel path setting
-export PATH="/Users/sk/.composer/vendor/bin:$PATH"
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 # Open MPI: Version 2.0.4 path configuration
 export PATH="$HOME/opt/usr/local/bin/:$PATH"
 
 # AWS CLI configuration
-export PATH="/Users/sk/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # cloud_sql_proxy (GCP)
-export PATH="/Users/sk/:$PATH"
+export PATH="$HOME/:$PATH"
 
 # Go lang
 export GOPATH="~/go"
@@ -104,10 +104,10 @@ fi
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sk/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sk/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sk/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
 
 # pyenv setting
 unalias pyenv 2>/dev/null
