@@ -118,3 +118,10 @@ alias pyenv="SDKROOT=$(xcrun --show-sdk-path) pyenv"
 
 #rbenv
 eval "$(rbenv init -)"
+
+#=======================================================#
+
+# profiling zsh bottle necks
+#if (which zprof > /dev/null 2>&1) ;then
+#    zprof
+#fi
