@@ -88,6 +88,8 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead *.java setlocal tabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.elm setlocal tabstop=4 shiftwidth=4
 augroup END
+" ===delete unnecessary spaces===
+autocmd BufWritePre * :%s/\s\+$//ge
 
 " ===key mappings===
 nnoremap j gj
