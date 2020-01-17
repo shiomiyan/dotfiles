@@ -44,6 +44,7 @@ alias v="vim"
 alias g="git"
 alias exa="exa --group-directories-first"
 alias rb="ruby"
+alias lc="leetcode"
 function blog() {
   cd "$HOME/dev/blog/"
   hexo new $1
@@ -78,8 +79,8 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/:$PATH"
 
 # Go lang
-export GOPATH="~/go"
-export PATH="~/go/bin/:$PATH"
+export GOPATH="$HOME/go/"
+export PATH="$GOPATH/bin:$PATH"
 
 # auto start tmux
 if [[ ! -n $TMUX && $- == *l* ]]; then
