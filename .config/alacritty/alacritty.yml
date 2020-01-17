@@ -63,7 +63,7 @@ window:
   startup_mode: Windowed
 
   # Window title
-  #title: Alacritty
+  title: ""
 
   # Window class (Linux only):
   #class: Alacritty
@@ -136,7 +136,7 @@ font:
     style: Italic
 
   # Point size
-  size: 14.0
+  size: 13.5
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -179,7 +179,8 @@ colors:
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0xd8d8d8'
+    #text: '0xd8d8d8'
+    text: '0x181818'
     cursor: '0xd8d8d8'
 
   # Normal colors
