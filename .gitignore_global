@@ -19,3 +19,9 @@ Thumbs.db
 
 # Python
 *.pyc
+
+.metadata/
+
+jdt.ls-java-project/
+
+local.properties
