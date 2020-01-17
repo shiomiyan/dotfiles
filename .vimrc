@@ -6,7 +6,7 @@ call plug#begin()
 Plug 'tomasr/molokai' " theme
 Plug 'micha/vim-colors-solarized' "theme
 Plug 'morhetz/gruvbox' " theme
-" Plug 'luochen1990/rainbow' "bracket colorizer
+Plug 'luochen1990/rainbow' "bracket colorizer
 Plug 'airblade/vim-gitgutter' " git status on sidebar
 Plug 'sheerun/vim-polyglot' " language support
 Plug 'cohama/lexima.vim' " Complete parenthesis
@@ -27,6 +27,7 @@ Plug 'ryanolsonx/vim-lsp-javascript'
 Plug 'ryanolsonx/vim-lsp-python'
 Plug 'ryanolsonx/vim-lsp-typescript'
 Plug 'psf/black' " Python format extension
+Plug 'ianding1/leetcode.vim' " Enjoy leetcode !
 call plug#end()
 
 " === Vim appearance setting ===
@@ -35,7 +36,7 @@ set showcmd
 set number
 set t_Co=256
 set cursorline
-set scrolloff=16
+set scrolloff=10
 set laststatus=2
 set noshowmode
 colorscheme gruvbox
@@ -46,7 +47,7 @@ highlight SpecialKey ctermbg=NONE guibg=NONE
 highlight EndOfBuffer ctermbg=NONE guibg=NONE
 let base16colorspace=256
 
-" let g:rainbow_active = 1
+let g:rainbow_active = 1
 
 " ===Vim coding setting===
 set autoindent
@@ -115,6 +116,10 @@ let g:lsp_diagnostics_echo_cursor = 1
 let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
+
+" === leetcode customization ===
+let g:leetcode_solution_filetype = 'rust'
+let g:leetcode_browser = 'firefox'
 
 " Python language server
 if executable('pyls')
