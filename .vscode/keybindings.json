@@ -1,0 +1,11 @@
+// Empty
+[
+  {
+    "key": "cmd+,",
+    "command": "-workbench.action.openSettings"
+  },
+  {
+    "key": "cmd+,",
+    "command": "workbench.action.openSettingsJson"
+  }
+]
