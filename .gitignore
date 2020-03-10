@@ -3,11 +3,10 @@ __pycache__
 *.pyc
 *.log
 
-.vim/black/
-.vim/ftplugin/
-.vim/plugged/
-.vim/view/
-.vim/.netrwhist
+.vim
+!.vim/autoload/
+!.vim/templates/
+!.vim/userautoload/
 
 .config
 !.config/alacritty/
