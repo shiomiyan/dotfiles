@@ -4,9 +4,9 @@ __pycache__
 *.log
 
 .vim/*
-!.vim/autoload/**
-!.vim/templates/**
-!.vim/userautoload/**
+!.vim/autoload/*
+!.vim/templates/*
+!.vim/userautoload/*
 
 .config/*
 !.config/alacritty/
