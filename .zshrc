@@ -11,7 +11,7 @@ autoload -Uz compinit
 compinit
 
 # add color selected input candidates
-zstyle ':completion:*' menu select
+zstyle ':completion:*:default' menu select=2
 
 # Do not keep the same command history
 setopt HIST_IGNORE_DUPS
@@ -42,9 +42,14 @@ alias pbc="pbcopy"
 alias jl="jupyter lab"
 alias v="vim"
 alias g="git"
+alias python="python3"
+alias pip="pip3"
 alias exa="exa --group-directories-first"
 alias rb="ruby"
 alias lc="leetcode"
+alias typora="open /Applications/Typora.app"
+alias py="python"
+alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
 function blog() {
   cd "$HOME/dev/blog/"
   hexo new $1
@@ -109,16 +114,6 @@ if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloa
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
-
-# pyenv setting
-unalias pyenv 2>/dev/null
-eval "$(pyenv init -)"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-alias pyenv="SDKROOT=$(xcrun --show-sdk-path) pyenv"
-
-#rbenv
-eval "$(rbenv init -)"
 
 #=======================================================#
 
