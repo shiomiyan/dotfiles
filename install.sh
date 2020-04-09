@@ -17,4 +17,5 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.gitignore_global ~/.gitginore_global
 ln -sf ~/dotfiles/.vim ~/.vim
 
-
+# install Vim plugins
+vim +silent +VimEnter +PlugInstall +qall
