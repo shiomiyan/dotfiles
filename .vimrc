@@ -1,33 +1,8 @@
 syntax on
 language C " set English document
 
-" === vim-plug setting ===
-call plug#begin()
-Plug 'tomasr/molokai' " theme
-Plug 'micha/vim-colors-solarized' "theme
-Plug 'morhetz/gruvbox' " theme
-Plug 'airblade/vim-gitgutter' " git status on sidebar
-Plug 'sheerun/vim-polyglot' " language support
-Plug 'cohama/lexima.vim' " Complete parenthesis
-Plug 'rust-lang/rust.vim' " Rust dev pulgin
-Plug 'racer-rust/vim-racer' " Rust code completion
-Plug 'fatih/vim-go' " Go lang dev plugin
-Plug 'ElmCast/elm-vim' " Elm dev plugin
-Plug 'mattn/sonictemplate-vim' " Template by file type
-Plug 'wakatime/vim-wakatime' " coding time management
-Plug 'itchyny/lightline.vim' " insane vim statusline
-Plug 'yuttie/comfortable-motion.vim' " smooth scroll
-Plug 'justinmk/vim-dirvish' " filer
-Plug 'prabirshrestha/async.vim' " for async complete
-Plug 'prabirshrestha/vim-lsp' " language server plugin
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'ryanolsonx/vim-lsp-javascript'
-Plug 'ryanolsonx/vim-lsp-python'
-Plug 'ryanolsonx/vim-lsp-typescript'
-Plug 'psf/black' " Python format extension
-Plug 'ianding1/leetcode.vim' " Enjoy leetcode !
-call plug#end()
+" load plugins
+runtime! userautoload/plugins.vim
 
 " === Vim appearance setting ===
 colorscheme gruvbox
@@ -75,6 +50,9 @@ set wildmode=longest:full,full
 " set mouse=n
 set relativenumber
 
+" filetype conversion
+autocmd BufNewFile,BufRead Schemafile set filetype=ruby
+
 " ===additional indent detection by file type===
 augroup fileTypeIndent
   autocmd!
@@ -85,49 +63,13 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead *.java setlocal tabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.elm setlocal tabstop=4 shiftwidth=4
 augroup END
-" ===delete unnecessary spaces===
+" delete unnecessary spaces
 autocmd BufWritePre * :%s/\s\+$//ge
 
-" ===key mappings===
-nnoremap j gj
-nnoremap k gk
-" ===Tab completion with asyncomplete.vim
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-" practice Vim options
-nnoremap <Down> <Nop>
-nnoremap <Up> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Left> <Nop>
-inoremap <Down> <Nop>
-inoremap <Up> <Nop>
-inoremap <Right> <Nop>
-inoremap <Left> <Nop>
+" ===load setting files===
+runtime! userautoload/lspconf.vim
+runtime! userautoload/keymaps.vim
 
-runtime! userautoload/*.vim
 
-" === leetcode customization ===
-let g:leetcode_solution_filetype = 'rust'
-let g:leetcode_browser = 'firefox'
-
-" lightline configuration
-let g:lightline = {
-      \ 'colorscheme': 'powerline',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste', 'yank' ],
-      \             [ 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ }
-
-" Elm format config
-let g:elm_format_autosave = 1
-
-" Rust auto formatting when saved
-let g:rustfmt_autosave = 1
-
-" Python auto formatting when saved
-autocmd BufWritePre *.py execute ':Black'
-'
 " Template for solving atcoder with Rust
 autocmd BufNewFile ~/dev/competitive-programming/**/*.rs :0r ~/.vim/templates/atcoder.rs
