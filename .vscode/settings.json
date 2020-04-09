@@ -105,7 +105,11 @@
     "python.linting.pylintArgs": [
         "--load-plugins=pylint_django"
     ],
+    //ruby lint tool
+    "ruby.lint": {
+        "rubocop": true
+    },
     "workbench.colorTheme": "Visual Studio Dark",
     "editor.suggest.hideStatusBar": false,
-    "rust.all_features": true
+    "rust.all_features": true,
 }
