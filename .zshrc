@@ -24,23 +24,25 @@ setopt share_history
 # prompt pure
 
 # Added by Zplugin's installer
-source "$HOME/.zplugin/bin/zplugin.zsh"
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 # End of Zplugin's installer chunk
 
 # add Zplugin's
-zplugin light zsh-users/zsh-autosuggestions
-zplugin light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-syntax-highlighting
 
 # config starship
 eval "$(starship init zsh)"
 
 # alias
+alias ..="cd .."
 alias cdd="cd ~/dev"
 alias pbc="pbcopy"
 alias jl="jupyter lab"
 alias v="vim"
+alias vi="vim"
 alias g="git"
 alias python="python3"
 alias pip="pip3"
@@ -87,6 +89,10 @@ export PATH="$HOME/:$PATH"
 export GOPATH="$HOME/go/"
 export PATH="$GOPATH/bin:$PATH"
 
+# rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
 # auto start tmux
 if [[ ! -n $TMUX && $- == *l* ]]; then
   # get the IDs
@@ -110,10 +116,10 @@ fi
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/Downloads/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f '/Users/sk/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sk/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc"; fi
+if [ -f '/Users/sk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sk/google-cloud-sdk/completion.zsh.inc'; fi
 
 #=======================================================#
 
@@ -121,3 +127,5 @@ if [ -f "$HOME/Downloads/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/D
 #if (which zprof > /dev/null 2>&1) ;then
 #    zprof
 #fi
+
+
