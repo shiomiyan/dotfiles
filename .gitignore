@@ -3,10 +3,10 @@ __pycache__
 *.pyc
 *.log
 
-/.vim/
+/.vim
 !/.vim/autoload/plug.vim
-!/.vim/templates/*
-!/.vim/userautoload/lspconf.vim
+!/.vim/templates
+!/.vim/userautoload
 
 /.config
 !/.config/alacritty/alacritty.yml
