@@ -3,8 +3,8 @@
     "window.doubleClickIconToClose": true,
     "bookmarks.treeview.visible": true,
     // terminal
-    "terminal.integrated.fontSize": 14.5,
-    "terminal.integrated.fontFamily": "Osaka-Mono",
+    "terminal.integrated.fontSize": 14,
+    // "terminal.integrated.fontFamily": "Osaka-Mono",
     "terminal.integrated.cursorBlinking": true,
     // editor
     "editor.fontSize": 15,
@@ -106,9 +106,11 @@
         "--load-plugins=pylint_django"
     ],
     //ruby lint tool
+    "ruby.useLanguageServer": true,
     "ruby.lint": {
         "rubocop": true
     },
+    "ruby.format": "rubocop",
     "workbench.colorTheme": "Visual Studio Dark",
     "editor.suggest.hideStatusBar": false,
     "rust.all_features": true,
