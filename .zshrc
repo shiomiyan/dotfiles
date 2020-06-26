@@ -115,12 +115,6 @@ fi
 # llvm
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/sk/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sk/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/sk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sk/google-cloud-sdk/completion.zsh.inc'; fi
-
 #=======================================================#
 
 # profiling zsh bottle necks
@@ -129,3 +123,9 @@ if [ -f '/Users/sk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sk/goo
 #fi
 
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/sk/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/sk/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/sk/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/sk/google-cloud-sdk/completion.zsh.inc'; fi

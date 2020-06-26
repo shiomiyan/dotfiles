@@ -7,4 +7,7 @@ disabled = true
 [line_break]
 disabled = false
 
+[package]
+disabled = true
+
 add_newline = false
