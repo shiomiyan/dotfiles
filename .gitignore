@@ -8,7 +8,7 @@ __pycache__
 !/.vim/templates
 !/.vim/userautoload
 
-/.config
+/.config/*
 !/.config/alacritty/alacritty.yml
 !/.config/starship.toml
 !/.config/karabiner/karabiner.json
