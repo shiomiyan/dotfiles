@@ -11,7 +11,7 @@ Plug 'racer-rust/vim-racer' " Rust code completion
 Plug 'ElmCast/elm-vim' " Elm dev plugin
 Plug 'mattn/sonictemplate-vim' " Template by file type
 Plug 'wakatime/vim-wakatime' " coding time management
-Plug 'anned20/vimsence' " Discord RPC
+Plug 'vbe0201/vimdiscord' " Discord RPC
 Plug 'itchyny/lightline.vim' " insane vim statusline
 Plug 'yuttie/comfortable-motion.vim' " smooth scroll
 " Plug 'justinmk/vim-dirvish' " filer
