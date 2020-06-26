@@ -66,6 +66,7 @@ set backspace=indent,start,eol
 set wildmode=longest:full,full
 " set mouse=n
 set relativenumber
+let g:python3_host_prog = '/usr/bin/python3'
 
 " filetype conversion
 autocmd BufNewFile,BufRead Schemafile set filetype=ruby
