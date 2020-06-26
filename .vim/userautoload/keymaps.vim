@@ -5,7 +5,9 @@ nnoremap k gk
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-" Dirvish configuration
+" Vim tab movements
+nmap <Tab> gt
+nmap <S-Tab> gT
 
 " practice Vim options
 nnoremap <Down> <Nop>

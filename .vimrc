@@ -1,5 +1,6 @@
 syntax on
 language C " set English document
+filetype plugin on
 
 " load plugins
 runtime! userautoload/plugins.vim
@@ -35,6 +36,22 @@ set showmatch
 set ignorecase
 set smartcase
 set nowrapscan
+
+" ===netrw setting===
+let g:netrw_liststyle=3 " `ls -la` like
+let g:netrw_banner=0
+let g:netrw_sizestyle="H"
+let g:netrw_browse_split=3
+let g:netrw_latv=1
+
+" ===Vim terminal setting===
+set splitbelow
+set termwinsize=7x0
+function! TermOpen()
+    if empty(term_list())
+        execute "terminal"
+    endif
+endfunction
 
 " ===Vim other setting===
 set nobackup
