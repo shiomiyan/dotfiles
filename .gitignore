@@ -3,7 +3,7 @@ __pycache__
 *.pyc
 *.log
 
-/.vim
+/.vim/*
 !/.vim/autoload/plug.vim
 !/.vim/templates
 !/.vim/userautoload
