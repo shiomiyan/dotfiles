@@ -115,6 +115,9 @@ fi
 # llvm
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 
+# gcc - g++
+export PATH=$PATH:/usr/local/bin
+
 #=======================================================#
 
 # profiling zsh bottle necks
