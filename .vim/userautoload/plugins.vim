@@ -11,7 +11,7 @@ Plug 'racer-rust/vim-racer' " Rust code completion
 Plug 'ElmCast/elm-vim' " Elm dev plugin
 Plug 'mattn/sonictemplate-vim' " Template by file type
 Plug 'wakatime/vim-wakatime' " coding time management
-Plug 'anned20/vimsence' " Discord RPC
+Plug 'hugolgst/vimsence' " Discord RPC
 Plug 'itchyny/lightline.vim' " insane vim statusline
 Plug 'yuttie/comfortable-motion.vim' " smooth scroll
 " Plug 'justinmk/vim-dirvish' " filer
@@ -56,3 +56,6 @@ let g:ale_fixers = {
       \ }
 let g:ale_statusline_format = ['✘ %d', '⚠ %d', 'NE']
 let g:ale_fix_on_save = 1
+
+" vimsence customization
+let g:vimsence_editing_state = 'Happy hacking'

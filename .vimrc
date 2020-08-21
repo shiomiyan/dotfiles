@@ -54,6 +54,7 @@ function! TermOpen()
 endfunction
 
 " ===Vim other setting===
+set autoread
 set nobackup
 set noswapfile
 set encoding=utf-8
