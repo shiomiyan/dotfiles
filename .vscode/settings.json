@@ -4,7 +4,7 @@
     "bookmarks.treeview.visible": true,
     // terminal
     "terminal.integrated.fontSize": 14,
-    // "terminal.integrated.fontFamily": "Osaka-Mono",
+    "terminal.integrated.fontFamily": "Osaka-Mono",
     "terminal.integrated.cursorBlinking": true,
     // editor
     "editor.fontSize": 15,
