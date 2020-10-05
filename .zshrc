@@ -60,6 +60,14 @@ function blog() {
 function atc() {
   command rustc $1 -o atcexe && ./atcexe
 }
+# https://iscinumpy.gitlab.io/post/omp-on-high-sierra/
+function gcc() {
+    if [[ $1 == "-fopenmp" ]]; then
+        command gcc -Xpreprocessor -fopenmp -lomp -I"$(brew --prefix libomp)/include" -L"$(brew --prefix libomp)/lib" "${@:2:($#-1)}"
+    else
+        command gcc "$@"
+    fi
+}
 
 export PATH="/usr/local/bin:$PATH"
 

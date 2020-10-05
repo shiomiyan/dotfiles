@@ -14,7 +14,7 @@ Plug 'wakatime/vim-wakatime' " coding time management
 Plug 'hugolgst/vimsence' " Discord RPC
 Plug 'itchyny/lightline.vim' " insane vim statusline
 Plug 'yuttie/comfortable-motion.vim' " smooth scroll
-" Plug 'justinmk/vim-dirvish' " filer
+" Plug 'justinmk/vim-dirvish' " filer (Now I using default filer netrw)
 Plug 'prabirshrestha/async.vim' " for async complete
 Plug 'prabirshrestha/vim-lsp' " language server plugin
 Plug 'prabirshrestha/asyncomplete.vim'
