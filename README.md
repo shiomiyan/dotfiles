@@ -1,7 +1,7 @@
 _unix and macOS setup_
 ```shell
-$ git clone https://github.com/umncsk/dotfiles ~/dotfiles
-$ cd dotfiles
+$ git clone https://github.com/shiomiyan/.dotfiles ~/.dotfiles
+$ cd .dotfiles
 $ ./install.sh
 ```
 
