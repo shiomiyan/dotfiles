@@ -19,7 +19,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: brew install
-        run: ./install_brew.sh
+        run: chmod +x install_brew.sh && ./install_brew.sh
 
       - name: Execute full install
-        run: ./install.sh
+        run: chmod +x install.sh && ./install.sh
