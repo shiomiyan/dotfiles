@@ -7,6 +7,17 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/i
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+# delete existing dotfiles
+rm -f ~/.vmirc
+rm -f ~/.zshrc
+rm -f ~/.zprofile
+rm -f ~/.zshenv
+rm -f ~/.tmux.conf
+rm -f ~/.gitignore_global
+rm -f ~/.yabairc
+rm -rf ~/.vim
+rm -rf ~/.config
+
 # symlinks
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.zshrc ~/.zshrc
