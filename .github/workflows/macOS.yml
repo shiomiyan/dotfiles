@@ -18,5 +18,8 @@ jobs:
       - uses: actions/checkout@v1
 
       # Runs a single command using the runners shell
+      - name: brew install
+        run: ./install_brew.sh
+
       - name: Execute full install
         run: ./install.sh
