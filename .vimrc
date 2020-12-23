@@ -2,11 +2,11 @@ syntax on
 language C " set English document
 filetype plugin on
 
-" load plugins
+" === load plugins ===
 runtime! userautoload/plugins.vim
 
-" === Vim appearance setting ===
-colorscheme gruvbox
+" === appearance settings ===
+colorscheme nord
 set showmode
 set showcmd
 set number
@@ -21,7 +21,7 @@ highlight NonText ctermbg=NONE guibg=NONE
 highlight SpecialKey ctermbg=NONE guibg=NONE
 highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
-" ===Vim coding setting===
+" === coding settings ===
 set autoindent
 set smartindent
 set smarttab
@@ -30,30 +30,21 @@ set shiftwidth=2
 set expandtab
 set virtualedit=onemore
 
-" ===serch setting===
+" === serch settings ===
 set wrapscan
 set showmatch
 set ignorecase
 set smartcase
 set nowrapscan
 
-" ===netrw setting===
+" === netrw settings ===
 let g:netrw_liststyle=3 " `ls -la` like
 let g:netrw_banner=0
 let g:netrw_sizestyle="H"
 let g:netrw_browse_split=3
 let g:netrw_latv=1
 
-" ===Vim terminal setting===
-set splitbelow
-set termwinsize=7x0
-function! TermOpen()
-    if empty(term_list())
-        execute "terminal"
-    endif
-endfunction
-
-" ===Vim other setting===
+" === other settings ===
 set autoread
 set nobackup
 set noswapfile
@@ -65,30 +56,13 @@ set list listchars=tab:\▸\-
 set clipboard+=unnamed
 set backspace=indent,start,eol
 set wildmode=longest:full,full
-" set mouse=n
 set relativenumber
-let g:python3_host_prog = '/usr/bin/python3'
 
-" filetype conversion
-autocmd BufNewFile,BufRead Schemafile set filetype=ruby
-
-" ===additional indent detection by file type===
-augroup fileTypeIndent
-  autocmd!
-  "autocmd BufNewFile,BufRead *.c setlocal tabstop=4 shiftwidth=4
-  "autocmd BufNewFile,BufRead *.cpp setlocal tabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.rs setlocal tabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.java setlocal tabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.elm setlocal tabstop=4 shiftwidth=4
-augroup END
-" delete unnecessary spaces
+" delete unnecessary spaces on save
 autocmd BufWritePre * :%s/\s\+$//ge
 
-" ===load setting files===
-runtime! userautoload/lspconf.vim
+" === load setting files ===
 runtime! userautoload/keymaps.vim
-
 
 " Template for solving atcoder with Rust
 autocmd BufNewFile ~/dev/competitive-programming/**/*.rs :0r ~/.vim/templates/atcoder.rs

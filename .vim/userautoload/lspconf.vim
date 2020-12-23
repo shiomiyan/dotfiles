@@ -1,3 +1,4 @@
+" This conf file is not reqire now. >> mattn/vim-lsp-settings
 " === vim-lsp configuration ===
 let g:lsp_signs_enabled = 1
 let g:lsp_diagnostics_enabled = 1
