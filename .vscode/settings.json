@@ -107,7 +107,7 @@
         "rubocop": true
     },
     "ruby.format": "rubocop",
-    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.colorTheme": "Nord",
     "editor.suggest.hideStatusBar": false,
     "rust.all_features": true,
     // textlint
