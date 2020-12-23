@@ -16,6 +16,7 @@ ln -sf ~/.dotfiles/.config ~/.config
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/.gitignore_global ~/.gitginore_global
 ln -sf ~/.dotfiles/.vim ~/.vim
+ln -sf ~/.dotfiles/.yabairc ~/.yabairc
 
 # install Vim plugins
 vim +silent +VimEnter +PlugInstall +qall
