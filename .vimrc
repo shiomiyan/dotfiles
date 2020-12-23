@@ -75,8 +75,8 @@ autocmd BufNewFile,BufRead Schemafile set filetype=ruby
 " ===additional indent detection by file type===
 augroup fileTypeIndent
   autocmd!
-  autocmd BufNewFile,BufRead *.c setlocal tabstop=4 shiftwidth=4
-  autocmd BufNewFile,BufRead *.cpp setlocal tabstop=4 shiftwidth=4
+  "autocmd BufNewFile,BufRead *.c setlocal tabstop=4 shiftwidth=4
+  "autocmd BufNewFile,BufRead *.cpp setlocal tabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.py setlocal tabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.rs setlocal tabstop=4 shiftwidth=4
   autocmd BufNewFile,BufRead *.java setlocal tabstop=4 shiftwidth=4

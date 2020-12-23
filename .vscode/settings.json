@@ -1,14 +1,13 @@
 {
     "window.zoomLevel": 0,
     "window.doubleClickIconToClose": true,
-    "bookmarks.treeview.visible": true,
     // terminal
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.fontFamily": "Osaka-Mono",
+    "terminal.integrated.fontSize": 13.5,
+    "terminal.integrated.fontFamily": "Monaco",
     "terminal.integrated.cursorBlinking": true,
     // editor
-    "editor.fontSize": 15,
-    "editor.fontFamily": "Osaka-Mono",
+    "editor.fontSize": 13.5,
+    "editor.fontFamily": "Monaco",
     "editor.fontWeight": "normal",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
@@ -16,7 +15,7 @@
     // "editor.autoIndent": false,
     "editor.multiCursorModifier": "ctrlCmd",
     "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.scrollBeyondLastLine": true,
     "editor.minimap.showSlider": "always",
@@ -74,9 +73,6 @@
         "*.mli": "ocaml"
     },
     "typescript.disableAutomaticTypeAcquisition": true,
-    "clock.dateFormat": "HH:MM",
-    "projectManager.sortList": "Saved",
-    "sync.gist": "73ff4dc2eb67ecfcf3c4ad8cd854aedf",
     "terminal.external.linuxExec": "",
     "python.dataScience.allowUnauthorizedRemoteConnection": true,
     // vscodeVim setting
@@ -114,4 +110,6 @@
     "workbench.colorTheme": "Visual Studio Dark",
     "editor.suggest.hideStatusBar": false,
     "rust.all_features": true,
+    // textlint
+    "textlint.autoFixOnSave": true,
 }
