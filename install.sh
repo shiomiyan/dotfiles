@@ -3,10 +3,6 @@
 # install zinit
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
 
-# install vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 # delete existing dotfiles
 rm -f ~/.vmirc
 rm -f ~/.zshrc
@@ -28,6 +24,11 @@ ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/.gitignore_global ~/.gitginore_global
 ln -sf ~/.dotfiles/.vim ~/.vim
 ln -sf ~/.dotfiles/.yabairc ~/.yabairc
+
+# install vim-plug
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 
 # install Vim plugins
 vim +silent +VimEnter +PlugInstall +qall
