@@ -26,6 +26,8 @@ ln -sf ~/.dotfiles/.vim ~/.vim
 ln -sf ~/.dotfiles/.yabairc ~/.yabairc
 
 # install vim-plug
+
+mkdir ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
