@@ -37,4 +37,4 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # install Vim plugins
-vim +silent +VimEnter +PlugInstall +qall
+vim -e -s +VimEnter +PlugInstall +qall
