@@ -40,3 +40,7 @@ test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /de
 #    zprof
 #fi
 #=======================================================#
+
+source ~/.zsh/aliases.zsh
+source ~/.zsh/exports.zsh
+source ~/.zsh/tmux.zsh
