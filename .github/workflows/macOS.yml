@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on: [push]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -21,5 +21,5 @@ jobs:
       - name: brew install
         run: chmod +x install_brew.sh && ./install_brew.sh
 
-      - name: Execute full install
+      - name: all dotfile install
         run: chmod +x install.sh && ./install.sh
