@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ ! -d "$HOME/.dotfiles" ]; then
-    git clone --depth=1 https://github.com/.dotfiles/dotfiles.git "$HOME/.dotfiles" --recursive
+    git clone --depth=1 https://github.com/shiomiyan/.dotfiles.git "$HOME/.dotfiles" --recursive
     cd "$HOME/.dotfiles"
 fi
 
