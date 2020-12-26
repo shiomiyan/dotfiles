@@ -20,7 +20,7 @@ rm -rf ~/.config
 # symlinks
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.zinit ~/.zinit
-ln -sf ~/.dotfiles/.zsh ~/.zshrc
+ln -sf ~/.dotfiles/.zsh ~/.zsh
 ln -sf ~/.dotfiles/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/.zprofile ~/.zprofile
 ln -sf ~/.dotfiles/.zshenv ~/.zshenv
