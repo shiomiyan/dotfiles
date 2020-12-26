@@ -24,7 +24,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # cloud_sql_proxy (GCP)
 export PATH="$HOME/:$PATH"
 
-# Go lang
+# Golang
 export GOPATH="$HOME/go/"
 export PATH="$GOPATH/bin:$PATH"
 
@@ -37,3 +37,6 @@ export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # gcc - g++
 export PATH=$PATH:/usr/local/bin
+
+# opam
+eval `opam config env`

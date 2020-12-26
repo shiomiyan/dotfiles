@@ -31,9 +31,6 @@ zinit light zsh-users/zsh-syntax-highlighting
 # config starship
 eval "$(starship init zsh)"
 
-# opam configuration
-test -r $HOME/.opam/opam-init/init.zsh && . $HOME/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
 #=======================================================#
 # profiling zsh bottle necks
 #if (which zprof > /dev/null 2>&1) ;then
