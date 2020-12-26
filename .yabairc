@@ -53,5 +53,6 @@ yabai -m rule --add app="^Bitwarden$" manage=off
 yabai -m rule --add app="^AppCleaner$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Docker$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
 
 echo "yabai configuration loaded.."
