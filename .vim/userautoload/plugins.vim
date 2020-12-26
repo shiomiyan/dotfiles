@@ -5,16 +5,16 @@ Plug 'arcticicestudio/nord-vim' " theme
 Plug 'airblade/vim-gitgutter' " git status on sidebar
 Plug 'sheerun/vim-polyglot' " language support
 Plug 'cohama/lexima.vim' " Complete parenthesis
-Plug 'rust-lang/rust.vim' " Rust dev pulgin
-Plug 'racer-rust/vim-racer' " Rust code completion
-Plug 'wakatime/vim-wakatime' " coding time management
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
+Plug 'wakatime/vim-wakatime'
 Plug 'hugolgst/vimsence' " Discord RPC
-Plug 'itchyny/lightline.vim' " insane vim statusline
+Plug 'itchyny/lightline.vim'
 Plug 'prabirshrestha/vim-lsp' " language server plugin
-Plug 'mattn/vim-lsp-settings' " easy LSP setting plugin
+Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'w0rp/ale' " linter
+Plug 'heavenshell/vim-textlint'
 Plug 'ianding1/leetcode.vim'
 call plug#end()
 
