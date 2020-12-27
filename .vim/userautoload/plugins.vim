@@ -27,7 +27,7 @@ let g:leetcode_browser = 'firefox'
 let g:lightline = {
       \ 'colorscheme': 'nord',
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste', 'yank' ],
+      \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified' ] ]
       \ },
       \ }
