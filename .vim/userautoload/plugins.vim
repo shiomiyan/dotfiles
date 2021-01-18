@@ -18,6 +18,13 @@ Plug 'heavenshell/vim-textlint'
 Plug 'ianding1/leetcode.vim'
 call plug#end()
 
+" === vim-lsp configurations ===
+let g:lsp_signs_enabled = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:asyncomplete_remove_duplicates = 1
+let g:asyncomplete_smart_completion = 1
+let g:asyncomplete_auto_popup = 1
 
 " === leetcode customization ===
 let g:leetcode_solution_filetype = 'rust'
@@ -33,7 +40,7 @@ let g:lightline = {
       \ }
 
 " Rust auto formatting when saved
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 
 " ale optional setting
 let g:ale_fixers = {
@@ -42,5 +49,4 @@ let g:ale_fixers = {
 let g:ale_statusline_format = ['✘ %d', '⚠ %d', 'NE']
 let g:ale_fix_on_save = 1
 
-" vimsence customization
-let g:vimsence_editing_state = ''
+let g:vimsence_editing_state = ':/'

@@ -1,11 +1,4 @@
 " This conf file is not reqire now. >> mattn/vim-lsp-settings
-" === vim-lsp configuration ===
-let g:lsp_signs_enabled = 1
-let g:lsp_diagnostics_enabled = 1
-let g:lsp_diagnostics_echo_cursor = 1
-let g:asyncomplete_remove_duplicates = 1
-let g:asyncomplete_smart_completion = 1
-let g:asyncomplete_auto_popup = 1
 
 " Python language server
 if executable('pyls')
