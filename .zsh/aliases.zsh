@@ -6,7 +6,7 @@ alias pip="pip3"
 alias exa="exa --group-directories-first"
 
 case "$OSTYPE" in
-  drawin*)
+  darwin*)
     alias pbc="pbcopy"
     alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
     #NOTE: https://iscinumpy.gitlab.io/post/omp-on-high-sierra/
