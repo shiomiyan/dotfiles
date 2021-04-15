@@ -3,12 +3,13 @@
 # required softwares
 case "$OSTYPE" in
     darwin*)
-        brew install vim git zsh curl tmux
+        brew install vim git zsh curl tmux starship
     ;;
     linux*)
         apt update
         apt upgrade
         apt install vim git zsh curl tmux
+        sh -c "$(curl -fsSL https://starship.rs/install.sh)"
     ;;
 esac
 
