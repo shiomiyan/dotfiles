@@ -1,40 +1,48 @@
 #!/bin/sh
 
+# required softwares
+case "$OSTYPE" in
+    darwin*)
+        brew install vim git zsh curl tmux
+    ;;
+    linux*)
+        apt update
+        apt upgrade
+        apt install vim git zsh curl tmux
+    ;;
+esac
+
 if [ ! -d "$HOME/.dotfiles" ]; then
-    git clone --depth=1 https://github.com/shiomiyan/.dotfiles.git "$HOME/.dotfiles" --recursive
-    cd "$HOME/.dotfiles"
+    git clone https://github.com/shiomiyan/.dotfiles.git "$HOME/.dotfiles"
 fi
+
+# unlink existing symlinks
+unlink ~/.vimrc
+unlink ~/.vim
+unlink ~/.zshrc
+unlink ~/.zsh
+unlink ~/.tmux.conf
 
 # delete existing dotfiles
 rm -f ~/.vmirc
-rm -f ~/.zshrc
-rm -f ~/.zprofile
-rm -f ~/.zshenv
-rm -f ~/.tmux.conf
-rm -f ~/.tmux
-rm -f ~/.gitignore_global
-rm -f ~/.yabairc
 rm -rf ~/.vim
-rm -rf ~/.config
+rm -f ~/.zshrc
+rm -rf ~/.zsh
+rm -f ~/.tmux.conf
 
 # symlinks
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
-ln -sf ~/.dotfiles/.zinit ~/.zinit
-ln -sf ~/.dotfiles/.zsh ~/.zsh
-ln -sf ~/.dotfiles/.zshrc ~/.zshrc
-ln -sf ~/.dotfiles/.zprofile ~/.zprofile
-ln -sf ~/.dotfiles/.zshenv ~/.zshenv
-ln -sf ~/.dotfiles/.config ~/.config
-ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/.dotfiles/.tmux ~/.tmux
-ln -sf ~/.dotfiles/.gitignore_global ~/.gitginore_global
 ln -sf ~/.dotfiles/.vim ~/.vim
-ln -sf ~/.dotfiles/.yabairc ~/.yabairc
+ln -sf ~/.dotfiles/.zshrc ~/.zshrc
+ln -sf ~/.dotfiles/.zsh ~/.zsh
+ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 
-# install vim-plug
+# zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+
+# vim
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# install Vim plugins
 vim -e -s +VimEnter +PlugInstall +qall

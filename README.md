@@ -8,7 +8,7 @@ $ ./install.sh
 or
 
 ```shell
-sh -c "`curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/install.sh`"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/install.sh)"
 ```
 
 _Windows setup_
