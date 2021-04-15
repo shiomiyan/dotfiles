@@ -1,14 +1,7 @@
 _unix and macOS setup_
-```shell
-$ git clone --recursive https://github.com/shiomiyan/.dotfiles ~/.dotfiles
-$ cd .dotfiles
-$ ./install.sh
-```
-
-or
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/.dotfiles/master/install.sh)"
 ```
 
 _Windows setup_
