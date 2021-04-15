@@ -26,6 +26,7 @@ case "$OSTYPE" in
   darwin*)
     alias pbc="pbcopy"
     alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
+  ;;
   linux*)
   ;;
 esac
