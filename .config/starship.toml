@@ -1,0 +1,16 @@
+[git_branch]
+symbol = ""
+
+[cmd_duration]
+disabled = true
+
+[line_break]
+disabled = false
+
+[package]
+disabled = true
+
+add_newline = false
+
+[battery]
+disabled = true
