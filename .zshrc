@@ -52,6 +52,7 @@ fi
 # PATH exports
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export STARSHIP_CONFIG=~/.config/starship.toml
 eval "$(anyenv init -)"
 eval "$(starship init zsh)"
 
