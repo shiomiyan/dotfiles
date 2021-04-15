@@ -22,18 +22,21 @@ unlink ~/.vimrc
 unlink ~/.vim
 unlink ~/.zshrc
 unlink ~/.tmux.conf
+unlink ~/.config
 
 # delete existing dotfiles
 rm -f ~/.vmirc
 rm -rf ~/.vim
 rm -f ~/.zshrc
 rm -f ~/.tmux.conf
+rm -rf ~/.config
 
 # symlinks
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.vim ~/.vim
 ln -sf ~/.dotfiles/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/.dotfiles/.config ~/.config
 
 # zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
