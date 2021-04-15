@@ -22,11 +22,6 @@ setopt HIST_IGNORE_DUPS
 # share history between processes
 setopt share_history
 
-# Added by Zplugin's installer
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
 # add Zplugin's
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-syntax-highlighting

@@ -20,21 +20,18 @@ fi
 unlink ~/.vimrc
 unlink ~/.vim
 unlink ~/.zshrc
-unlink ~/.zsh
 unlink ~/.tmux.conf
 
 # delete existing dotfiles
 rm -f ~/.vmirc
 rm -rf ~/.vim
 rm -f ~/.zshrc
-rm -rf ~/.zsh
 rm -f ~/.tmux.conf
 
 # symlinks
 ln -sf ~/.dotfiles/.vimrc ~/.vimrc
 ln -sf ~/.dotfiles/.vim ~/.vim
 ln -sf ~/.dotfiles/.zshrc ~/.zshrc
-ln -sf ~/.dotfiles/.zsh ~/.zsh
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 
 # zsh
