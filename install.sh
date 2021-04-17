@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # required softwares
-case "$ostype" in
+case "$OSTYPE" in
     darwin*)
         echo "run on macos"
         brew install vim git zsh curl tmux starship
