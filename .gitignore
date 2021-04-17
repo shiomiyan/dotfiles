@@ -3,11 +3,13 @@ __pycache__
 *.pyc
 *.log
 
+.zinit/
+
 .vim/plugged
 .vim/.netrwhist
 .vim/autoload
 
 /.config/*
-!/.config/alacritty/alacritty.yml
-!/.config/karabiner/karabiner.json
-!/.config/starship.toml
+!.config/alacritty/alacritty.yml
+!.config/karabiner/karabiner.json
+!.config/starship.toml
