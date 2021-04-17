@@ -1,12 +1,13 @@
 #!/bin/sh
 
 # required softwares
-ostype = $(uname)
 case "$ostype" in
-    "Darwin")
+    darwin*)
+        echo "run on macos"
         brew install vim git zsh curl tmux starship
         ;;
-    "Linux")
+    linux*)
+        echo "run on linux"
         sudo apt update
         sudo apt upgrade
         sudo apt install vim git zsh curl tmux
