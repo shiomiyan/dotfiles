@@ -6,9 +6,9 @@ case "$OSTYPE" in
         brew install vim git zsh curl tmux starship
     ;;
     linux*)
-        apt update
-        apt upgrade
-        apt install vim git zsh curl tmux
+        sudo apt update
+        sudo apt upgrade
+        sudo apt install vim git zsh curl tmux
         sh -c "$(curl -fsSL https://starship.rs/install.sh)"
     ;;
 esac
