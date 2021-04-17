@@ -1,16 +1,17 @@
 #!/bin/sh
 
 # required softwares
-case "$OSTYPE" in
-    darwin*)
+ostype = $(uname)
+case "$ostype" in
+    "Darwin")
         brew install vim git zsh curl tmux starship
-    ;;
-    linux*)
+        ;;
+    "Linux")
         sudo apt update
         sudo apt upgrade
         sudo apt install vim git zsh curl tmux
         sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-    ;;
+        ;;
 esac
 
 if [ ! -d "$HOME/.dotfiles" ]; then
