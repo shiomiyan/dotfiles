@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # required softwares
 case "$OSTYPE" in
@@ -8,10 +8,9 @@ case "$OSTYPE" in
     ;;
     "linux"*)
         echo "run on linux"
-        sudo apt update
-        sudo apt upgrade
-        sudo apt install vim git zsh curl tmux
-        sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+        sudo apt update -y
+        sudo apt upgrade -y
+        sudo apt install vim git zsh curl tmux -y
     ;;
     *)
         echo "can not detect the ostype"
