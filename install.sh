@@ -2,17 +2,20 @@
 
 # required softwares
 case "$OSTYPE" in
-    darwin*)
+    "darwin"*)
         echo "run on macos"
         brew install vim git zsh curl tmux starship
-        ;;
-    linux*)
+    ;;
+    "linux"*)
         echo "run on linux"
         sudo apt update
         sudo apt upgrade
         sudo apt install vim git zsh curl tmux
         sh -c "$(curl -fsSL https://starship.rs/install.sh)"
-        ;;
+    ;;
+    *)
+        echo "can not detect the ostype"
+    ;;
 esac
 
 if [ ! -d "$HOME/.dotfiles" ]; then
