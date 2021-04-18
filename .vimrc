@@ -6,7 +6,7 @@ filetype plugin on
 runtime! userautoload/plugins.vim
 
 " === appearance settings ===
-colorscheme nord
+colorscheme gruvbox
 set showmode
 set showcmd
 set number
@@ -28,7 +28,6 @@ set smarttab
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set virtualedit=onemore
 
 " === serch settings ===
 set wrapscan
@@ -38,9 +37,10 @@ set smartcase
 set nowrapscan
 
 " === netrw settings ===
-let g:netrw_liststyle=3 " `ls -la` like
+let g:netrw_liststyle=1 " `ls -la` like
 let g:netrw_banner=0
 let g:netrw_sizestyle="H"
+let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 let g:netrw_browse_split=3
 let g:netrw_latv=1
 

@@ -1,5 +1,27 @@
 export LANG=ja_JP.UTF-8
 
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zinit-zsh/z-a-rust \
+    zinit-zsh/z-a-as-monitor \
+    zinit-zsh/z-a-patch-dl \
+    zinit-zsh/z-a-bin-gem-node
+### End of Zinit's installer chunk
+
 autoload -Uz add-zsh-hook vcs_info compinit
 compinit
 add-zsh-hook precmd vcs_info
@@ -24,12 +46,16 @@ alias vi="vim"
 
 case "$OSTYPE" in
   darwin*)
-    alias pbc="pbcopy"
+    alias clip="pbcopy"
     alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
   ;;
   linux*)
   ;;
 esac
+
+if [ -f /proc/sys/fs/binfmt_misc/WSLInterop  ]; then
+  alias clip="clip.exe";
+fi
 
 # auto start tmux
 #if [[ ! -n $TMUX && $- == *l* ]]; then
@@ -52,5 +78,7 @@ esac
 # PATH exports
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.anyenv/bin:$PATH"
 export STARSHIP_CONFIG=~/.config/starship.toml
-
+eval "$(anyenv init -)"
+eval "$(starship init zsh)"
