@@ -12,3 +12,10 @@ _Windows setup_
   - Git for Windows https://git-scm.com/download/win
   - PowerShell Git environment http://dahlbyk.github.io/posh-git/
   - SSH connection ( `ssh-keygen -t rsa -b 4096 -C "e-mail address"` )
+
+## test in Docker
+
+```
+docker build . --file ./unix.dockerfile -t dotfiles
+docker run -it dotfiles /bin/bash
+```
