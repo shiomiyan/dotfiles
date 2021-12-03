@@ -1,6 +1,3 @@
-[git_branch]
-symbol = ""
-
 [cmd_duration]
 disabled = true
 
