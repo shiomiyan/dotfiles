@@ -40,12 +40,11 @@ ln -sf ~/.dotfiles/.zshrc ~/.zshrc
 ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/.dotfiles/.config ~/.config
 
-# vim
+# install vim-plug and plugins
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# vim +PlugInstall +qall
 vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
 chsh -s `/usr/bin/zsh`

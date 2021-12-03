@@ -15,7 +15,18 @@ _Windows setup_
 
 ## test in Docker
 
+### ubuntu
+
 ```
-docker build . --file ./unix.dockerfile -t dotfiles
-docker run -it dotfiles /bin/bash
+docker build . --file ./ubuntu.dockerfile -t ubuntu-dotfiles
+docker run -it ubuntu-dotfiles /bin/bash
+```
+
+### Windows
+
+only can run on windows
+
+```
+docker build . --file ./windows.dockerfile -t windows-dotfiles
+docker run -it windows-dotfiles powershell.exe
 ```
