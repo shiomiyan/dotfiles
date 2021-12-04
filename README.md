@@ -19,5 +19,5 @@ only can run on windows
 
 ```
 docker build . --file ./windows.dockerfile -t windows-dotfiles
-docker run -it windows-dotfiles powershell.exe
+docker run -it --rm windows-dotfiles powershell.exe
 ```
