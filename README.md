@@ -9,7 +9,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/.dotfiles/master
 ### Windows
 
 ```
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/.dotfiles/master/src/setup.sh)"
 iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/shiomiyan/.dotfiles/master/src/setup.ps1)'))
 ```
 
