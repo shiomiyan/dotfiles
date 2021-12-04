@@ -1,20 +1,18 @@
-" ===key mappings===
+" === key mappings ===
 nnoremap j gj
 nnoremap k gk
-" ===Tab completion with asyncomplete.vim
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr>    pumvisible() ? "\<C-y>" : "\<cr>"
-" Vim tab movements
-nmap <Tab> gt
-nmap <S-Tab> gT
 
-" practice Vim options
-nnoremap <Down> <Nop>
-nnoremap <Up> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Left> <Nop>
-inoremap <Down> <Nop>
-inoremap <Up> <Nop>
-inoremap <Right> <Nop>
-inoremap <Left> <Nop>
+" === tab movements with tab key ===
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+
+" === coc: navigate the completion list with tab key ===
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" === coc: jump to definition ===
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+

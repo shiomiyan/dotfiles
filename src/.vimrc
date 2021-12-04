@@ -2,6 +2,8 @@ syntax enable
 language C
 filetype plugin indent on
 
+source $VIMRUNTIME/defaults.vim
+
 " === load plugins ===
 runtime! userautoload/plugins.vim
 
