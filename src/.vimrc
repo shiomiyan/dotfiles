@@ -1,4 +1,4 @@
-syntax on
+syntax enable
 language C
 filetype plugin indent on
 
@@ -7,7 +7,6 @@ runtime! userautoload/plugins.vim
 
 " === appearance settings ===
 colorscheme gruvbox
-set termguicolors
 set showmode
 set showcmd
 set number
