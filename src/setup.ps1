@@ -13,8 +13,8 @@ fnm install v16.13.0
 fnm use v16.13.0
 
 # setting up Vim
-cmd.exe /c mklink _vimrc %userprofile%\.dotfiles\.vimrc
-cmd.exe /c mklink /D .\vimfiles %userprofile%\.dotfiles\.vim
+cmd.exe /c mklink %userprofile%\_vimrc %userprofile%\.dotfiles\.vimrc
+cmd.exe /c mklink /D %userprofile%.\vimfiles %userprofile%\.dotfiles\.vim
 
 # install vim-plug and install plugins
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
