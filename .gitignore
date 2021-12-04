@@ -5,9 +5,9 @@ __pycache__
 
 .zinit/
 
-.vim/plugged
-.vim/.netrwhist
-.vim/autoload
+src/.vim/plugged
+src/.vim/.netrwhist
+src/.vim/autoload
 
 /.config/*
 !.config/alacritty/alacritty.yml
