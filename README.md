@@ -1,9 +1,3 @@
-_unix and macOS setup_
-
-```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/.dotfiles/master/install.sh)"
-```
-
 ## test in Docker
 
 ### ubuntu
