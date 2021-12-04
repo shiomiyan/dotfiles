@@ -1,1 +1,0 @@
-. /users/containeradministrator/.dotfiles/setup.ps1
