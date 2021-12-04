@@ -29,6 +29,12 @@ echo "Invoke-Expression (&starship init powershell)" >> $profile
 # プロファイル再読み込みでエラーを吐くのでここでは一時的に読み込ませる
 fnm env --use-on-cd | Out-String | Invoke-Expression > $null
 echo "fnm env --use-on-cd | Out-String | Invoke-Expression" >> $profile *> $null
+
+# install node for coc-vim
+## install node version manager
+cinst fnm
+Write-Output "fnm env --use-on-cd | Out-String | Invoke-Expression" | Out-File -Encoding default -Append $profile
+& $profile
 fnm install v16.13.0
 fnm use v16.13.0
 
