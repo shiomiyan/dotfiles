@@ -9,7 +9,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/.dotfiles/master
 ### Windows
 
 ```
-iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/shiomiyan/.dotfiles/master/src/setup.ps1)'))
+iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/shiomiyan/.dotfiles/master/src/setup.ps1'))
 ```
 
 ## test in Docker
