@@ -34,11 +34,11 @@ rm -f ~/.tmux.conf
 rm -rf ~/.config
 
 # symlinks
-ln -sf ~/.dotfiles/.vimrc ~/.vimrc
-ln -sf ~/.dotfiles/.vim ~/.vim
-ln -sf ~/.dotfiles/.zshrc ~/.zshrc
-ln -sf ~/.dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/.dotfiles/.config ~/.config
+ln -sf ~/dotfiles/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/.vim ~/.vim
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/.config ~/.config
 
 # install vim-plug and plugins
 mkdir -p ~/.vim/autoload

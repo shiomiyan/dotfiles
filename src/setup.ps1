@@ -21,7 +21,7 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 refreshenv
 
 # clone repo
-git clone https://github.com/shiomiyan/.dotfiles.git $HOME/.dotfiles
+git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
 
 # === setup tools ===
 
@@ -36,8 +36,9 @@ fnm install v16.13.0
 fnm use v16.13.0
 
 # create symlinks for dotfiles
-cmd.exe /c mklink %userprofile%\_vimrc %userprofile%\.dotfiles\src\.vimrc
-cmd.exe /c mklink /D %userprofile%.\vimfiles %userprofile%\.dotfiles\src\.vim
+cmd.exe /c mklink %userprofile%\_vimrc %userprofile%\dotfiles\src\.vimrc
+cmd.exe /c mklink /D %userprofile%.\vimfiles %userprofile%\dotfiles\src\.vim
+cmd.exe /c mklink %userprofile%\.config\starship.toml %userprofile%\dotfiles\src\.config\starship.toml
 
 # install vim-plug and install plugins
 iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
