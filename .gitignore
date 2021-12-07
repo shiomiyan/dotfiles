@@ -9,7 +9,7 @@ src/.vim/plugged
 src/.vim/.netrwhist
 src/.vim/autoload
 
-/.config/*
-!.config/alacritty/alacritty.yml
-!.config/karabiner/karabiner.json
-!.config/starship.toml
+src/.config/*
+!src/.config/alacritty/alacritty.yml
+!src/.config/karabiner/karabiner.json
+!src/.config/starship.toml
