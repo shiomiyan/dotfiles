@@ -25,7 +25,7 @@ case "$OSTYPE" in
             pacman -Syyu --noconfirm
             pacman -S gvim git zsh curl tmux --noconfirm
         else
-	    echo "run on linux"
+            echo "run on linux"
             apt update -y
             apt install vim git zsh curl tmux -y
         fi
