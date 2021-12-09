@@ -62,3 +62,10 @@ autocmd BufWritePre * :%s/\s\+$//ge
 " === load setting files ===
 runtime! userautoload/keymaps.vim
 
+" === OS dependencies ===
+"if stridx(system('uname -r'), 'microsoft') " if is WSL
+"  augroup Yank
+"    au!
+"    autocmd TextYankPost * :call system('/mnt/c/Windows/System32/clip.exe', @")
+"  augroup END
+"endif
