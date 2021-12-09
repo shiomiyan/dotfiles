@@ -42,7 +42,7 @@ unlink ~/.tmux.conf
 unlink ~/.config
 
 # delete existing dotfiles
-rm -f ~/.vmirc
+rm -f ~/.vimrc
 rm -rf ~/.vim
 rm -f ~/.zshrc
 rm -f ~/.tmux.conf
@@ -56,6 +56,8 @@ ln -sf ~/dotfiles/src/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/src/.config ~/.config
 
 # install vim-plug and plugins
+touch ~/.vim/userautoload/extras.vim
+
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
