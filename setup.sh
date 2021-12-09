@@ -4,7 +4,21 @@
 case "$OSTYPE" in
     "darwin"*)
         echo "run on macos"
-        brew install vim git zsh curl tmux starship
+        brew install            \
+            vim                 \
+            git                 \
+            zsh                 \
+            curl                \
+            tmux                \
+            starship
+        brew install --cask     \
+            alacritty           \
+            firefox             \
+            google-japanese-ime \
+            karabiner-elements  \
+            keyboardcleantool   \
+            rectangle           \
+            spotify
     ;;
     "linux"*)
         echo "run on linux"
@@ -18,7 +32,7 @@ case "$OSTYPE" in
     ;;
 esac
 
-echo -e "\e[32m tool install complete \e[m"
+git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
 
 # unlink existing symlinks
 unlink ~/.vimrc
