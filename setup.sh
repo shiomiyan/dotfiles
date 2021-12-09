@@ -23,7 +23,7 @@ case "$OSTYPE" in
     "linux"*)
 	if [ -e /etc/arch-release ]; then
 	    pacman -Syyu
-            pacman -Sy vim git zsh curl tmux -y
+            pacman -Sy gvim git zsh curl tmux -y
 	else
 	    echo "run on linux"
             apt update -y
