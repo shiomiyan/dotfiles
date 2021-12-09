@@ -13,6 +13,8 @@ Invoke-WebRequest "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-ms
   -OutFile C:\rustup-init.exe
 C:\rustup-init.exe -y
 
+Remove-Item -Force C:\rustup-init.exe
+
 # reload env vars
 $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") `
   + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
