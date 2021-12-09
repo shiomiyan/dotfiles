@@ -22,8 +22,8 @@ case "$OSTYPE" in
     ;;
     "linux"*)
 	if [ -e /etc/arch-release ]; then
-	    pacman -Syyu
-            pacman -Sy gvim git zsh curl tmux -y
+            pacman -Syyu --noconfirm
+	    pacman -S gvim git zsh curl tmux --noconfirm
 	else
 	    echo "run on linux"
             apt update -y
@@ -68,4 +68,3 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
 chsh -s $(which zsh) && exec $SHELL
-
