@@ -21,11 +21,16 @@ case "$OSTYPE" in
             spotify
     ;;
     "linux"*)
-        echo "run on linux"
-        apt update -y
-        apt install vim git zsh curl tmux -y
+        if [ -e /etc/arch-release ]; then
+            pacman -Syyu --noconfirm
+            pacman -S gvim git zsh curl tmux --noconfirm
+        else
+            echo "run on linux"
+            apt update -y
+            apt install vim git zsh curl tmux -y
+        fi
         sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
-        curl --proto =h'ttps' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y # install Rust
+        curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y # install Rust
     ;;
     *)
         echo "can not detect the OSTYPE"
@@ -65,4 +70,3 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
 chsh -s $(which zsh) && exec $SHELL
-
