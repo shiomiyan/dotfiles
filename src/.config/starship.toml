@@ -17,6 +17,10 @@ format = "[$user]($style) "
 disabled = false
 show_always = true
 
+[shell]
+style = "cyan bold"
+disabled = false
+
 # [hostname]
 # ssh_only = false
 # format =  ": [$hostname](bold red) "

@@ -11,6 +11,7 @@ case "$OSTYPE" in
         apt update -y
         apt install vim git zsh curl tmux -y
         sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
+        curl --proto =h'ttps' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y # install Rust
     ;;
     *)
         echo "can not detect the OSTYPE"
@@ -34,11 +35,11 @@ rm -f ~/.tmux.conf
 rm -rf ~/.config
 
 # symlinks
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/.vim ~/.vim
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.config ~/.config
+ln -sf ~/dotfiles/src/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/src/.vim ~/.vim
+ln -sf ~/dotfiles/src/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/src/.tmux.conf ~/.tmux.conf
+ln -sf ~/dotfiles/src/.config ~/.config
 
 # install vim-plug and plugins
 mkdir -p ~/.vim/autoload
@@ -47,5 +48,5 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 
 vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
-chsh -s `/usr/bin/zsh`
-exec $SHELL
+chsh -s $(which zsh) && exec $SHELL
+
