@@ -14,3 +14,4 @@ src/.config/*
 !src/.config/alacritty/alacritty.yml
 !src/.config/karabiner/karabiner.json
 !src/.config/starship.toml
+!src/.config/nvim/init.vim

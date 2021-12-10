@@ -6,7 +6,7 @@ Set-ExecutionPolicy Bypass -Force
 choco feature enable -n allowGlobalConfirmation
 
 # install tools using choco
-cinst vim git fnm starship
+cinst vim neovim git fnm starship
 
 # install Rust
 Invoke-WebRequest "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe" `
@@ -41,6 +41,7 @@ fnm use v16.13.0
 cmd.exe /c mklink %userprofile%\_vimrc %userprofile%\dotfiles\src\.vimrc
 cmd.exe /c mklink %userprofile%\.tigrc %userprofile%\dotfiles\src\.tigrc
 cmd.exe /c mklink %userprofile%\.config\starship.toml %userprofile%\dotfiles\src\.config\starship.toml
+cmd.exe /c mklink %localappdata%\nvim\init.vim %localappdata%\dotfiles\src\.config\nvim\init.vim
 cmd.exe /c mklink /D %userprofile%\vimfiles %userprofile%\dotfiles\src\.vim
 
 # install vim-plug and install plugins
