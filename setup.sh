@@ -22,12 +22,12 @@ case "$OSTYPE" in
     ;;
     "linux"*)
         if [ -e /etc/arch-release ]; then
-            pacman -Syyu --noconfirm
-            pacman -S gvim git zsh curl tmux --noconfirm
+            sudo pacman -Syyu --noconfirm
+            sudo pacman -S gvim git zsh curl tmux --noconfirm
         else
             echo "run on linux"
-            apt update -y
-            apt install vim git zsh curl tmux -y
+            sudo apt update -y
+            sudo apt install vim git zsh curl tmux -y
         fi
         sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
         curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y # install Rust
