@@ -15,6 +15,7 @@ esac
 
 if [ `uname -r | grep microsoft` ]; then
   alias clip="/mnt/c/Windows/System32/clip.exe";
+  export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 
 # auto start tmux
