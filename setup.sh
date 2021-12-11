@@ -23,7 +23,7 @@ case "$OSTYPE" in
     "linux"*)
         if [ -e /etc/arch-release ]; then
             sudo pacman -Syyu --noconfirm
-            sudo pacman -S gvim git zsh curl tmux --noconfirm
+            sudo pacman -S gvim git zsh curl tmux gcc --noconfirm
         else
             echo "run on linux"
             sudo apt update -y
