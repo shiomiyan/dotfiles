@@ -14,7 +14,8 @@ case "$OSTYPE" in
 esac
 
 if [ `uname -r | grep microsoft` ]; then
-  alias clip="/mnt/c/Windows/System32/clip.exe";
+  export PATH="/mnt/c/Tools/win32yank/win32yank.exe:$PATH"
+  alias clip="win32yank.exe -i";
   export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 

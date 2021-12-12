@@ -65,10 +65,10 @@ autocmd BufWritePre * :%s/\s\+$//ge
 runtime! userautoload/keymaps.vim
 
 " === OS dependencies ===
-"if stridx(system('uname -r'), 'microsoft') " if is WSL
-"  augroup Yank
-"    au!
-"    autocmd TextYankPost * :call system('/mnt/c/Windows/System32/clip.exe', @")
-"  augroup END
-"endif
+if stridx(system('uname -r'), 'microsoft') " if is WSL
+  augroup Yank
+    au!
+    autocmd TextYankPost * :call system('/mnt/c/Tools/win32yank/win32yank.exe', @")
+  augroup END
+endif
 
