@@ -1,7 +1,8 @@
-export LANG=ja_JP.UTF-8
+export LC_MESSAGES=en_US.UTF-8
 
 alias ..="cd .."
 alias vi="vim"
+alias ls="lsd"
 
 case "$OSTYPE" in
   darwin*)
@@ -12,8 +13,9 @@ case "$OSTYPE" in
   ;;
 esac
 
-if [ -f /proc/sys/fs/binfmt_misc/WSLInterop  ]; then
-  alias clip="clip.exe";
+if [ `uname -r | grep microsoft` ]; then
+  alias clip="/mnt/c/Windows/System32/clip.exe";
+  export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 
 # auto start tmux
@@ -39,3 +41,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export STARSHIP_CONFIG=~/.config/starship.toml
 eval "$(starship init zsh)"
+
+# fnm
+export PATH="$HOME/.fnm:$PATH"
+eval `fnm env`
