@@ -14,8 +14,8 @@ case "$OSTYPE" in
 esac
 
 if [ `uname -r | grep microsoft` ]; then
-  export PATH="/mnt/c/Tools/win32yank/win32yank.exe:$PATH"
-  alias clip="win32yank.exe -i";
+  alias win32yank="/mnt/c/Tools/win32yank/win32yank.exe"
+  alias clip="win32yank -i"
   export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 
@@ -46,3 +46,6 @@ eval "$(starship init zsh)"
 # fnm
 export PATH="$HOME/.fnm:$PATH"
 eval `fnm env`
+
+# deno
+export PATH="$HOME/.deno/bin:$PATH"

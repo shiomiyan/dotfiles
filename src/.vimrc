@@ -66,9 +66,23 @@ runtime! userautoload/keymaps.vim
 
 " === OS dependencies ===
 if stridx(system('uname -r'), 'microsoft') " if is WSL
-  augroup Yank
-    au!
-    autocmd TextYankPost * :call system('/mnt/c/Tools/win32yank/win32yank.exe', @")
-  augroup END
+  "augroup Yank
+  "  au!
+  "  autocmd TextYankPost * :call system('/mnt/c/Tools/win32yank/win32yank.exe -i', @")
+  "augroup END
+  " sync clipboard
+  " https://superuser.com/a/1557751
+  let g:clipboard = {
+          \   'name': 'win32yank',
+          \   'copy': {
+          \      '+': '/mnt/c/Tools/win32yank/win32yank.exe -i',
+          \      '*': '/mnt/c/Tools/win32yank/win32yank.exe -i',
+          \    },
+          \   'paste': {
+          \      '+': '/mnt/c/Tools/win32yank/win32yank.exe -o',
+          \      '*': '/mnt/c/Tools/win32yank/win32yank.exe -o',
+          \   },
+          \   'cache_enabled': 0,
+          \ }
 endif
 
