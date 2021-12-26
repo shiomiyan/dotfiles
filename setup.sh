@@ -24,6 +24,8 @@ case "$OSTYPE" in
         if [ -e /etc/arch-release ]; then
             sudo pacman -Syyu --noconfirm
             sudo pacman -S gvim git zsh curl tmux gcc --noconfirm
+        elif [ -e /etc/fedora-release ]; then
+            sudo dnf install -y tmux gvim neovim gcc zsh
         else
             echo "run on linux"
             sudo apt update -y
@@ -39,26 +41,12 @@ esac
 
 git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
 
-# unlink existing symlinks
-unlink ~/.vimrc
-unlink ~/.vim
-unlink ~/.zshrc
-unlink ~/.tmux.conf
-unlink ~/.config
-
-# delete existing dotfiles
-rm -f ~/.vimrc
-rm -rf ~/.vim
-rm -f ~/.zshrc
-rm -f ~/.tmux.conf
-rm -rf ~/.config
-
 # symlinks
-ln -sf ~/dotfiles/src/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/src/.vim ~/.vim
 ln -sf ~/dotfiles/src/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/src/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/src/.config ~/.config
+ln -sf ~/dotfiles/src/.vimrc ~/.vimrc
+ln -sf ~/dotfiles/src/.vim ~/.vim
+ln -sf ~/dotfiles/src/.config/nvim/init.vim ~/.config/nvim/init.vim
 
 # install vim-plug and plugins
 touch ~/.vim/userautoload/extras.vim
