@@ -15,3 +15,5 @@ src/.config/
 !src/.config/karabiner/karabiner.json
 !src/.config/starship.toml
 !src/.config/nvim/init.vim
+!src/.config/nvim/keymaps.vim
+!src/.config/nvim/plugins.vim
