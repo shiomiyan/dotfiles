@@ -46,7 +46,7 @@ ln -sf ~/dotfiles/src/.zshrc                ~/.zshrc
 ln -sf ~/dotfiles/src/.tmux.conf            ~/.tmux.conf
 # ln -sf ~/dotfiles/src/.vimrc                ~/.vimrc
 # ln -sf ~/dotfiles/src/.vim                  ~/.vim
-# ln -sf ~/dotfiles/src/.config/nvim/init.vim ~/.config/nvim/init.vim
+ln -sf ~/dotfiles/src/.config/nvim ~/.config/nvim
 
 # install vim-plug and plugins
 # touch ~/.vim/userautoload/extras.vim
