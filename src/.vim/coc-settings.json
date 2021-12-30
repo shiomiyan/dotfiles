@@ -1,5 +1,0 @@
-{
-    // 括弧の補完
-    "coc.preferences.formatOnType": true,
-    "rust-analyzer.enable": true
-}

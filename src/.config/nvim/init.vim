@@ -1,5 +1,5 @@
 syntax enable
-language C
+" language C
 filetype plugin indent on
 
 " === load plugins ===
@@ -49,10 +49,11 @@ set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
 set fileencoding=utf-8
 set fileformat=unix
 set list listchars=tab:\▸\-
-set clipboard+=unnamed
+set clipboard+=unnamedplus
 set backspace=indent,start,eol
 set wildmode=longest:full,full
 set relativenumber
+set helplang=ja,en
 
 " delete unnecessary spaces on save
 autocmd BufWritePre * :%s/\s\+$//ge

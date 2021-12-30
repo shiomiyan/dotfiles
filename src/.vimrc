@@ -1,5 +1,5 @@
 syntax enable
-language C
+language ja_JP.UTF-8
 filetype plugin indent on
 
 if has('vim')

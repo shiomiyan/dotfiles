@@ -1,9 +1,5 @@
 export LC_MESSAGES=en_US.UTF-8
 
-alias ..="cd .."
-alias vi="vim"
-alias ls="lsd"
-
 case "$OSTYPE" in
   darwin*)
     alias clip="pbcopy"
@@ -37,15 +33,16 @@ fi
 #  fi
 #fi
 
-# PATH exports
-export PATH="/usr/local/bin:$PATH"
+
+
+# Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
+
+# starship
 export STARSHIP_CONFIG=~/.config/starship.toml
 eval "$(starship init zsh)"
 
-# fnm
-export PATH="$HOME/.fnm:$PATH"
-eval `fnm env`
-
 # deno
-export PATH="$HOME/.deno/bin:$PATH"
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
