@@ -25,7 +25,7 @@ case "$OSTYPE" in
             sudo pacman -Syyu --noconfirm
             sudo pacman -S gvim git zsh curl tmux gcc --noconfirm
         elif [ -e /etc/fedora-release ]; then
-            sudo dnf install -y tmux gvim neovim gcc zsh
+            sudo dnf install -y tmux neovim gcc zsh
         else
             echo "run on linux"
             sudo apt update -y
@@ -42,19 +42,19 @@ esac
 git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
 
 # symlinks
-ln -sf ~/dotfiles/src/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/src/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/src/.vimrc ~/.vimrc
-ln -sf ~/dotfiles/src/.vim ~/.vim
-ln -sf ~/dotfiles/src/.config/nvim/init.vim ~/.config/nvim/init.vim
+ln -sf ~/dotfiles/src/.zshrc                ~/.zshrc
+ln -sf ~/dotfiles/src/.tmux.conf            ~/.tmux.conf
+# ln -sf ~/dotfiles/src/.vimrc                ~/.vimrc
+# ln -sf ~/dotfiles/src/.vim                  ~/.vim
+# ln -sf ~/dotfiles/src/.config/nvim/init.vim ~/.config/nvim/init.vim
 
 # install vim-plug and plugins
-touch ~/.vim/userautoload/extras.vim
+# touch ~/.vim/userautoload/extras.vim
 
-mkdir -p ~/.vim/autoload
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+# mkdir -p ~/.vim/autoload
+# curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+#     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
+# vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 
-chsh -s $(which zsh) && exec $SHELL
+# chsh -s $(which zsh) && exec $SHELL
