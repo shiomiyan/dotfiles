@@ -2,8 +2,6 @@
 nnoremap j gj
 nnoremap k gk
 
-inoremap <ESC> <ESC>:set iminsert=0<CR>
-
 " === tab movements with tab key ===
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT

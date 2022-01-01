@@ -3,12 +3,12 @@
 ### ubuntu
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/setup.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/scripts/setup.sh)"
 ```
 
 ### Windows
 
 ```powershell
-iwr "https://raw.githubusercontent.com/shiomiyan/dotfiles/master/setup.ps1" -useb | iex
+iwr "https://raw.githubusercontent.com/shiomiyan/dotfiles/master/scripts/setup.ps1" -useb | iex
 ```
 
