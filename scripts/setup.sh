@@ -25,7 +25,7 @@ case "$OSTYPE" in
             sudo pacman -Syyu --noconfirm
             sudo pacman -S neovim git zsh curl tmux gcc --noconfirm
         elif [ -e /etc/fedora-release ]; then
-            sudo dnf install -y tmux neovim gcc zsh
+            sudo dnf install -y neovim git zsh curl tmux gcc
         else
             echo "run on linux"
             sudo apt update -y
