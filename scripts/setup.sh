@@ -63,3 +63,4 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 # vim -es -u .vimrc -i NONE -c "PlugInstall" -c "qa"
 nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
+sudo usermod -s `which zsh` $USER
