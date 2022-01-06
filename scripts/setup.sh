@@ -49,8 +49,7 @@ ln -sf ~/dotfiles/src/.tmux.conf   ~/.tmux.conf
 ln -sf ~/dotfiles/src/.tigrc       ~/.tigrc
 # ln -sf ~/dotfiles/src/.vimrc                ~/.vimrc
 # ln -sf ~/dotfiles/src/.vim                  ~/.vim
-mkdir -p ~/.config/nvim
-ln -sf ~/dotfiles/src/.config/nvim ~/.config/nvim
+ln -sf ~/dotfiles/src/.config/nvim/ ~/.config/nvim
 
 # === VIM SETUP ===
 # mkdir -p ~/.vim/autoload
