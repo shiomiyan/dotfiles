@@ -25,11 +25,16 @@ case "$OSTYPE" in
             sudo pacman -Syyu --noconfirm
             sudo pacman -S neovim git zsh curl tmux gcc --noconfirm
         elif [ -e /etc/fedora-release ]; then
-            sudo dnf install -y neovim git zsh curl tmux gcc
-        else
-            echo "run on linux"
-            sudo apt update -y
-            sudo apt install vim git zsh curl tmux -y
+            sudo dnf upgrade
+            sudo dnf install -y \
+                neovim          \
+                git             \
+                zsh             \
+                curl            \
+                wget            \
+                tmux            \
+                gcc             \
+                openssl-devel
         fi
 
         sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
@@ -49,7 +54,7 @@ ln -sf ~/dotfiles/src/.tmux.conf   ~/.tmux.conf
 ln -sf ~/dotfiles/src/.tigrc       ~/.tigrc
 # ln -sf ~/dotfiles/src/.vimrc                ~/.vimrc
 # ln -sf ~/dotfiles/src/.vim                  ~/.vim
-mkdir -p ~/.config/nvim
+mkdir ~/.config
 ln -sf ~/dotfiles/src/.config/nvim ~/.config/nvim
 
 # === VIM SETUP ===
