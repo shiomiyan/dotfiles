@@ -6,16 +6,18 @@ filetype plugin indent on
 runtime! plugins.vim
 
 " === appearance settings ===
-colorscheme gruvbox
+set termguicolors
+set t_Co=256
+let base16colorspace=256
+colorscheme base16-default-dark
+set background=dark
 set showmode
 set showcmd
 set number
-set t_Co=256
 set cursorline
 set scrolloff=10
 set laststatus=2
 set noshowmode
-set background=dark
 
 " === coding settings ===
 set autoindent
@@ -62,12 +64,8 @@ autocmd BufWritePre * :%s/\s\+$//ge
 runtime! keymaps.vim
 
 " === OS dependencies ===
-if stridx(system('uname -r'), 'microsoft') == 1 " if is WSL
-  "augroup Yank
-  "  au!
-  "  autocmd TextYankPost * :call system('/mnt/c/Tools/win32yank/win32yank.exe -i', @")
-  "augroup END
-  " sync clipboard
+if system('uname -r') =~ ".*microsoft.*" " if is WSL
+  " Synchronize the clipboard with the host OS
   " https://superuser.com/a/1557751
   let g:clipboard = {
           \   'name': 'win32yank',

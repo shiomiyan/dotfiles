@@ -10,7 +10,7 @@ src/.vim/.netrwhist
 src/.vim/autoload
 src/.vim/userautoload/extras.vim
 
-src/.config/
+/src/.config/*
 !src/.config/alacritty/alacritty.yml
 !src/.config/karabiner/karabiner.json
 !src/.config/starship.toml
