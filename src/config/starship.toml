@@ -1,0 +1,25 @@
+[cmd_duration]
+disabled = true
+
+[package]
+disabled = true
+
+[battery]
+disabled = true
+
+# [username]
+# style_user = "white bold"
+# style_root = "black bold"
+# format = "[$user]($style) "
+# disabled = false
+# show_always = true
+
+# [shell]
+# style = "cyan bold"
+# disabled = false
+
+# [hostname]
+# ssh_only = false
+# format =  ": [$hostname](bold red) "
+# trim_at = ".companyname.com"
+# disabled = false
