@@ -19,6 +19,12 @@ set scrolloff=10
 set laststatus=2
 set noshowmode
 
+" background transparent in Neovim
+hi Normal guibg=NONE
+hi LineNr guibg=NONE
+hi NonText guibg=NONE
+hi SpecialKey guibg=NONE
+
 " === coding settings ===
 set autoindent
 set smartindent

@@ -23,6 +23,9 @@ runtime! userautoload/extras.vim
 
 call plug#end()
 
+" fzf setting
+let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border': 'sharp' } }
+
 " coc status integration for lightline
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
