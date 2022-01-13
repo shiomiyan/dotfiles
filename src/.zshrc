@@ -12,6 +12,7 @@ esac
 if [ `uname -r | grep microsoft` ]; then
   alias win32yank="/mnt/c/Tools/win32yank/win32yank.exe"
   alias clip="win32yank -i"
+  alias cmd="/mnt/c/Windows/System32/cmd.exe"
   export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 
@@ -33,7 +34,7 @@ fi
 #  fi
 #fi
 
-
+export PATH="$HOME/.local/bin:$PATH"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -46,3 +47,6 @@ eval "$(starship init zsh)"
 # deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# nix
+. /home/sk/.nix-profile/etc/profile.d/nix.sh
