@@ -3,17 +3,9 @@ __pycache__
 *.pyc
 *.log
 
-.zinit/
-
-src/.vim/plugged
-src/.vim/.netrwhist
-src/.vim/autoload
-src/.vim/userautoload/extras.vim
-
-/src/.config/*
-!src/.config/alacritty/alacritty.yml
-!src/.config/karabiner/karabiner.json
-!src/.config/starship.toml
-!src/.config/nvim/init.vim
-!src/.config/nvim/keymaps.vim
-!src/.config/nvim/plugins.vim
+/.config/*
+!/.config/alacritty/
+!/.config/karabiner
+!/.config/lsd
+!/.config/starship.toml
+!/.config/nvim
