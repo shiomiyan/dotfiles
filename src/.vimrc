@@ -2,15 +2,9 @@ syntax enable
 language ja_JP.UTF-8
 filetype plugin indent on
 
-if has('vim')
-  source $VIMRUNTIME/defaults.vim
-endif
-
-" === load plugins ===
-runtime! userautoload/plugins.vim
+source $VIMRUNTIME/defaults.vim
 
 " === appearance settings ===
-colorscheme gruvbox
 set showmode
 set showcmd
 set number
@@ -58,20 +52,15 @@ set backspace=indent,start,eol
 set wildmode=longest:full,full
 set relativenumber
 
-" delete unnecessary spaces on save
-autocmd BufWritePre * :%s/\s\+$//ge
+" === key mappings ===
+nnoremap j gj
+nnoremap k gk
 
-" === load setting files ===
-runtime! userautoload/keymaps.vim
+" === tab movements with tab key ===
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
 
-" === OS dependencies ===
-if stridx(system('uname -r'), 'microsoft') " if is WSL
-  "augroup Yank
-  "  au!
-  "  autocmd TextYankPost * :call system('/mnt/c/Tools/win32yank/win32yank.exe -i', @")
-  "augroup END
-  " sync clipboard
-  " https://superuser.com/a/1557751
+if system('uname -r') =~ ".*microsoft.*" " if is WSL
   let g:clipboard = {
           \   'name': 'win32yank',
           \   'copy': {
