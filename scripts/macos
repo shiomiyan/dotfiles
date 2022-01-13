@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# karabiner elements
-ln -sf ~/dotfiles/src/.config/karabiner/karabiner.json ~/.config/karabiner/karabi
-ner.json

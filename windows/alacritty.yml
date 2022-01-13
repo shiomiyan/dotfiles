@@ -18,21 +18,17 @@ font:
     #family: FirgeNerd Console
     family: Consolas NF
 
-  # Bold font face
   bold:
     style: Bold
 
-  # Italic font face
   italic:
     style: Italic
 
-  # Bold italic font face
   bold_italic:
     style: Bold Italic
 
   size: 12
   draw_bold_text_with_bright_colors: true
-
 
 shell:
   program: wsl
@@ -40,8 +36,6 @@ shell:
     - -d Distrod
 
 working_directory: "//wsl$/Distrod/home/sk"
-
-
 
 # Add the following to your alacritty.yml file
 # Colors (Base16 Default Dark)
@@ -86,4 +80,3 @@ bell:
   color: '0xff0000'
 
 background_opacity: 1
-
