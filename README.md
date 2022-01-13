@@ -1,14 +1,7 @@
 ## install
 
-### Fedora / Arch / macOS
+### Fedora / macOS
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/scripts/setup.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/install_scripts/setup.sh)"
 ```
-
-### Windows (for WSL host)
-
-```powershell
-iwr "https://raw.githubusercontent.com/shiomiyan/dotfiles/master/scripts/setup.ps1" -useb | iex
-```
-
