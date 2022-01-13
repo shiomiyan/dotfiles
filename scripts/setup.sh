@@ -40,6 +40,9 @@ case "$OSTYPE" in
         sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
         # install Rust
         curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+        # rust-analyzer
+        # https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
     ;;
     *)
         echo "can not detect the OSTYPE"
