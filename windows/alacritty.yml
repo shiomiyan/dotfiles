@@ -15,8 +15,8 @@ scrolling:
 
 font:
   normal:
-    #family: FirgeNerd Console
-    family: Consolas NF
+    family: FirgeNerd Console
+    #family: Consolas NF
 
   bold:
     style: Bold
@@ -28,7 +28,14 @@ font:
     style: Bold Italic
 
   size: 12
-  draw_bold_text_with_bright_colors: true
+
+  # 文字間隔を少し広くする
+  offset:
+    x: 1
+    y: 0
+
+draw_bold_text_with_bright_colors: true
+
 
 shell:
   program: wsl
@@ -79,4 +86,4 @@ bell:
   #color: '0xffffff'
   color: '0xff0000'
 
-background_opacity: 1
+background_opacity: 1.0
