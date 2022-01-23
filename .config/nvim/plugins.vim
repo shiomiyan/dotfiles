@@ -11,6 +11,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-surround'
 
+Plug 'lukas-reineke/indent-blankline.nvim' " indent visualization
+
 Plug 'vim-denops/denops.vim'
 Plug 'kat0h/bufpreview.vim' " markdown preview
 Plug 'vim-skk/skkeleton'
