@@ -62,6 +62,16 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.tigrc     ~/.tigrc
 ln -sf ~/dotfiles/.config    ~/.config
 
+if [ -n `which wslpath` ]; then
+    # win32yank for Vim or Neovim
+    if [ ! -e /usr/local/bin/win32yank.exe ]; then
+        curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip
+        unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+        chmod +x /tmp/win32yank.exe
+        sudo mv /tmp/win32yank.exe /usr/local/bin/
+    fi
+fi
+
 # vim-plug installation for Neovim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'

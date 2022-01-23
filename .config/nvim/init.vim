@@ -68,22 +68,3 @@ autocmd BufWritePre * :%s/\s\+$//ge
 
 " === load setting files ===
 runtime! keymaps.vim
-
-" === OS dependencies ===
-if system('uname -r') =~ ".*microsoft.*" " if is WSL
-  " Synchronize the clipboard with the host OS
-  " https://superuser.com/a/1557751
-  let g:clipboard = {
-          \   'name': 'win32yank',
-          \   'copy': {
-          \      '+': '/mnt/c/Tools/win32yank/win32yank.exe -i',
-          \      '*': '/mnt/c/Tools/win32yank/win32yank.exe -i',
-          \    },
-          \   'paste': {
-          \      '+': '/mnt/c/Tools/win32yank/win32yank.exe -o',
-          \      '*': '/mnt/c/Tools/win32yank/win32yank.exe -o',
-          \   },
-          \   'cache_enabled': 0,
-          \ }
-endif
-

@@ -10,7 +10,6 @@ case "$OSTYPE" in
 esac
 
 if [ `uname -r | grep microsoft` ]; then
-  alias win32yank="/mnt/c/Tools/win32yank/win32yank.exe"
   alias clip="win32yank -i"
   alias cmd="/mnt/c/Windows/System32/cmd.exe"
   export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
@@ -29,6 +28,9 @@ eval "$(starship init zsh)"
 # deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# Go lang
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
 # nix
 . /home/sk/.nix-profile/etc/profile.d/nix.sh
