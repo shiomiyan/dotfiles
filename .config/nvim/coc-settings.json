@@ -1,5 +1,12 @@
 {
     "rust-analyzer.server.path": "~/.local/bin/rust-analyzer",
     "rust-analyzer.inlayHints.typeHintsSeparator": "→ ",
-    "rust-analyzer.inlayHints.chainingHintsSeparator": "→ "
+    "rust-analyzer.inlayHints.chainingHintsSeparator": "→ ",
+    "languageserver": {
+        "efm": {
+            "command": "efm-langserver",
+            "args": [],
+            "filetypes": [ "markdown" ]
+        }
+    }
 }
