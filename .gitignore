@@ -9,3 +9,4 @@ __pycache__
 !/.config/lsd
 !/.config/starship.toml
 !/.config/nvim
+!/.config/efm-langserver/
