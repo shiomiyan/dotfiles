@@ -32,5 +32,8 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 # Go lang
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
+# show hidden files with fzf.vim
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
+
 # nix
 . /home/sk/.nix-profile/etc/profile.d/nix.sh

@@ -12,6 +12,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-surround'
 
 Plug 'lukas-reineke/indent-blankline.nvim' " indent visualization
+Plug 'petertriho/nvim-scrollbar'
 
 Plug 'vim-denops/denops.vim'
 Plug 'kat0h/bufpreview.vim' " markdown preview
@@ -54,3 +55,8 @@ cmap <C-j> <Plug>(skkeleton-toggle)
 " disable IME in INSERT MODE
 let g:barbaric_ime = 'ibus'
 let g:barbaric_scope = 'buffer'
+
+" lua settings
+lua <<EOF
+require("scrollbar").setup()
+EOF
