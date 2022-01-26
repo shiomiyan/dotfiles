@@ -9,4 +9,8 @@ __pycache__
 !/.config/lsd
 !/.config/starship.toml
 !/.config/nvim
+/.config/nvim/plugged
 !/.config/efm-langserver/
+
+/.fonts/*
+!/.fonts/FirgeNerd/
