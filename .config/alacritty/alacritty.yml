@@ -20,6 +20,7 @@ scrolling:
   history: 10000
 
 # Font configuration (changes require restart)
+# macOS or linux: https://github.com/supermarin/powerline-fonts/
 font:
   normal:
     family: 'Monaco for Powerline'
