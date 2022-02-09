@@ -9,6 +9,7 @@ __pycache__
 !/.config/lsd
 !/.config/starship.toml
 !/.config/nvim
+!/.config/zsh
 /.config/nvim/plugged
 /.config/nvim/undo/*
 !/.config/nvim/undo/.gitkeep
