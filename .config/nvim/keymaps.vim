@@ -6,6 +6,16 @@ nnoremap k gk
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
+nnoremap <leader>t :terminal<CR>
+nnoremap <leader>e :Explore<CR>
+
+" Ctrl [ でターミナルモードを抜ける
+tnoremap <C-[> <C-\><C-n>
+
+" バッファ切り替え用
+nnoremap <silent> [j :bprev<CR>
+nnoremap <silent> [k :bnext<CR>
+
 " === coc: navigate the completion list with tab key ===
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
