@@ -1,5 +1,7 @@
 export LC_MESSAGES=en_US.UTF-8
 
+source ~/.config/zsh/zi.zsh
+
 case "$OSTYPE" in
   darwin*)
     alias clip="pbcopy"
