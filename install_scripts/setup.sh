@@ -33,6 +33,7 @@ case "$OSTYPE" in
                 unzip           \
                 tmux            \
                 gcc             \
+                nodejs          \
                 openssl-devel
         else
             echo "Unsupported distribution."
