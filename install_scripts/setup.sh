@@ -30,6 +30,7 @@ case "$OSTYPE" in
                 zsh             \
                 curl            \
                 wget            \
+                unzip           \
                 tmux            \
                 gcc             \
                 openssl-devel
@@ -62,7 +63,7 @@ ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.tigrc     ~/.tigrc
 ln -sf ~/dotfiles/.config    ~/.config
 
-if [ -n `which wslpath` ]; then
+if ! command -v wslpath &> /dev/null ; then
     # win32yank for Vim or Neovim
     if [ ! -e /usr/local/bin/win32yank.exe ]; then
         curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip
