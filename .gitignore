@@ -10,6 +10,7 @@ __pycache__
 !/.config/starship.toml
 !/.config/nvim
 !/.config/zsh
+!/.config/wezterm/
 /.config/nvim/plugged
 /.config/nvim/undo/*
 !/.config/nvim/undo/.gitkeep
@@ -17,3 +18,4 @@ __pycache__
 
 /.fonts/*
 !/.fonts/FirgeNerd/
+!/.fonts/mplus-1mn/
