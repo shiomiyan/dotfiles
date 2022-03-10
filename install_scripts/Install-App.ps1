@@ -28,3 +28,11 @@ Invoke-WebRequest `
     -OutFile C:\rustup-init.exe
 C:\rustup-init.exe -y
 Remove-Item -Force C:\rustup-init.exe
+
+# Install rust-analyzer
+New-Item -ItemType Directory -Path "~/.local/bin"
+Invoke-WebRequest `
+    -Uri "https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-pc-windows-msvc.gz" `
+    -OutFile "~/.local/bin/rust-analyzer.gz"
+& 'C:\Program Files\7-Zip\7z.exe' x "~/.local/bin/rust-analyzer.gz" "~/.local/bin/rust-analyzer.exe"
+Remove-Item -Force ~/.local/bin/rust-analyzer.gz
