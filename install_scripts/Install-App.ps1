@@ -12,6 +12,9 @@ choco feature enable -n allowGlobalConfirmation
 # install applications using choco
 cinst neovim git alacritty
 
+# neovim dependencies
+cinst nodejs deno
+
 # download win32yank for sync clipboard
 Invoke-WebRequest `
     -Uri "https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip" `
