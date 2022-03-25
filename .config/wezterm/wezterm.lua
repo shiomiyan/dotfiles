@@ -1,17 +1,20 @@
 local wezterm = require 'wezterm';
 
 local shell;
-local font_profile;
+local current_font_family;
+local current_font_size;
 
 if os.getenv('windir') then
   shell = { 'pwsh.exe', '-NoLogo' }
-  font_profile = wezterm.font_with_fallback({
+  current_font_family = wezterm.font_with_fallback({
     "Consolas",
     "Rounded Mplus 1c"
   })
+  current_font_size = 16
 else
   shell = { 'zsh', '--login' }
-  font_profile = wezterm.font("SF Mono Square")
+  current_font_family = wezterm.font("SF Mono Square")
+  current_font_size = 22
 end
 
 return {
@@ -22,14 +25,22 @@ return {
   use_fancy_tab_bar =false,
 
   -- 起動時のウィンドウサイズ (文字数)
-  initial_rows = 25,
+  initial_rows = 28,
   initial_cols = 100,
 
   -- font
-  font = font_profile,
-  font_size = 18,
+  font = current_font_family,
+  font_size = current_font_size,
   line_height = 1.0,
   use_ime = true,
 
   default_prog = shell,
+
+  -- Key bindings
+  leader  = { key = "b", mods = "CTRL" },
+  keys    = {
+    { key = "w", mods = "LEADER", action = "ShowTabNavigator" },
+    { key = "c", mods = "LEADER", action = wezterm.action { SpawnTab = "CurrentPaneDomain" }},
+    { key = "x", mods = "LEADER", action = wezterm.action { CloseCurrentTab = { confirm = true }}}
+  }
 }

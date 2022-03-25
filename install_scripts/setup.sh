@@ -5,13 +5,15 @@ set -ue
 # install packages
 case "$OSTYPE" in
     "darwin"*)
+        brew tap delphinus/sfmono-square
         brew install            \
             vim                 \
             git                 \
             zsh                 \
             curl                \
             tmux                \
-            starship
+            starship            \
+            sfmono-square
         brew install --cask     \
             alacritty           \
             firefox             \
@@ -19,7 +21,7 @@ case "$OSTYPE" in
             karabiner-elements  \
             keyboardcleantool   \
             rectangle           \
-            spotify
+            spotify             \
     ;;
     "linux"*)
         if [ -e /etc/fedora-release ]; then

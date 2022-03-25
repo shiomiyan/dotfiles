@@ -23,7 +23,7 @@ scrolling:
 # macOS or linux: https://github.com/supermarin/powerline-fonts/
 font:
   normal:
-    family: 'Monaco for Powerline'
+    family: 'SF Mono Square'
     style: Regular
 
   bold:
@@ -32,7 +32,7 @@ font:
   italic:
     style: Italic
 
-  size: 10
+  size: 18
 
   glyph_offset:
     x: 0
