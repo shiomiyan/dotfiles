@@ -9,8 +9,9 @@ if os.getenv('windir') then
   current_font_family = wezterm.font_with_fallback({
     "Consolas",
     "Rounded Mplus 1c"
+    -- "UDEV Gothic 35NF"
   })
-  current_font_size = 14
+  current_font_size = 13
 else
   shell = { 'zsh', '--login' }
   current_font_family = wezterm.font("SF Mono Square")

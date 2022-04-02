@@ -10,10 +10,10 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 choco feature enable -n allowGlobalConfirmation
 
 # install applications using choco
-cinst neovim git alacritty
+cinst neovim git alacritty wezterm
 
 # neovim dependencies
-cinst nodejs deno
+cinst nodejs-lts deno
 
 # download win32yank for sync clipboard
 Invoke-WebRequest `
@@ -36,3 +36,7 @@ Invoke-WebRequest `
     -OutFile "~/.local/bin/rust-analyzer.gz"
 & 'C:\Program Files\7-Zip\7z.exe' x "~/.local/bin/rust-analyzer.gz" "~/.local/bin/rust-analyzer.exe"
 Remove-Item -Force ~/.local/bin/rust-analyzer.gz
+
+# Install Neovim vim-plug
+iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
+    ni "$(@($env:XDG_DATA_HOME, $env:LOCALAPPDATA)[$null -eq $env:XDG_DATA_HOME])/nvim-data/site/autoload/plug.vim" -Force
