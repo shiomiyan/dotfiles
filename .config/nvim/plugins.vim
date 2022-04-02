@@ -11,6 +11,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
 Plug 'tpope/vim-surround'
 
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lukas-reineke/indent-blankline.nvim' " indent visualization
 Plug 'petertriho/nvim-scrollbar'
 
@@ -27,7 +29,7 @@ call plug#end()
 
 " fzf setting
 " 'border': 'sharp' しないとフォントによってフローティング表示が壊れる
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border': 'sharp' } }
+" let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.6, 'border': 'sharp' } }
 
 " coc status integration for lightline
 function! CocCurrentFunction()
@@ -56,7 +58,14 @@ cmap <C-j> <Plug>(skkeleton-toggle)
 let g:barbaric_ime = 'ibus'
 let g:barbaric_scope = 'buffer'
 
-" lua settings
-lua <<EOF
-require("scrollbar").setup()
-EOF
+" nvim-tree
+nnoremap <C-n> :NvimTreeToggle<CR>
+let g:nvim_tree_add_trailing = 1
+let g:nvim_tree_git_hl = 1
+let g:nvim_tree_show_icons = {
+    \ 'git': 1,
+    \ 'folders': 0,
+    \ 'files': 0,
+    \ 'folder_arrows': 0,
+    \ }
+lua require("plugins")

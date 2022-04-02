@@ -64,6 +64,7 @@ set relativenumber
 set helplang=ja,en
 set undofile
 set undodir=~/.config/nvim/undo
+set mouse=a
 
 " delete unnecessary spaces on save
 autocmd BufWritePre * :%s/\s\+$//ge
