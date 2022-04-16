@@ -7,7 +7,6 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
 nnoremap <leader>t :terminal<CR>
-nnoremap <leader>e :Explore<CR>
 
 " Ctrl [ でターミナルモードを抜ける
 tnoremap <C-[> <C-\><C-n>
@@ -28,3 +27,9 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+
+" telescope.nvim
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>

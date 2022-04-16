@@ -9,7 +9,8 @@ runtime! plugins.vim
 set termguicolors
 set t_Co=256
 let base16colorspace=256
-colorscheme base16-default-dark
+" colorscheme base16-default-dark
+colorscheme nord
 set background=dark
 set showmode
 set showcmd
@@ -47,6 +48,28 @@ let g:netrw_banner=0
 let g:netrw_sizestyle="H"
 let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 let g:netrw_browse_split=3
+let g:netrw_winsize = 25
+
+let g:NetrwIsOpen=0
+
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i
+            endif
+            let i-=1
+        endwhile
+        let g:NetrwIsOpen=0
+    else
+        let g:NetrwIsOpen=1
+        silent Lexplore
+    endif
+endfunction
+
+" Add your own mapping. For example:
+noremap <silent> <C-E> :call ToggleNetrw()<CR>
 
 " === other settings ===
 set autoread

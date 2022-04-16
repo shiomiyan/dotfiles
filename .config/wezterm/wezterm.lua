@@ -7,11 +7,11 @@ local current_font_size;
 if os.getenv('windir') then
   shell = { 'pwsh.exe', '-NoLogo' }
   current_font_family = wezterm.font_with_fallback({
-    "Consolas",
-    "Rounded Mplus 1c"
-    -- "UDEV Gothic 35NF"
+    -- "Consolas",
+    -- "Rounded Mplus 1c"
+    "UDEV Gothic NF"
   })
-  current_font_size = 13
+  current_font_size = 14
 else
   shell = { 'zsh', '--login' }
   current_font_family = wezterm.font("SF Mono Square")
@@ -19,8 +19,9 @@ else
 end
 
 return {
-  color_scheme = 'Gruvbox Dark',
-  window_background_opacity = 0.9,
+  -- color_scheme = 'Gruvbox Dark',
+  color_scheme = 'nord',
+  window_background_opacity = 1.0,
   tab_bar_at_bottom = true,
 
   use_fancy_tab_bar =false,
