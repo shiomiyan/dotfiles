@@ -4,9 +4,7 @@ call plug#begin()
 Plug 'vim-jp/vimdoc-ja'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
-Plug 'chriskempson/base16-vim'
-Plug 'shaunsingh/nord.nvim'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
