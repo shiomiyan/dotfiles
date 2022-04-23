@@ -10,27 +10,36 @@ function Install-Apps {
 
 #>
 
-    # install winget
-    Invoke-WebRequest `
-        -Uri "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" `
-        -OutFile "C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
-    Import-Module Appx -UseWindowsPowerShell
-    Add-AppxPackage C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+    # install winget if not exists
+    if (-not (Get-Command winget -ea SilentlyContinue)) {
+        Invoke-WebRequest `
+            -Uri "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" `
+            -OutFile "C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+        Import-Module Appx -UseWindowsPowerShell
+        Add-AppxPackage C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+    }
 
     # install applications from winget
     winget import -i "$HOME\dotfiles\install_scripts\winget.json"
 
 
-    # install chocolatey
-    [System.Net.ServicePointManager]::SecurityProtocol = `
-        [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    # install chocolatey if not exists
+    if (-not (Get-Command choco -ea SilentlyContinue)) {
+        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    }
 
     # always enable -y option
     choco feature enable -n allowGlobalConfirmation
 
     # install applications using choco
-    cinst neovim deno zig hugo-extended ripgrep starship
+    choco install     `
+        neovim        `
+        deno          `
+        zig           `
+        hugo-extended `
+        ripgrep       `
+        starship
 
     # Install Neovim vim-plug
     Invoke-WebRequest -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim |`
@@ -64,12 +73,12 @@ function Connect-Dotfiles {
         -Target $HOME\dotfiles\windows\Microsoft.PowerShell_profile.ps1
 
     New-Item -ItemType SymbolicLink `
-        -Path   $env:HOMEPATH\.config\wezterm\wezterm.lua `
-        -Target $env:HOMEPATH\dotfiles\.config\wezterm\wezterm.lua
+        -Path   $HOME\.config\wezterm\wezterm.lua `
+        -Target $HOME\dotfiles\.config\wezterm\wezterm.lua
 
     New-Item -ItemType SymbolicLink `
         -Path   $env:LOCALAPPDATA\nvim `
-        -Target $env:HOMEPATH\dotfiles\.config\nvim\
+        -Target $HOME\dotfiles\.config\nvim\
 
     git config --global core.editor 'nvim'
 
