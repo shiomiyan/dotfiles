@@ -1,5 +1,4 @@
 {
-    "rust-analyzer.server.path": "~/.local/bin/rust-analyzer.exe",
     "rust-analyzer.inlayHints.typeHintsSeparator": "→ ",
     "rust-analyzer.inlayHints.chainingHintsSeparator": "→ ",
     "languageserver": {

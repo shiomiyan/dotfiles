@@ -13,4 +13,7 @@ npm install           `
     coc-json          `
     coc-sh            `
     coc-rust-analyzer `
+    coc-pyright       `
     --global-style --ignore-scripts --no-bin-links --no-package-lock --only=prod
+
+cd -
