@@ -42,7 +42,8 @@ function Install-Apps {
     }
 
     # install git
-    winget install git.git; refreshenv
+    winget install git.git
+    refreshenv
     # clone repo if not exists
     if ((Test-Path "$HOME\dotfiles") -ne "True") {
         git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
@@ -73,6 +74,8 @@ function Install-Apps {
         -OutFile C:\rustup-init.exe
     C:\rustup-init.exe -y
     Remove-Item -Force C:\rustup-init.exe
+
+    refreshenv
 
 }
 
