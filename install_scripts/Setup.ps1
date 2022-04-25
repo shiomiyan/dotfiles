@@ -46,7 +46,7 @@ function Install-Apps {
 
     # refresh environment value
     Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-    RefreshEnv.cmd
+    refreshenv
 
     # clone repo if not exists
     if ((Test-Path "$HOME\dotfiles") -ne "True") {
