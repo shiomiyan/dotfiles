@@ -92,13 +92,14 @@ function Connect-Dotfiles {
 
 #>
 
+    New-Item -ItemType Directory -Path $HOME\Documents\PowerShell
     New-Item -ItemType SymbolicLink `
         -Path   $PROFILE `
         -Target $HOME\dotfiles\windows\Microsoft.PowerShell_profile.ps1
 
     New-Item -ItemType SymbolicLink `
-        -Path   $HOME\.config\wezterm\wezterm.lua `
-        -Target $HOME\dotfiles\.config\wezterm\wezterm.lua
+        -Path   $HOME\.config `
+        -Target $HOME\dotfiles\.config\
 
     New-Item -ItemType SymbolicLink `
         -Path   $env:LOCALAPPDATA\nvim `
