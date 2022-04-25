@@ -43,7 +43,11 @@ function Install-Apps {
 
     # install git
     winget install git.git
-    refreshenv
+
+    # refresh environment value
+    Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+    RefreshEnv.cmd
+
     # clone repo if not exists
     if ((Test-Path "$HOME\dotfiles") -ne "True") {
         git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
