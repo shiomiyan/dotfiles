@@ -25,12 +25,21 @@ function Install-Apps {
             -Uri "https://download.microsoft.com/download/4/7/c/47c6134b-d61f-4024-83bd-b9c9ea951c25/14.0.30035.0-Desktop/Microsoft.VCLibs.x64.14.00.Desktop.appx" `
             -OutFile "C:\Windows\Temp\vclibs.appx"
         Add-AppPackage "C:\Windows\Temp\vclibs.appx"
+        
+        Install-Module PowershellGet -Force
 
         Invoke-WebRequest `
             -Uri "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" `
             -OutFile "C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
         Import-Module Appx -UseWindowsPowerShell
         Add-AppxPackage C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+    }
+    
+    # install git
+    winget install git.git
+    # clone repo if not exists
+    if ((Test-Path "$HOME\dotfiles") -ne "True") {
+        git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
     }
 
     # install applications from winget
@@ -76,11 +85,6 @@ function Connect-Dotfiles {
     function that craete symbolic links
 
 #>
-
-    # clone repo if not exists
-    if ((Test-Path "$HOME\dotfiles") -ne "True") {
-        git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
-    }
 
     New-Item -ItemType SymbolicLink `
         -Path   $PROFILE `
