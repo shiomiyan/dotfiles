@@ -12,6 +12,20 @@ function Install-Apps {
 
     # install winget if not exists
     if (-not (Get-Command winget -ea SilentlyContinue)) {
+        # install dependencies for winget
+        Invoke-WebRequest `
+            -Uri "https://globalcdn.nuget.org/packages/microsoft.ui.xaml.2.7.1.nupkg" `
+            -OutFile "C:\Windows\Temp\microsoft.ui.xaml.2.7.1.zip"
+        Expand-Archive `
+            -Path "C:\Windows\Temp\microsoft.ui.xaml.2.7.1.zip" `
+            -DestinationPath "C:\Windows\Temp\microsoft.ui.xaml.2.7.1"
+        Add-AppxPackage "C:\Windows\Temp\microsoft.ui.xaml.2.7.1\tools\AppX\x64\Release\Microsoft.UI.Xaml.2.7.appx"
+
+        Invoke-WebRequest `
+            -Uri "https://download.microsoft.com/download/4/7/c/47c6134b-d61f-4024-83bd-b9c9ea951c25/14.0.30035.0-Desktop/Microsoft.VCLibs.x64.14.00.Desktop.appx" `
+            -OutFile "C:\Windows\Temp\vclibs.appx"
+        Add-AppPackage "C:\Windows\Temp\vclibs.appx"
+
         Invoke-WebRequest `
             -Uri "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" `
             -OutFile "C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
