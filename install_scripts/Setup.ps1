@@ -25,7 +25,7 @@ function Install-Apps {
             -Uri "https://download.microsoft.com/download/4/7/c/47c6134b-d61f-4024-83bd-b9c9ea951c25/14.0.30035.0-Desktop/Microsoft.VCLibs.x64.14.00.Desktop.appx" `
             -OutFile "C:\Windows\Temp\vclibs.appx"
         Add-AppPackage "C:\Windows\Temp\vclibs.appx"
-        
+
         Install-Module PowershellGet -Force
 
         Invoke-WebRequest `
@@ -34,9 +34,15 @@ function Install-Apps {
         Import-Module Appx -UseWindowsPowerShell
         Add-AppxPackage C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
     }
-    
+
+    # install chocolatey if not exists
+    if (-not (Get-Command choco -ea SilentlyContinue)) {
+        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    }
+
     # install git
-    winget install git.git
+    winget install git.git && refreshenv
     # clone repo if not exists
     if ((Test-Path "$HOME\dotfiles") -ne "True") {
         git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
@@ -44,13 +50,6 @@ function Install-Apps {
 
     # install applications from winget
     winget import -i "$HOME\dotfiles\install_scripts\winget.json"
-
-
-    # install chocolatey if not exists
-    if (-not (Get-Command choco -ea SilentlyContinue)) {
-        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    }
 
     # always enable -y option
     choco feature enable -n allowGlobalConfirmation
