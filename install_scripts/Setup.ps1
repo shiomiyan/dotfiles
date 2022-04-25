@@ -42,7 +42,7 @@ function Install-Apps {
     }
 
     # install git
-    winget install git.git && refreshenv
+    winget install git.git; refreshenv
     # clone repo if not exists
     if ((Test-Path "$HOME\dotfiles") -ne "True") {
         git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
