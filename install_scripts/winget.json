@@ -1,10 +1,10 @@
 {
 	"$schema" : "https://aka.ms/winget-packages.schema.2.0.json",
 	"CreationDate" : "2022-04-19T21:58:53.805-00:00",
-	"Sources" : 
+	"Sources" :
 	[
 		{
-			"Packages" : 
+			"Packages" :
 			[
 				{
 					"PackageIdentifier" : "Microsoft.VisualStudio.2019.BuildTools"
@@ -50,9 +50,12 @@
 				},
 				{
 					"PackageIdentifier" : "Microsoft.PowerShell"
+				},
+				{
+					"PackageIdentifier" : "Avidemux.Avidemux"
 				}
 			],
-			"SourceDetails" : 
+			"SourceDetails" :
 			{
 				"Argument" : "https://winget.azureedge.net/cache",
 				"Identifier" : "Microsoft.Winget.Source_8wekyb3d8bbwe",
