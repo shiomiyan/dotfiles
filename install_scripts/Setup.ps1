@@ -26,6 +26,8 @@ function Install-Apps {
             -OutFile "C:\Windows\Temp\vclibs.appx"
         Add-AppPackage "C:\Windows\Temp\vclibs.appx"
 
+        Install-Module PowershellGet -Force
+
         Invoke-WebRequest `
             -Uri "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle" `
             -OutFile "C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
@@ -33,15 +35,26 @@ function Install-Apps {
         Add-AppxPackage C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
     }
 
-    # install applications from winget
-    winget import -i "$HOME\dotfiles\install_scripts\winget.json"
-
-
     # install chocolatey if not exists
     if (-not (Get-Command choco -ea SilentlyContinue)) {
         [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
         Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
     }
+
+    # install git
+    winget install git.git
+
+    # refresh environment value
+    Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+    refreshenv
+
+    # clone repo if not exists
+    if ((Test-Path "$HOME\dotfiles") -ne "True") {
+        git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
+    }
+
+    # install applications from winget
+    winget import -i "$HOME\dotfiles\install_scripts\winget.json"
 
     # always enable -y option
     choco feature enable -n allowGlobalConfirmation
@@ -66,6 +79,8 @@ function Install-Apps {
     C:\rustup-init.exe -y
     Remove-Item -Force C:\rustup-init.exe
 
+    refreshenv
+
 }
 
 function Connect-Dotfiles {
@@ -77,18 +92,14 @@ function Connect-Dotfiles {
 
 #>
 
-    # clone repo if not exists
-    if ((Test-Path "$HOME\dotfiles") -ne "True") {
-        git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
-    }
-
+    New-Item -ItemType Directory -Path $HOME\Documents\PowerShell
     New-Item -ItemType SymbolicLink `
         -Path   $PROFILE `
         -Target $HOME\dotfiles\windows\Microsoft.PowerShell_profile.ps1
 
     New-Item -ItemType SymbolicLink `
-        -Path   $HOME\.config\wezterm\wezterm.lua `
-        -Target $HOME\dotfiles\.config\wezterm\wezterm.lua
+        -Path   $HOME\.config `
+        -Target $HOME\dotfiles\.config\
 
     New-Item -ItemType SymbolicLink `
         -Path   $env:LOCALAPPDATA\nvim `
