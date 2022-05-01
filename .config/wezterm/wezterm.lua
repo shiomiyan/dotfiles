@@ -1,29 +1,27 @@
 local wezterm = require 'wezterm';
 
 local shell;
-local current_font_family;
-local current_font_size;
+local font;
+local font_size;
 
 if os.getenv('windir') then
   shell = { 'pwsh.exe', '-NoLogo' }
-  current_font_family = wezterm.font_with_fallback({
-    -- "Consolas",
+  font = wezterm.font_with_fallback({
+    "Consolas",
     -- "Rounded Mplus 1c"
     "UDEV Gothic NF"
   })
-  current_font_size = 14
+  font_size = 13
 else
   shell = { 'zsh', '--login' }
-  current_font_family = wezterm.font("SF Mono Square")
-  current_font_size = 22
+  font = wezterm.font("SF Mono Square")
+  font_size = 22
 end
 
 return {
-  -- color_scheme = 'Gruvbox Dark',
-  color_scheme = 'nord',
-  window_background_opacity = 1.0,
+  color_scheme = 'Gruvbox Dark',
+  window_background_opacity = 0.95,
   tab_bar_at_bottom = true,
-
   use_fancy_tab_bar =false,
 
   -- 起動時のウィンドウサイズ (文字数)
@@ -31,8 +29,8 @@ return {
   initial_cols = 100,
 
   -- font
-  font = current_font_family,
-  font_size = current_font_size,
+  font = font,
+  font_size = font_size,
   line_height = 1.0,
   use_ime = true,
 

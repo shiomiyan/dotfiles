@@ -74,6 +74,7 @@ noremap <silent> <C-E> :call ToggleNetrw()<CR>
 set autoread
 set nobackup
 set noswapfile
+set viminfo=
 set encoding=utf-8
 set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
 set fileencoding=utf-8

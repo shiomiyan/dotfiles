@@ -107,6 +107,9 @@ function Connect-Dotfiles {
 
     git config --global core.editor 'nvim'
 
+    # Install Neovim plugins
+    nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
+
 }
 
 
