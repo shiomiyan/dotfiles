@@ -36,11 +36,18 @@ return {
 
   default_prog = shell,
 
+  -- pane appearance
+  inactive_pane_hsb = {
+    saturation = 0.8,
+    brightness = 0.4,
+  },
+
   -- Key bindings
   leader  = { key = "b", mods = "CTRL" },
   keys    = {
     { key = "w", mods = "LEADER", action = "ShowTabNavigator" },
     { key = "c", mods = "LEADER", action = wezterm.action { SpawnTab = "CurrentPaneDomain" }},
-    { key = "x", mods = "LEADER", action = wezterm.action { CloseCurrentTab = { confirm = true }}}
+    { key = "x", mods = "LEADER", action = wezterm.action { CloseCurrentTab = { confirm = true }}},
+    { key = "h", mods = "LEADER", action = wezterm.action { SplitHorizontal = { domain= "CurrentPaneDomain" }}},
   }
 }
