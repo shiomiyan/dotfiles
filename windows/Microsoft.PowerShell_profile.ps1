@@ -1,4 +1,11 @@
+Import-Module PSReadLine
+
 Invoke-Expression (&starship init powershell)
+
+# auto suggestions
+Set-PSReadLineOption -PredictionSource History
+# Tab completion
+Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 Function which {
     Get-Command -ShowCommandInfo $args | Format-Table -Property Definition
