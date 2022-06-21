@@ -8,6 +8,9 @@ nnoremap <S-Tab> gT
 
 nnoremap <leader>t :terminal<CR>
 
+" paste without yank
+vnoremap p "_dp
+
 " Ctrl [ でターミナルモードを抜ける
 tnoremap <C-[> <C-\><C-n>
 
