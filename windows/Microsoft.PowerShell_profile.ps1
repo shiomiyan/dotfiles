@@ -1,10 +1,15 @@
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
 Import-Module PSReadLine
+
 
 Invoke-Expression (&starship init powershell)
 
+Set-PSReadlineOption -HistoryNoDuplicates
 # auto suggestions
 Set-PSReadLineOption -PredictionSource History
-# Tab completion
+# show Tab completion menu
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 Function which {
