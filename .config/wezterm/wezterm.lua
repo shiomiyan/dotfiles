@@ -30,18 +30,18 @@ local config = {
 
 
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-    config.shell = { 'pwsh.exe', '-NoLogo' }
+    config.default_prog = { 'pwsh.exe', '-NoLogo' }
     config.font = wezterm.font_with_fallback({
         "Consolas",
         "Cica"
     })
     config.font_size = 13
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
-    config.shell = { 'zsh', '--login' }
+    config.default_prog = { 'zsh', '--login' }
     config.font = wezterm.font("SF Mono Square")
     config.font_size = 22
 else
-    config.shell = { 'zsh', '--login' }
+    config.default_prog = { 'zsh', '--login' }
 end
 
 
