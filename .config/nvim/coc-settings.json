@@ -1,11 +1,14 @@
 {
-    "rust-analyzer.inlayHints.typeHintsSeparator": "→ ",
-    "rust-analyzer.inlayHints.chainingHintsSeparator": "→ ",
     "languageserver": {
+        "rust": {
+            "command": "rust-analyzer",
+            "filetypes": ["rust"],
+            "rootPatterns": ["Cargo.toml"]
+        },
         "efm": {
             "command": "efm-langserver",
             "args": [],
-            "filetypes": [ "markdown" ]
+            "filetypes": ["markdown"]
         }
     }
 }
