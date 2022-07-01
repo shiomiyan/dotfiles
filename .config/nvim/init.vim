@@ -42,13 +42,15 @@ set smartcase
 set nowrapscan
 
 " === netrw settings ===
-let g:netrw_liststyle=3 " `ls -la` like
+let g:netrw_liststyle=3
 let g:netrw_banner=0
 let g:netrw_sizestyle="H"
 let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
 let g:netrw_browse_split=3
 let g:netrw_winsize = 25
+let g:netrw_alto = 1
 
+" toggle netrw with Ctrl-e
 let g:NetrwIsOpen=0
 
 function! ToggleNetrw()

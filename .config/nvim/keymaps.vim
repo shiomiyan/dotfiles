@@ -6,7 +6,8 @@ nnoremap k gk
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
-nnoremap <leader>t :terminal<CR>
+" nnoremap <leader>t :terminal<CR>
+" nnoremap <leader>t <Cmd>exe v:count1 . "ToggleTerm"<CR>
 
 " paste without yank
 " https://stackoverflow.com/a/11993928
