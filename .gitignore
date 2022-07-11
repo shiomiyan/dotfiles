@@ -15,6 +15,7 @@ __pycache__
 /.config/nvim/undo/*
 !/.config/nvim/undo/.gitkeep
 !/.config/efm-langserver/
+!/.config/powershell
 
 /.fonts/*
 !/.fonts/FirgeNerd/
