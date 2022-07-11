@@ -2,7 +2,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 
 Import-Module PSReadLine
-Import-Module zoxide.psm1
+Import-Module zoxide
 
 
 Invoke-Expression (&starship init powershell)
