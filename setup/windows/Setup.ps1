@@ -2,7 +2,7 @@
 Set-ExecutionPolicy Bypass -Force
 
 function Install-Apps {
-<#
+    <#
 
 .DESCRIPTION
     function for install require applications and dependencies
@@ -85,7 +85,7 @@ function Install-Apps {
 
 function Connect-Dotfiles {
 
-<#
+    <#
 
 .DESCRIPTION
     function that craete symbolic links
@@ -95,7 +95,7 @@ function Connect-Dotfiles {
     New-Item -ItemType Directory -Path $HOME\Documents\PowerShell
     New-Item -ItemType SymbolicLink `
         -Path   $PROFILE `
-        -Target $HOME\dotfiles\windows\Microsoft.PowerShell_profile.ps1
+        -Target $HOME\dotfiles\.config\powershell\Microsoft.PowerShell_profile.ps1
 
     New-Item -ItemType SymbolicLink `
         -Path   $HOME\.config `
@@ -117,7 +117,8 @@ function Connect-Dotfiles {
 if ($(Read-Host "Proceed application and dependencies installation [y/n]") -eq "y") {
     Write-Output "Confirmed."
     Install-Apps
-} else {
+}
+else {
     Write-Output "Setup cancelled."
 }
 
@@ -125,6 +126,7 @@ if ($(Read-Host "Proceed application and dependencies installation [y/n]") -eq "
 if ($(Read-Host "Proceed application and dependencies installation [y/n]") -eq "y") {
     Write-Output "Confirmed."
     Connect-Dotfiles
-} else {
+}
+else {
     Write-Output "Setup cancelled."
 }
