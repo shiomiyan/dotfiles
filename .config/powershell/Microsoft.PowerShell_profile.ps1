@@ -2,6 +2,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 
 Import-Module PSReadLine
+Import-Module zoxide.psm1
 
 
 Invoke-Expression (&starship init powershell)
@@ -24,7 +25,8 @@ Function wsl-feature {
     if ($condition -eq "enable") {
         dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
         dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-    } elseif ($condition -eq "disable") {
+    }
+    elseif ($condition -eq "disable") {
         Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName Microsoft-Windows-Subsystem-Linux
         Disable-WindowsOptionalFeature -Online -NoRestart -FeatureName VirtualMachinePlatform
     }
@@ -34,4 +36,3 @@ Set-Alias -Name e -Value explorer.exe
 Set-Alias -Name vi -Value vim
 Set-Alias -Name wg -Value winget
 Set-Alias -Name tig -Value "C:\Program Files\Git\usr\bin\tig.exe"
-Set-Alias -Name z -Value zoxide.exe
