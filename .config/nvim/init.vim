@@ -49,8 +49,10 @@ set scrolloff=10
 set laststatus=2
 set noshowmode
 set vb t_vb= " No more beeps
-colorscheme gruvbox-baby
+
+" Load and set colorscheme
 let g:gruvbox_baby_transparent_mode = 1
+colorscheme gruvbox-baby
 
 " ==============================
 " # Editor settings
@@ -184,6 +186,9 @@ nnoremap <silent> [k :bnext<CR>
 
 " Open terminal
 nnoremap <leader>t :terminal<CR>
+
+" Quick-Save
+nmap <leader>w :w<CR>
 
 " Paste without yank https://stackoverflow.com/a/11993928
 vnoremap p "_dp
