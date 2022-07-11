@@ -92,10 +92,10 @@ function Connect-Dotfiles {
 
 #>
 
-    New-Item -ItemType Directory -Path $HOME\Documents\PowerShell
+    # New-Item -ItemType Directory -Path $HOME\Documents\PowerShell
     New-Item -ItemType SymbolicLink `
-        -Path   $PROFILE `
-        -Target $HOME\dotfiles\.config\powershell\Microsoft.PowerShell_profile.ps1
+        -Path   $HOME\Documents\PowerShell `
+        -Target $HOME\dotfiles\.config\powershell
 
     New-Item -ItemType SymbolicLink `
         -Path   $HOME\.config `
