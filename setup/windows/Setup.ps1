@@ -88,11 +88,10 @@ function Connect-Dotfiles {
     <#
 
 .DESCRIPTION
-    function that craete symbolic links
+    Function that craete symbolic links
 
 #>
 
-    # New-Item -ItemType Directory -Path $HOME\Documents\PowerShell
     New-Item -ItemType SymbolicLink `
         -Path   $HOME\Documents\PowerShell `
         -Target $HOME\dotfiles\.config\powershell
@@ -104,6 +103,10 @@ function Connect-Dotfiles {
     New-Item -ItemType SymbolicLink `
         -Path   $env:LOCALAPPDATA\nvim `
         -Target $HOME\dotfiles\.config\nvim\
+    
+    New-item -ItemType SymbolicLink `
+        -Path   $env:APPDATA\espanso `
+        -Target $HOME\dotfiles\.config\espanso
 
     git config --global core.editor 'nvim'
 
