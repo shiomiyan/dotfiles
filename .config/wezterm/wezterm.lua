@@ -21,11 +21,33 @@ local config = {
     leader  = { key = "b", mods = "CTRL" },
     keys    = {
         { key = "w", mods = "LEADER", action = "ShowTabNavigator" },
+        { key = "[", mods = "ALT", action = wezterm.action.ActivateTabRelativeNoWrap(-1) },
+        { key = "]", mods = "ALT", action = wezterm.action.ActivateTabRelativeNoWrap(1) },
         { key = "c", mods = "LEADER", action = wezterm.action { SpawnTab = "CurrentPaneDomain" }},
         { key = "x", mods = "LEADER", action = wezterm.action { CloseCurrentTab = { confirm = true }}},
         { key = "h", mods = "LEADER", action = wezterm.action { SplitHorizontal = { domain= "CurrentPaneDomain" }}},
         { key = "C", mods = "CTRL|SHIFT", action = "Copy" },
-    }
+    },
+    mouse_bindings = {
+        -- Ctrl-click will open the link under the mouse cursor
+        {
+            event  = { Up = { streak = 1, button = "Left" } },
+            mods   = "CTRL",
+            action = wezterm.action.OpenLinkAtMouseCursor,
+        },
+        -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
+        {
+            event  = { Down = { streak = 1, button = "Left" } },
+            mods   = "CTRL",
+            action = wezterm.action.Nop,
+        },
+        -- Disable open the link with only left click
+        {
+            event  = { Up = { streak = 1, button = "Left" } },
+            mods   = "",
+            action = wezterm.action.Nop,
+        }
+    },
 }
 
 
