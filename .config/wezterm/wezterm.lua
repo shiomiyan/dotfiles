@@ -50,12 +50,19 @@ local config = {
     },
 }
 
+-- Only show tab_id in tab bar
+wezterm.on("format-tab-title", function(tab)
+    local title = " " .. tab.tab_id .. " "
+    return {
+        { Text = title },
+    }
+end)
 
+-- Switch configuration depends on OS
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
     config.font = wezterm.font_with_fallback({
-        "Consolas",
-        "Cica"
+        "UDEV Gothic"
     })
     config.font_size = 13
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
@@ -65,6 +72,5 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
 else
     config.default_prog = { 'zsh', '--login' }
 end
-
 
 return config
