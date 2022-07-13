@@ -8,7 +8,7 @@ call plug#begin()
 " Load plugins
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
-Plug 'luisiacc/gruvbox-baby', {'branch': 'main'}
+Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Language support
@@ -27,6 +27,7 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-denops/denops.vim'
 Plug 'kat0h/bufpreview.vim' " Markdown preview
 
+" Plugins only works on Linux
 if has('unix')
     Plug 'rlue/vim-barbaric' " Switch IME between editor modes
 endif
@@ -51,8 +52,14 @@ set noshowmode
 set vb t_vb= " No more beeps
 
 " Load and set colorscheme
-let g:gruvbox_baby_transparent_mode = 1
-colorscheme gruvbox-baby
+let g:gruvbox_material_background = 'hard'
+let g:gruvbox_material_better_performance = 1
+colorscheme gruvbox-material
+" background transparent in Neovim
+hi Normal     guibg=NONE
+hi LineNr     guibg=NONE
+hi NonText    guibg=NONE
+hi SpecialKey guibg=NONE
 
 " ==============================
 " # Editor settings
@@ -96,16 +103,16 @@ set nowrapscan
 " ==============================
 " # Netrw settings
 " ==============================
-let g:netrw_liststyle=3
-let g:netrw_banner=0
-let g:netrw_sizestyle="H"
-let g:netrw_timefmt="%Y/%m/%d(%a) %H:%M:%S"
-let g:netrw_browse_split=3
-let g:netrw_winsize = 25
-let g:netrw_alto = 1
-let g:netrw_altv=1
+let g:netrw_liststyle    = 3
+let g:netrw_banner       = 0
+let g:netrw_sizestyle    = "H"
+let g:netrw_timefmt      = "%Y/%m/%d(%a) %H:%M:%S"
+let g:netrw_browse_split = 3
+let g:netrw_winsize      = 20
+let g:netrw_alto         = 1
+let g:netrw_altv         = 1
 
-let g:NetrwIsOpen=0
+let g:NetrwIsOpen = 0
 function! ToggleNetrw()
     if g:NetrwIsOpen
         let i = bufnr("$")
@@ -113,11 +120,11 @@ function! ToggleNetrw()
             if (getbufvar(i, "&filetype") == "netrw")
                 silent exe "bwipeout " . i
             endif
-            let i-=1
+            let i -= 1
         endwhile
-        let g:NetrwIsOpen=0
+        let g:NetrwIsOpen = 0
     else
-        let g:NetrwIsOpen=1
+        let g:NetrwIsOpen = 1
         silent Lexplore
     endif
 endfunction
@@ -132,10 +139,10 @@ autocmd BufWritePre * :%s/\s\+$//ge
 
 " Terminal settings
 if has('win32')
-    let &shell = 'pwsh.exe'
+    let &shell        = 'pwsh.exe'
     let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-    let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    let &shellredir   = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    let &shellpipe    = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 endif
 
 " ==============================
@@ -143,6 +150,7 @@ endif
 " ==============================
 " Lightline
 let g:lightline = {
+      \ 'colorscheme': 'gruvbox_material',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
@@ -163,7 +171,7 @@ let g:rustfmt_autosave = 1
 
 " Disable IME in insert mode with vim-barbaric
 if has('unix')
-    let g:barbaric_ime = 'ibus'
+    let g:barbaric_ime   = 'ibus'
     let g:barbaric_scope = 'buffer'
 endif
 
