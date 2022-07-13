@@ -7,7 +7,7 @@ local config = {
     use_fancy_tab_bar = false,
     use_ime = true,
 
-    -- 起動時のウィンドウサイズ (文字数)
+    -- Initial window size on startup
     initial_rows = 28,
     initial_cols = 100,
 
@@ -19,14 +19,21 @@ local config = {
 
     -- Key bindings
     leader  = { key = "b", mods = "CTRL" },
-    keys    = {
+    keys = {
+        -- Key bindings for tab operation
         { key = "w", mods = "LEADER", action = "ShowTabNavigator" },
         { key = "[", mods = "ALT", action = wezterm.action.ActivateTabRelativeNoWrap(-1) },
         { key = "]", mods = "ALT", action = wezterm.action.ActivateTabRelativeNoWrap(1) },
         { key = "c", mods = "LEADER", action = wezterm.action { SpawnTab = "CurrentPaneDomain" }},
         { key = "x", mods = "LEADER", action = wezterm.action { CloseCurrentTab = { confirm = true }}},
-        { key = "h", mods = "LEADER", action = wezterm.action { SplitHorizontal = { domain= "CurrentPaneDomain" }}},
-        { key = "C", mods = "CTRL|SHIFT", action = "Copy" },
+
+        -- Key bindings for pane operation
+        { key = "h", mods = "ALT", action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" }}},
+        { key = "v", mods = "ALT", action = wezterm.action { SplitVertical   = { domain = "CurrentPaneDomain" }}},
+        { key = "w", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Next") },
+
+        -- Copy text
+        { key = "c", mods = "CTRL|SHIFT", action = "Copy" },
     },
     mouse_bindings = {
         -- Ctrl-click will open the link under the mouse cursor
