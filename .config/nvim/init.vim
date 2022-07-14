@@ -11,21 +11,28 @@ Plug 'itchyny/lightline.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
-" Language support
-Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Semantic language support
+" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'williamboman/nvim-lsp-installer' " Easy install language server
+Plug 'neovim/nvim-lspconfig'
+" Completion plugins
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+
+" Syntactic language support
 Plug 'rust-lang/rust.vim'
-Plug 'tpope/vim-surround'
 
 " Fuzzy finder
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 
-" Other utilities
+" Utilities
 Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-denops/denops.vim'
 Plug 'kat0h/bufpreview.vim' " Markdown preview
+Plug 'tpope/vim-surround'
+Plug 'jiangmiao/auto-pairs'
 
 " Plugins only works on Linux
 if has('unix')
@@ -33,8 +40,6 @@ if has('unix')
 endif
 
 call plug#end()
-
-runtime! plugins.vim
 
 " ==============================
 " # GUI settings
@@ -153,19 +158,92 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
       \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
       \ }
 
-" Coc status integration for lightline
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
+" ==============================
+" # Lsp settings
+" ==============================
+lua << END
+require'nvim-lsp-installer'.setup {}
+
+local lspconfig = require'lspconfig'
+local cmp = require'cmp'
+
+cmp.setup {
+    mapping = {
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-e>"] = cmp.mapping.close(),
+        ["<c-y>"] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        },
+        ['<Enter>'] = cmp.mapping.confirm {
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        },
+        ['<Tab>'] = function(fallback)
+            if not cmp.select_next_item() then
+                if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end
+        end,
+        ['<S-Tab>'] = function(fallback)
+            if not cmp.select_prev_item() then
+                if vim.bo.buftype ~= 'prompt' and has_words_before() then
+                    cmp.complete()
+                else
+                    fallback()
+                end
+            end
+        end,
+    },
+    -- formatting = {
+    --     format = lspkind.cmp_format {
+    --         with_text = true,
+    --         menu = {
+    --             buffer   = "[buf]",
+    --             nvim_lsp = "[LSP]",
+    --             path     = "[path]",
+    --         },
+    --     },
+    -- },
+
+    sources = {
+        { name = "nvim_lsp" },
+        { name = "path" },
+        { name = "buffer" , keyword_length = 5 },
+    },
+    experimental = {
+        ghost_text = true
+    }
+}
+
+lspconfig.rust_analyzer.setup {
+    on_attach = on_attach,
+    flags = {
+        debounce_text_changes = 150,
+    },
+    settings = {
+        ["rust-analyzer"] = {
+            cargo = {
+                allFeatures = true,
+            },
+            completion = {
+                postfix = {
+                    enable = false,
+                },
+            },
+        },
+    },
+}
+END
 
 " Rust
-let g:rustfmt_autosave = 1
+" let g:rustfmt_autosave = 1
 
 " Disable IME in insert mode with vim-barbaric
 if has('unix')
@@ -200,22 +278,3 @@ vnoremap p "_dp
 
 " Exit terminal mode with Ctrl-[
 tnoremap <C-[> <C-\><C-n>
-
-" Navigate the coc completion list with Tab key
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Complete brackets with coc-pairs
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Jump to definition with coc
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Fuzzy finder with telescope.nvim
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
