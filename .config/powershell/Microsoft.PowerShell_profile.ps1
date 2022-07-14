@@ -7,10 +7,13 @@ Import-Module zoxide
 
 Invoke-Expression (&starship init powershell)
 
+# No more beep
+Set-PSReadlineOption -BellStyle None
+
 Set-PSReadlineOption -HistoryNoDuplicates
-# auto suggestions
+# Auto suggestions
 Set-PSReadLineOption -PredictionSource History
-# show Tab completion menu
+# Show Tab completion menu
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
 Function which {
