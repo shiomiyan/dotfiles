@@ -10,5 +10,6 @@
             "args": [],
             "filetypes": ["markdown"]
         }
-    }
+    },
+    "powershell.integratedConsole.showOnStartup": false
 }
