@@ -5,11 +5,19 @@ local config = {
     window_background_opacity = 0.95,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
+    enable_scroll_bar = true,
     use_ime = true,
 
     -- Initial window size on startup
     initial_rows = 28,
     initial_cols = 100,
+
+    -- Window Padding
+    window_padding = {
+        right  = 10, -- Scroll bar width
+        top    = 0,
+        buttom = 0,
+    },
 
     -- pane appearance
     inactive_pane_hsb = {
@@ -31,6 +39,10 @@ local config = {
         { key = "h", mods = "ALT", action = wezterm.action { SplitHorizontal = { domain = "CurrentPaneDomain" }}},
         { key = "v", mods = "ALT", action = wezterm.action { SplitVertical   = { domain = "CurrentPaneDomain" }}},
         { key = "w", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Next") },
+        { key = "LeftArrow",  mods = "ALT", action = wezterm.action.AdjustPaneSize { "Left" , 2 } },
+        { key = "DownArrow",  mods = "ALT", action = wezterm.action.AdjustPaneSize { "Down" , 2 } },
+        { key = "UpArrow",    mods = "ALT", action = wezterm.action.AdjustPaneSize { "Up"   , 2 } },
+        { key = "RightArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize { "Right", 2 } },
 
         -- Copy text
         { key = "c", mods = "CTRL|SHIFT", action = "Copy" },
@@ -68,10 +80,9 @@ end)
 -- Switch configuration depends on OS
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
-    config.font = wezterm.font_with_fallback({
-        "UDEV Gothic"
-    })
-    config.font_size = 13
+    -- config.font = wezterm.font("UDEV Gothic")
+    config.font = wezterm.font("Noto Sans Mono")
+    config.font_size = 12
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.default_prog = { 'zsh', '--login' }
     config.font = wezterm.font("SF Mono Square")
