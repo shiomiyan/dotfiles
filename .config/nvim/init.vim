@@ -12,7 +12,7 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Language support
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim'
@@ -54,12 +54,10 @@ set vb t_vb= " No more beeps
 " Load and set colorscheme
 let g:gruvbox_material_background = 'hard'
 let g:gruvbox_material_better_performance = 1
+let g:gruvbox_material_diagnostic_text_highlight = 1
+let g:gruvbox_material_transparent_background = 1
+let g:gruvbox_material_disable_italic_comment = 1
 colorscheme gruvbox-material
-" background transparent in Neovim
-hi Normal     guibg=NONE
-hi LineNr     guibg=NONE
-hi NonText    guibg=NONE
-hi SpecialKey guibg=NONE
 
 " ==============================
 " # Editor settings
@@ -89,7 +87,7 @@ set helplang=ja,en
 set undofile
 set undodir=~/.config/nvim/undo
 set mouse=a
-set cmdheight=2
+set cmdheight=1
 
 " ==============================
 " # Search settings
