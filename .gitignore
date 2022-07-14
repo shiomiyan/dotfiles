@@ -2,6 +2,7 @@
 __pycache__
 *.pyc
 *.log
+*.old
 
 /.config/*
 !/.config/alacritty/
