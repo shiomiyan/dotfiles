@@ -1,0 +1,94 @@
+env:
+  TERM: xterm-256color
+
+window:
+  padding:
+    x: 5
+    y: 5
+
+  dynamic_padding: false
+
+  title: Alacritty
+
+scrolling:
+  history: 10000
+
+font:
+  normal:
+    family: UDEV Gothic 35 NF
+
+  bold:
+    style: Bold
+
+  italic:
+    style: Italic
+
+  bold_italic:
+    style: Bold Italic
+
+  size: 16
+
+  # 文字間隔の調整
+  offset:
+    x: 0
+    y: 0
+
+draw_bold_text_with_bright_colors: true
+
+
+shell:
+  program: wsl
+  args:
+    - -d Distrod
+
+working_directory: "//wsl$/Distrod/home/sk"
+
+# Add the following to your alacritty.yml file
+# Colors (Base16 Default Dark)
+colors:
+  # Default colors
+  primary:
+    background: '#181818'
+    foreground: '#d8d8d8'
+
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text:   CellBackground
+    cursor: CellForeground
+
+  # Normal colors
+  normal:
+    black:   '#181818'
+    red:     '#ab4642'
+    green:   '#a1b56c'
+    yellow:  '#f7ca88'
+    blue:    '#7cafc2'
+    magenta: '#ba8baf'
+    cyan:    '#86c1b9'
+    white:   '#d8d8d8'
+
+  # Bright colors
+  bright:
+    black:   '#585858'
+    red:     '#ab4642'
+    green:   '#a1b56c'
+    yellow:  '#f7ca88'
+    blue:    '#7cafc2'
+    magenta: '#ba8baf'
+    cyan:    '#86c1b9'
+    white:   '#f8f8f8'
+
+bell:
+  #animation: EaseOutExpo
+  animation: Linear
+  duration: 0
+  #color: '0xffffff'
+  color: '0xff0000'
+
+background_opacity: 1.0
+
+key_bindings:
+  - { key: PageUp,   mods: Shift, action: ScrollPageUp,   mode: ~Alt       }
+  - { key: PageDown, mods: Shift, action: ScrollPageDown, mode: ~Alt       }
+  - { key: Home,     mods: Shift, action: ScrollToTop,    mode: ~Alt       }
+  - { key: End,      mods: Shift, action: ScrollToBottom, mode: ~Alt       }
