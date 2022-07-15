@@ -24,8 +24,8 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'rust-lang/rust.vim'
 
 " Fuzzy finder
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Utilities
 Plug 'vim-jp/vimdoc-ja'
@@ -63,90 +63,6 @@ let g:gruvbox_material_diagnostic_text_highlight = 1
 let g:gruvbox_material_transparent_background = 1
 let g:gruvbox_material_disable_italic_comment = 1
 colorscheme gruvbox-material
-
-" ==============================
-" # Editor settings
-" ==============================
-filetype plugin indent on
-set autoindent
-set smartindent
-set smarttab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set autoread
-set nobackup
-set noswapfile
-set viminfo=
-set encoding=utf-8
-set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
-set fileencoding=utf-8
-set fileformat=unix
-set list listchars=tab:\▸\-
-set clipboard+=unnamedplus
-set backspace=indent,start,eol
-set wildmode=longest:full,full
-set relativenumber
-set helplang=ja,en
-set undofile
-set undodir=~/.config/nvim/undo
-set mouse=a
-set cmdheight=1
-
-" ==============================
-" # Search settings
-" ==============================
-set wrapscan
-set showmatch
-set ignorecase
-set smartcase
-set nowrapscan
-
-" ==============================
-" # Netrw settings
-" ==============================
-let g:netrw_liststyle    = 3
-let g:netrw_banner       = 0
-let g:netrw_sizestyle    = "H"
-let g:netrw_timefmt      = "%Y/%m/%d(%a) %H:%M:%S"
-let g:netrw_browse_split = 3
-let g:netrw_winsize      = 20
-let g:netrw_alto         = 1
-let g:netrw_altv         = 1
-
-let g:NetrwIsOpen = 0
-function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i
-            endif
-            let i -= 1
-        endwhile
-        let g:NetrwIsOpen = 0
-    else
-        let g:NetrwIsOpen = 1
-        silent Lexplore
-    endif
-endfunction
-" Toggle netrw with Ctrl-e
-noremap <silent> <C-e> :call ToggleNetrw()<CR>
-
-" ==============================
-" # Other settings
-" ==============================
-" Remove ws at the eol
-autocmd BufWritePre * :%s/\s\+$//ge
-
-" Terminal settings
-if has('win32')
-    let &shell        = 'pwsh.exe'
-    let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-    let &shellredir   = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    let &shellpipe    = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-endif
 
 " ==============================
 " # Plugin settings
@@ -228,6 +144,42 @@ cmp.setup {
     }
 }
 
+-- Setup lspconfig.
+local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    --Enable completion triggered by <c-x><c-o>
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Mappings.
+    local opts = { noremap=true, silent=true }
+
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<Cmd>tab split | lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>r', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<space>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
+    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+    -- Get signatures (and _only_ signatures) when in argument lists.
+    -- require "lsp_signature".on_attach({
+    --     doc_lines = 0,
+    --     handler_opts = {
+    --         border = "none"
+    --     },
+    -- })
+end
+
 lspconfig.rust_analyzer.setup {
     on_attach = on_attach,
     flags = {
@@ -255,6 +207,97 @@ END
 if has('unix')
     let g:barbaric_ime   = 'ibus'
     let g:barbaric_scope = 'buffer'
+endif
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" ==============================
+" # Editor settings
+" ==============================
+filetype plugin indent on
+set autoindent
+set smartindent
+set smarttab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set autoread
+set nobackup
+set noswapfile
+set viminfo=
+set encoding=utf-8
+set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
+set fileencoding=utf-8
+set fileformat=unix
+set list listchars=tab:\▸\-
+set clipboard+=unnamedplus
+set backspace=indent,start,eol
+set wildmode=longest:full,full
+set relativenumber
+set helplang=ja,en
+set undofile
+set undodir=~/.config/nvim/undo
+set mouse=a
+set cmdheight=1
+set completeopt=menuone,noinsert,noselect
+
+" ==============================
+" # Search settings
+" ==============================
+set wrapscan
+set showmatch
+set ignorecase
+set smartcase
+set nowrapscan
+
+" ==============================
+" # Netrw settings
+" ==============================
+let g:netrw_liststyle    = 3
+let g:netrw_banner       = 0
+let g:netrw_sizestyle    = "H"
+let g:netrw_timefmt      = "%Y/%m/%d(%a) %H:%M:%S"
+let g:netrw_browse_split = 3
+let g:netrw_winsize      = 20
+let g:netrw_alto         = 1
+let g:netrw_altv         = 1
+
+let g:NetrwIsOpen = 0
+function! ToggleNetrw()
+    if g:NetrwIsOpen
+        let i = bufnr("$")
+        while (i >= 1)
+            if (getbufvar(i, "&filetype") == "netrw")
+                silent exe "bwipeout " . i
+            endif
+            let i -= 1
+        endwhile
+        let g:NetrwIsOpen = 0
+    else
+        let g:NetrwIsOpen = 1
+        silent Lexplore
+    endif
+endfunction
+" Toggle netrw with Ctrl-e
+noremap <silent> <C-e> :call ToggleNetrw()<CR>
+
+" ==============================
+" # Other settings
+" ==============================
+" Remove ws at the eol
+autocmd BufWritePre * :%s/\s\+$//ge
+
+" Terminal settings
+if has('win32')
+    let &shell        = 'pwsh.exe'
+    let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+    let &shellredir   = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    let &shellpipe    = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 endif
 
 " ==============================
