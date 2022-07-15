@@ -22,3 +22,4 @@ __pycache__
 /.fonts/*
 !/.fonts/FirgeNerd/
 !/.fonts/mplus-1mn/
+!/.fonts/NotoSansMono1M.ttf
