@@ -2,7 +2,7 @@ local wezterm = require 'wezterm';
 
 local config = {
     color_scheme = "Gruvbox Dark",
-    window_background_opacity = 0.95,
+    window_background_opacity = 1.0,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
     enable_scroll_bar = true,
@@ -81,7 +81,7 @@ end)
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
     -- config.font = wezterm.font("UDEV Gothic")
-    config.font = wezterm.font("Noto Sans Mono")
+    config.font = wezterm.font("Noto Sans Mono 1M")
     config.font_size = 12
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.default_prog = { 'zsh', '--login' }
