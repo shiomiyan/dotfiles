@@ -273,38 +273,11 @@ let g:netrw_winsize      = 20
 let g:netrw_alto         = 1
 let g:netrw_altv         = 1
 
-let g:NetrwIsOpen = 0
-function! ToggleNetrw()
-    if g:NetrwIsOpen
-        let i = bufnr("$")
-        while (i >= 1)
-            if (getbufvar(i, "&filetype") == "netrw")
-                silent exe "bwipeout " . i
-            endif
-            let i -= 1
-        endwhile
-        let g:NetrwIsOpen = 0
-    else
-        let g:NetrwIsOpen = 1
-        silent Lexplore
-    endif
-endfunction
-" Toggle netrw with Ctrl-e
-noremap <silent> <C-e> :call ToggleNetrw()<CR>
-
 " ==============================
 " # Other settings
 " ==============================
 " Remove ws at the eol
 autocmd BufWritePre * :%s/\s\+$//ge
-
-" Terminal settings
-if has('win32')
-    let &shell        = 'pwsh.exe'
-    let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-    let &shellredir   = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    let &shellpipe    = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-endif
 
 " ==============================
 " # Keymaps
