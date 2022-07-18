@@ -14,7 +14,7 @@ local config = {
 
     -- Window Padding
     window_padding = {
-        right  = 10, -- Scroll bar width
+        right  = 20, -- Scroll bar width
         top    = 0,
         buttom = 0,
     },
@@ -85,8 +85,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.font_size = 12
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.default_prog = { 'zsh', '--login' }
-    config.font = wezterm.font("SF Mono Square")
-    config.font_size = 22
+    config.font = wezterm.font("Noto Sans Mono 1M")
+    config.font_size = 18
 else
     config.default_prog = { 'zsh', '--login' }
 end

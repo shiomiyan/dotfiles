@@ -1,6 +1,7 @@
 export LC_MESSAGES=en_US.UTF-8
 
 source ~/.config/zsh/zi.zsh
+setopt hist_ignore_dups
 
 case "$OSTYPE" in
   darwin*)
@@ -11,9 +12,10 @@ case "$OSTYPE" in
   ;;
 esac
 
+# Settings for WSL
 if [ `uname -r | grep microsoft` ]; then
   alias clip="win32yank -i"
-  alias cmd="/mnt/c/Windows/System32/cmd.exe"
+  # appendWindowsPath is set to false in wslconfig
   export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 
@@ -23,7 +25,6 @@ fi
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
-. "$HOME/.cargo/env"
 
 # starship
 export STARSHIP_CONFIG=~/.config/starship.toml
@@ -33,7 +34,7 @@ eval "$(starship init zsh)"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-# Go lang
+# Golang
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
 # show hidden files with fzf.vim
@@ -44,3 +45,5 @@ if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
     . /home/sk/.nix-profile/etc/profile.d/nix.sh
 fi
 
+# zoxide
+eval "$(zoxide init zsh)"

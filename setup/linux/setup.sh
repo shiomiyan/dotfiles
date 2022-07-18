@@ -2,26 +2,34 @@
 
 set -ue
 
-# install packages
+# Install packages
 case "$OSTYPE" in
     "darwin"*)
         brew tap delphinus/sfmono-square
         brew install            \
-            vim                 \
             git                 \
             zsh                 \
             curl                \
             tmux                \
+            tig                 \
             starship            \
+            exa                 \
+            ripgrep             \
+            zoxide              \
             sfmono-square
+        # If failed to install Neovim, see https://github.com/neovim/neovim/issues/16217#issuecomment-959793388
+        brew install --HEAD neovim
+        # Install GUI applications
+        brew tap wez/wezterm
         brew install --cask     \
             alacritty           \
             firefox             \
             google-japanese-ime \
             karabiner-elements  \
             keyboardcleantool   \
-            rectangle           \
             spotify             \
+            wireshark
+        brew install wez/wezterm/wezterm-nightly
     ;;
     "linux"*)
         if [ -e /etc/fedora-release ]; then
@@ -42,13 +50,13 @@ case "$OSTYPE" in
             exit 1
         fi
 
-        # install starship
+        # Install starship
         sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
 
-        # install Rust
+        # Install Rust
         curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
-        # rust-analyzer
+        # Install rust-analyzer
         # https://rust-analyzer.github.io/manual.html#rust-analyzer-language-server-binary
     ;;
     *)
@@ -75,10 +83,6 @@ if ! command -v wslpath &> /dev/null ; then
         sudo mv /tmp/win32yank.exe /usr/local/bin/
     fi
 fi
-
-# vim-plug installation for Neovim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
