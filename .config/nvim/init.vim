@@ -12,9 +12,9 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Semantic language support
-" Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'williamboman/nvim-lsp-installer' " Easy install language server
 Plug 'neovim/nvim-lspconfig'
+
 " Completion plugins
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -32,7 +32,6 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-denops/denops.vim'
 Plug 'kat0h/bufpreview.vim' " Markdown preview
 Plug 'tpope/vim-surround'
-Plug 'jiangmiao/auto-pairs'
 
 " Plugins only works on Linux
 if has('unix')
