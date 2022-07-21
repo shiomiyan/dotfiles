@@ -46,6 +46,9 @@ local config = {
 
         -- Copy text
         { key = "c", mods = "CTRL|SHIFT", action = "Copy" },
+
+        -- Launch menu
+        { key = "l", mods = "ALT", action = wezterm.action.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS" } },
     },
     mouse_bindings = {
         -- Ctrl-click will open the link under the mouse cursor
@@ -77,12 +80,39 @@ wezterm.on("format-tab-title", function(tab)
     }
 end)
 
+local launch_menu = {}
+
 -- Switch configuration depends on OS
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
     -- config.font = wezterm.font("UDEV Gothic")
     config.font = wezterm.font("Noto Sans Mono 1M")
     config.font_size = 12
+
+    -- Setup lanch menu
+    table.insert(launch_menu, {
+        label = "pwsh",
+        args  = { "pwsh.exe", "-NoLogo" },
+    })
+
+    -- Enumerate any WSL distributions that are installed and add those to the menu
+    local success, wsl_list, wsl_err = wezterm.run_child_process { 'wsl.exe', '-l' }
+    -- https://github.com/microsoft/WSL/issues/4607
+    wsl_list = wezterm.utf16_to_utf8(wsl_list)
+
+    for idx, line in ipairs(wezterm.split_by_newlines(wsl_list)) do
+        if idx > 1 then
+            local distro = line
+            table.insert(launch_menu, {
+                label = "WSL " .. distro,
+                args  = { "wsl.exe", "--distribution", distro, "--exec", "/bin/zsh", "-l" }
+            })
+        end
+    end
+
+    config.launch_menu = launch_menu
+
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.default_prog = { 'zsh', '--login' }
     config.font = wezterm.font("Noto Sans Mono 1M")
