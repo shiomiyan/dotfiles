@@ -72,17 +72,18 @@ git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
 ln -sf ~/dotfiles/.zshrc     ~/.zshrc
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -sf ~/dotfiles/.tigrc     ~/.tigrc
+ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.config    ~/.config
 
-if ! command -v wslpath &> /dev/null ; then
-    # win32yank for Vim or Neovim
-    if [ ! -e /usr/local/bin/win32yank.exe ]; then
-        curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip
-        unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-        chmod +x /tmp/win32yank.exe
-        sudo mv /tmp/win32yank.exe /usr/local/bin/
-    fi
-fi
+#if ! command -v wslpath &> /dev/null ; then
+#    # win32yank for Vim or Neovim
+#    if [ ! -e /usr/local/bin/win32yank.exe ]; then
+#        curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip
+#        unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+#        chmod +x /tmp/win32yank.exe
+#        sudo mv /tmp/win32yank.exe /usr/local/bin/
+#    fi
+#fi
 
 nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
