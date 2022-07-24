@@ -4,7 +4,7 @@ __pycache__
 *.log
 *.old
 
-/.config/
+/.config/*
 !/.config/alacritty/
 !/.config/karabiner
 !/.config/lsd
@@ -14,9 +14,13 @@ __pycache__
 !/.config/efm-langserver/
 !/.config/powershell
 
+# git
+!/.config/git/
+
 # Neovim
 !/.config/nvim
 /.config/nvim/plugged
+/.config/nvim/undo/
 !/.config/nvim/undo/.gitkeep
 
 # espanso

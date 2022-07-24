@@ -2,4 +2,4 @@
 	name = shiomiyan
 	email = sk736b@protonmail.com
 [core]
-	autocrlf = false
+	autocrlf = input
