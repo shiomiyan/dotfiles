@@ -17,9 +17,7 @@ __pycache__
 !/.config/nvim/undo/.gitkeep
 !/.config/efm-langserver/
 !/.config/powershell
-!/.config/espanso
 
-/.fonts/*
-!/.fonts/FirgeNerd/
-!/.fonts/mplus-1mn/
-!/.fonts/NotoSansMono1M.ttf
+# espanso
+!/.config/espanso/config
+!/.config/espanso/match/base.yml
