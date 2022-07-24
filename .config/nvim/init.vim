@@ -172,14 +172,6 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
-    -- Get signatures (and _only_ signatures) when in argument lists.
-    -- require "lsp_signature".on_attach({
-    --     doc_lines = 0,
-    --     handler_opts = {
-    --         border = "none"
-    --     },
-    -- })
 end
 
 local lspconfig = require'lspconfig'
