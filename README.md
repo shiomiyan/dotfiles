@@ -3,11 +3,11 @@
 ### Fedora / macOS
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/setup/linux/setup.sh)"
+sh -c "$(curl -fsSL https://shiomiyan.github.io/dotfiles/setup/linux/setup.sh)"
 ```
 
 ### Windows
 
 ```powershell
-iwr "https://raw.githubusercontent.com/shiomiyan/dotfiles/master/setup/windows/Setup.ps1" -useb | iex
+iwr "https://shiomiyan.github.io/dotfiles/setup/windows/Setup.ps1" -useb | iex
 ```
