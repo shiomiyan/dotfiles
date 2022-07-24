@@ -16,11 +16,11 @@ Set-PSReadLineOption -PredictionSource History
 # Show Tab completion menu
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
-Function which {
+function which {
     Get-Command -ShowCommandInfo $args | Format-Table -Property Definition
 }
 
-Function wsl-feature {
+function wsl-feature {
     param (
         $condition
     )
@@ -35,7 +35,12 @@ Function wsl-feature {
     }
 }
 
-Set-Alias -Name e -Value explorer.exe
-Set-Alias -Name vi -Value vim
-Set-Alias -Name wg -Value winget
+function Goto-Repo {
+    cd $( join-path $(ghq root) $( ghq list | peco ))
+}
+
+Set-Alias -Name e   -Value explorer.exe
+Set-Alias -Name vi  -Value vim
+Set-Alias -Name wg  -Value winget
 Set-Alias -Name tig -Value "C:\Program Files\Git\usr\bin\tig.exe"
+Set-Alias -Name g   -Value Goto-Repo
