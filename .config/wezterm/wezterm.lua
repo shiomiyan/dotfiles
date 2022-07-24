@@ -86,9 +86,9 @@ local launch_menu = {}
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
-    -- config.font = wezterm.font("UDEV Gothic")
-    config.font = wezterm.font("Noto Sans Mono 1M")
-    config.font_size = 12
+
+    config.font = wezterm.font_with_fallback({ "Consolas", "Noto Sans JP" })
+    config.font_size = 13
 
     -- Setup lanch menu
     table.insert(launch_menu, {
@@ -103,10 +103,10 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
     for idx, line in ipairs(wezterm.split_by_newlines(wsl_list)) do
         if idx > 1 then
-            local distro = line
+            local distro = line:gsub("%(.*%)", "")
             table.insert(launch_menu, {
                 label = "WSL " .. distro,
-                args  = { "wsl.exe", "--distribution", distro, "--exec", "/bin/zsh", "-l" }
+                args  = { "wsl.exe", "--distribution", distro, "--exec", "/usr/bin/zsh", "-l" },
             })
         end
     end
