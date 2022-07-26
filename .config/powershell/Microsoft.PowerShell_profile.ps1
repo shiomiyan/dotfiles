@@ -2,10 +2,12 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 
 Import-Module PSReadLine
-Import-Module zoxide
-
+# Import-Module zoxide
 
 Invoke-Expression (&starship init powershell)
+Invoke-Expression (& {
+    (zoxide init --hook pwd powershell | Out-String)
+})
 
 # No more beep
 Set-PSReadlineOption -BellStyle None
