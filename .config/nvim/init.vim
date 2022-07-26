@@ -199,7 +199,7 @@ lspconfig.rust_analyzer.setup {
 END
 
 " Rust
-" let g:rustfmt_autosave = 1
+let g:rustfmt_autosave = 1
 
 " Disable IME in insert mode with vim-barbaric
 if has('unix')
