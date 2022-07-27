@@ -10,6 +10,8 @@ call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'andymass/vim-matchup'
 
 " Semantic language support
 Plug 'neovim/nvim-lspconfig'
@@ -34,6 +36,7 @@ Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-denops/denops.vim'
 Plug 'kat0h/bufpreview.vim' " Markdown preview
 Plug 'tpope/vim-surround'
+Plug 'folke/which-key.nvim'
 
 " Plugins only works on Linux
 if has('unix')
@@ -230,6 +233,10 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Key bindings cheat sheet via which-key
+lua require("which-key").setup()
+nnoremap <leader>h <cmd>WhichKey<cr>
 
 " ==============================
 " # Editor settings
