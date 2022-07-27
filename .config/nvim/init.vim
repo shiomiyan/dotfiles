@@ -12,8 +12,9 @@ Plug 'sainnhe/gruvbox-material'
 Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Semantic language support
-Plug 'williamboman/nvim-lsp-installer' " Easy install language server
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim' " alternative to nvim-lsp-installer
 
 " Completion plugins
 Plug 'hrsh7th/nvim-cmp'
@@ -22,6 +23,7 @@ Plug 'hrsh7th/cmp-buffer'
 
 " Syntactic language support
 Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
 
 " Fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
@@ -83,9 +85,6 @@ let g:lightline = {
 " # LSP settings
 " ==============================
 lua << END
--- Easy install LSP
-require'nvim-lsp-installer'.setup {}
-
 -- Function for tab completion with nvim-cmp
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -174,7 +173,26 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
+-- Easy install and setup LSP
+require("mason").setup()
+local mason_lspconfig = require("mason-lspconfig")
+
+mason_lspconfig.setup({
+    ensure_installed = { "rust_analyzer", "powershell-editor-services", "sumneko_lua", "jdtls" }
+})
+
 local lspconfig = require'lspconfig'
+
+-- Automatically setup all language servers
+mason_lspconfig.setup_handlers({
+    function(server_name)
+        lspconfig[server_name].setup({
+            on_attach = on_attach
+        })
+    end
+})
+
+-- Setup Rust language server
 lspconfig.rust_analyzer.setup {
     on_attach = on_attach,
     flags = {
