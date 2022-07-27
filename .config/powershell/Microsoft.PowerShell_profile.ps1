@@ -2,7 +2,6 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 
 Import-Module PSReadLine
-# Import-Module zoxide
 
 Invoke-Expression (&starship init powershell)
 Invoke-Expression (& {
@@ -18,11 +17,11 @@ Set-PSReadLineOption -PredictionSource History
 # Show Tab completion menu
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 
-function which {
+function local:which {
     Get-Command -ShowCommandInfo $args | Format-Table -Property Definition
 }
 
-function wsl-feature {
+function local:wsl-feature {
     param (
         $condition
     )
@@ -38,11 +37,11 @@ function wsl-feature {
 }
 
 function Goto-Repo {
-    cd $( join-path $(ghq root) $( ghq list | peco ))
+    Set-Location $( join-path $(ghq root) $( ghq list | peco ))
 }
 
 Set-Alias -Name e   -Value explorer.exe
 Set-Alias -Name vi  -Value vim
 Set-Alias -Name wg  -Value winget
 Set-Alias -Name tig -Value "C:\Program Files\Git\usr\bin\tig.exe"
-Set-Alias -Name g   -Value Goto-Repo
+Set-Alias -Name gr   -Value Goto-Repo

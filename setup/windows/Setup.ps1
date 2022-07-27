@@ -3,7 +3,7 @@
 # Allow script execution
 Set-ExecutionPolicy Bypass -Force
 
-function Install-App {
+function local:Install-App {
     <#
 
 .DESCRIPTION
@@ -86,7 +86,7 @@ function Install-App {
 
 }
 
-function Create-Symlink {
+function local:Create-Symlink {
 
     <#
 
