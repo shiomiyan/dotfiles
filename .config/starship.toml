@@ -3,9 +3,9 @@ $directory$git_branch$git_state$git_status
 $shell$character"""
 
 [character]
-success_symbol = "[▶](bold green)"
-error_symbol   = "[▶](bold red)"
-vicmd_symbol   = "[◀](bold green)"
+success_symbol = "[\\$](bold green)"
+error_symbol   = "[\\$](bold red)"
+vicmd_symbol   = "[\\$](bold green)"
 
 [shell]
 disabled = false
