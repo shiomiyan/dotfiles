@@ -1,5 +1,15 @@
 [user]
 	name = shiomiyan
 	email = sk736b@protonmail.com
+[ui "color"]
+	ui = always
+[color]
+	ui = true
 [core]
 	autocrlf = input
+	editor = nvim -d
+[alias]
+	c = commit
+	s = status
+[merge]
+	tool = nvim -d
