@@ -9,7 +9,6 @@ call plug#begin()
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
 Plug 'sainnhe/gruvbox-material'
-Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'andymass/vim-matchup'
 
@@ -74,7 +73,6 @@ colorscheme gruvbox-material
 " ==============================
 " Lightline
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox_material',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified' ] ],
@@ -84,10 +82,10 @@ let g:lightline = {
       \ },
       \ }
 
-" ==============================
-" # LSP settings
-" ==============================
 lua << END
+-- ==============================
+-- # LSP Settings
+-- ==============================
 -- Function for tab completion with nvim-cmp
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -285,7 +283,7 @@ let g:netrw_liststyle    = 3
 let g:netrw_banner       = 0
 let g:netrw_sizestyle    = "H"
 let g:netrw_timefmt      = "%Y/%m/%d(%a) %H:%M:%S"
-let g:netrw_browse_split = 3
+let g:netrw_browse_split = 0
 let g:netrw_winsize      = 20
 let g:netrw_alto         = 1
 let g:netrw_altv         = 1
