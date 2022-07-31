@@ -21,6 +21,10 @@ function local:which {
     Get-Command -ShowCommandInfo $args | Format-Table -Property Definition
 }
 
+function cdfz {
+    Set-Location (Get-Item $(fzf)).Directory.FullName
+}
+
 function local:Switch-WslFeature {
     Param (
         [Parameter(Mandatory=$True)]

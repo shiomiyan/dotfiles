@@ -8,15 +8,20 @@ local config = {
     enable_scroll_bar = true,
     use_ime = true,
 
+    -- Custom color echeme
+    colors = {
+        scrollbar_thumb = "WHITE",
+    },
+
     -- Initial window size on startup
     initial_rows = 28,
     initial_cols = 100,
 
     -- Window Padding
     window_padding = {
-        right  = 20, -- Scroll bar width
+        right  = 16, -- Scroll bar width
         top    = 0,
-        buttom = 0,
+        bottom = 0,
     },
 
     -- pane appearance
@@ -43,6 +48,10 @@ local config = {
         { key = "DownArrow",  mods = "ALT", action = wezterm.action.AdjustPaneSize { "Down" , 2 } },
         { key = "UpArrow",    mods = "ALT", action = wezterm.action.AdjustPaneSize { "Up"   , 2 } },
         { key = "RightArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize { "Right", 2 } },
+
+        -- Window Scrolling
+        { key = 'j', mods = 'ALT', action = wezterm.action.ScrollByLine(2) },
+        { key = 'k', mods = 'ALT', action = wezterm.action.ScrollByLine(-2) },
 
         -- Copy text
         { key = "c", mods = "CTRL|SHIFT", action = "Copy" },

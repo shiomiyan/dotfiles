@@ -28,10 +28,9 @@ Plug 'cespare/vim-toml'
 
 " Fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 
 " Utilities
-Plug 'vim-jp/vimdoc-ja'
 Plug 'vim-denops/denops.vim'
 Plug 'kat0h/bufpreview.vim' " Markdown preview
 Plug 'tpope/vim-surround'
