@@ -6,7 +6,7 @@ __pycache__
 
 /.config/*
 !/.config/alacritty/
-!/.config/karabiner
+!/.config/karabiner/karabiner.json
 !/.config/lsd
 !/.config/starship.toml
 !/.config/zsh
