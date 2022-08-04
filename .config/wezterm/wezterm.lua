@@ -106,7 +106,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     })
 
     -- Enumerate any WSL distributions that are installed and add those to the menu
-    local success, wsl_list, wsl_err = wezterm.run_child_process { 'wsl.exe', '-l' }
+    local _, wsl_list, _ = wezterm.run_child_process { 'wsl.exe', '-l' }
     -- https://github.com/microsoft/WSL/issues/4607
     wsl_list = wezterm.utf16_to_utf8(wsl_list)
 
