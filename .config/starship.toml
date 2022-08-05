@@ -1,16 +1,28 @@
 format = """
-$directory$git_branch
+$directory$git_branch$git_state$git_status
 $shell$character"""
 
 [directory]
 fish_style_pwd_dir_length = 1
 
 [character]
-success_symbol = "[🍣](bold green)"
-error_symbol   = "[💥](bold red)"
+success_symbol = "[%](bold green)"
+error_symbol   = "[%](bold red)"
 
 [cmd_duration]
 disabled = true
 
 [package]
 disabled = true
+
+[git_branch]
+symbol = ""
+
+[git_commit]
+tag_symbol = "tag "
+
+[git_status]
+ahead = "↑"
+behind = "↓"
+renamed = "r"
+deleted = "x"
