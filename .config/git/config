@@ -1,6 +1,6 @@
 [user]
 	name = shiomiyan
-	email = sk736b@protonmail.com
+	email = 35842766+shiomiyan@users.noreply.github.com
 [ui "color"]
 	ui = always
 [color]
@@ -11,5 +11,8 @@
 [alias]
 	c = commit
 	s = status
+	gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
 [merge]
 	tool = nvim -d
+[push]
+	autoSetupRemote = true

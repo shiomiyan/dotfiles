@@ -1,14 +1,13 @@
 format = """
-$directory$git_branch$git_state$git_status
+$directory$git_branch
 $shell$character"""
 
-[character]
-success_symbol = "[\\$](bold green)"
-error_symbol   = "[\\$](bold red)"
-vicmd_symbol   = "[\\$](bold green)"
+[directory]
+fish_style_pwd_dir_length = 1
 
-[shell]
-disabled = false
+[character]
+success_symbol = "[🍣](bold green)"
+error_symbol   = "[💥](bold red)"
 
 [cmd_duration]
 disabled = true

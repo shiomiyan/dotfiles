@@ -3,8 +3,7 @@ Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 Import-Module PSReadLine
 
-# Invoke-Expression (&starship init powershell)
-Import-Module posh-git
+Invoke-Expression (&starship init powershell)
 Invoke-Expression (& {
     (zoxide init --hook pwd powershell | Out-String)
 })

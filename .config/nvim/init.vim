@@ -263,8 +263,9 @@ set helplang=ja,en
 set undofile
 set undodir=~/.config/nvim/undo
 set mouse=a
-set cmdheight=1
+set cmdheight=2
 set completeopt=menuone,noinsert,noselect
+set nowrap
 
 " ==============================
 " # Search settings

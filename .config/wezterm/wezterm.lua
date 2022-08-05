@@ -56,8 +56,11 @@ local config = {
         -- Copy text
         { key = "c", mods = "CTRL|SHIFT", action = "Copy" },
 
-        -- Launch menu
+        -- Launch menu for launcher
         { key = "l", mods = "ALT", action = wezterm.action.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS" } },
+
+        -- Launch menu for tabs
+        { key = "9", mods = "ALT", action = wezterm.action.ShowLauncherArgs { flags = "TABS" } },
     },
     mouse_bindings = {
         -- Ctrl-click will open the link under the mouse cursor
@@ -97,7 +100,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
 
     config.font = wezterm.font_with_fallback({ "Consolas", "Noto Sans JP" })
-    config.font_size = 13
+    config.font_size = 14
 
     -- Setup lanch menu
     table.insert(launch_menu, {
@@ -115,7 +118,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
             local distro = line:gsub("%(.*%)", "")
             table.insert(launch_menu, {
                 label = "WSL " .. distro,
-                args  = { "wsl.exe", "--distribution", distro, "--exec", "/usr/bin/zsh", "-l" },
+                args  = { "pwsh.exe", "-NoLogo", "-NoProfile", "-Command" , "wsl.exe", "-d", distro },
             })
         end
     end
