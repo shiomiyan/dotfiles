@@ -99,8 +99,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
 
-    config.font = wezterm.font_with_fallback({ "Consolas", "Noto Sans JP" })
-    config.font_size = 14
+    config.font = wezterm.font_with_fallback({ "Firge35 Console" })
+    config.font_size = 13
 
     -- Setup lanch menu
     table.insert(launch_menu, {

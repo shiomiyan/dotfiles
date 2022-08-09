@@ -10,7 +10,7 @@ call plug#begin()
 Plug 'itchyny/lightline.vim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'machakann/vim-highlightedyank'
-Plug 'andymass/vim-matchup'
+" Plug 'andymass/vim-matchup'
 
 " Semantic language support
 Plug 'neovim/nvim-lspconfig'
