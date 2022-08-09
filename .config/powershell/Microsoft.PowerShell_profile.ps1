@@ -8,6 +8,13 @@ Invoke-Expression (& {
     (zoxide init --hook pwd powershell | Out-String)
 })
 
+# Command completions
+try {
+    if (Get-Command gh) {
+        Invoke-Expression -Command $(gh completion -s powershell | Out-String)
+    }
+} catch {}
+
 # No more beep
 Set-PSReadlineOption -BellStyle None
 
