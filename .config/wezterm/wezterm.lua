@@ -7,6 +7,7 @@ local config = {
     use_fancy_tab_bar = false,
     enable_scroll_bar = true,
     use_ime = true,
+    adjust_window_size_when_changing_font_size = false,
 
     -- Custom color echeme
     colors = {
