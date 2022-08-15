@@ -100,7 +100,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
 
-    config.font = wezterm.font_with_fallback({ "Firge35 Console" })
+    -- config.font = wezterm.font("UDEV Gothic 35")
+    config.font = wezterm.font("Sarasa Fixed J")
     config.font_size = 13
 
     -- Setup lanch menu
