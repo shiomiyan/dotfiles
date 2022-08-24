@@ -77,7 +77,7 @@ let g:lightline = {
       \             [ 'readonly', 'filename', 'modified' ] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
-      \              [ 'fileencoding', 'filetype' ] ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
       \ },
       \ }
 
@@ -254,6 +254,7 @@ set encoding=utf-8
 set fileencodings=utf-8,sjis,euc-jp,iso-2022-jp
 set fileencoding=utf-8
 set fileformat=unix
+set fileformats=unix,dos,mac
 set list listchars=tab:\▸\-
 set clipboard+=unnamedplus
 set backspace=indent,start,eol
