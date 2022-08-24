@@ -12,8 +12,10 @@ __pycache__
 !/.config/zsh
 !/.config/wezterm/
 !/.config/efm-langserver/
-!/.config/powershell
 !/.config/tig/config
+
+# PowerShell
+!/.config/powershell/Microsoft.PowerShell_profile.ps1
 
 # git
 !/.config/git/
