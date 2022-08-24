@@ -97,11 +97,7 @@ cmp.setup {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.close(),
-        ["<c-y>"] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        },
-        ['<Enter>'] = cmp.mapping.confirm {
+        ['<CR>'] = cmp.mapping.confirm {
             behavior = cmp.ConfirmBehavior.Insert,
             select = true,
         },
@@ -124,22 +120,26 @@ cmp.setup {
             end
         end,
     },
-    -- formatting = {
-    --     format = lspkind.cmp_format {
-    --         with_text = true,
-    --         menu = {
-    --             buffer   = "[buf]",
-    --             nvim_lsp = "[LSP]",
-    --             path     = "[path]",
-    --         },
-    --     },
-    -- },
 
     sources = {
         { name = "nvim_lsp" },
         { name = "path" },
         { name = "buffer", keyword_length = 5 },
     },
+
+    formatting = {
+        fields = { "menu", "abbr", "kind" },
+        format = function(entry, item)
+            local menu_icon = {
+                nvim_lsp = "[L]",
+                path     = "[p]",
+                buffer   = "[b]",
+            }
+            item.menu = menu_icon[entry.source.name]
+            return item
+        end,
+    },
+
     experimental = {
         ghost_text = true
     }
@@ -154,7 +154,7 @@ local on_attach = function(client, bufnr)
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
-    local opts = { noremap=true, silent=true }
+    local opts = { noremap = true, silent = true }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     buf_set_keymap('n', 'gD'      , '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -312,9 +312,6 @@ nnoremap <silent> [k :bnext<CR>
 
 " Open terminal
 nnoremap <leader>t :terminal<CR>
-
-" Quick-Save
-nmap <leader>w :w<CR>
 
 " Paste without yank https://stackoverflow.com/a/11993928
 vnoremap p "_dp

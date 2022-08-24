@@ -129,9 +129,9 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.default_prog = { 'zsh', '--login' }
-    config.font = wezterm.font("UDEV Gothic 35")
-    config.font_size = 18
-    config.line_height = 1.1
+    config.font = wezterm.font("Sarasa Fixed J")
+    config.font_size = 20
+    config.line_height = 1.0
 else
     config.default_prog = { 'zsh', '--login' }
 end
