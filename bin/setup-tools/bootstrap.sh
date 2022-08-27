@@ -117,8 +117,8 @@ function create_symlinks() {
     # Create symlinks and backup configs if exists
     local TARGETS=(".zshrc", ".config", ".tmux.conf")
     mkdir /tmp/dotfiles.backup
-    for target in "${TARGETS[@]}" ; do
-        if [[ -f "$HOME/$target" ]] then
+    for target in "${TARGETS[@]}"; do
+        if [[ -f "$HOME/$target" ]]; then
             mv "$HOME/$target" "/tmp/dotfiles.backup/$target"
         fi
         ln -sf "$HOME/dotfiles/$target" "$HOME/$target"
