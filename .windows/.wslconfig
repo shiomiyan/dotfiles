@@ -1,8 +1,5 @@
-# Set this config to $home
+# Set this config to Windows user home directory
 
 [wsl2]
 memory=2GB
 swap=0
-
-[interop]
-appendWindowsPath = false
