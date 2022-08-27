@@ -115,7 +115,7 @@ function dnf_install() {
 
 function create_symlinks() {
     # Create symlinks and backup configs if exists
-    local TARGETS=(".zshrc", ".config", ".tmux.conf")
+    local TARGETS=(".zshrc" ".config" ".tmux.conf")
     mkdir /tmp/dotfiles.backup
     for target in "${TARGETS[@]}"; do
         if [[ -f "$HOME/$target" ]]; then
