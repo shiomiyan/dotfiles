@@ -40,7 +40,7 @@ case $OSTYPE in
     linux*)
         DISTRO="linux"
 
-        if [ command -v dnf &> /dev/null ]; then
+        if command -v dnf &> /dev/null; then
             # Install packages from dnf
             dnf_install
         else
