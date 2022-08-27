@@ -33,18 +33,26 @@ case "$OSTYPE" in
     ;;
     "linux"*)
         if [ -e /etc/fedora-release ]; then
+
             sudo dnf upgrade
             sudo dnf install -y \
-                neovim          \
                 git             \
                 zsh             \
-                curl            \
                 wget            \
                 unzip           \
                 tmux            \
-                gcc             \
                 nodejs          \
-                openssl-devel
+                openssl-devel   \
+                ripgrep         \
+                zoxide
+
+            # Build and install Neovim from source
+            sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
+            git clone https://github.com/neovim/neovim /tmp/neovim && cd /tmp/neovim
+            make CMAKE_BUILD_TYPE=release
+            sudo make install
+            cd $HOME
+
         else
             echo "Unsupported distribution."
             exit 1
@@ -71,8 +79,6 @@ git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
 # create symlinks
 ln -sf ~/dotfiles/.zshrc     ~/.zshrc
 ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.tigrc     ~/.tigrc
-ln -sf ~/dotfiles/.gitconfig ~/.gitconfig
 ln -sf ~/dotfiles/.config    ~/.config
 
 #if ! command -v wslpath &> /dev/null ; then
@@ -87,4 +93,4 @@ ln -sf ~/dotfiles/.config    ~/.config
 
 nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
-sudo usermod -s `which zsh` $USER
+# sudo usermod -s `which zsh` $USER"
