@@ -138,6 +138,7 @@ function info() {
     printf '%s\n' "${BOLD}${MAGENTA}==> $*${NO_COLOUR}"
 }
 
+# Start installation
 main
 
 info "Setup succeed."
