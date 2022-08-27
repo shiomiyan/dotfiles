@@ -100,7 +100,6 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
 
-    -- config.font = wezterm.font("UDEV Gothic 35")
     config.font = wezterm.font("Sarasa Fixed J")
     config.font_size = 13
 

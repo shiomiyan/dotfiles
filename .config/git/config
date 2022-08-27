@@ -16,3 +16,6 @@
 	tool = nvim -d
 [push]
 	autoSetupRemote = true
+[diff]
+	algorithm = patience
+	compactionHeuristic = true
