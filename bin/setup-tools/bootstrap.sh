@@ -4,92 +4,94 @@ set -o nounset    # error when referencing undefined variable
 set -o errexit    # exit when command fails
 
 # Install packages
-case $OSTYPE in
+function main() {
+    case $OSTYPE in
 
-    darwin*)
-        DISTRO="macos"
+        darwin*)
+            DISTRO="macos"
 
-        brew tap delphinus/sfmono-square
-        brew install \
-            git \
-            zsh \
-            curl \
-            tmux \
-            tig \
-            starship \
-            exa \
-            ripgrep \
-            zoxide \
-            sfmono-square
-        # If failed to install Neovim, see https://github.com/neovim/neovim/issues/16217#issuecomment-959793388
-        brew install --HEAD neovim
+            brew tap delphinus/sfmono-square
+            brew install \
+                git \
+                zsh \
+                curl \
+                tmux \
+                tig \
+                starship \
+                exa \
+                ripgrep \
+                zoxide \
+                sfmono-square
+            # If failed to install Neovim, see https://github.com/neovim/neovim/issues/16217#issuecomment-959793388
+            brew install --HEAD neovim
 
-        # Install GUI applications
-        brew tap wez/wezterm
-        brew install --cask \
-            alacritty \
-            firefox \
-            google-japanese-ime \
-            karabiner-elements \
-            keyboardcleantool \
-            spotify \
-            wireshark
-        brew install wez/wezterm/wezterm-nightly
-        ;;
+            # Install GUI applications
+            brew tap wez/wezterm
+            brew install --cask \
+                alacritty \
+                firefox \
+                google-japanese-ime \
+                karabiner-elements \
+                keyboardcleantool \
+                spotify \
+                wireshark
+            brew install wez/wezterm/wezterm-nightly
+            ;;
 
-    linux*)
-        DISTRO="linux"
+        linux*)
+            DISTRO="linux"
 
-        if [ -x "$(command -v dnf)" ]; then
-            # Install packages from dnf
-            dnf_install
-        else
-            echo "Command dnf not found. Unsupported distribution."
+            if [ -x "$(command -v dnf)" ]; then
+                # Install packages from dnf
+                dnf_install
+            else
+                echo "Command dnf not found. Unsupported distribution."
+                exit 1
+            fi
+
+            # Build and Install Neovim from source
+            git clone https://github.com/neovim/neovim /tmp/neovim && cd /tmp/neovim
+            make CMAKE_BUILD_TYPE=release
+            sudo make install
+            cd $HOME
+
+            # Install starship
+            sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
+
+            # Install Rust
+            curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+            # Install Deno (Mainly used for Neovim plugins)
+            curl -fsSL https://deno.land/install.sh | sh
+            ;;
+
+        *)
+            echo "Could not identify the OS."
             exit 1
-        fi
+            ;;
 
-        # Build and Install Neovim from source
-        git clone https://github.com/neovim/neovim /tmp/neovim && cd /tmp/neovim
-        make CMAKE_BUILD_TYPE=release
-        sudo make install
-        cd $HOME
+    esac
 
-        # Install starship
-        sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
+    info "Finished package installation."
 
-        # Install Rust
-        curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    # Clone dotfiles repo and create symlinks
+    git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
+    create_symlinks
+    info "Symlinks to dotfiles has been created."
 
-        # Install Deno (Mainly used for Neovim plugins)
-        curl -fsSL https://deno.land/install.sh | sh
-        ;;
+    #if ! command -v wslpath &> /dev/null ; then
+    #    # win32yank for Vim or Neovim
+    #    if [ ! -e /usr/local/bin/win32yank.exe ]; then
+    #        curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip
+    #        unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
+    #        chmod +x /tmp/win32yank.exe
+    #        sudo mv /tmp/win32yank.exe /usr/local/bin/
+    #    fi
+    #fi
 
-    *)
-        echo "Could not identify the OS."
-        exit 1
-        ;;
-
-esac
-
-info "Finished package installation."
-
-# Clone dotfiles repo and create symlinks
-git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
-create_symlinks
-info "Symlinks to dotfiles has been created."
-
-#if ! command -v wslpath &> /dev/null ; then
-#    # win32yank for Vim or Neovim
-#    if [ ! -e /usr/local/bin/win32yank.exe ]; then
-#        curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip
-#        unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-#        chmod +x /tmp/win32yank.exe
-#        sudo mv /tmp/win32yank.exe /usr/local/bin/
-#    fi
-#fi
-
-# Install Neovim Plugins
-nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
+    # Install Neovim Plugins
+    nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
+}
 
 function dnf_install() {
     # Upgrade current packages
@@ -135,6 +137,8 @@ NO_COLOUR="$(tput sgr0 2>/dev/null || printf "")"
 function info() {
     printf '%s\n' "${BOLD}${MAGENTA}==> $*${NO_COLOUR}"
 }
+
+main
 
 info "Setup succeed."
 info "To update default shell, run: sudo usermod -s \`which zsh\` \$USER"
