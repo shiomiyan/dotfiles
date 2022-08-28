@@ -309,7 +309,6 @@ local is_wsl = (function()
     return not not string.find(output[1] or "", "WSL")
 end)()
 if is_wsl then
-    print"hogeee"
     local win32yank_executable_path = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
     vim.g.clipboard = {
         name = "win32yank",
