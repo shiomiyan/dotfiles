@@ -303,7 +303,7 @@ let g:netrw_altv         = 1
 autocmd BufWritePre * :%s/\s\+$//ge
 
 " To use system clipboard in WSL
-if stridx(system('uname -r'), 'microsoft')
+if stridx(system('uname -r'), 'microsoft') && has("unix")
     let win32yank_executable_path = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
     let g:clipboard = {
           \   'name': 'win32yank',
