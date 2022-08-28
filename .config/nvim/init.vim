@@ -21,6 +21,7 @@ Plug 'williamboman/mason-lspconfig.nvim' " alternative to nvim-lsp-installer
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/vim-vsnip' " required as a nvim-cmp dependency, even if not using snippet
 
 " Syntactic language support
 Plug 'rust-lang/rust.vim'
@@ -93,6 +94,12 @@ end
 
 local cmp = require'cmp'
 cmp.setup {
+    snippet = {
+        expand = function(args)
+            vim.fn["vsnip#anonymous"](args.body)
+        end,
+    },
+
     mapping = {
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
