@@ -302,11 +302,37 @@ let g:netrw_altv         = 1
 " Remove ws at the eol
 autocmd BufWritePre * :%s/\s\+$//ge
 
+" To use system clipboard in WSL
+if stridx(system('uname -r'), 'microsoft')
+    let win32yank_executable_path = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
+    let g:clipboard = {
+          \   'name': 'win32yank',
+          \   'copy': {
+          \      '+': win32yank_executable_path . ' -i --crlf',
+          \      '*': win32yank_executable_path . ' -i --crlf',
+          \    },
+          \   'paste': {
+          \      '+': win32yank_executable_path . ' -o --lf',
+          \      '*': win32yank_executable_path . ' -o --lf',
+          \   },
+          \   'cache_enabled': 0,
+          \ }
+endif
+
 " ==============================
 " # Keymaps
 " ==============================
+" Unmap arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+
 nnoremap j gj
 nnoremap k gk
+
 " Ctrl-h to stop searching
 nnoremap <C-h> :nohlsearch<cr>
 
@@ -315,8 +341,8 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
 " Switch buffers
-nnoremap <silent> [j :bprev<CR>
-nnoremap <silent> [k :bnext<CR>
+nnoremap <left> :bprev<CR>
+nnoremap <right> :bnext<CR>
 
 " Open terminal
 nnoremap <leader>t :terminal<CR>

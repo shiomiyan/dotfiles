@@ -13,9 +13,9 @@ case "$OSTYPE" in
 esac
 
 # Settings for WSL
-if [ `uname -r | grep microsoft` ]; then
-  alias clip="win32yank -i"
-  # appendWindowsPath is set to false in wslconfig
+if command -v wslpath &> /dev/null; then
+  alias clip="/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe -i"
+  # appendWindowsPath is set to false in wsl.conf
   export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 
