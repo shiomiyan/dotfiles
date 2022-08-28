@@ -2,7 +2,7 @@ local wezterm = require 'wezterm';
 
 local config = {
     color_scheme = "Gruvbox Dark",
-    window_background_opacity = 1.0,
+    window_background_opacity = 0.95,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
     enable_scroll_bar = true,
@@ -85,23 +85,30 @@ local config = {
     },
 }
 
--- Only show tab_id in tab bar
-wezterm.on("format-tab-title", function(tab)
-    local title = " " .. tab.tab_id .. " "
-    return {
-        { Text = title },
-    }
-end)
+-- Only show tab_index in tab bar
+wezterm.on(
+    "format-tab-title",
+    function(tab)
+        local title = ' ' .. tab.tab_index .. ' '
+        return {
+            { Text = title },
+        }
+    end
+)
 
 local launch_menu = {}
 
 -- Switch configuration depends on OS
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
+    config.window_padding.right = 10
+
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
 
-    config.font = wezterm.font("Sarasa Fixed J")
-    config.font_size = 13
+    -- config.font = wezterm.font("Sarasa Fixed J")
+    -- config.font_size = 13
+    config.font = wezterm.font_with_fallback({ "Cascadia Mono", "BIZ UDGothic" })
+    config.font_size = 12
 
     -- Setup lanch menu
     table.insert(launch_menu, {
@@ -117,10 +124,13 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     for idx, line in ipairs(wezterm.split_by_newlines(wsl_list)) do
         if idx > 1 then
             local distro = line:gsub("%(.*%)", "")
-            table.insert(launch_menu, {
-                label = "WSL " .. distro,
-                args  = { "pwsh.exe", "-NoLogo", "-NoProfile", "-Command" , "wsl.exe", "-d", distro },
-            })
+            -- List WSL distributions except Docker
+            if not(string.match(distro, "docker.*")) then
+                table.insert(launch_menu, {
+                    label = "WSL " .. distro,
+                    args  = { "pwsh.exe", "-NoLogo", "-NoProfile", "-Command" , "wsl.exe", "-d", distro },
+                })
+            end
         end
     end
 
