@@ -302,22 +302,29 @@ let g:netrw_altv         = 1
 " Remove ws at the eol
 autocmd BufWritePre * :%s/\s\+$//ge
 
-" To use system clipboard in WSL
-if stridx(system('uname -r'), 'microsoft') && has("unix")
-    let win32yank_executable_path = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
-    let g:clipboard = {
-          \   'name': 'win32yank',
-          \   'copy': {
-          \      '+': win32yank_executable_path . ' -i --crlf',
-          \      '*': win32yank_executable_path . ' -i --crlf',
-          \    },
-          \   'paste': {
-          \      '+': win32yank_executable_path . ' -o --lf',
-          \      '*': win32yank_executable_path . ' -o --lf',
-          \   },
-          \   'cache_enabled': 0,
-          \ }
-endif
+lua << END
+-- To use system clipboard in WSL
+local is_wsl = (function()
+    local output = vim.fn.systemlist "uname -r"
+    return not not string.find(output[1] or "", "WSL")
+end)()
+if is_wsl then
+    print"hogeee"
+    local win32yank_executable_path = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
+    vim.g.clipboard = {
+        name = "win32yank",
+        copy = {
+            ['+'] = win32yank_executable_path .. ' -i --crlf',
+            ['*'] = win32yank_executable_path .. ' -i --crlf',
+        },
+        paste = {
+            ['+'] = win32yank_executable_path .. ' -o --lf',
+            ['*'] = win32yank_executable_path .. ' -o --lf',
+        },
+        cache_enabled = 0,
+    }
+end
+END
 
 " ==============================
 " # Keymaps
