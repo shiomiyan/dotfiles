@@ -6,41 +6,8 @@ set -o errexit    # exit when command fails
 # Install packages
 function main() {
     case $OSTYPE in
-
-        darwin*)
-            DISTRO="macos"
-
-            brew tap delphinus/sfmono-square
-            brew install \
-                git \
-                zsh \
-                curl \
-                tmux \
-                tig \
-                starship \
-                exa \
-                ripgrep \
-                zoxide \
-                sfmono-square
-            # If failed to install Neovim, see https://github.com/neovim/neovim/issues/16217#issuecomment-959793388
-            brew install --HEAD neovim
-
-            # Install GUI applications
-            brew tap wez/wezterm
-            brew install --cask \
-                alacritty \
-                firefox \
-                google-japanese-ime \
-                karabiner-elements \
-                keyboardcleantool \
-                spotify \
-                wireshark
-            brew install wez/wezterm/wezterm-nightly
-            ;;
-
         linux*)
             DISTRO="linux"
-
             if [ -x "$(command -v dnf)" ]; then
                 # Install packages from dnf
                 dnf_install
@@ -63,6 +30,11 @@ function main() {
 
             # Install Deno (Mainly used for Neovim plugins)
             curl -fsSL https://deno.land/install.sh | sh
+            ;;
+
+        darwin*)
+            DISTRO="macos"
+            brew_install
             ;;
 
         *)
@@ -99,6 +71,8 @@ function dnf_install() {
 
     # Install toolchains
     sudo dnf -y install \
+        bat \
+        gh \
         git \
         zsh \
         wget \
@@ -111,6 +85,37 @@ function dnf_install() {
 
     # Install Neovim build dependencies
     sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
+}
+
+function brew_install() {
+    brew tap delphinus/sfmono-square
+    brew install \
+        bat \
+        gh \
+        git \
+        zsh \
+        curl \
+        tmux \
+        tig \
+        starship \
+        exa \
+        ripgrep \
+        zoxide \
+        sfmono-square
+    # If failed to install Neovim, see https://github.com/neovim/neovim/issues/16217#issuecomment-959793388
+    brew install --HEAD neovim
+
+    # Install GUI applications
+    brew tap wez/wezterm
+    brew install --cask \
+        alacritty \
+        firefox \
+        google-japanese-ime \
+        karabiner-elements \
+        keyboardcleantool \
+        spotify \
+        wireshark
+    brew install wez/wezterm/wezterm-nightly
 }
 
 function create_symlinks() {
