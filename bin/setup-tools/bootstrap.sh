@@ -12,6 +12,7 @@ function main() {
                 # Install packages from dnf
                 dnf_install
             elif [ -x "$(command -v apt)" ]; then
+                # For Pop!_OS
                 apt_install
             else
                 echo "Command dnf not found. Unsupported distribution."
