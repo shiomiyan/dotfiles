@@ -11,6 +11,8 @@ function main() {
             if [ -x "$(command -v dnf)" ]; then
                 # Install packages from dnf
                 dnf_install
+            elif [ -x "$(command -v apt)" ]; then
+                apt_install
             else
                 echo "Command dnf not found. Unsupported distribution."
                 exit 1
@@ -63,6 +65,25 @@ function main() {
 
     # Install Neovim Plugins
     nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
+}
+
+function apt_install() {
+    sudo apt update && sudo apt upgrade
+    sudo apt -y install \
+        bat \
+        gh \
+        git \
+        zsh \
+        wget \
+        unzip \
+        tmux \
+        nodejs \
+        build-essential \
+        ripgrep \
+        zoxide
+        
+    # Install Neovim build dependencies
+    sudo apt install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 }
 
 function dnf_install() {
@@ -121,7 +142,7 @@ function brew_install() {
 function create_symlinks() {
     # Create symlinks and backup configs if exists
     local TARGETS=(".zshrc" ".config" ".tmux.conf")
-    mkdir /tmp/dotfiles.backup
+    mkdir "/tmp/dotfiles.backup"
     for target in "${TARGETS[@]}"; do
         if [[ -f "$HOME/$target" ]]; then
             mv "$HOME/$target" "/tmp/dotfiles.backup/$target"
