@@ -9,6 +9,8 @@ local config = {
     use_ime = true,
     adjust_window_size_when_changing_font_size = false,
 
+    audible_bell = "Disabled",
+
     -- Custom color echeme
     colors = {
         scrollbar_thumb = "WHITE",
@@ -143,6 +145,8 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.line_height = 1.0
 else
     config.default_prog = { 'zsh', '--login' }
+    config.font = wezterm.font("Cascadia Mono")
+    config.font_size = 12
 end
 
 return config

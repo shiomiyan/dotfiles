@@ -82,7 +82,7 @@ function apt_install() {
         build-essential \
         ripgrep \
         zoxide
-        
+
     # Install Neovim build dependencies
     sudo apt install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 }
@@ -162,8 +162,10 @@ MAGENTA="$(tput setaf 5 2>/dev/null || printf "")"
 NO_COLOUR="$(tput sgr0 2>/dev/null || printf "")"
 
 function info() {
-    printf '%s\n' "${BOLD}${MAGENTA}==> $*${NO_COLOUR}"
+    printf '%s\n' "${BOLD}${MAGENTA}:: $*${NO_COLOUR}"
 }
+
+info "Start Installation."
 
 # Start installation
 main
