@@ -37,11 +37,6 @@ Plug 'kat0h/bufpreview.vim' " Markdown preview
 Plug 'tpope/vim-surround'
 Plug 'folke/which-key.nvim'
 
-" Plugins only works on Linux
-if has('unix')
-    Plug 'rlue/vim-barbaric' " Switch IME between editor modes
-endif
-
 call plug#end()
 
 " ==============================
@@ -225,12 +220,6 @@ END
 
 " Rust
 let g:rustfmt_autosave = 1
-
-" Disable IME in insert mode with vim-barbaric
-if has('unix')
-    let g:barbaric_ime   = 'ibus'
-    let g:barbaric_scope = 'buffer'
-endif
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--hidden,--files<cr>
