@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm';
 
 local config = {
-    color_scheme = "Gruvbox Dark",
+    color_scheme = "tokyonight",
     window_background_opacity = 0.95,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
@@ -107,10 +107,10 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 
     config.default_prog = { 'pwsh.exe', '-NoLogo' }
 
-    -- config.font = wezterm.font("Sarasa Fixed J")
-    -- config.font_size = 13
-    config.font = wezterm.font_with_fallback({ "Cascadia Mono", "BIZ UDGothic" })
-    config.font_size = 12
+    config.font = wezterm.font("Consolas")
+    config.font_size = 13
+    -- config.font = wezterm.font_with_fallback({ "Cascadia Mono", "BIZ UDGothic" })
+    -- config.font_size = 12
 
     -- Setup lanch menu
     table.insert(launch_menu, {

@@ -8,7 +8,8 @@ call plug#begin()
 " Load plugins
 " GUI enhancements
 Plug 'itchyny/lightline.vim'
-Plug 'sainnhe/gruvbox-material'
+"Plug 'sainnhe/gruvbox-material'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'machakann/vim-highlightedyank'
 " Plug 'andymass/vim-matchup'
 
@@ -56,12 +57,14 @@ set vb t_vb= " No more beeps
 set updatetime=300
 
 " Load and set colorscheme
-let g:gruvbox_material_background = 'hard'
-let g:gruvbox_material_better_performance = 1
-let g:gruvbox_material_diagnostic_text_highlight = 1
-let g:gruvbox_material_transparent_background = 1
-" let g:gruvbox_material_disable_italic_comment = 1
-colorscheme gruvbox-material
+"let g:gruvbox_material_background = 'hard'
+"let g:gruvbox_material_better_performance = 1
+"let g:gruvbox_material_diagnostic_text_highlight = 1
+"let g:gruvbox_material_transparent_background = 1
+"let g:gruvbox_material_disable_italic_comment = 1
+"colorscheme gruvbox-material
+let g:tokyonight_transparent = 1
+colorscheme tokyonight
 
 " ==============================
 " # Plugin settings
@@ -222,7 +225,7 @@ END
 let g:rustfmt_autosave = 1
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--hidden,--files<cr>
+nnoremap <leader>ff <cmd>Telescope find_files find_command=rg,--files,--hidden,--glob,!.git/*<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
