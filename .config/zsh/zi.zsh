@@ -12,8 +12,7 @@ autoload -Uz _zi
 zicompinit # <- https://z-shell.pages.dev/docs/gallery/collection#minimal
 
 # plugins
+zi light z-shell/F-Sy-H
 zi light z-shell/H-S-MW # history search
 zi light zsh-users/zsh-syntax-highlighting
 zi light zsh-users/zsh-autosuggestions
-
-
