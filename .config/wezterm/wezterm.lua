@@ -29,8 +29,8 @@ local config = {
 
     -- pane appearance
     inactive_pane_hsb = {
-        saturation = 0.8,
-        brightness = 0.4,
+        saturation = 0.5,
+        brightness = 0.8,
     },
 
     -- Key bindings
@@ -145,8 +145,8 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.line_height = 1.0
 else
     config.default_prog = { 'zsh', '--login' }
-    config.font = wezterm.font("Cascadia Mono")
-    config.font_size = 12
+    config.font = wezterm.font_with_fallback({ "Consolas", "IBM Plex Sans JP" })
+    config.font_size = 14
 end
 
 return config
