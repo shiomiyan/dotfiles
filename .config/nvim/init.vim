@@ -292,7 +292,13 @@ let g:netrw_altv         = 1
 " # Other settings
 " ==============================
 " Remove ws at the eol
-autocmd BufWritePre * :%s/\s\+$//ge
+function! s:remove_trailing_space_on_save()
+    let cursor = getpos(".")
+    %s/\s\+$//ge
+    call setpos(".", cursor)
+    unlet cursor
+endfunction
+autocmd BufWritePre * call <SID>remove_trailing_space_on_save()
 
 lua << END
 -- To use system clipboard in WSL
