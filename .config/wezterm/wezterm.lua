@@ -158,7 +158,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
 
     -- Font
     config.font = wezterm.font("Sarasa Fixed J")
-    config.font_size = 20
+    config.font_size = 18
 
     -- Scrollbar width
     config.window_padding.right = 16
