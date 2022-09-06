@@ -1,6 +1,5 @@
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
-
 Import-Module PSReadLine
 
 Invoke-Expression (&starship init powershell)

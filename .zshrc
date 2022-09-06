@@ -1,4 +1,5 @@
 export LC_MESSAGES=en_US.UTF-8
+export EDITOR=nvim
 
 source ~/.config/zsh/zi.zsh
 setopt hist_ignore_dups
