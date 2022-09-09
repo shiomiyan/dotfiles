@@ -34,6 +34,8 @@ local config = {
     -----------------------
     use_ime = true,
     audible_bell = "Disabled",
+    -- Check Update manually
+    check_for_updates = false,
     adjust_window_size_when_changing_font_size = false,
 
     ------------------
@@ -144,8 +146,8 @@ else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
 
     -- Font
-    config.font = wezterm.font_with_fallback({ "JetBrains Mono", "IBM Plex Sans JP" })
-    config.font_size = 12
+    config.font = wezterm.font("Sarasa Fixed J")
+    config.font_size = 13
 end
 
 return config
