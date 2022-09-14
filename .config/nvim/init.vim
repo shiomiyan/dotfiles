@@ -80,7 +80,7 @@ let g:lightline = {
       \ },
       \ }
 
-lua << END
+lua << EOF
 -- ==============================
 -- # LSP Settings
 -- ==============================
@@ -98,39 +98,20 @@ cmp.setup {
         end,
     },
 
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        },
-        ['<Tab>'] = function(fallback)
-            if not cmp.select_next_item() then
-                if vim.bo.buftype ~= 'prompt' and has_words_before() then
-                    cmp.complete()
-                else
-                    fallback()
-                end
-            end
-        end,
-        ['<S-Tab>'] = function(fallback)
-            if not cmp.select_prev_item() then
-                if vim.bo.buftype ~= 'prompt' and has_words_before() then
-                    cmp.complete()
-                else
-                    fallback()
-                end
-            end
-        end,
-    },
+        ["<C-e>"] = cmp.mapping.abort(),
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+    }),
 
-    sources = {
+    sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "path" },
-        { name = "buffer", keyword_length = 5 },
-    },
+        -- { name = "buffer", keyword_length = 5 },
+    }, {
+        { name = "buffer" },
+    }),
 
     formatting = {
         fields = { "menu", "abbr", "kind" },
@@ -146,7 +127,7 @@ cmp.setup {
     },
 
     experimental = {
-        ghost_text = true
+        ghost_text = true,
     }
 }
 
@@ -219,7 +200,7 @@ lspconfig.rust_analyzer.setup {
         },
     },
 }
-END
+EOF
 
 " Rust
 let g:rustfmt_autosave = 1
