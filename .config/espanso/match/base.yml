@@ -46,8 +46,8 @@ matches:
       </div></details>
 
   # For job attendance
-  - trigger: ";;s"
+  - trigger: ";;start"
     replace: "/jobcan_touch kaishi"
 
-  - trigger: ";;e"
+  - trigger: ";;end"
     replace: "/jobcan_touch owari"
