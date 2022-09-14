@@ -50,6 +50,10 @@ function local:Install-App {
     # GUI applications are installed by winget
     winget import -i "$HOME\dotfiles\install_scripts\winget.json"
 
+    # Add scoop buckets
+    scoop bucket add extras
+    scoop bucket add versions
+
     # Install runtimes, commandline tools
     scoop install     `
         make          `
@@ -67,13 +71,15 @@ function local:Install-App {
         fd            `
         ripgrep       `
         rga           `
-        hugo-extended
+        hugo-extended `
 
     # Always enable -y option
     choco feature enable -n allowGlobalConfirmation
 
     # Install applications using choco
     choco install neovim --pre
+    choco install espanso --pre
+
 
     # Install Rust
     Invoke-WebRequest `
