@@ -37,6 +37,7 @@ Plug 'vim-denops/denops.vim'
 Plug 'kat0h/bufpreview.vim' " Markdown preview
 Plug 'tpope/vim-surround'
 Plug 'folke/which-key.nvim'
+Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
