@@ -7,7 +7,7 @@ Use config on Windows 10, Fedora, Pop!_OS.
 `apt` or `dnf` or `brew` needed.
 
 ```
-sh -c "$(curl -fsSL https://shiomiyan.github.io/dotfiles/bin/setup-tools/bootstrap.sh)"
+bash -c "$(curl -fsSL https://shiomiyan.github.io/dotfiles/bin/setup-tools/bootstrap.sh)"
 ```
 
 ###  <samp>Windows</samp>
