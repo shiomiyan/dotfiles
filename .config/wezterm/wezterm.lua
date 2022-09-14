@@ -109,7 +109,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configurati
 
     -- Font
     config.font = wezterm.font_with_fallback({ "JetBrains Mono", "BIZ UDGothic" })
-    config.font_size = 12
+    config.font_size = 11
 
     -- Add PowerShell to launch menu
     table.insert(launch_menu, { label = "pwsh", args = { "pwsh.exe", "-NoLogo" } })
