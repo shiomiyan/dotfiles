@@ -9,7 +9,7 @@
 # it gets replaced by the "replace" string.
 matches:
   # Simple text replacement
-  - trigger: ":espanso"
+  - trigger: ";;espanso"
     replace: "Hi there!"
 
   # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
@@ -17,7 +17,7 @@ matches:
   # But matches can also be dynamic:
 
   # Print the current date
-  - trigger: ":date"
+  - trigger: ";;date"
     replace: "{{mydate}}"
     vars:
       - name: mydate
@@ -26,7 +26,7 @@ matches:
           format: "%m/%d/%Y"
 
   # Print the output of a shell command
-  - trigger: ":shell"
+  - trigger: ";;shell"
     replace: "{{output}}"
     vars:
       - name: output
@@ -35,8 +35,19 @@ matches:
           cmd: "echo 'Hello from your shell'"
 
   # And much more! For more information, visit the docs: https://espanso.org/docs/
-  - trigger: ":poe"
+  - trigger: ";;poe"
     replace: "Path of Exile"
 
+  # Foldable syntax in Markdown
   - trigger: ";;fold"
-    replace: ""
+    replace: |
+      <details><summary>$|$</summary><div>
+      :)
+      </div></details>
+
+  # For job attendance
+  - trigger: ";;s"
+    replace: "/jobcan_touch kaishi"
+
+  - trigger: ";;e"
+    replace: "/jobcan_touch owari"
