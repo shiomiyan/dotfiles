@@ -99,6 +99,27 @@ wezterm.on("format-tab-title", function(tab)
     return { { Text = title } }
 end)
 
+wezterm.on('format-window-title', function(tab, pane, tabs, panes, config)
+    local zoomed = ''
+    if tab.active_pane.is_zoomed then
+        zoomed = '[Z] '
+    end
+
+    local index = ''
+    if #tabs > 1 then
+        index = string.format('[%d/%d] ', tab.tab_index + 1, #tabs)
+    end
+
+    local title = ''
+    if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+        title = string.gsub(tab.active_pane.title, ".+\\", "")
+    else
+        title = tab.active_pane.title
+    end
+
+    return zoomed .. index .. title
+end)
+
 -- Initialize launch menu table
 local launch_menu = {}
 
