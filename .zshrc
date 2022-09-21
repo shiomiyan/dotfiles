@@ -21,6 +21,11 @@ if [ -d "$HOME/.local/bin" ]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# ==== Aliases ====
+alias la="exa -a"
+alias ll="exa -l"
+alias lla="exa -la"
+
 # ==== Settings for toolchains ===
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
