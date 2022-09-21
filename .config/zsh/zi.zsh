@@ -16,3 +16,4 @@ zi light z-shell/F-Sy-H
 zi light z-shell/H-S-MW # history search
 zi light zsh-users/zsh-syntax-highlighting
 zi light zsh-users/zsh-autosuggestions
+zi snippet OMZ::lib/history.zsh

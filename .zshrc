@@ -3,14 +3,11 @@ export EDITOR=nvim
 
 source ~/.config/zsh/zi.zsh
 setopt hist_ignore_dups
+setopt sharehistory
 
-case "$OSTYPE" in
-  darwin*)
-    alias clip="pbcopy"
-    alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
-  ;;
-  linux*)
-  ;;
+if [[ `uname` == "Darwin" ]]; then
+  alias clip="pbcopy"
+  alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
 esac
 
 # Settings for WSL
@@ -24,6 +21,7 @@ if [ -d "$HOME/.local/bin" ]; then
     export PATH="$HOME/.local/bin:$PATH"
 fi
 
+# ==== Settings for toolchains ===
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
@@ -48,3 +46,7 @@ fi
 
 # zoxide
 eval "$(zoxide init zsh)"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
