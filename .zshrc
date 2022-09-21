@@ -8,7 +8,7 @@ setopt sharehistory
 if [[ `uname` == "Darwin" ]]; then
   alias clip="pbcopy"
   alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
-esac
+fi
 
 # Settings for WSL
 if command -v wslpath &> /dev/null; then
