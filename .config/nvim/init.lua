@@ -1,5 +1,5 @@
 -- ==============================
--- # Plugins
+-- # Load plugins
 -- ==============================
 local plug = vim.fn["plug#"]
 vim.call("plug#begin")
@@ -24,7 +24,7 @@ plug("hrsh7th/vim-vsnip") -- required as a nvim-cmp dependency, even if not usin
 
 -- Syntactic language support
 plug("rust-lang/rust.vim")
-plug("cespare/vim-toml")
+plug("cespare/vim-toml", { branch = "main" })
 
 -- Fuzzy finder
 plug("nvim-lua/plenary.nvim")
@@ -259,7 +259,6 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.backup = false
 vim.opt.swapfile = false
--- vim.opt.viminfo=
 vim.opt.encoding = "utf-8"
 vim.opt.fileencodings = { "utf-8", "sjis", "euc-jp", "iso-2022-jp" }
 vim.opt.fileencoding = "utf-8"
@@ -268,7 +267,7 @@ vim.opt.fileformats = { "unix", "dos", "mac" }
 vim.opt.list = true
 vim.opt.listchars = { tab = "▸-" }
 vim.opt.clipboard = "unnamedplus"
--- vim.opt.wildmode=longest:full,full
+vim.opt.wildmode = "longest:full,full"
 vim.opt.relativenumber = true
 vim.opt.helplang = { "ja", "en" }
 vim.opt.undofile = true
