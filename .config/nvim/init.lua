@@ -181,6 +181,17 @@ mason_lspconfig.setup_handlers({
     end,
 })
 
+-- Setup Lua language server
+lspconfig.sumneko_lua.setup({
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { "vim" },
+            },
+        },
+    },
+})
+
 -- Setup Rust language server
 lspconfig.rust_analyzer.setup({
     on_attach = on_attach,
