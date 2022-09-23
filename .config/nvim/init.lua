@@ -1,9 +1,10 @@
 -- ==============================
 -- # Load plugins
 -- ==============================
+
 local plug = vim.fn["plug#"]
 vim.call("plug#begin")
--- Load plugins
+
 -- GUI enhancements
 plug("itchyny/lightline.vim")
 plug("folke/tokyonight.nvim", { branch = "main" })
@@ -41,6 +42,7 @@ vim.call("plug#end")
 -- ==============================
 -- # GUI settings
 -- ==============================
+
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.number = true
@@ -63,6 +65,7 @@ vim.cmd([[colorscheme tokyonight]])
 -- ==============================
 -- # Plugin settings
 -- ==============================
+
 -- Lightline
 vim.g.lightline = {
     active = {
@@ -71,15 +74,7 @@ vim.g.lightline = {
     },
 }
 
--- ==============================
--- # LSP Settings
--- ==============================
--- Function for tab completion with nvim-cmp
---local has_words_before = function()
---    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
---    return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
---end
-
+-- LSP settings
 local cmp = require("cmp")
 cmp.setup({
     snippet = {
@@ -140,17 +135,17 @@ local on_attach = function(client, bufnr)
     buf_set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts)
     buf_set_keymap("n", "gd", "<Cmd>tab split | lua vim.lsp.buf.definition()<CR>", opts)
     buf_set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    buf_set_keymap("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    buf_set_keymap("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    buf_set_keymap("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-    buf_set_keymap("n", "<space>r", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-    buf_set_keymap("n", "<space>a", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-    buf_set_keymap("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    buf_set_keymap("n", "<space>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-    buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-    buf_set_keymap("n", "<space>q", "<cmd>lua vim.diagnostic.set_loclist()<CR>", opts)
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+    buf_set_keymap("n", "gi", "<Cmd>lua vim.lsp.buf.implementation()<CR>", opts)
+    buf_set_keymap("n", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+    buf_set_keymap("n", "<Space>D", "<Cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+    buf_set_keymap("n", "<Space>r", "<Cmd>lua vim.lsp.buf.rename()<CR>", opts)
+    buf_set_keymap("n", "<Space>a", "<Cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+    buf_set_keymap("n", "gr", "<Cmd>lua vim.lsp.buf.references()<CR>", opts)
+    buf_set_keymap("n", "<Space>e", "<Cmd>lua vim.diagnostic.open_float()<CR>", opts)
+    buf_set_keymap("n", "[d", "<Cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+    buf_set_keymap("n", "]d", "<Cmd>lua vim.diagnostic.goto_next()<CR>", opts)
+    buf_set_keymap("n", "<Space>q", "<Cmd>lua vim.diagnostic.set_loclist()<CR>", opts)
+    buf_set_keymap("n", "<Space>f", "<Cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
 -- Easy install and setup LSP
@@ -210,7 +205,6 @@ lspconfig.rust_analyzer.setup({
 vim.g.rustfmt_autosave = 1
 
 -- Fuzzy search config in Telescope
--- Find files using Telescope command-line sugar.
 local telescope = require("telescope")
 local telescope_config = require("telescope.config")
 
@@ -241,6 +235,7 @@ vim.api.nvim_set_keymap("n", "<F9>", ":WhichKey", { noremap = true, silent = tru
 -- ==============================
 -- # Editor settings
 -- ==============================
+
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -255,7 +250,7 @@ vim.opt.fileformat = "unix"
 vim.opt.fileformats = { "unix", "dos", "mac" }
 vim.opt.list = true
 vim.opt.listchars = { tab = "▸-" }
-vim.opt.clipboard = "unnamedplus"
+vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 vim.opt.wildmode = "longest:full,full"
 vim.opt.relativenumber = true
 vim.opt.helplang = { "ja", "en" }
@@ -269,6 +264,7 @@ vim.opt.wrap = false
 -- ==============================
 -- # Search settings
 -- ==============================
+
 vim.opt.showmatch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
@@ -277,6 +273,7 @@ vim.opt.wrapscan = false
 -- ==============================
 -- # Netrw settings
 -- ==============================
+
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
 vim.g.netrw_sizestyle = "H"
@@ -289,6 +286,7 @@ vim.g.netrw_altv = 1
 -- ==============================
 -- # Other settings
 -- ==============================
+
 -- Remove ws at the eol
 vim.cmd([[
 function! s:remove_trailing_space_on_save()
@@ -324,6 +322,7 @@ end
 -- ==============================
 -- # Keymaps
 -- ==============================
+
 -- Unmap arrow keys
 vim.api.nvim_set_keymap("n", "<Up>", "<Nop>", {})
 vim.api.nvim_set_keymap("n", "<Down>", "<Nop>", {})
