@@ -39,6 +39,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Ocaml
 eval $(opam env)
 
+# Golang
+export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
+
 # starship
 export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 eval "$(starship init zsh)"
@@ -46,9 +49,6 @@ eval "$(starship init zsh)"
 # deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
-
-# Golang
-export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
 # show hidden files with fzf.vim
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
