@@ -52,12 +52,14 @@ vim.opt.showmode = false
 vim.opt.updatetime = 300
 
 -- Load and set colorscheme
+--vim.cmd[[
 --let g:gruvbox_material_background = 'hard'
 --let g:gruvbox_material_better_performance = 1
 --let g:gruvbox_material_diagnostic_text_highlight = 1
 --let g:gruvbox_material_transparent_background = 1
 --let g:gruvbox_material_disable_italic_comment = 1
 --colorscheme gruvbox-material
+--]]
 
 require("tokyonight").setup({
     style = "night",
@@ -167,7 +169,7 @@ require("mason").setup()
 local mason_lspconfig = require("mason-lspconfig")
 
 mason_lspconfig.setup({
-    ensure_installed = { "rust_analyzer", "powershell-editor-services", "sumneko_lua", "jdtls" },
+    ensure_installed = { "rust_analyzer", "powershell-editor-services", "sumneko_lua" },
 })
 
 local lspconfig = require("lspconfig")
@@ -265,7 +267,7 @@ vim.opt.fileformat = "unix"
 vim.opt.fileformats = { "unix", "dos", "mac" }
 vim.opt.list = true
 vim.opt.listchars = { tab = "▸-" }
-vim.opt.clipboard = { "unnamedplus" }
+vim.opt.clipboard = "unnamedplus"
 -- vim.opt.wildmode=longest:full,full
 vim.opt.relativenumber = true
 vim.opt.helplang = { "ja", "en" }
@@ -279,7 +281,7 @@ vim.opt.wrap = false
 -- ==============================
 -- # Search settings
 -- ==============================
-vim.cmd([[set showmatch]])
+vim.opt.showmatch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = false
@@ -334,35 +336,36 @@ end
 -- ==============================
 -- # Keymaps
 -- ==============================
-vim.cmd([[
-" Unmap arrow keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+-- Unmap arrow keys
+vim.api.nvim_set_keymap("n", "<Up>", "<Nop>", {})
+vim.api.nvim_set_keymap("n", "<Down>", "<Nop>", {})
+vim.api.nvim_set_keymap("n", "<Left>", "<Nop>", {})
+vim.api.nvim_set_keymap("n", "<Right>", "<Nop>", {})
+vim.api.nvim_set_keymap("i", "<Up>", "<Nop>", {})
+vim.api.nvim_set_keymap("i", "<Down>", "<Nop>", {})
+vim.api.nvim_set_keymap("i", "<Left>", "<Nop>", {})
+vim.api.nvim_set_keymap("i", "<Right>", "<Nop>", {})
 
-nnoremap j gj
-nnoremap k gk
+-- Vertical movement depends on displayed lines
+vim.api.nvim_set_keymap("n", "j", "gj", {})
+vim.api.nvim_set_keymap("n", "k", "gk", {})
 
-" Ctrl-h to stop searching
-nnoremap <C-h> :nohlsearch<cr>
+-- Clear search result highlight
+vim.api.nvim_set_keymap("n", "<C-h>", ":nohlsearch<CR>", {})
 
-" Tab movements
-nnoremap <Tab> gt
-nnoremap <S-Tab> gT
+-- Tab page movements
+vim.api.nvim_set_keymap("n", "<Tab>", "gt", {})
+vim.api.nvim_set_keymap("n", "<S-Tab>", "gT", {})
 
-" Switch buffers
-nnoremap <left> :bprev<CR>
-nnoremap <right> :bnext<CR>
+-- Switch buffers
+vim.api.nvim_set_keymap("n", "<Left>", ":bprev<CR>", {})
+vim.api.nvim_set_keymap("n", "<Right>", ":bnext<CR>", {})
 
-" Open terminal
-nnoremap <leader>t :terminal<CR>
+-- Open terminal
+vim.api.nvim_set_keymap("n", "<Leader>t", ":terminal<CR>", {})
 
-" Paste without yank https://stackoverflow.com/a/11993928
-vnoremap p "_dp
+-- Paste without yank https://stackoverflow.com/a/11993928
+vim.api.nvim_set_keymap("v", "p", "_dp", {})
 
-" Exit terminal mode with Ctrl-[
-tnoremap <C-[> <C-\><C-n>
-]])
+-- Exit terminal mode with Ctrl-[
+vim.api.nvim_set_keymap("t", "<C-[>", "<C-\\><C-n>", {})
