@@ -6,7 +6,6 @@ vim.call("plug#begin")
 -- Load plugins
 -- GUI enhancements
 plug("itchyny/lightline.vim")
-plug("sainnhe/gruvbox-material")
 plug("folke/tokyonight.nvim", { branch = "main" })
 plug("machakann/vim-highlightedyank")
 -- plug('andymass/vim-matchup')
@@ -50,16 +49,6 @@ vim.opt.scrolloff = 10
 vim.opt.laststatus = 2
 vim.opt.showmode = false
 vim.opt.updatetime = 300
-
--- Load and set colorscheme
---vim.cmd[[
---let g:gruvbox_material_background = 'hard'
---let g:gruvbox_material_better_performance = 1
---let g:gruvbox_material_diagnostic_text_highlight = 1
---let g:gruvbox_material_transparent_background = 1
---let g:gruvbox_material_disable_italic_comment = 1
---colorscheme gruvbox-material
---]]
 
 require("tokyonight").setup({
     style = "night",
