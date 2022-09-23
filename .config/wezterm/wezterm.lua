@@ -168,7 +168,7 @@ else -- Linux configuration
 
     -- Font
     config.font = wezterm.font("Sarasa Fixed J")
-    config.font_size = 13
+    config.font_size = 11
 end
 
 return config
