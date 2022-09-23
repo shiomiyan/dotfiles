@@ -5,9 +5,8 @@ source ~/.config/zsh/zi.zsh
 setopt hist_ignore_dups
 setopt sharehistory
 
-if [[ `uname` == "Darwin" ]]; then
-  alias clip="pbcopy"
-  alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
+if [ -d "$HOME/.local/bin" ]; then
+    export PATH="$HOME/.local/bin:$PATH"
 fi
 
 # Settings for WSL
@@ -17,21 +16,31 @@ if command -v wslpath &> /dev/null; then
   export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/bin" ]; then
-    export PATH="$HOME/.local/bin:$PATH"
-fi
+# ================================
+# Aliases
+# ================================
 
-# ==== Aliases ====
 alias la="exa -a"
 alias ll="exa -l"
 alias lla="exa -la"
 
-# ==== Settings for toolchains ===
+if [[ `uname` == "Darwin" ]]; then
+  alias clip="pbcopy"
+  alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
+fi
+
+# ================================
+# Settings for toolchains
+# ================================
+
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# Ocaml
+eval $(opam env)
+
 # starship
-export STARSHIP_CONFIG=~/.config/starship.toml
+export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 eval "$(starship init zsh)"
 
 # deno
