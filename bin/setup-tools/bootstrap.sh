@@ -15,7 +15,7 @@ function main() {
                 # For Pop!_OS
                 apt_install
             else
-                echo "Command dnf not found. Unsupported distribution."
+                error "Command dnf not found. Unsupported distribution."
                 exit 1
             fi
 
@@ -41,7 +41,7 @@ function main() {
             ;;
 
         *)
-            echo "Could not identify the OS."
+            error "Could not identify the OS."
             exit 1
             ;;
 
@@ -53,16 +53,6 @@ function main() {
     git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
     create_symlinks
     info "Symlinks to dotfiles has been created."
-
-    #if ! command -v wslpath &> /dev/null ; then
-    #    # win32yank for Vim or Neovim
-    #    if [ ! -e /usr/local/bin/win32yank.exe ]; then
-    #        curl -sLo /tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/latest/download/win32yank-x64.zip
-    #        unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
-    #        chmod +x /tmp/win32yank.exe
-    #        sudo mv /tmp/win32yank.exe /usr/local/bin/
-    #    fi
-    #fi
 
     # Install Neovim Plugins
     nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
@@ -145,7 +135,7 @@ function create_symlinks() {
     local TARGETS=(".zshrc" ".config" ".tmux.conf")
     mkdir "/tmp/dotfiles.backup"
     for target in "${TARGETS[@]}"; do
-        if [[ -f "$HOME/$target" ]]; then
+        if ! [[ -f "$HOME/$target" ]]; then
             mv "$HOME/$target" "/tmp/dotfiles.backup/$target"
         fi
         ln -sf "$HOME/dotfiles/$target" "$HOME/$target"
@@ -162,7 +152,11 @@ MAGENTA="$(tput setaf 5 2>/dev/null || printf "")"
 NO_COLOUR="$(tput sgr0 2>/dev/null || printf "")"
 
 function info() {
-    printf '%s\n' "${BOLD}${MAGENTA}:: $*${NO_COLOUR}"
+    printf '%s\n' "${BOLD}${MAGENTA} :: $*${NO_COLOUR}"
+}
+
+function error() {
+    printf '%s\n' "${BOLD}${RED} :: $*${NO_COLOUR}"
 }
 
 info "Start Installation."
