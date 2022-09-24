@@ -26,6 +26,7 @@ plug("hrsh7th/vim-vsnip") -- required as a nvim-cmp dependency, even if not usin
 -- Syntactic language support
 plug("rust-lang/rust.vim")
 plug("cespare/vim-toml", { branch = "main" })
+plug("ron-rs/ron.vim")
 
 -- Fuzzy finder
 plug("nvim-lua/plenary.nvim")
