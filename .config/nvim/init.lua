@@ -2,6 +2,7 @@
 -- # Load plugins
 -- ==============================
 
+-- vim-plug with Lua https://dev.to/vonheikemen/neovim-using-vim-plug-in-lua-3oom
 local plug = vim.fn["plug#"]
 vim.call("plug#begin")
 
@@ -253,7 +254,6 @@ vim.opt.listchars = { tab = "▸-" }
 vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 vim.opt.wildmode = "longest:full,full"
 vim.opt.relativenumber = true
-vim.opt.helplang = { "ja", "en" }
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.config/nvim/undo")
 vim.opt.mouse = "a"
@@ -331,35 +331,35 @@ end
 -- ==============================
 
 -- Unmap arrow keys
-vim.api.nvim_set_keymap("n", "<Up>", "<Nop>", {})
-vim.api.nvim_set_keymap("n", "<Down>", "<Nop>", {})
-vim.api.nvim_set_keymap("n", "<Left>", "<Nop>", {})
-vim.api.nvim_set_keymap("n", "<Right>", "<Nop>", {})
-vim.api.nvim_set_keymap("i", "<Up>", "<Nop>", {})
-vim.api.nvim_set_keymap("i", "<Down>", "<Nop>", {})
-vim.api.nvim_set_keymap("i", "<Left>", "<Nop>", {})
-vim.api.nvim_set_keymap("i", "<Right>", "<Nop>", {})
+vim.keymap.set("n", "<Up>", "<Nop>")
+vim.keymap.set("n", "<Down>", "<Nop>")
+vim.keymap.set("n", "<Left>", "<Nop>")
+vim.keymap.set("n", "<Right>", "<Nop>")
+vim.keymap.set("i", "<Up>", "<Nop>")
+vim.keymap.set("i", "<Down>", "<Nop>")
+vim.keymap.set("i", "<Left>", "<Nop>")
+vim.keymap.set("i", "<Right>", "<Nop>")
 
 -- Vertical movement depends on displayed lines
-vim.api.nvim_set_keymap("n", "j", "gj", {})
-vim.api.nvim_set_keymap("n", "k", "gk", {})
+vim.keymap.set("n", "j", "gj")
+vim.keymap.set("n", "k", "gk")
 
 -- Clear search result highlight
-vim.api.nvim_set_keymap("n", "<C-h>", ":nohlsearch<CR>", {})
+vim.api.nvim_set_keymap("n", "<C-h>", ":nohlsearch<CR>", { noremap = true, silent = true })
 
 -- Tab page movements
-vim.api.nvim_set_keymap("n", "<Tab>", "gt", {})
-vim.api.nvim_set_keymap("n", "<S-Tab>", "gT", {})
+vim.keymap.set("n", "<Tab>", "gt")
+vim.keymap.set("n", "<S-Tab>", "gT")
 
 -- Switch buffers
-vim.api.nvim_set_keymap("n", "<Left>", ":bprev<CR>", {})
-vim.api.nvim_set_keymap("n", "<Right>", ":bnext<CR>", {})
+vim.keymap.set("n", "<Left>", ":bprev<CR>")
+vim.keymap.set("n", "<Right>", ":bnext<CR>")
 
 -- Open terminal
-vim.api.nvim_set_keymap("n", "<Leader>t", ":terminal<CR>", {})
+vim.keymap.set("n", "<Leader>t", ":terminal<CR>")
 
 -- Paste without yank https://stackoverflow.com/a/11993928
-vim.api.nvim_set_keymap("v", "p", "_dp", {})
+vim.keymap.set("v", "p", "_dp")
 
 -- Exit terminal mode with Ctrl-[
-vim.api.nvim_set_keymap("t", "<C-[>", "<C-\\><C-n>", {})
+vim.keymap.set("t", "<C-[>", "<C-\\><C-n>")
