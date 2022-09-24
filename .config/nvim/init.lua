@@ -319,6 +319,13 @@ if is_wsl then
     }
 end
 
+-- Disable IME when switch to INSERT mode
+if vim.fn.has("unix") and not is_wsl then
+    vim.api.nvim_create_autocmd("InsertLeave", {
+        command = "call system('fcitx5-remote -c')",
+    })
+end
+
 -- ==============================
 -- # Keymaps
 -- ==============================
