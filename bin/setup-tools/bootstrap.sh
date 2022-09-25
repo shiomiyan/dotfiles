@@ -10,7 +10,11 @@ function main() {
             DISTRO="linux"
             if [ -x "$(command -v dnf)" ]; then
                 # Install packages from dnf
-                dnf_install
+                read -p "Install with GUI dependencies? [y/n]" yn
+                case $yn in
+                    y) dnf_install "with_gui";;
+                    n) dnf_install;;
+                esac
             elif [ -x "$(command -v apt)" ]; then
                 # For Pop!_OS
                 apt_install
@@ -97,6 +101,12 @@ function dnf_install() {
 
     # Install Neovim build dependencies
     sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
+
+    # Setup GUI applications if needed
+    if [ $# > 0 && $1 == "with_gui" ]; then
+        sudo dnf install \
+            fcitx5 fcitx5-mozc fcitx5-gtk fcitx5-qt fcitx5-lua fcitx5-autostart
+    fi
 }
 
 function brew_install() {
@@ -133,13 +143,17 @@ function brew_install() {
 function create_symlinks() {
     # Create symlinks and backup configs if exists
     local TARGETS=(".zshrc" ".config" ".tmux.conf")
-    mkdir "/tmp/dotfiles.backup"
+    local backup_dir="/tmp/dotfiles.backup"
+    mkdir $backup_dir
     for target in "${TARGETS[@]}"; do
         if ! [[ -f "$HOME/$target" ]]; then
             mv "$HOME/$target" "/tmp/dotfiles.backup/$target"
         fi
         ln -sf "$HOME/dotfiles/$target" "$HOME/$target"
     done
+
+    # 退避させた`.config`配下のファイルおよびディレクトリを戻す
+    cp -r -n "$backup_dir/.config/*" "$HOME/.config/"
 }
 
 BOLD="$(tput bold 2>/dev/null || printf "")"
