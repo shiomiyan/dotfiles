@@ -16,6 +16,7 @@ __pycache__
 
 # PowerShell
 !/.config/powershell/Microsoft.PowerShell_profile.ps1
+!/.config/powershell/Modules/winscript/winscript.psm1
 
 # git
 !/.config/git/
