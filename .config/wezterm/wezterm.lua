@@ -5,12 +5,12 @@ local config = {
     -- GUI Customization --
     -----------------------
     color_scheme = "tokyonight",
-    window_background_opacity = 0.95,
+    window_background_opacity = 0.9,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
 
     -- Initial window size on startup
-    initial_rows = 28,
+    initial_rows = 32,
     initial_cols = 100,
 
     -- Window Padding for scrollbar
@@ -21,7 +21,7 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
 
     -- Disable font ligatures, enable slash zero
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
+    harfbuzz_features = { "liga=0", "zero" },
 
     -- Pane appearance
     inactive_pane_hsb = {
@@ -167,8 +167,8 @@ else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
 
     -- Font
-    config.font = wezterm.font("Sarasa Fixed J")
-    config.font_size = 11
+    config.font = wezterm.font("Cascadia Mono")
+    config.font_size = 12
 end
 
 return config
