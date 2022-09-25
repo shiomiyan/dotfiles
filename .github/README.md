@@ -1,8 +1,4 @@
-## <samp>Install</samp>
-
-Use config on Windows 10, Fedora, Pop!_OS.
-
-### <samp>Linux, Mac<samp>
+### Linux or Mac
 
 `apt` or `dnf` or `brew` needed.
 
@@ -10,11 +6,11 @@ Use config on Windows 10, Fedora, Pop!_OS.
 bash -c "$(curl -fsSL https://shiomiyan.github.io/dotfiles/bin/setup-tools/bootstrap.sh)"
 ```
 
-###  <samp>Windows</samp>
+### Windows
 
 `winget` and `choco` and `scoop` needed.
 
-winget will not be automatically installed. Make sure [`winget`](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is installed.
+Winget will not be automatically installed. Make sure [`winget`](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is installed.
 
 ```
 iwr "https://shiomiyan.github.io/dotfiles/bin/setup-tools/bootstrap.ps1" -useb | iex
