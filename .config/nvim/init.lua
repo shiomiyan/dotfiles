@@ -42,29 +42,6 @@ plug("airblade/vim-gitgutter")
 vim.call("plug#end")
 
 -- ==============================
--- # GUI settings
--- ==============================
-
-vim.opt.termguicolors = true
-vim.opt.background = "dark"
-vim.opt.number = true
-vim.opt.cursorline = true
-vim.opt.scrolloff = 10
-vim.opt.laststatus = 2
-vim.opt.showmode = false
-vim.opt.updatetime = 300
-
-require("tokyonight").setup({
-    style = "night",
-    transparent = true,
-    styles = {
-        comments = { italic = false },
-        keywords = { italic = false },
-    },
-})
-vim.cmd([[colorscheme tokyonight]])
-
--- ==============================
 -- # Plugin settings
 -- ==============================
 
@@ -235,6 +212,28 @@ vim.api.nvim_set_keymap("n", "<Leader>fh", ":Telescope help_tags<CR>", { noremap
 vim.api.nvim_set_keymap("n", "<F9>", ":WhichKey", { noremap = true, silent = true })
 
 -- ==============================
+-- # GUI settings
+-- ==============================
+
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.number = true
+vim.opt.cursorline = true
+vim.opt.scrolloff = 10
+vim.opt.laststatus = 2
+vim.opt.showmode = false
+
+require("tokyonight").setup({
+    style = "night",
+    transparent = true,
+    styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+    },
+})
+vim.cmd([[colorscheme tokyonight]])
+
+-- ==============================
 -- # Editor settings
 -- ==============================
 
@@ -245,6 +244,7 @@ vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 vim.opt.backup = false
 vim.opt.swapfile = false
+vim.opt.updatetime = 300
 vim.opt.encoding = "utf-8"
 vim.opt.fileencodings = { "utf-8", "sjis", "euc-jp", "iso-2022-jp" }
 vim.opt.fileencoding = "utf-8"
