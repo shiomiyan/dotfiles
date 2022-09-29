@@ -103,7 +103,7 @@ function dnf_install() {
     sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
 
     # Setup GUI applications if needed
-    if [ $# > 0 && $1 == "with_gui" ]; then
+    if [[ RUNNING_WITH_GUI ]]; then
         sudo dnf install \
             fcitx5 fcitx5-mozc fcitx5-gtk fcitx5-qt fcitx5-lua fcitx5-autostart
     fi
@@ -174,6 +174,14 @@ function error() {
 }
 
 info "Start Installation."
+
+RUNNING_WITH_GUI=false
+while [ -n "$1" ]
+do
+    case "$1" in
+        --with-gui) RUNNING_WITH_GUI=true;;
+    esac
+done
 
 # Start installation
 main
