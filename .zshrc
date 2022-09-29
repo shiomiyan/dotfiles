@@ -50,6 +50,11 @@ eval "$(starship init zsh)"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+# Gradle
+if [ -d "/opt/gradle/gradle-7.5.1" ]; then
+    export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
+fi
+
 # show hidden files with fzf.vim
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
 
