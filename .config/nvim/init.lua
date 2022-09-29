@@ -27,6 +27,7 @@ plug("hrsh7th/vim-vsnip") -- required as a nvim-cmp dependency, even if not usin
 plug("rust-lang/rust.vim")
 plug("cespare/vim-toml", { branch = "main" })
 plug("ron-rs/ron.vim")
+plug("mfussenegger/nvim-jdtls") -- For Java
 
 -- Fuzzy finder
 plug("nvim-lua/plenary.nvim")
@@ -38,6 +39,7 @@ plug("kat0h/bufpreview.vim") -- Markdown preview
 plug("tpope/vim-surround")
 plug("folke/which-key.nvim")
 plug("airblade/vim-gitgutter")
+plug("mfussenegger/nvim-dap")
 
 vim.call("plug#end")
 
