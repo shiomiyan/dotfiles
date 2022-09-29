@@ -4,13 +4,17 @@ __pycache__
 *.log
 *.old
 
-/.config/*
-!/.config/alacritty/
+# Ignore all
+/*
+/.**
+
+# Whitelist
+!/.config/alacritty/alacritty.yml
 !/.config/karabiner/karabiner.json
-!/.config/lsd
+!/.config/lsd/config.yaml
 !/.config/starship.toml
-!/.config/zsh
-!/.config/wezterm/
+!/.config/zsh/
+!/.config/wezterm/wezterm.lua
 !/.config/efm-langserver/
 !/.config/tig/config
 
@@ -22,9 +26,8 @@ __pycache__
 !/.config/git/
 
 # Neovim
-!/.config/nvim
-/.config/nvim/plugged
-/.config/nvim/undo/
+!/.config/nvim/autoload/
+!/.config/nvim/ftplugin/
 !/.config/nvim/undo/.gitkeep
 
 # espanso
