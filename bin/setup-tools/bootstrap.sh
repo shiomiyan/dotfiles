@@ -10,11 +10,7 @@ function main() {
             DISTRO="linux"
             if [ -x "$(command -v dnf)" ]; then
                 # Install packages from dnf
-                read -p "Install with GUI dependencies? [y/n]" yn
-                case $yn in
-                    y) dnf_install "with_gui";;
-                    n) dnf_install;;
-                esac
+                dnf_install
             elif [ -x "$(command -v apt)" ]; then
                 # For Pop!_OS
                 apt_install
@@ -103,7 +99,7 @@ function dnf_install() {
     sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
 
     # Setup GUI applications if needed
-    if [[ RUNNING_WITH_GUI ]]; then
+    if $RUNNING_WITH_GUI ; then
         sudo dnf install \
             fcitx5 fcitx5-mozc fcitx5-gtk fcitx5-qt fcitx5-lua fcitx5-autostart
     fi
@@ -176,12 +172,11 @@ function error() {
 info "Start Installation."
 
 RUNNING_WITH_GUI=false
-while [ -n "$1" ]
-do
+if ! [ $# -eq 0 ]; then
     case "$1" in
         --with-gui) RUNNING_WITH_GUI=true;;
     esac
-done
+fi
 
 # Start installation
 main
