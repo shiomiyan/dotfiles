@@ -1,35 +1,80 @@
+# Ignore all
+/**
+
+# Specific files or extensions
 .DS_Store
 __pycache__
 *.pyc
 *.log
 *.old
 
-# Ignore all
-/*
-/.**
+# Github
+!/.github/README.md
+!/.github/workflows
+
+# Utils
+!Makefile
+!/bin/
+!/bin/setup-tools/
+!/bin/setup-tools/**
+!/bin/docker/
+!/bin/docker/dotfiles.dockerfile
 
 # Whitelist
+!.tmux.conf
+
+!/.config/
+
+!/.config/alacritty/
 !/.config/alacritty/alacritty.yml
+
+!/.config/karabiner/
 !/.config/karabiner/karabiner.json
+
+!/.config/lsd/
 !/.config/lsd/config.yaml
+
 !/.config/starship.toml
-!/.config/zsh/
+
+!/.config/wezterm/
 !/.config/wezterm/wezterm.lua
+
 !/.config/efm-langserver/
+!/.config/efm-langserver/config.yaml
+
+!/.config/tig/
 !/.config/tig/config
 
+# Zsh
+!.zshrc
+!/.config/zsh/
+!/.config/zsh/zi.zsh
+
 # PowerShell
+!/.config/powershell/
 !/.config/powershell/Microsoft.PowerShell_profile.ps1
+!/.config/powershell/Modules/
+!/.config/powershell/Modules/winscript/
 !/.config/powershell/Modules/winscript/winscript.psm1
 
 # git
 !/.config/git/
+!/.config/git/*
 
 # Neovim
-!/.config/nvim/autoload/
-!/.config/nvim/ftplugin/
+!/.config/nvim/autoload/*
+!/.config/nvim/ftplugin/*
 !/.config/nvim/undo/.gitkeep
 
 # espanso
-!/.config/espanso/config
+!/.config/espanso/config/default.yml
 !/.config/espanso/match/base.yml
+
+# VS Code
+!/.config/Code/
+!/.config/Code/User/
+!/.config/Code/User/settings.json
+
+# Windows configs
+!/.windows/
+!/.windows/**
