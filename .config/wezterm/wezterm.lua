@@ -167,8 +167,8 @@ else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
 
     -- Font
-    config.font = wezterm.font("Cascadia Mono")
-    config.font_size = 12
+    config.font = wezterm.font("Sarasa Fixed J")
+    config.font_size = 13
 end
 
 return config
