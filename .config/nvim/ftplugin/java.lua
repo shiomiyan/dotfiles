@@ -2,6 +2,16 @@
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 local workspace_dir = '~/.local/workspace' .. project_name
 
+local data_dir = vim.fn.stdpath("data")
+local jar = data_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
+
+local platform = "windows"
+if vim.fn.has("unix") then
+    platform = "linux"
+end
+local configuration = data_dir .. '/mason/packages/jdtls/config_' .. platform
+print(configuration)
+
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
     -- The command that starts the language server
@@ -21,18 +31,10 @@ local config = {
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
 
         -- 💀
-        '-jar', '~/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar',
-        -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
-        -- Must point to the                                                     Change this to
-        -- eclipse.jdt.ls installation                                           the actual version
-
+        '-jar', jar,
 
         -- 💀
-        '-configuration', '~/.local/share/nvim/mason/packages/jdtls/config_linux',
-        -- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
-        -- Must point to the                      Change to one of `linux`, `win` or `mac`
-        -- eclipse.jdt.ls installation            Depending on your system.
-
+        '-configuration', configuration,
 
         -- 💀
         -- See `data directory configuration` section in the README
