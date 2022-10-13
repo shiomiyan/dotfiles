@@ -7,7 +7,6 @@ set -o errexit    # exit when command fails
 function main() {
     case $OSTYPE in
         linux*)
-            DISTRO="linux"
             if [ -x "$(command -v dnf)" ]; then
                 # Install packages from dnf
                 dnf_install
@@ -36,12 +35,11 @@ function main() {
             ;;
 
         darwin*)
-            DISTRO="macos"
             brew_install
             ;;
 
         *)
-            error "Could not identify the OS."
+            error "Unsupported platform."
             exit 1
             ;;
 
@@ -55,7 +53,7 @@ function main() {
     info "Symlinks to dotfiles has been created."
 
     # Install Neovim Plugins
-    nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
+    nvim -es -u ~/.config/nvim/init.lua -i NONE -c "PlugInstall" -c "qa"
 }
 
 function apt_install() {
@@ -73,7 +71,7 @@ function apt_install() {
         ripgrep \
         zoxide
 
-    # Install Neovim build dependencies
+    # Neovim build dependencies
     sudo apt install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
 }
 
@@ -95,13 +93,13 @@ function dnf_install() {
         ripgrep \
         zoxide
 
-    # Install Neovim build dependencies
+    # Neovim build dependencies
     sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
 
     # Setup GUI applications if needed
     if $RUNNING_WITH_GUI ; then
         sudo dnf install \
-            fcitx5 fcitx5-mozc fcitx5-gtk fcitx5-qt fcitx5-lua fcitx5-autostart
+            fcitx5 fcitx5-mozc fcitx5-lua fcitx5-autostart
     fi
 }
 
