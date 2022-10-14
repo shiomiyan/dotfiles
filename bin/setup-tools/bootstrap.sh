@@ -96,10 +96,23 @@ function dnf_install() {
     # Neovim build dependencies
     sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
 
-    # Setup GUI applications if needed
-    if $RUNNING_WITH_GUI ; then
+    # Setup GUI applications if desktop display server exists
+    if command -v Xorg > /dev/null; then
+        # Setup Nvidia driver
         sudo dnf install \
-            fcitx5 fcitx5-mozc fcitx5-lua fcitx5-autostart
+            https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
+            https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+        sudo dnf install akmod-nvidia
+
+        sudo dnf install \
+            fcitx5 fcitx5-mozc fcitx5-lua
+
+        # Desktop applications
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        flatpak install -y \
+            com.bitwarden.desktop \
+            com.discordapp.Discord \
+            com.spotify.Client
     fi
 }
 
@@ -135,19 +148,17 @@ function brew_install() {
 }
 
 function create_symlinks() {
-    # Create symlinks and backup configs if exists
-    local TARGETS=(".zshrc" ".config" ".tmux.conf")
-    local backup_dir="/tmp/dotfiles.backup"
-    mkdir $backup_dir
-    for target in "${TARGETS[@]}"; do
-        if ! [[ -f "$HOME/$target" ]]; then
-            mv "$HOME/$target" "/tmp/dotfiles.backup/$target"
-        fi
-        ln -sf "$HOME/dotfiles/$target" "$HOME/$target"
-    done
+    mkdir -p /tmp/dot_backup
+    [ -f ~/.zshrc ]     && mv ~/.zshrc     /tmp/dot_backup/
+    [ -f ~/.tmux.conf ] && mv ~/.tmux.conf /tmp/dot_backup/
+    [ -d ~/.config ]    && mv ~/.config    /tmp/dot_backup/
+
+    ln -sf ~/dotfiles/.zshrc     ~
+    ln -sf ~/dotfiles/.tmux.conf ~
+    ln -sf ~/dotfiles/.config    ~
 
     # 退避させた`.config`配下のファイルおよびディレクトリを戻す
-    cp -r -n "$backup_dir/.config/*" "$HOME/.config/"
+    cp -r -n /tmp/dot_backup/.config/* ~/.config/
 }
 
 BOLD="$(tput bold 2>/dev/null || printf "")"
@@ -168,13 +179,6 @@ function error() {
 }
 
 info "Start Installation."
-
-RUNNING_WITH_GUI=false
-if ! [ $# -eq 0 ]; then
-    case "$1" in
-        --with-gui) RUNNING_WITH_GUI=true;;
-    esac
-fi
 
 # Start installation
 main
