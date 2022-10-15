@@ -22,6 +22,7 @@ __pycache__
 
 # Whitelist
 !.tmux.conf
+!.Xmodmap
 
 !/.config/
 
