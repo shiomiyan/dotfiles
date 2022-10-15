@@ -1,6 +1,6 @@
 ### Linux or Mac
 
-`apt` or `dnf` or `brew` needed.
+`dnf` or `brew` needed.
 
 ```
 bash -c "$(curl -fsSL https://shiomiyan.github.io/dotfiles/bin/setup-tools/bootstrap.sh)"
