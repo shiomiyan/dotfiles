@@ -1,47 +1,44 @@
 #!/bin/bash
 
-set -o nounset    # error when referencing undefined variable
-set -o errexit    # exit when command fails
+set -o nounset # error when referencing undefined variable
+set -o errexit # exit when command fails
 
 # Install packages
 function main() {
     case $OSTYPE in
-        linux*)
-            if [ -x "$(command -v dnf)" ]; then
-                # Install packages from dnf
-                dnf_install
-            elif [ -x "$(command -v apt)" ]; then
-                # For Pop!_OS
-                apt_install
-            else
-                error "Command dnf not found. Unsupported distribution."
-                exit 1
-            fi
-
-            # Build and Install Neovim from source
-            git clone https://github.com/neovim/neovim /tmp/neovim && cd /tmp/neovim
-            make CMAKE_BUILD_TYPE=Release
-            sudo make install
-            cd $HOME
-
-            # Install starship
-            sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
-
-            # Install Rust
-            curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-            # Install Deno (Mainly used for Neovim plugins)
-            curl -fsSL https://deno.land/install.sh | sh
-            ;;
-
-        darwin*)
-            brew_install
-            ;;
-
-        *)
-            error "Unsupported platform."
+    linux*)
+        if [ -x "$(command -v dnf)" ]; then
+            # Install packages from dnf
+            dnf_install
+        else
+            error "Command dnf not found. Unsupported distribution."
             exit 1
-            ;;
+        fi
+
+        # Build and Install Neovim from source
+        git clone https://github.com/neovim/neovim /tmp/neovim && cd /tmp/neovim
+        make CMAKE_BUILD_TYPE=Release
+        sudo make install
+        cd ~
+
+        # Install starship
+        sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
+
+        # Install Rust
+        curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+        # Install Deno (Mainly used for Neovim plugins)
+        curl -fsSL https://deno.land/install.sh | sh
+        ;;
+
+    darwin*)
+        brew_install
+        ;;
+
+    *)
+        error "Unsupported platform."
+        exit 1
+        ;;
 
     esac
 
@@ -56,25 +53,6 @@ function main() {
     nvim -es -u ~/.config/nvim/init.lua -i NONE -c "PlugInstall" -c "qa"
 }
 
-function apt_install() {
-    sudo apt update && sudo apt upgrade
-    sudo apt -y install \
-        bat \
-        gh \
-        git \
-        zsh \
-        wget \
-        unzip \
-        tmux \
-        nodejs \
-        build-essential \
-        ripgrep \
-        zoxide
-
-    # Neovim build dependencies
-    sudo apt install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
-}
-
 function dnf_install() {
     # Upgrade current packages
     sudo dnf -y upgrade
@@ -82,6 +60,7 @@ function dnf_install() {
     # Install toolchains
     sudo dnf -y install \
         bat \
+        fd-find \
         gh \
         git \
         zsh \
@@ -97,11 +76,11 @@ function dnf_install() {
     sudo yum -y install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
 
     # Setup GUI applications if desktop display server exists
-    if command -v Xorg > /dev/null; then
+    if command -v Xorg >/dev/null; then
         # Setup Nvidia driver
         sudo dnf install \
-            https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-            https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+            "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
+            "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
         sudo dnf install akmod-nvidia
 
         sudo dnf install \
@@ -149,13 +128,13 @@ function brew_install() {
 
 function create_symlinks() {
     mkdir -p /tmp/dot_backup
-    [ -f ~/.zshrc ]     && mv ~/.zshrc     /tmp/dot_backup/
+    [ -f ~/.zshrc ] && mv ~/.zshrc /tmp/dot_backup/
     [ -f ~/.tmux.conf ] && mv ~/.tmux.conf /tmp/dot_backup/
-    [ -d ~/.config ]    && mv ~/.config    /tmp/dot_backup/
+    [ -d ~/.config ] && mv ~/.config /tmp/dot_backup/
 
-    ln -sf ~/dotfiles/.zshrc     ~
+    ln -sf ~/dotfiles/.zshrc ~
     ln -sf ~/dotfiles/.tmux.conf ~
-    ln -sf ~/dotfiles/.config    ~
+    ln -sf ~/dotfiles/.config ~
 
     # 退避させた`.config`配下のファイルおよびディレクトリを戻す
     cp -r -n /tmp/dot_backup/.config/* ~/.config/
