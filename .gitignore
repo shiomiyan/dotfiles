@@ -50,6 +50,7 @@ __pycache__
 !.zshenv
 !/.config/zsh/
 !/.config/zsh/zi.zsh
+!/.config/zsh/.zshrc
 
 # PowerShell
 !/.config/powershell/
