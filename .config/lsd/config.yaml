@@ -1,2 +1,12 @@
 icons:
   when: never
+
+blocks:
+  - permission
+  - user
+  - size
+  - date
+  - name
+
+# strftime format -> https://strftime.org/
+date: "+%d %b %y %X"
