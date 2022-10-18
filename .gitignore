@@ -16,8 +16,7 @@ __pycache__
 !Makefile
 !/bin/
 !/bin/setup-tools/
-!/bin/setup-tools/bootstrap.sh
-!/bin/setup-tools/bootstrap.ps1
+!/bin/setup-tools/**
 
 !/bin/docker/
 !/bin/docker/dotfiles.dockerfile

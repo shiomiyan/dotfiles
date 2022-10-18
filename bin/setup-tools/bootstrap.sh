@@ -84,7 +84,8 @@ function dnf_install() {
         sudo dnf install akmod-nvidia
 
         sudo dnf install \
-            fcitx5 fcitx5-mozc fcitx5-lua
+            fcitx5 fcitx5-mozc fcitx5-lua \
+            xclip
 
         # Desktop applications
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
