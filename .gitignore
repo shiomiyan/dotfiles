@@ -47,7 +47,7 @@ __pycache__
 !/.config/tig/config
 
 # Zsh
-!.zshrc
+!.zshenv
 !/.config/zsh/
 !/.config/zsh/zi.zsh
 
