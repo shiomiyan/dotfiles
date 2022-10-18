@@ -3,10 +3,14 @@ icons:
 
 blocks:
   - permission
-  - user
   - size
+  - user
   - date
   - name
 
 # strftime format -> https://strftime.org/
 date: "+%d %b %y %X"
+
+size: short
+
+symlink-arrow: ->
