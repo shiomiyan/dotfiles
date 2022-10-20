@@ -130,10 +130,11 @@ function brew_install() {
 function create_symlinks() {
     mkdir -p /tmp/dot_backup
     [ -f ~/.zshrc ] && mv ~/.zshrc /tmp/dot_backup/
-    [ -f ~/.tmux.conf ] && mv ~/.tmux.conf /tmp/dot_backup/
+    [ -f ~/.zshenv ] && mv ~/.zshenv /tmp/dot_backup/
+    # [ -f ~/.tmux.conf ] && mv ~/.tmux.conf /tmp/dot_backup/
     [ -d ~/.config ] && mv ~/.config /tmp/dot_backup/
 
-    ln -sf ~/dotfiles/.zshrc ~
+    ln -sf ~/dotfiles/.zshenv ~
     ln -sf ~/dotfiles/.tmux.conf ~
     ln -sf ~/dotfiles/.config ~
 

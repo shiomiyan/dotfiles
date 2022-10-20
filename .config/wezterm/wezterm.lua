@@ -21,7 +21,7 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
 
     -- Disable font ligatures, enable slash zero
-    harfbuzz_features = { "liga=0", "zero" },
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
 
     -- Pane appearance
     inactive_pane_hsb = {
@@ -125,10 +125,8 @@ local launch_menu = {}
 
 -- Switch configuration depends on OS
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configuration
-    -- Shell
     config.default_prog = { "pwsh.exe", "-NoLogo" }
 
-    -- Font
     config.font = wezterm.font_with_fallback({ "JetBrains Mono", "BIZ UDGothic" })
     config.font_size = 11
 
@@ -151,24 +149,20 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configurati
             end
         end
     end
+
     config.launch_menu = launch_menu
 elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuration
-    -- Shell
     config.default_prog = { "zsh", "--login" }
 
-    -- Font
     config.font = wezterm.font("Sarasa Fixed J")
     config.font_size = 18
 
-    -- Scrollbar width
-    config.window_padding.right = 16
+    config.window_padding.right = 16 -- Scrollbar width
 else -- Linux configuration
-    -- Shell
     config.default_prog = { "zsh", "--login" }
 
-    -- Font
-    config.font = wezterm.font("Sarasa Fixed J")
-    config.font_size = 13
+    config.font = wezterm.font_with_fallback({ "Mononoki", "Cica" })
+    config.font_size = 12
 end
 
 return config
