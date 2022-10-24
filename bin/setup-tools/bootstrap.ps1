@@ -11,14 +11,18 @@ function local:Install-App {
 
 #>
 
+    if (!(Test-Path "C:\Temp")) {
+        mkdir C:\Temp
+    }
+
     # Install winget if not exists
     if (-not (Get-Command winget -ea SilentlyContinue)) {
         # install dependencies for winget
         $wingetUrl = "https://github.com/microsoft/winget-cli/releases/latest/download/Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
-        Invoke-WebRequest -Uri $wingetUrl -OutFile "C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
+        Invoke-WebRequest -Uri $wingetUrl -OutFile "C:\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle"
         Import-Module Appx -UseWindowsPowerShell
         try {
-            Add-AppxPackage C:\Windows\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
+            Add-AppxPackage C:\Temp\Microsoft.DesktopAppInstaller_8wekyb3d8bbwe.msixbundle
         } catch {
             Write-Output "Failed to install winget. Try install manually." $wingetUrl
         }
@@ -48,7 +52,7 @@ function local:Install-App {
     }
 
     # GUI applications are installed by winget
-    winget import -i "$HOME\dotfiles\install_scripts\winget.json"
+    winget import -i "$HOME\dotfiles\bin\setup-tools\winget.json"
 
     # Add scoop buckets
     scoop bucket add extras
@@ -72,6 +76,7 @@ function local:Install-App {
         ripgrep       `
         rga           `
         hugo-extended `
+        sudo
 
     # Always enable -y option
     choco feature enable -n allowGlobalConfirmation
@@ -85,8 +90,8 @@ function local:Install-App {
     Invoke-WebRequest `
         -Uri "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe" `
         -OutFile C:\rustup-init.exe
-    C:\rustup-init.exe -y
-    Remove-Item -Force C:\rustup-init.exe
+    C:\Temp\rustup-init.exe -y
+    Remove-Item -Force C:\Temp\rustup-init.exe
 
     refreshenv
 
