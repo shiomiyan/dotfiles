@@ -48,6 +48,10 @@ function local:Invoke-GhqSetLocation {
     Set-Location $(join-path $ghq_root $repo)
 }
 
+function local:firefox {
+    Start-Process -FilePath "C:\Program Files\Mozilla Firefox\firefox.exe"
+}
+
 # ==================================
 #  Aliases
 # ==================================
@@ -56,3 +60,4 @@ Set-Alias -Name e -Value explorer.exe
 Set-Alias -Name tig -Value "C:\Program Files\Git\usr\bin\tig.exe"
 Set-Alias -Name wslfeature -Value Switch-WslFeature
 Set-Alias -Name repo -Value Invoke-GhqSetLocation
+Set-Alias -Name ff -Value firefox
