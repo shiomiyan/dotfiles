@@ -134,7 +134,7 @@ require("mason").setup()
 local mason_lspconfig = require("mason-lspconfig")
 
 mason_lspconfig.setup({
-    ensure_installed = { "rust_analyzer", "powershell-editor-services", "sumneko_lua" },
+    ensure_installed = { "rust_analyzer", "sumneko_lua" },
 })
 
 local lspconfig = require("lspconfig")

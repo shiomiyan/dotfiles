@@ -11,9 +11,9 @@ fi
 
 # Settings for WSL
 if command -v wslpath &> /dev/null; then
-  alias clip="/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe -i"
-  # appendWindowsPath is set to false in wsl.conf
-  export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
+    alias clip="/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe -i"
+    # appendWindowsPath is set to false in wsl.conf
+    export PATH="/mnt/c/Users/sk/AppData/Local/Programs/Microsoft VS Code/bin:$PATH"
 fi
 
 if command -v xclip &> /dev/null; then
@@ -24,13 +24,14 @@ fi
 # Aliases
 # ================================
 
-alias la="exa -a"
-alias ll="exa -l"
-alias lla="exa -la"
+alias ls="lsd"
+alias la="lsd -a"
+alias ll="lsd -l"
+alias lla="lsd -la"
 
 if [[ `uname` == "Darwin" ]]; then
-  alias clip="pbcopy"
-  alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
+    alias clip="pbcopy"
+    alias sortlaunchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
 fi
 
 # ================================
@@ -41,7 +42,9 @@ fi
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # Ocaml
-eval $(opam env)
+if [ -x "$(command -v opam)" ]; then
+    eval $(opam env)
+fi
 
 # Golang
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"

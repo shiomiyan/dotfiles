@@ -5,7 +5,7 @@ local config = {
     -- GUI Customization --
     -----------------------
     color_scheme = "tokyonight",
-    window_background_opacity = 1.0,
+    window_background_opacity = 0.9,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
 
@@ -161,8 +161,8 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
 else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
 
-    config.font = wezterm.font_with_fallback({ "Mononoki", "Cica" })
-    config.font_size = 12
+    config.font = wezterm.font_with_fallback({ "Noto Sans Mono", "Sarasa Fixed J" })
+    config.font_size = 11
 end
 
 return config
