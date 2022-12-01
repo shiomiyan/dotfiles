@@ -25,9 +25,7 @@ fi
 # ================================
 
 alias ls="lsd"
-alias la="lsd -a"
-alias ll="lsd -l"
-alias lla="lsd -la"
+alias la="lsd -la"
 
 if [[ `uname` == "Darwin" ]]; then
     alias clip="pbcopy"
