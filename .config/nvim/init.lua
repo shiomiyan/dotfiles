@@ -28,6 +28,7 @@ plug("rust-lang/rust.vim")
 plug("cespare/vim-toml", { branch = "main" })
 plug("ron-rs/ron.vim")
 plug("mfussenegger/nvim-jdtls") -- For Java
+plug("nvim-treesitter/nvim-treesitter")
 
 -- Fuzzy finder
 plug("nvim-lua/plenary.nvim")
@@ -54,6 +55,15 @@ vim.g.lightline = {
         right = { { "lineinfo" }, { "percent" }, { "fileformat", "fileencoding", "filetype" } },
     },
 }
+
+-- Treeshitter
+require("nvim-treesitter.configs").setup({
+    ensure_installed = { "c", "lua", "rust" },
+    auto_install = true,
+    highlight = {
+        enable = true,
+    },
+})
 
 -- LSP settings
 local cmp = require("cmp")
