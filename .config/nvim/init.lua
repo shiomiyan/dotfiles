@@ -1,6 +1,6 @@
--- ==============================
--- # Load plugins
--- ==============================
+------------------
+-- Load Plugins --
+------------------
 
 -- vim-plug with Lua https://dev.to/vonheikemen/neovim-using-vim-plug-in-lua-3oom
 local plug = vim.fn["plug#"]
@@ -44,9 +44,9 @@ plug("mfussenegger/nvim-dap")
 
 vim.call("plug#end")
 
--- ==============================
--- # Plugin settings
--- ==============================
+---------------------
+-- Plugin Settings --
+---------------------
 
 -- Lightline
 vim.g.lightline = {
@@ -223,9 +223,9 @@ vim.api.nvim_set_keymap("n", "<Leader>fh", ":Telescope help_tags<CR>", { noremap
 -- Key bindings cheat sheet via which-key
 vim.api.nvim_set_keymap("n", "<F9>", ":WhichKey", { noremap = true, silent = true })
 
--- ==============================
--- # GUI settings
--- ==============================
+------------------
+-- GUI Settings --
+------------------
 
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
@@ -246,9 +246,9 @@ require("tokyonight").setup({
 })
 vim.cmd([[colorscheme tokyonight]])
 
--- ==============================
--- # Editor settings
--- ==============================
+---------------------
+-- Editor Settings --
+---------------------
 
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
@@ -275,18 +275,18 @@ vim.opt.cmdheight = 2
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 vim.opt.wrap = false
 
--- ==============================
--- # Search settings
--- ==============================
+---------------------
+-- Search Settings --
+---------------------
 
 vim.opt.showmatch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = false
 
--- ==============================
--- # Netrw settings
--- ==============================
+----------
+-- Misc --
+----------
 
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
@@ -296,10 +296,6 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_winsize = 20
 vim.g.netrw_alto = 1
 vim.g.netrw_altv = 1
-
--- ==============================
--- # Other settings
--- ==============================
 
 -- Remove ws at the eol
 vim.cmd([[
@@ -312,7 +308,7 @@ endfunction
 autocmd BufWritePre * call <SID>remove_trailing_space_on_save()
 ]])
 
--- To use system clipboard in WSL
+-- Windows: use system clipboard in WSL
 local is_wsl = (function()
     local output = vim.fn.systemlist("uname -r")
     return not not string.find(output[1] or "", "WSL")
@@ -333,16 +329,16 @@ if is_wsl then
     }
 end
 
--- Disable IME when switch to INSERT mode
+-- Linux: disable IME when switch to INSERT mode
 if vim.fn.has("unix") and not is_wsl then
     vim.api.nvim_create_autocmd("InsertLeave", {
         command = "call system('fcitx5-remote -c')",
     })
 end
 
--- ==============================
--- # Keymaps
--- ==============================
+-------------
+-- Keymaps --
+-------------
 
 -- Unmap arrow keys
 vim.keymap.set("n", "<Up>", "<Nop>")
