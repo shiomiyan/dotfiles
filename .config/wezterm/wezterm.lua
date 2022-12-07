@@ -161,7 +161,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
 else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
 
-    config.font = wezterm.font_with_fallback({ "IBM Plex Mono", "Sarasa Fixed J" })
+    config.font = wezterm.font_with_fallback({ "Sarasa Fixed J" })
     config.font_size = 11
 end
 
