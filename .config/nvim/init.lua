@@ -66,7 +66,7 @@ require("lualine").setup({
     },
 })
 
--- Treeshitter
+-- treesitter
 require("nvim-treesitter.configs").setup({
     ensure_installed = { "c", "lua", "rust" },
     auto_install = true,
