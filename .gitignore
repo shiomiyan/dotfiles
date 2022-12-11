@@ -14,6 +14,7 @@ __pycache__
 
 # Utils
 !Makefile
+!stylua.toml
 !/bin/
 !/bin/setup-tools/
 !/bin/setup-tools/**
