@@ -7,7 +7,7 @@ local plug = vim.fn["plug#"]
 vim.call("plug#begin")
 
 -- GUI enhancements
-plug("itchyny/lightline.vim")
+plug("nvim-lualine/lualine.nvim")
 plug("folke/tokyonight.nvim", { branch = "main" })
 plug("machakann/vim-highlightedyank")
 -- plug('andymass/vim-matchup')
@@ -41,6 +41,7 @@ plug("tpope/vim-surround")
 plug("folke/which-key.nvim")
 plug("airblade/vim-gitgutter")
 plug("mfussenegger/nvim-dap")
+plug("jose-elias-alvarez/null-ls.nvim")
 
 vim.call("plug#end")
 
@@ -48,13 +49,22 @@ vim.call("plug#end")
 -- Plugin Settings --
 ---------------------
 
--- Lightline
-vim.g.lightline = {
-    active = {
-        left = { { "mode", "paste" }, { "readonly", "filename", "modified" } },
-        right = { { "lineinfo" }, { "percent" }, { "fileformat", "fileencoding", "filetype" } },
+-- Status line
+require("lualine").setup({
+    options = {
+        icons_enabled = false,
+        component_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
     },
-}
+    sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = { "filename" },
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
+    },
+})
 
 -- Treeshitter
 require("nvim-treesitter.configs").setup({
@@ -107,7 +117,6 @@ cmp.setup({
     },
 })
 
-
 local opts = { noremap = true, silent = true }
 vim.keymap.set("n", "<Space>e", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
@@ -124,7 +133,7 @@ local on_attach = function(client, bufnr)
     buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
     -- Mappings.
-    local bufopts = { noremap = true, silent = true, buffer=bufnr }
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -136,7 +145,9 @@ local on_attach = function(client, bufnr)
     vim.keymap.set("n", "<Space>r", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n", "<Space>a", vim.lsp.buf.code_action, bufopts)
     vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-    vim.keymap.set("n", "<Space>f", function() vim.lsp.buf.format { async = true } end, bufopts)
+    vim.keymap.set("n", "<Space>f", function()
+        vim.lsp.buf.format({ async = true })
+    end, bufopts)
 end
 
 -- Easy install and setup LSP
@@ -194,6 +205,30 @@ lspconfig.rust_analyzer.setup({
 
 -- Rust
 vim.g.rustfmt_autosave = 1
+
+-- null-ls (only use as formatter)
+local null_ls = require("null-ls")
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+null_ls.setup({
+    sources = {
+        null_ls.builtins.formatting.stylua,
+    },
+
+    -- you can reuse a shared lspconfig on_attach callback here
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                    vim.lsp.buf.format({ bufnr = bufnr })
+                end,
+            })
+        end
+    end,
+})
 
 -- Fuzzy search config in Telescope
 local telescope = require("telescope")
@@ -270,7 +305,7 @@ vim.opt.wildmode = "longest:full,full"
 vim.opt.relativenumber = true
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand("~/.config/nvim/undo")
-vim.opt.mouse = "a"
+vim.opt.mouse = ""
 vim.opt.cmdheight = 2
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 vim.opt.wrap = false
