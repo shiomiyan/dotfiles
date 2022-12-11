@@ -255,9 +255,6 @@ vim.api.nvim_set_keymap("n", "<Leader>fg", ":Telescope live_grep<CR>", { noremap
 vim.api.nvim_set_keymap("n", "<Leader>fb", ":Telescope buffers<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>fh", ":Telescope help_tags<CR>", { noremap = true, silent = true })
 
--- Key bindings cheat sheet via which-key
-vim.api.nvim_set_keymap("n", "<F9>", ":WhichKey", { noremap = true, silent = true })
-
 ------------------
 -- GUI Settings --
 ------------------
