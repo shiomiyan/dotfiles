@@ -52,7 +52,7 @@ function local:Install-App {
     }
 
     # GUI applications are installed by winget
-    winget import -i "$HOME\dotfiles\bin\setup-tools\winget.json"
+    winget import -i "$HOME\dotfiles\bootstrap\winget.json"
 
     # Add scoop buckets
     scoop bucket add extras
@@ -108,19 +108,19 @@ function local:Create-Symlink {
 
     New-Item -ItemType SymbolicLink `
         -Path   $HOME\Documents\PowerShell `
-        -Target $HOME\dotfiles\.config\powershell
+        -Target $HOME\dotfiles\config\powershell
 
     New-Item -ItemType SymbolicLink `
         -Path   $HOME\.config `
-        -Target $HOME\dotfiles\.config\
+        -Target $HOME\dotfiles\config\
 
     New-Item -ItemType SymbolicLink `
         -Path   $env:LOCALAPPDATA\nvim `
-        -Target $HOME\dotfiles\.config\nvim\
+        -Target $HOME\dotfiles\config\nvim\
 
     New-item -ItemType SymbolicLink `
         -Path   $env:APPDATA\espanso `
-        -Target $HOME\dotfiles\.config\espanso
+        -Target $HOME\dotfiles\config\espanso
 
     git config --global core.editor 'nvim'
 

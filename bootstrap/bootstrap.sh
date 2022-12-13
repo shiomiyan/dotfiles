@@ -136,7 +136,7 @@ function create_symlinks() {
 
     ln -sf ~/dotfiles/.zshenv ~
     ln -sf ~/dotfiles/.tmux.conf ~
-    ln -sf ~/dotfiles/.config ~
+    ln -sf ~/dotfiles/config ~
 
     # 退避させた`.config`配下のファイルおよびディレクトリを戻す
     cp -r -n /tmp/dot_backup/.config/* ~/.config/
