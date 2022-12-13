@@ -1,85 +1,69 @@
-# Ignore all
+*
 /**
 
-# Specific files or extensions
-.DS_Store
-__pycache__
-*.pyc
-*.log
-*.old
+#################
+# Setup Scripts #
+#################
+!/bootstrap/
+!/bootstrap/*
 
-# Github
+#########
+# misc. #
+#########
+!/.github/
 !/.github/README.md
-!/.github/workflows
+stylua.toml
 
-# Utils
-!Makefile
-!stylua.toml
-!/bin/
-!/bin/setup-tools/
-!/bin/setup-tools/**
-
-!/bin/docker/
-!/bin/docker/dotfiles.dockerfile
-
-# Whitelist
+#########
+# $HOME #
+#########
 !.tmux.conf
 !.Xmodmap
-
-!/.config/
-
-!/.config/alacritty/
-!/.config/alacritty/alacritty.yml
-
-!/.config/karabiner/
-!/.config/karabiner/karabiner.json
-
-!/.config/lsd/
-!/.config/lsd/config.yaml
-
-!/.config/starship.toml
-
-!/.config/wezterm/
-!/.config/wezterm/wezterm.lua
-
-!/.config/efm-langserver/
-!/.config/efm-langserver/config.yaml
-
-!/.config/tig/
-!/.config/tig/config
-
-# Zsh
 !.zshenv
-!/.config/zsh/
-!/.config/zsh/zi.zsh
-!/.config/zsh/.zshrc
+stylua.toml
 
-# PowerShell
-!/.config/powershell/
-!/.config/powershell/Microsoft.PowerShell_profile.ps1
-!/.config/powershell/Modules/
-!/.config/powershell/Modules/Windows/
-!/.config/powershell/Modules/Windows/Windows.psm1
+################
+# $HOME/config #
+################
+!/config/
+!/config/alacritty/
+!/config/alacritty/alacritty.yml
+!/config/Code/User/settings.json
+!/config/efm-langserver/
+!/config/efm-langserver/config.yaml
+!/config/espanso/
+!/config/espanso/config/
+!/config/espanso/config/default.yml
+!/config/espanso/match/
+!/config/espanso/match/base.yml
+!/config/git/
+!/config/git/config
+!/config/git/ignore
+!/config/karabiner/
+!/config/karabiner/karabiner.json
+!/config/lsd/
+!/config/lsd/config.yaml
+!/config/nvim/
+!/config/nvim/*
+!/config/nvim/autoload/*
+!/config/nvim/ftplugin/*
+!/config/nvim/undo/.gitkeep
+!/config/powershell/
+!/config/powershell/*
+!/config/powershell/Modules/
+!/config/powershell/Modules/Windows/
+!/config/powershell/Modules/Windows/Windows.psm1
+!/config/tig/
+!/config/tig/config
+!/config/wezterm/
+!/config/wezterm/wezterm.lua
+!/config/zsh/.zshrc
+!/config/zsh/.zi.zsh
+!/config/starship.toml
 
-# git
-!/.config/git/
-!/.config/git/*
-
-# Neovim
-!/.config/nvim/init.lua
-!/.config/nvim/autoload/*
-!/.config/nvim/ftplugin/*
-!/.config/nvim/undo/.gitkeep
-
-# espanso
-!/.config/espanso/config/default.yml
-!/.config/espanso/match/base.yml
-
-# VS Code
-!/.config/Code/
-!/.config/Code/User/
-!/.config/Code/User/settings.json
-
-# Windows configs
-!/.windows/
-!/.windows/**
+###########
+# windows #
+###########
+!/windows/
+!/windows/.wslconfig
+!/windows/wsl.conf

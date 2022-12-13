@@ -21,6 +21,7 @@ plug("williamboman/mason-lspconfig.nvim") -- alternative to nvim-lsp-installer
 plug("hrsh7th/nvim-cmp")
 plug("hrsh7th/cmp-nvim-lsp")
 plug("hrsh7th/cmp-buffer")
+plug("hrsh7th/cmp-path")
 plug("hrsh7th/vim-vsnip") -- required as a nvim-cmp dependency, even if not using snippet
 
 -- Syntactic language support
@@ -94,7 +95,6 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "path" },
-        -- { name = "buffer", keyword_length = 5 },
     }, {
         { name = "buffer" },
     }),
@@ -104,8 +104,8 @@ cmp.setup({
         format = function(entry, item)
             local menu_icon = {
                 nvim_lsp = "[L]",
-                path = "[p]",
                 buffer = "[b]",
+                path = "[p]",
             }
             item.menu = menu_icon[entry.source.name]
             return item

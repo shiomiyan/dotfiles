@@ -77,3 +77,8 @@ export PATH="$PATH:$HOME/.npm/bin"
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+# llama
+function ll {
+  cd "$(llama "$@")"
+}

@@ -162,7 +162,7 @@ else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
 
     config.font = wezterm.font_with_fallback({ "Sarasa Fixed J" })
-    config.font_size = 11
+    config.font_size = 12
 end
 
 return config
