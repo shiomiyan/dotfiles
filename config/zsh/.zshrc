@@ -56,9 +56,9 @@ eval "$(starship init zsh)"
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-# Gradle
-if [ -d "/opt/gradle/gradle-7.5.1" ]; then
-    export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
+# Gradle (manual install: https://gradle.org/install/#manually)
+if [ -d "/opt/gradle/" ]; then
+    export PATH="$PATH:/opt/gradle/$(ls /opt/gradle/)/bin"
 fi
 
 # nix
