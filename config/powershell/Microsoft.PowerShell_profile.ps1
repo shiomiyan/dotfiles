@@ -3,7 +3,7 @@ if ($PSVersionTable.Platform -eq "Win32NT") {
     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
     # Import custom script for Windows
-    Import-Module winscript
+    Import-Module Windows
 }
 
 Import-Module PSReadLine
@@ -15,7 +15,7 @@ Invoke-Expression (& {
 
 # Command completions
 try {
-    if (Get-Command gh) {
+    if (Get-Command gh -ErrorAction SilentlyContinue) {
         Invoke-Expression -Command $(gh completion -s powershell | Out-String)
     }
 } catch {}
