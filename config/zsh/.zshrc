@@ -26,6 +26,7 @@ fi
 
 alias ls="lsd"
 alias la="lsd -la"
+alias remap="xmodmap ~/.Xmodmap"
 
 if [[ `uname` == "Darwin" ]]; then
     alias clip="pbcopy"
@@ -60,9 +61,6 @@ if [ -d "/opt/gradle/gradle-7.5.1" ]; then
     export PATH="$PATH:/opt/gradle/gradle-7.5.1/bin"
 fi
 
-# show hidden files with fzf.vim
-export FZF_DEFAULT_COMMAND='rg --files --hidden -g "!.git"'
-
 # nix
 if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
     . /home/sk/.nix-profile/etc/profile.d/nix.sh
@@ -77,8 +75,3 @@ export PATH="$PATH:$HOME/.npm/bin"
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
-
-# llama
-function ll {
-  cd "$(llama "$@")"
-}
