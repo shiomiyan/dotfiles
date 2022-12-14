@@ -2,8 +2,8 @@
 
 `dnf` or `brew` needed.
 
-```
-bash -c "$(curl -fsSL https://shiomiyan.github.io/dotfiles/bin/setup-tools/bootstrap.sh)"
+```shell
+bash -c "$(curl -fsSL https://shiomiyan.github.io/bootstrap/bootstrap.sh)"
 ```
 
 ### Windows
@@ -12,6 +12,6 @@ bash -c "$(curl -fsSL https://shiomiyan.github.io/dotfiles/bin/setup-tools/boots
 
 Winget will not be automatically installed. Make sure [`winget`](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is installed.
 
-```
-iwr "https://shiomiyan.github.io/dotfiles/bin/setup-tools/bootstrap.ps1" -useb | iex
+```powershell
+iwr "https://shiomiyan.github.io/dotfiles/bootstrap/bootstrap.ps1" -useb | iex
 ```
