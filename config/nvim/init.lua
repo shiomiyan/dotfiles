@@ -368,6 +368,15 @@ if vim.fn.has("unix") and not is_wsl then
     })
 end
 
+-- macOS
+if vim.fn.has("osx") then
+    vim.opt.guifont = "Sarasa Fixed J:h16"
+
+    if vim.fn.exists("g:neovide") then
+        vim.g.neovide_transparency = 0.7
+    end
+end
+
 -------------
 -- Keymaps --
 -------------
