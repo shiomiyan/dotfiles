@@ -1,6 +1,6 @@
 -- If you started neovim within `~/dev/xy/project-1` this would resolve to `project-1`
-local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
-local workspace_dir = '~/.local/workspace' .. project_name
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local workspace_dir = "~/.local/workspace" .. project_name
 
 local data_dir = vim.fn.stdpath("data")
 local jar = data_dir .. "/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
@@ -9,8 +9,7 @@ local platform = "windows"
 if vim.fn.has("unix") then
     platform = "linux"
 end
-local configuration = data_dir .. '/mason/packages/jdtls/config_' .. platform
-print(configuration)
+local configuration = data_dir .. "/mason/packages/jdtls/config_" .. platform
 
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 local config = {
@@ -19,39 +18,43 @@ local config = {
     cmd = {
 
         -- 💀
-        'java', -- Export path to java needed
-        '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-        '-Dosgi.bundles.defaultStartLevel=4',
-        '-Declipse.product=org.eclipse.jdt.ls.core.product',
-        '-Dlog.protocol=true',
-        '-Dlog.level=ALL',
-        '-Xms1g',
-        '--add-modules=ALL-SYSTEM',
-        '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-        '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+        "java", -- Export path to java needed
+        "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+        "-Dosgi.bundles.defaultStartLevel=4",
+        "-Declipse.product=org.eclipse.jdt.ls.core.product",
+        "-Dlog.protocol=true",
+        "-Dlog.level=ALL",
+        "-Xms1g",
+        "--add-modules=ALL-SYSTEM",
+        "--add-opens",
+        "java.base/java.util=ALL-UNNAMED",
+        "--add-opens",
+        "java.base/java.lang=ALL-UNNAMED",
 
         -- 💀
-        '-jar', jar,
+        "-jar",
+        jar,
 
         -- 💀
-        '-configuration', configuration,
+        "-configuration",
+        configuration,
 
         -- 💀
         -- See `data directory configuration` section in the README
-        '-data', workspace_dir,
+        "-data",
+        workspace_dir,
     },
 
     -- 💀
     -- This is the default if not provided, you can remove it. Or adjust as needed.
     -- One dedicated LSP server & client will be started per unique root_dir
-    root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
+    root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew" }),
 
     -- Here you can configure eclipse.jdt.ls specific settings
     -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
     -- for a list of options
     settings = {
-        java = {
-        }
+        java = {},
     },
 
     -- Language server `initializationOptions`
@@ -66,4 +69,4 @@ local config = {
 
 -- This starts a new client & server,
 -- or attaches to an existing client & server depending on the `root_dir`.
-require('jdtls').start_or_attach(config)
+require("jdtls").start_or_attach(config)
