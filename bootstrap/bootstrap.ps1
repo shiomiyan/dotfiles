@@ -52,39 +52,60 @@ function local:Install-App {
     }
 
     # GUI applications are installed by winget
-    winget import -i "$HOME\dotfiles\bootstrap\winget.json"
+    #winget import -i "$HOME\dotfiles\bootstrap\winget.json"
 
     # Add scoop buckets
     scoop bucket add extras
     scoop bucket add versions
 
     # Install runtimes, commandline tools
-    scoop install     `
-        make          `
-        git           `
-        gh            `
-        ghq           `
-        peco          `
-        sudo          `
-        deno          `
-        nodejs-lts    `
-        starship      `
-        bat           `
-        lsd           `
-        zoxide        `
-        fd            `
-        ripgrep       `
-        rga           `
-        hugo-extended `
-        sudo
+    $apps = @{
+        winget = @(
+            "Microsoft.VisualStudio.2019.BuildTools",
+            "Audacity.Audacity",
+            "CPUID.HWMonitor",
+            "Discord.Discord",
+            "Git.Git",
+            "Mozilla.Firefox",
+            "AntoineAflalo.SoundSwitch",
+            "Spotify.Spotify",
+            "Valve.Steam",
+            "VideoLAN.VLC",
+            "7zip.7zip",
+            "Microsoft.VisualStudioCode",
+            "wez.wezterm",
+            "Microsoft.PowerShell",
+            "Avidemux.Avidemux"
+        );
+        choco = @(
+            "neovim",
+            "espanso"
+        );
+        scoop = @(
+            "make",
+            "gh",
+            "ghq",
+            "peco",
+            "sudo",
+            "deno",
+            "nodejs-lts",
+            "starship",
+            "bat",
+            "lsd",
+            "zoxide",
+            "fd",
+            "ripgrep",
+            "rga",
+            "hugo-extended"
+        )
+    }
+    $apps.scoop | ForEach-Object { scoop install $_ }
 
     # Always enable -y option
     choco feature enable -n allowGlobalConfirmation
 
     # Install applications using choco
-    choco install neovim --pre
-    choco install espanso --pre
-
+    $apps.choco | ForEach-Object { choco install $_ --pre }
 
     # Install Rust
     Invoke-WebRequest `
@@ -106,13 +127,17 @@ function local:Create-Symlink {
 
 #>
 
+    if (-not (Test-Path "$HOME\.config")) {
+        mkdir $HOME\.config
+    }
+
     New-Item -ItemType SymbolicLink `
         -Path   $HOME\Documents\PowerShell `
         -Target $HOME\dotfiles\config\powershell
 
     New-Item -ItemType SymbolicLink `
-        -Path   $HOME\.config `
-        -Target $HOME\dotfiles\config\
+        -Path   $HOME\.config\wezterm `
+        -Target $HOME\dotfiles\config\wezterm
 
     New-Item -ItemType SymbolicLink `
         -Path   $env:LOCALAPPDATA\nvim `
@@ -121,11 +146,6 @@ function local:Create-Symlink {
     New-item -ItemType SymbolicLink `
         -Path   $env:APPDATA\espanso `
         -Target $HOME\dotfiles\config\espanso
-
-    git config --global core.editor 'nvim'
-
-    # Install Neovim plugins
-    nvim -es -u ~/.config/nvim/init.vim -i NONE -c "PlugInstall" -c "qa"
 
 }
 
