@@ -127,7 +127,7 @@ local launch_menu = {}
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configuration
     config.default_prog = { "pwsh.exe", "-NoLogo" }
 
-    config.font = wezterm.font_with_fallback({ "JetBrains Mono", "BIZ UDGothic" })
+    config.font = wezterm.font_with_fallback({ "Consolas", "BIZ UDGothic" })
     config.font_size = 11
 
     -- Add PowerShell to launch menu
