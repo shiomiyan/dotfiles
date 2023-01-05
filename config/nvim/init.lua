@@ -10,6 +10,7 @@ vim.call("plug#begin")
 plug("nvim-lualine/lualine.nvim")
 plug("folke/tokyonight.nvim", { branch = "main" })
 plug("machakann/vim-highlightedyank")
+plug("onsails/lspkind.nvim")
 -- plug('andymass/vim-matchup')
 
 -- Semantic language support
@@ -99,13 +100,21 @@ cmp.setup({
         { name = "buffer" },
     }),
 
+    window = {
+        completion = {
+            winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+            col_offset = -3,
+            side_padding = 0,
+        },
+    },
+
     formatting = {
         fields = { "menu", "abbr", "kind" },
         format = function(entry, item)
             local menu_icon = {
-                nvim_lsp = "[L]",
-                buffer = "[b]",
-                path = "[p]",
+                nvim_lsp = "[LSP]",
+                buffer = "[Buffer]",
+                path = "[Path]",
             }
             item.menu = menu_icon[entry.source.name]
             return item
@@ -272,7 +281,7 @@ require("tokyonight").setup({
     style = "night",
     transparent = true,
     styles = {
-        comments = { italic = false },
+        comments = { italic = true },
         keywords = { italic = false },
     },
 })

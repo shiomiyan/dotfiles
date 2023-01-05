@@ -71,6 +71,7 @@ local config = {
 
         -- Launch menu for tabs
         { key = "9", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
+        { key = "n", mods = "LEADER", action = wezterm.action.ToggleFullScreen },
     },
     mouse_bindings = {
         -- Right-Click will open the link under the mouse cursor
@@ -161,8 +162,8 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
 else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
 
-    config.font = wezterm.font_with_fallback({ "Sarasa Fixed J" })
-    config.font_size = 12
+    config.font = wezterm.font_with_fallback({ "Sarasa Fixed Slab J" })
+    config.font_size = 13
 end
 
 return config
