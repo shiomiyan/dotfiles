@@ -19,5 +19,3 @@
 [diff]
 	algorithm = patience
 	compactionHeuristic = true
-[url "git@github.com:shiomiyan"]
-	insteadOf = https://github.com/shiomiyan # Replace HTTPS url to SSH url
