@@ -4,7 +4,7 @@
 
 # Show path to command
 function local:which {
-    Get-Command -ShowCommandInfo $args | Format-Table -Property Definition
+     Get-Command -ShowCommandInfo $args | %{ $_.Definition }
 }
 
 # WSL feature switcher
