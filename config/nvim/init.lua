@@ -8,6 +8,7 @@ vim.call("plug#begin")
 
 -- GUI enhancements
 plug("nvim-lualine/lualine.nvim")
+plug("arkav/lualine-lsp-progress")
 plug("folke/tokyonight.nvim", { branch = "main" })
 plug("machakann/vim-highlightedyank")
 plug("onsails/lspkind.nvim")
@@ -23,6 +24,7 @@ plug("hrsh7th/nvim-cmp")
 plug("hrsh7th/cmp-nvim-lsp")
 plug("hrsh7th/cmp-buffer")
 plug("hrsh7th/cmp-path")
+plug("hrsh7th/cmp-cmdline")
 plug("hrsh7th/vim-vsnip") -- required as a nvim-cmp dependency, even if not using snippet
 
 -- Syntactic language support
@@ -61,7 +63,7 @@ require("lualine").setup({
     sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { "filename" },
+        lualine_c = { "filename", "lsp_progress" },
         lualine_x = { "encoding", "fileformat", "filetype" },
         lualine_y = { "progress" },
         lualine_z = { "location" },
@@ -263,6 +265,21 @@ vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope find_files<CR>", { norema
 vim.api.nvim_set_keymap("n", "<Leader>fg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>fb", ":Telescope buffers<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>fh", ":Telescope help_tags<CR>", { noremap = true, silent = true })
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = "path" },
+    }, {
+        {
+            name = "cmdline",
+            option = {
+                ignore_cmds = { "Man", "!" },
+            },
+        },
+    }),
+})
 
 ------------------
 -- GUI Settings --

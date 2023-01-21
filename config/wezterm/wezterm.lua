@@ -5,7 +5,7 @@ local config = {
     -- GUI Customization --
     -----------------------
     color_scheme = "tokyonight",
-    window_background_opacity = 0.9,
+    window_background_opacity = 1.0,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
 
