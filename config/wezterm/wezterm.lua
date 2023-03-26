@@ -64,7 +64,7 @@ local config = {
         { key = "k", mods = "ALT", action = wezterm.action.ScrollByLine(-2) },
 
         -- Copy text
-        { key = "c", mods = "CTRL|SHIFT", action = "Copy" },
+        { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
 
         -- Launch menu for launcher
         { key = "l", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }) },
@@ -156,7 +156,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
     config.default_prog = { "zsh", "--login" }
 
     config.font = wezterm.font_with_fallback({ "Sarasa Fixed J" })
-    config.font_size = 17
+    config.font_size = 16
 
     config.window_padding.right = 16 -- Scrollbar width
 else -- Linux configuration
