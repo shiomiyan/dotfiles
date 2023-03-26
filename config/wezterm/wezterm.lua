@@ -156,7 +156,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
     config.default_prog = { "zsh", "--login" }
 
     config.font = wezterm.font_with_fallback({ "Sarasa Fixed J" })
-    config.font_size = 16
+    config.font_size = 18
 
     config.window_padding.right = 16 -- Scrollbar width
 else -- Linux configuration
