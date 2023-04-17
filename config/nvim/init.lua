@@ -166,7 +166,7 @@ require("mason").setup()
 local mason_lspconfig = require("mason-lspconfig")
 
 mason_lspconfig.setup({
-    ensure_installed = { "rust_analyzer", "sumneko_lua" },
+    ensure_installed = { "rust_analyzer", "lua_ls" },
 })
 
 local lspconfig = require("lspconfig")
@@ -181,7 +181,7 @@ mason_lspconfig.setup_handlers({
 })
 
 -- Setup Lua language server
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
     settings = {
         Lua = {
             diagnostics = {
