@@ -8,27 +8,21 @@ local config = {
     window_background_opacity = 1.0,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
-
     -- Initial window size on startup
     initial_rows = 32,
     initial_cols = 100,
-
     -- Window Padding for scrollbar
     window_padding = { right = 10, top = 0, bottom = 0 },
-
     -- Scrollbar Appearance
     enable_scroll_bar = true,
     colors = { scrollbar_thumb = "Gray" },
-
     -- Disable font ligatures, enable slash zero
     harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
-
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
         brightness = 0.8,
     },
-
     -----------------------
     -- App Configuration --
     -----------------------
@@ -37,7 +31,6 @@ local config = {
     -- Check Update manually
     check_for_updates = false,
     adjust_window_size_when_changing_font_size = false,
-
     ------------------
     -- Key bindings --
     ------------------
@@ -51,8 +44,20 @@ local config = {
         { key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
 
         -- Key bindings for pane operation
-        { key = "h", mods = "ALT", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-        { key = "v", mods = "ALT", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+        {
+            key = "h",
+            mods = "ALT",
+            action = wezterm.action({
+                SplitHorizontal = { domain = "CurrentPaneDomain" },
+            }),
+        },
+        {
+            key = "v",
+            mods = "ALT",
+            action = wezterm.action({
+                SplitVertical = { domain = "CurrentPaneDomain" },
+            }),
+        },
         { key = "w", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Next") },
         { key = "LeftArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Left", 2 }) },
         { key = "DownArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Down", 2 }) },
@@ -156,7 +161,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
     config.default_prog = { "zsh", "--login" }
 
     config.font = wezterm.font_with_fallback({ "Sarasa Fixed J" })
-    config.font_size = 18
+    config.font_size = 17
 
     config.window_padding.right = 16 -- Scrollbar width
 else -- Linux configuration
