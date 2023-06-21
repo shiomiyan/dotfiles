@@ -4,7 +4,7 @@ local config = {
     -----------------------
     -- GUI Customization --
     -----------------------
-    color_scheme = "tokyonight",
+    color_scheme = "Kanagawa (Gogh)",
     window_background_opacity = 1.0,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
@@ -16,6 +16,8 @@ local config = {
     -- Scrollbar Appearance
     enable_scroll_bar = true,
     colors = { scrollbar_thumb = "Gray" },
+    -- Reverse Curor Colors
+    force_reverse_video_cursor = true,
     -- Disable font ligatures, enable slash zero
     harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
     -- Pane appearance

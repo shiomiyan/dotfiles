@@ -10,6 +10,7 @@ vim.call("plug#begin")
 plug("nvim-lualine/lualine.nvim")
 plug("arkav/lualine-lsp-progress")
 plug("folke/tokyonight.nvim", { branch = "main" })
+plug("rebelot/kanagawa.nvim")
 plug("machakann/vim-highlightedyank")
 plug("onsails/lspkind.nvim")
 -- plug('andymass/vim-matchup')
@@ -87,21 +88,18 @@ cmp.setup({
             vim.fn["vsnip#anonymous"](args.body)
         end,
     },
-
     mapping = cmp.mapping.preset.insert({
         ["<C-d>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-e>"] = cmp.mapping.abort(),
         ["<Tab>"] = cmp.mapping.confirm({ select = true }),
     }),
-
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "path" },
     }, {
         { name = "buffer" },
     }),
-
     window = {
         completion = {
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
@@ -109,7 +107,6 @@ cmp.setup({
             side_padding = 0,
         },
     },
-
     formatting = {
         fields = { "menu", "abbr", "kind" },
         format = function(entry, item)
@@ -122,7 +119,6 @@ cmp.setup({
             return item
         end,
     },
-
     experimental = {
         ghost_text = true,
     },
@@ -224,7 +220,6 @@ null_ls.setup({
     sources = {
         null_ls.builtins.formatting.stylua,
     },
-
     -- you can reuse a shared lspconfig on_attach callback here
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
@@ -294,15 +289,18 @@ vim.opt.sidescrolloff = 5
 vim.opt.laststatus = 2
 vim.opt.showmode = false
 
-require("tokyonight").setup({
-    style = "night",
+--require("tokyonight").setup({
+--    style = "night",
+--    transparent = true,
+--    styles = {
+--        comments = { italic = true },
+--        keywords = { italic = false },
+--    },
+--})
+require("kanagawa").setup({
     transparent = true,
-    styles = {
-        comments = { italic = true },
-        keywords = { italic = false },
-    },
 })
-vim.cmd([[colorscheme tokyonight]])
+vim.cmd("colorscheme kanagawa")
 
 ---------------------
 -- Editor Settings --
