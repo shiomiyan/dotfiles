@@ -18,6 +18,7 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
+    font = wezterm.font_with_fallback({ "Noto Sans Mono", "IBM Plex Sans JP" }),
     -- Disable font ligatures, enable slash zero
     harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
     -- Pane appearance
@@ -134,7 +135,6 @@ local launch_menu = {}
 -- Switch configuration depends on OS
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configuration
     config.default_prog = { "pwsh.exe", "-NoLogo" }
-
     config.font = wezterm.font_with_fallback({ "Consolas", "BIZ UDGothic" })
     config.font_size = 13
 
@@ -160,16 +160,13 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configurati
 
     config.launch_menu = launch_menu
 elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuration
+    -- https://github.com/wez/wezterm/issues/2669
+    config.window_background_opacity = 0.9999
     config.default_prog = { "zsh", "--login" }
-
-    config.font = wezterm.font_with_fallback({ "PlemolJP Console" })
-    config.font_size = 17
-
+    config.font_size = 16
     config.window_padding.right = 16 -- Scrollbar width
 else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
-
-    config.font = wezterm.font_with_fallback({ "Sarasa Fixed Slab J" })
     config.font_size = 13
 end
 
