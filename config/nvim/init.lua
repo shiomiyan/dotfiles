@@ -43,7 +43,6 @@ require("lazy").setup({
     "rust-lang/rust.vim",
     { "cespare/vim-toml", branch = "main" },
     "ron-rs/ron.vim",
-    "mfussenegger/nvim-jdtls", -- For Java
     "nvim-treesitter/nvim-treesitter",
 
     -- Fuzzy finder
