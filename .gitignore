@@ -19,7 +19,7 @@ stylua.toml
 #########
 !.tmux.conf
 !.Xmodmap
-!.zshenv
+!zshenv
 stylua.toml
 
 ################
