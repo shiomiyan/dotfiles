@@ -20,7 +20,6 @@ require("lazy").setup({
     -- GUI enhancements
     "nvim-lualine/lualine.nvim",
     "arkav/lualine-lsp-progress",
-    { "folke/tokyonight.nvim", branch = "main" },
     "rebelot/kanagawa.nvim",
     "machakann/vim-highlightedyank",
     "onsails/lspkind.nvim",
@@ -57,6 +56,9 @@ require("lazy").setup({
     "airblade/vim-gitgutter",
     "mfussenegger/nvim-dap",
     "jose-elias-alvarez/null-ls.nvim",
+    { "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" },
+    -- "nvim-tree/nvim-web-devicons",
+    "MunifTanjim/nui.nvim",
 })
 
 ---------------------
@@ -79,6 +81,21 @@ require("lualine").setup({
         lualine_z = { "location" },
     },
 })
+
+-- File Explorer
+require("neo-tree").setup({
+    window = {
+        position = "float",
+        popup = { -- settings that apply to float position only
+            size = {
+                height = "80%",
+                width = "50%",
+            },
+            position = "50%",
+        },
+    },
+})
+vim.api.nvim_set_keymap("n", "<Leader>nt", ":Neotree<CR>", { noremap = true, silent = true })
 
 -- treesitter
 require("nvim-treesitter.configs").setup({
@@ -298,14 +315,6 @@ vim.opt.sidescrolloff = 5
 vim.opt.laststatus = 2
 vim.opt.showmode = false
 
---require("tokyonight").setup({
---    style = "night",
---    transparent = true,
---    styles = {
---        comments = { italic = true },
---        keywords = { italic = false },
---    },
---})
 require("kanagawa").setup({
     transparent = true,
 })
