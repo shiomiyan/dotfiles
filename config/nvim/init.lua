@@ -99,7 +99,7 @@ vim.api.nvim_set_keymap("n", "<Leader>nt", ":Neotree<CR>", { noremap = true, sil
 
 -- treesitter
 require("nvim-treesitter.configs").setup({
-    ensure_installed = { "c", "lua", "rust" },
+    ensure_installed = { "gitcommit", "lua", "rust" },
     auto_install = true,
     highlight = {
         enable = true,
