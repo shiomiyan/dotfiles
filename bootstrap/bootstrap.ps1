@@ -3,7 +3,7 @@
 # Allow script execution
 Set-ExecutionPolicy Bypass -Force
 
-function local:Install-App {
+function local:Install-Apps {
     <#
 
 .DESCRIPTION
@@ -28,64 +28,46 @@ function local:Install-App {
         }
     }
 
-    # Install chocolatey if not exists
-    if (-not (Get-Command choco -ea SilentlyContinue)) {
-        [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-        Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-    }
-
     # Install scoop if not exists
     if (-not (Get-Command scoop -ea SilentlyContinue)) {
         Invoke-RestMethod get.scoop.sh | Invoke-Expression
     }
 
-    # Install git first
-    scoop install git
-
-    # Refresh environment value
-    Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-    refreshenv
+    # Add scoop buckets
+    scoop bucket add extras
+    scoop bucket add versions
 
     # Clone repo if not exists
     if (!(Test-Path "$HOME\dotfiles")) {
         git clone https://github.com/shiomiyan/dotfiles.git $HOME/dotfiles
     }
 
-    # GUI applications are installed by winget
-    #winget import -i "$HOME\dotfiles\bootstrap\winget.json"
-
-    # Add scoop buckets
-    scoop bucket add extras
-    scoop bucket add versions
-
     # Install runtimes, commandline tools
     $apps = @{
         winget = @(
+            # Dev utilities
             "Microsoft.VisualStudio.2019.BuildTools",
-            "Audacity.Audacity",
-            "CPUID.HWMonitor",
-            "Discord.Discord",
             "Git.Git",
-            "Mozilla.Firefox",
-            "AntoineAflalo.SoundSwitch",
-            "Spotify.Spotify",
-            "Valve.Steam",
-            "VideoLAN.VLC",
-            "7zip.7zip",
             "Microsoft.VisualStudioCode",
             "wez.wezterm",
             "Microsoft.PowerShell",
-            "Avidemux.Avidemux"
-        );
-        choco = @(
-            "neovim",
-            "espanso"
+            "Neovim.Neovim",
+            # Other utilities
+            "7zip.7zip",
+            "Audacity.Audacity",
+            "Avidemux.Avidemux",
+            "AntoineAflalo.SoundSwitch",
+            "CPUID.HWMonitor",
+            "Discord.Discord",
+            "Mozilla.Firefox",
+            "Spotify.Spotify",
+            "Valve.Steam",
+            "VideoLAN.VLC"
+
         );
         scoop = @(
             "make",
             "gh",
-            "ghq",
-            "peco",
             "sudo",
             "deno",
             "nodejs-lts",
@@ -99,13 +81,8 @@ function local:Install-App {
             "hugo-extended"
         )
     }
+    $apps.winget | ForEach-Object { winget install -y $_ }
     $apps.scoop | ForEach-Object { scoop install $_ }
-
-    # Always enable -y option
-    choco feature enable -n allowGlobalConfirmation
-
-    # Install applications using choco
-    $apps.choco | ForEach-Object { choco install $_ --pre }
 
     # Install Rust
     Invoke-WebRequest `
@@ -115,10 +92,9 @@ function local:Install-App {
     Remove-Item -Force C:\Temp\rustup-init.exe
 
     refreshenv
-
 }
 
-function local:Create-Symlink {
+function local:Invoke-Create-Symlink {
 
     <#
 
@@ -154,16 +130,14 @@ function local:Create-Symlink {
 if ($(Read-Host "Proceed application and dependencies installation [y/n]") -eq "y") {
     Write-Output "Confirmed."
     Install-Apps
-}
-else {
+} else {
     Write-Output "Setup cancelled."
 }
 
 # Setup Application Config.
 if ($(Read-Host "Proceed application and dependencies installation [y/n]") -eq "y") {
     Write-Output "Confirmed."
-    Connect-Dotfiles
-}
-else {
+    Invoke-Create-Symlink
+} else {
     Write-Output "Setup cancelled."
 }
