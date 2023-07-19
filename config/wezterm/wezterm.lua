@@ -102,10 +102,21 @@ local config = {
     },
 }
 
--- Only show tab_index in tab bar
+function basename(s)
+    return string.gsub(s, "(.*[/\\])(.*)", "%2")
+end
+
 wezterm.on("format-tab-title", function(tab)
-    local title = " " .. tab.tab_index .. " "
-    return { { Text = title } }
+    local pane = tab.active_pane
+    local title = basename(pane.foreground_process_name) .. " " .. pane.pane_id
+    local color = "#383838"
+    if tab.is_active then
+        color = "#242424"
+    end
+    return {
+        { Background = { Color = color } },
+        { Text = " " .. title .. " " },
+    }
 end)
 
 wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
@@ -163,7 +174,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
     -- https://github.com/wez/wezterm/issues/2669
     config.window_background_opacity = 0.9999
     config.default_prog = { "zsh", "--login" }
-    config.font_size = 16
+    config.font_size = 17
     config.window_padding.right = 16 -- Scrollbar width
 else -- Linux configuration
     config.default_prog = { "zsh", "--login" }
