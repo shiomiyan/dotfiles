@@ -1,8 +1,5 @@
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-# Allow script execution
-Set-ExecutionPolicy Bypass -Force
-
 function local:Install-Apps {
     <#
 
@@ -48,10 +45,19 @@ function local:Install-Apps {
             # Dev utilities
             "Microsoft.VisualStudio.2019.BuildTools",
             "Git.Git",
+            "GitHub.cli",
+            "OpenJS.NodeJS",
+            "DenoLand.Deno",
             "Microsoft.VisualStudioCode",
             "wez.wezterm",
             "Microsoft.PowerShell",
             "Neovim.Neovim",
+            "gerardog.gsudo",
+            "Starship.Starship",
+            "sharkdp.bat",
+            "sharkdp.fd",
+            "ajeetdsouza.zoxide",
+            "Hugo.Hugo.Extended",
             # Other utilities
             "7zip.7zip",
             "Audacity.Audacity",
@@ -66,22 +72,13 @@ function local:Install-Apps {
 
         );
         scoop = @(
-            "make",
-            "gh",
-            "sudo",
-            "deno",
-            "nodejs-lts",
-            "starship",
-            "bat",
-            "lsd",
-            "zoxide",
-            "fd",
             "ripgrep",
             "rga",
-            "hugo-extended"
+            "hugo-extended",
+            "zig"
         )
     }
-    $apps.winget | ForEach-Object { winget install -y $_ }
+    $apps.winget | ForEach-Object { winget install $_ }
     $apps.scoop | ForEach-Object { scoop install $_ }
 
     # Install Rust
@@ -130,14 +127,6 @@ function local:Invoke-Create-Symlink {
 if ($(Read-Host "Proceed application and dependencies installation [y/n]") -eq "y") {
     Write-Output "Confirmed."
     Install-Apps
-} else {
-    Write-Output "Setup cancelled."
-}
-
-# Setup Application Config.
-if ($(Read-Host "Proceed application and dependencies installation [y/n]") -eq "y") {
-    Write-Output "Confirmed."
-    Invoke-Create-Symlink
 } else {
     Write-Output "Setup cancelled."
 }
