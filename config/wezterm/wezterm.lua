@@ -18,9 +18,9 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ "Noto Sans Mono", "IBM Plex Sans JP" }),
+    font = wezterm.font_with_fallback({ "Fira Code", "BIZ UDGothic" }),
     -- Disable font ligatures, enable slash zero
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0", "cv01", "cv10" },
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
@@ -146,8 +146,7 @@ local launch_menu = {}
 -- Switch configuration depends on OS
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configuration
     config.default_prog = { "pwsh.exe", "-NoLogo" }
-    config.font = wezterm.font_with_fallback({ "Consolas", "BIZ UDGothic" })
-    config.font_size = 14
+    config.font_size = 12
 
     -- Add PowerShell to launch menu
     table.insert(launch_menu, { label = "pwsh", args = { "pwsh.exe", "-NoLogo" } })
