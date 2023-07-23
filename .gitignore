@@ -1,6 +1,8 @@
 *
 **/*
 !.gitignore
+!.github/
+!.github/README.md
 !bootstrap/
 !bootstrap/bootstrap.ps1
 !bootstrap/bootstrap.sh
