@@ -1,8 +1,0 @@
-*
-/**
-
-# White list
-!.gitignore
-!init.lua
-!vscode.lua
-!/ftplugin/gitconfig.lua
