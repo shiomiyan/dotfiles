@@ -8,6 +8,7 @@ local config = {
     window_background_opacity = 1.0,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
+    tab_max_width = 35,
     -- Initial window size on startup
     initial_rows = 32,
     initial_cols = 100,
@@ -71,6 +72,8 @@ local config = {
         -- Window Scrolling
         { key = "j", mods = "ALT", action = wezterm.action.ScrollByLine(2) },
         { key = "k", mods = "ALT", action = wezterm.action.ScrollByLine(-2) },
+        { key = "j", mods = "ALT|SHIFT", action = wezterm.action.ScrollByPage(0.5) },
+        { key = "k", mods = "ALT|SHIFT", action = wezterm.action.ScrollByPage(-0.5) },
 
         -- Copy text
         { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
@@ -107,16 +110,22 @@ function basename(s)
     return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
 
+local ACTIVE_PANE_ICON = utf8.char("0xf444")
+
 wezterm.on("format-tab-title", function(tab)
     local pane = tab.active_pane
-    local title = basename(pane.foreground_process_name) .. " " .. pane.pane_id
+    local cwd = basename(pane.current_working_dir)
+    local title = "[" .. pane.pane_id .. "]" .. basename(pane.foreground_process_name) .. " " .. cwd .. "/"
     local color = "#383838"
+
     if tab.is_active then
         color = "#242424"
+        title = ACTIVE_PANE_ICON .. " " .. title
     end
+    title = " " .. title .. " "
     return {
         { Background = { Color = color } },
-        { Text = " " .. title .. " " },
+        { Text = title },
     }
 end)
 
