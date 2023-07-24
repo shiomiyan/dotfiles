@@ -16,7 +16,7 @@
 # You can also specify the key variant, such as LEFT_CTRL, RIGHT_SHIFT, etc...
 # toggle_key: ALT
 # You can also disable the toggle key completely with
-# toggle_key: OFF
+toggle_key: OFF
 
 # --- Injection Backend
 
@@ -39,3 +39,5 @@
 
 # For a list of all the available options, visit the official docs at: https://espanso.org/docs/
 show_notifications: false
+search_shortcut: off
+search_trigger: ";;search"
