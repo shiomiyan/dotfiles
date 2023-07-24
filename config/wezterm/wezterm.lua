@@ -8,7 +8,7 @@ local config = {
     window_background_opacity = 1.0,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
-    tab_max_width = 35,
+    tab_max_width = 100,
     -- Initial window size on startup
     initial_rows = 32,
     initial_cols = 100,
@@ -106,7 +106,7 @@ local config = {
     },
 }
 
-function basename(s)
+local function basename(s)
     return string.gsub(s, "(.*[/\\])(.*)", "%2")
 end
 
@@ -114,7 +114,7 @@ local ACTIVE_PANE_ICON = utf8.char("0xf444")
 
 wezterm.on("format-tab-title", function(tab)
     local pane = tab.active_pane
-    local cwd = basename(pane.current_working_dir)
+    local cwd = string.gsub(pane.current_working_dir, "^.*/(.*)/+$", "%1")
     local title = "[" .. pane.pane_id .. "]" .. basename(pane.foreground_process_name) .. " " .. cwd .. "/"
     local color = "#383838"
 
