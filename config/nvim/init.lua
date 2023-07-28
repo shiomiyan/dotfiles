@@ -50,7 +50,6 @@ require("lazy").setup({
 
     -- Utilities
     "vim-denops/denops.vim",
-    "kat0h/bufpreview.vim", -- Markdown preview
     "tpope/vim-surround",
     "folke/which-key.nvim",
     "airblade/vim-gitgutter",
@@ -86,7 +85,8 @@ require("lualine").setup({
 require("neo-tree").setup({
     window = {
         position = "float",
-        popup = { -- settings that apply to float position only
+        popup = {
+            -- settings that apply to float position only
             size = {
                 height = "80%",
                 width = "50%",
