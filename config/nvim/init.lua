@@ -49,7 +49,6 @@ require("lazy").setup({
     { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
 
     -- Utilities
-    "vim-denops/denops.vim",
     "tpope/vim-surround",
     "folke/which-key.nvim",
     "airblade/vim-gitgutter",
@@ -254,8 +253,7 @@ null_ls.setup({
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
-                    -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-                    vim.lsp.buf.format({ bufnr = bufnr })
+                    vim.lsp.buf.format({ async = false })
                 end,
             })
         end

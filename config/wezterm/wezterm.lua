@@ -20,8 +20,7 @@ local config = {
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
     font = wezterm.font_with_fallback({ { family = "IBM Plex Mono", weight = "Medium" }, "BIZ UDGothic" }),
-    -- Disable font ligatures, enable slash zero
-    harfbuzz_features = { "zero" },
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
     line_height = 1.2,
     -- Pane appearance
     inactive_pane_hsb = {
