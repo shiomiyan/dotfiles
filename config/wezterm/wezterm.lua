@@ -157,8 +157,8 @@ local launch_menu = {}
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configuration
     config.default_prog = { "pwsh.exe", "-NoLogo" }
 
-    config.initial_rows = 50
-    config.initial_cols = 160
+    config.initial_rows = 42
+    config.initial_cols = 120
     config.font_size = 13
 
     -- Add PowerShell to launch menu
