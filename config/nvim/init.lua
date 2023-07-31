@@ -433,6 +433,8 @@ vim.keymap.set("i", "<Down>", "<Nop>")
 vim.keymap.set("i", "<Left>", "<Nop>")
 vim.keymap.set("i", "<Right>", "<Nop>")
 
+-- Movement
+vim.keymap.set("n", "H", "^")
 -- Vertical movement depends on displayed lines
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
