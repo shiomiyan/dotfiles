@@ -1,1 +1,3 @@
 set main-view = id date author:email-user commit-title:graph=true,refs=yes
+
+bind main <Ctrl-r> !git pull --rebase
