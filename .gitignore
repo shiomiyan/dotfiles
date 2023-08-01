@@ -44,6 +44,6 @@
 !windows/
 !windows/.wslconfig
 !windows/wsl.conf
-!.Xmodmap
-!stylua.toml
+!Xmodmap
+!.stylua.toml
 !zshenv
