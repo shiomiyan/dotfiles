@@ -93,6 +93,12 @@ require("neo-tree").setup({
             position = "50%",
         },
     },
+    filesystem = {
+        filtered_items = {
+            visible = true,
+            hidden_dotfiles = false,
+        },
+    },
 })
 vim.api.nvim_set_keymap("n", "<Leader>nt", ":Neotree<CR>", { noremap = true, silent = true })
 
