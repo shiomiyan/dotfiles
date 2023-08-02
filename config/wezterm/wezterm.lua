@@ -19,9 +19,14 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ { family = "IBM Plex Mono", weight = 500 }, "BIZ UDGothic" }),
-    harfbuzz_features = { "zero" },
-    line_height = 1.1,
+    font = wezterm.font_with_fallback({
+        {
+            family = "JetBrains Mono",
+            weight = 400,
+            harfbuzz_features = { "zero", "cv01", "cv03", "cv11" },
+        },
+        "BIZ UDGothic",
+    }),
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
@@ -48,13 +53,7 @@ local config = {
         { key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
 
         -- Key bindings for pane operation
-        {
-            key = "h",
-            mods = "ALT",
-            action = wezterm.action({
-                SplitHorizontal = { domain = "CurrentPaneDomain" },
-            }),
-        },
+        { key = "h", mods = "ALT", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
         {
             key = "v",
             mods = "ALT",
@@ -78,7 +77,11 @@ local config = {
         { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
 
         -- Launch menu for launcher
-        { key = "l", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }) },
+        {
+            key = "l",
+            mods = "ALT",
+            action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }),
+        },
 
         -- Launch menu for tabs
         { key = "9", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
@@ -174,7 +177,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configurati
 
     config.initial_rows = 42
     config.initial_cols = 120
-    config.font_size = 14
+    config.font_size = 13.5
 
     -- Add PowerShell to launch menu
     table.insert(launch_menu, { label = "pwsh", args = { "pwsh.exe", "-NoLogo" } })
