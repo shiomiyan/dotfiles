@@ -41,12 +41,10 @@ require("lazy").setup({
     -- Syntactic language support
     "rust-lang/rust.vim",
     { "cespare/vim-toml", branch = "main" },
-    "ron-rs/ron.vim",
     "nvim-treesitter/nvim-treesitter",
 
     -- Fuzzy finder
-    "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope.nvim", branch = "0.1.x" },
+    { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 
     -- Utilities
     "tpope/vim-surround",
@@ -54,9 +52,11 @@ require("lazy").setup({
     "airblade/vim-gitgutter",
     "mfussenegger/nvim-dap",
     "jose-elias-alvarez/null-ls.nvim",
-    { "nvim-neo-tree/neo-tree.nvim", branch = "v3.x" },
-    -- "nvim-tree/nvim-web-devicons",
-    "MunifTanjim/nui.nvim",
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x",
+        dependencies = { "MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons" },
+    },
 })
 
 ---------------------
@@ -347,7 +347,7 @@ vim.opt.clipboard = vim.opt.clipboard + "unnamedplus"
 vim.opt.wildmode = "longest:full,full"
 vim.opt.relativenumber = true
 vim.opt.undofile = true
-vim.opt.undodir = vim.fn.expand("~/.config/nvim/undo")
+vim.opt.undodir = vim.fn.expand(vim.fn.stdpath("data") .. "/undo")
 vim.opt.mouse = ""
 vim.opt.cmdheight = 2
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
@@ -362,46 +362,33 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = false
 
-----------
--- Misc --
-----------
-
-vim.g.netrw_liststyle = 3
-vim.g.netrw_banner = 0
-vim.g.netrw_sizestyle = "H"
-vim.g.netrw_timefmt = "%Y/%m/%d(%a) %H:%M:%S"
-vim.g.netrw_browse_split = 0
-vim.g.netrw_winsize = 20
-vim.g.netrw_alto = 1
-vim.g.netrw_altv = 1
-
--- Remove ws at the eol
-vim.cmd([[
-function! s:remove_trailing_space_on_save()
-    let cursor = getpos(".")
-    %s/\s\+$//ge
-    call setpos(".", cursor)
-    unlet cursor
-endfunction
-autocmd BufWritePre * call <SID>remove_trailing_space_on_save()
-]])
+-- Trim white-space at the EOL
+vim.api.nvim_create_autocmd("BufWritePre", {
+    pattern = { "*" },
+    callback = function()
+        local cursor = vim.api.nvim_win_get_cursor(0)
+        vim.api.nvim_command("%s/\\s\\+$//ge")
+        vim.api.nvim_win_set_cursor(0, cursor)
+    end
+})
 
 -- Windows: use system clipboard in WSL
 local is_wsl = (function()
     local output = vim.fn.systemlist("uname -r")
     return not not string.find(output[1] or "", "WSL")
 end)()
-if is_wsl then
-    local win32yank_executable_path = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
+
+if vim.fn.has("wsl") then
+    local win32yank = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
     vim.g.clipboard = {
         name = "win32yank",
         copy = {
-            ["+"] = win32yank_executable_path .. " -i --crlf",
-            ["*"] = win32yank_executable_path .. " -i --crlf",
+            ["+"] = win32yank .. " -i --crlf",
+            ["*"] = win32yank .. " -i --crlf",
         },
         paste = {
-            ["+"] = win32yank_executable_path .. " -o --lf",
-            ["*"] = win32yank_executable_path .. " -o --lf",
+            ["+"] = win32yank .. " -o --lf",
+            ["*"] = win32yank .. " -o --lf",
         },
         cache_enabled = 0,
     }
@@ -412,15 +399,6 @@ if vim.fn.has("unix") and not is_wsl then
     vim.api.nvim_create_autocmd("InsertLeave", {
         command = "call system('fcitx5-remote -c')",
     })
-end
-
--- macOS
-if vim.fn.has("osx") then
-    vim.opt.guifont = "Sarasa Fixed J:h16"
-
-    if vim.fn.exists("g:neovide") then
-        vim.g.neovide_transparency = 0.7
-    end
 end
 
 -------------
@@ -439,7 +417,6 @@ vim.keymap.set("i", "<Right>", "<Nop>")
 
 -- Movement
 vim.keymap.set("n", "H", "^")
--- Vertical movement depends on displayed lines
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 

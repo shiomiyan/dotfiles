@@ -19,14 +19,7 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({
-        {
-            family = "JetBrains Mono",
-            weight = 400,
-            harfbuzz_features = { "zero", "cv01", "cv03", "cv11" },
-        },
-        "BIZ UDGothic",
-    }),
+    font = wezterm.font_with_fallback({ "Noto Sans Mono", "BIZ UDGothic" }),
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
@@ -53,7 +46,13 @@ local config = {
         { key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
 
         -- Key bindings for pane operation
-        { key = "h", mods = "ALT", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+        {
+            key = "h",
+            mods = "ALT",
+            action = wezterm.action({
+                SplitHorizontal = { domain = "CurrentPaneDomain" },
+            }),
+        },
         {
             key = "v",
             mods = "ALT",
@@ -87,7 +86,7 @@ local config = {
         { key = "9", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
         { key = "n", mods = "LEADER", action = wezterm.action.ToggleFullScreen },
 
-        -- Font
+        -- Font switcher
         { key = "o", mods = "LEADER", action = wezterm.action.EmitEvent("toggle-font") },
     },
     mouse_bindings = {
@@ -133,7 +132,7 @@ local ACTIVE_PANE_ICON = utf8.char("0xf444")
 wezterm.on("format-tab-title", function(tab)
     local pane = tab.active_pane
     local cwd = string.gsub(pane.current_working_dir, ".+/(.+)/?$", "%1") .. "/"
-    local title = "[" .. pane.pane_id .. "]" .. basename(pane.foreground_process_name) .. " " .. cwd
+    local title = basename(pane.foreground_process_name) .. " " .. cwd
     local color = "#383838"
 
     if tab.is_active then
@@ -177,7 +176,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configurati
 
     config.initial_rows = 42
     config.initial_cols = 120
-    config.font_size = 13.5
+    config.font_size = 13
 
     -- Add PowerShell to launch menu
     table.insert(launch_menu, { label = "pwsh", args = { "pwsh.exe", "-NoLogo" } })
