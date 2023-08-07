@@ -369,7 +369,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
         local cursor = vim.api.nvim_win_get_cursor(0)
         vim.api.nvim_command("%s/\\s\\+$//ge")
         vim.api.nvim_win_set_cursor(0, cursor)
-    end
+    end,
 })
 
 -- Windows: use system clipboard in WSL
@@ -378,7 +378,7 @@ local is_wsl = (function()
     return not not string.find(output[1] or "", "WSL")
 end)()
 
-if vim.fn.has("wsl") then
+if is_wsl then
     local win32yank = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
     vim.g.clipboard = {
         name = "win32yank",
