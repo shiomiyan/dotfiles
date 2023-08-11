@@ -1,13 +1,24 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
 format = """
-$directory$git_branch$git_state$git_status
-$character"""
+[](#2e3440)\
+$os\
+[](fg:#2e3440 bg:#3b4252)\
+$directory\
+[](fg:#3b4252 bg:#434c5e)\
+$git_branch$git_state$git_status\
+[](fg:#434c5e)
+$character\
+"""
 
 [directory]
 fish_style_pwd_dir_length = 1
+style = "bg:#3b4252"
+format = "[ $path ]($style)"
 
 [character]
-success_symbol = "[>](bold green)"
-error_symbol   = "[>](bold red)"
+success_symbol = "[👉](bold green)"
+error_symbol   = "[👉](bold red)"
 
 [cmd_duration]
 disabled = true
@@ -15,11 +26,22 @@ disabled = true
 [package]
 disabled = true
 
-[git_branch]
-symbol = ""
+[os]
+disabled = false
+style = "bg:#2e3440"
+format = "[ $symbol ]($style)"
 
-[git_commit]
-tag_symbol = "tag "
+[os.symbols]
+Windows = "windows"
+Linux = "linux"
+
+[git_branch]
+style = "bg:#434c5e"
+format = "[ on $branch(:$remote_branch) ]($style)"
+
+[git_state]
+style = "bg:#434c5e"
+format = "[\\($state( $progress_current of $progress_total)\\) ]($style)"
 
 [git_status]
 ahead = "↑"
@@ -27,3 +49,6 @@ behind = "↓"
 renamed = "~"
 deleted = "%"
 diverged = "@"
+style = "bg:#434c5e"
+format = "[$all_status$ahead_behind ]($style)"
+
