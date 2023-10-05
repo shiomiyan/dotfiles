@@ -1,3 +1,6 @@
 set main-view = id date author:email-user commit-title:graph=true,refs=yes
 
-bind main <Ctrl-r> !git pull --rebase
+set vertical-split = false
+
+bind main <Ctrl-r> !git pull
+bind main U ?git push "%(branch)"
