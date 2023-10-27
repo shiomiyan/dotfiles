@@ -1,0 +1,15 @@
+set clipboard+=unnamed
+set scrolloff=10
+set sidescrolloff=10
+set showmode
+
+set highlightedyank
+
+nnoremap j gj
+nnoremap k gk
+nnoremap H ^
+nnoremap <C-h> :nohlsearch<CR>
+nnoremap <Tab> gt
+nnoremap <S-Tab> gT
+
+vmap p _dp
