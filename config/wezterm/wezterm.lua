@@ -8,7 +8,7 @@ local config = {
     window_background_opacity = 1.0,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
-    tab_max_width = 100,
+    tab_max_width = 25,
     -- Initial window size on startup
     initial_rows = 32,
     initial_cols = 100,
