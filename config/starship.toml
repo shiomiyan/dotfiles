@@ -24,3 +24,6 @@ disabled = false
 staged = "•"
 untracked = "+"
 deleted = "x"
+ahead = "▲${count}"
+behind = "▼${count}"
+diverged = "▲${ahead_count} ▼${behind_count}"
