@@ -131,7 +131,7 @@ local ACTIVE_PANE_ICON = utf8.char("0xf444")
 
 wezterm.on("format-tab-title", function(tab)
     local pane = tab.active_pane
-    local cwd = string.gsub(pane.current_working_dir, ".+/(.+)/?$", "%1") .. "/"
+    local cwd = string.gsub(pane.current_working_dir, ".+/(.+)/?$", "%1")
     local title = basename(pane.foreground_process_name) .. " " .. cwd
     local color = "#383838"
 
