@@ -12,16 +12,6 @@ Invoke-Expression (&starship init powershell)
 Invoke-Expression (& {
     (zoxide init --hook pwd powershell | Out-String)
 })
-$prompt = ""
-function Invoke-Starship-PreCommand {
-    $current_location = $executionContext.SessionState.Path.CurrentLocation
-    if ($current_location.Provider.Name -eq "FileSystem") {
-        $ansi_escape = [char]27
-        $provider_path = $current_location.ProviderPath -replace "\\", "/"
-        $prompt = "$ansi_escape]7;file://${env:COMPUTERNAME}/${provider_path}$ansi_escape\"
-    }
-    $host.ui.Write($prompt)
-}
 
 # Command completions
 try {
@@ -37,3 +27,5 @@ Set-PSReadlineOption -EditMode Emacs
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete # Show Tab completion menu
 Set-PSReadLineKeyHandler -Key Ctrl+n -Function TabCompleteNext
 Set-PSReadLineKeyHandler -Key Ctrl+p -Function TabCompletePrevious
+
+$Env:STARSHIP_LOG = "error"
