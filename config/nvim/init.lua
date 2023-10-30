@@ -51,11 +51,16 @@ require("lazy").setup({
     "folke/which-key.nvim",
     "airblade/vim-gitgutter",
     "mfussenegger/nvim-dap",
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = { "MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons" },
+    },
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        dependencies = "nvim-tree/nvim-web-devicons",
     },
 })
 
@@ -323,6 +328,8 @@ require("kanagawa").setup({
     transparent = true,
 })
 vim.cmd("colorscheme kanagawa")
+
+require("bufferline").setup({})
 
 ---------------------
 -- Editor Settings --
