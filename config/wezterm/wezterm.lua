@@ -20,6 +20,7 @@ local config = {
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
     font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "BIZ UDGothic" }),
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
