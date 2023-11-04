@@ -23,7 +23,6 @@ require("lazy").setup({
     "rebelot/kanagawa.nvim",
     "machakann/vim-highlightedyank",
     "onsails/lspkind.nvim",
-    -- "andymass/vim-matchup",
 
     -- Semantic language support
     "neovim/nvim-lspconfig",
@@ -51,7 +50,7 @@ require("lazy").setup({
     "folke/which-key.nvim",
     "airblade/vim-gitgutter",
     "mfussenegger/nvim-dap",
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
@@ -138,16 +137,15 @@ cmp.setup({
             side_padding = 0,
         },
     },
+    -- https://github.com/hrsh7th/nvim-cmp/wiki/Menu-Appearance#how-to-get-types-on-the-left-and-offset-the-menu
     formatting = {
-        fields = { "menu", "abbr", "kind" },
-        format = function(entry, item)
-            local menu_icon = {
-                nvim_lsp = "[LSP]",
-                buffer = "[Buffer]",
-                path = "[Path]",
-            }
-            item.menu = menu_icon[entry.source.name]
-            return item
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            kind.kind = " " .. (strings[1] or "") .. " "
+            kind.menu = "    (" .. (strings[2] or "") .. ")"
+            return kind
         end,
     },
     experimental = {
@@ -220,14 +218,13 @@ lspconfig.lua_ls.setup({
 
 -- Setup Rust language server
 lspconfig.rust_analyzer.setup({
-    on_attach = on_attach,
     flags = {
         debounce_text_changes = 150,
     },
     settings = {
         ["rust-analyzer"] = {
             cargo = {
-                allFeatures = true,
+                features = { "all" },
             },
             completion = {
                 postfix = {
@@ -272,11 +269,9 @@ local telescope_config = require("telescope.config")
 
 -- Clone the default Telescope configuration
 local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
-
 table.insert(vimgrep_arguments, "--hidden")
 table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!.git/*")
-
 telescope.setup({
     defaults = { vimgrep_arguments = vimgrep_arguments },
     pickers = {
@@ -309,7 +304,6 @@ cmp.setup.cmdline(":", {
 ------------------
 -- GUI Settings --
 ------------------
-
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.number = true
@@ -318,7 +312,6 @@ vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 5
 vim.opt.laststatus = 2
 vim.opt.showmode = false
-
 require("kanagawa").setup({
     transparent = true,
 })
@@ -327,7 +320,6 @@ vim.cmd("colorscheme kanagawa")
 ---------------------
 -- Editor Settings --
 ---------------------
-
 vim.opt.smartindent = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -356,7 +348,6 @@ vim.opt.wrap = false
 ---------------------
 -- Search Settings --
 ---------------------
-
 vim.opt.showmatch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
