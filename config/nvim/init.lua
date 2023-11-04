@@ -56,6 +56,11 @@ require("lazy").setup({
         branch = "v3.x",
         dependencies = { "MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons" },
     },
+    {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        dependencies = "nvim-tree/nvim-web-devicons",
+    },
 })
 
 ---------------------
@@ -316,6 +321,8 @@ require("kanagawa").setup({
     transparent = true,
 })
 vim.cmd("colorscheme kanagawa")
+
+require("bufferline").setup({})
 
 ---------------------
 -- Editor Settings --

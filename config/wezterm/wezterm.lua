@@ -20,6 +20,7 @@ local config = {
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
     font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "BIZ UDGothic" }),
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
@@ -85,9 +86,6 @@ local config = {
         -- Launch menu for tabs
         { key = "9", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
         { key = "n", mods = "LEADER", action = wezterm.action.ToggleFullScreen },
-
-        -- Font switcher
-        { key = "o", mods = "LEADER", action = wezterm.action.EmitEvent("toggle-font") },
     },
     mouse_bindings = {
         -- Right-Click will open the link under the mouse cursor
@@ -109,19 +107,6 @@ local config = {
         },
     },
 }
-
--- https://wezfurlong.org/wezterm/config/lua/window/set_config_overrides.html
-wezterm.on("toggle-font", function(window, pane)
-    local overrides = window:get_config_overrides() or {}
-    if not overrides.harfbuzz_features then
-        overrides.font = wezterm.font_with_fallback({ "Fira Code", "BIZ UDGothic" })
-        overrides.harfbuzz_features = { "calt=0", "clig=0", "liga=0", "cv01", "cv10" }
-    else
-        overrides.font = nil
-        overrides.harfbuzz_features = nil
-    end
-    window:set_config_overrides(overrides)
-end)
 
 local function basename(s)
     return string.gsub(s, "(.*[/\\])(.*)", "%2")
@@ -176,7 +161,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configurati
 
     config.initial_rows = 42
     config.initial_cols = 120
-    config.font_size = 12.5
+    config.font_size = 12
+    config.line_height = 1.2
 
     -- Add PowerShell to launch menu
     table.insert(launch_menu, { label = "pwsh", args = { "pwsh.exe", "-NoLogo" } })
