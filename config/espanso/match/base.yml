@@ -25,6 +25,15 @@ matches:
         params:
           format: "%Y/%m/%d"
 
+  # Print the current DateTime formatted by ISO8601
+  - trigger: ";;now"
+    replace: "{{iso8601}}"
+    vars:
+      - name: iso8601
+        type: date
+        params:
+          format: "%+"
+
   # Print the output of a shell command
   - trigger: ";;shell"
     replace: "{{output}}"
