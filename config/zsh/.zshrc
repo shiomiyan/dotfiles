@@ -78,3 +78,19 @@ export PATH="$PATH:$HOME/.npm/bin"
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun completions
+[ -s "/Users/sk/.bun/_bun" ] && source "/Users/sk/.bun/_bun"
+
+# pnpm
+export PNPM_HOME="/Users/sk/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+export PATH="$HOME/bin:$PATH"
