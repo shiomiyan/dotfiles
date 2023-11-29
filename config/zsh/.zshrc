@@ -37,6 +37,9 @@ fi
 # Settings for toolchains
 # ================================
 
+# GnuPG
+export GPG_TTY=$(tty)
+
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
