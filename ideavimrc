@@ -1,3 +1,5 @@
+" vim: ft=vim
+
 " Interface
 set clipboard+=unnamed
 set scrolloff=10
@@ -5,15 +7,17 @@ set sidescrolloff=10
 set showmode
 
 " Search
-set showmatch
 set hlsearch
 set incsearch
 set smartcase
 
 " IdeaVim
 set highlightedyank
+set easymotion
 
 " Keymaps
+nnoremap <Space> <Nop>
+let mapleader=" "
 nnoremap j gj
 nnoremap k gk
 nnoremap H ^
@@ -22,4 +26,3 @@ nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
 vmap p _dp
-
