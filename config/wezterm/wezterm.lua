@@ -189,10 +189,6 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
     -- https://github.com/wez/wezterm/issues/2669
     config.window_background_opacity = 0.9999
     config.default_prog = { "zsh", "--login" }
-    config.font = wezterm.font_with_fallback({
-        { family = "IBM Plex Mono", harfbuzz_features = { "zero" } },
-        "BIZ UDGothic",
-    })
     config.font_size = 17
     config.line_height = 1.2
     config.window_padding.right = 16 -- Scrollbar width
