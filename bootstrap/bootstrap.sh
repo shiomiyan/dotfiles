@@ -114,6 +114,8 @@ function setup-nodejs() {
 function setup-ripgrep() {
     if [ "$(uname)" == "Darwin" ]; then
         brew install ripgrep
+    elif [ -x "$(command -v dnf)" ]; then
+        sudo dnf -y install ripgrep
     elif [ -x "$(command -v apt)" ]; then
         pushd $DOTFILES_INSTALLER_TMP
         curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
@@ -125,6 +127,8 @@ function setup-ripgrep() {
 function setup-bat() {
     if [ "$(uname)" == "Darwin" ]; then
         brew install bat
+    elif [ -x "$(command -v dnf)" ]; then
+        sudo dnf -y install bat
     elif [ -x "$(command -v apt)" ]; then
         pushd $DOTFILES_INSTALLER_TMP
         curl -LO https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
@@ -145,6 +149,8 @@ function setup-espanso() {
     if [ "$(uname)" == "Darwin" ]; then
         brew tap espanso/espanso
         brew install espanso
+    elif [ -x "$(command -v dnf)" ]; then
+        # build from source: https://espanso.org/docs/install/linux/#wayland-compile
     elif [ -x "$(command -v apt)" ]; then
         pushd $DOTFILES_INSTALLER_TMP
         wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
@@ -160,6 +166,9 @@ function setup-espanso() {
 function setup-wezterm() {
     if [ "$(uname)" == "Darwin" ]; then
         brew install --cask wezterm
+    elif [ -x "$(command -v dnf)" ]; then
+        sudo dnf copr enable wezfurlong/wezterm-nightly
+        sudo dnf install wezterm
     elif [ -x "$(command -v apt)" ]; then
         pushd $DOTFILES_INSTALLER_TMP
         curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb
