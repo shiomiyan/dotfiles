@@ -158,6 +158,8 @@ function setup-espanso() {
         espanso service register
         espanso start
         popd
+    else
+        info "Unsupported distribution."
     fi
 
     ln -sf ~/dotfiles/config/espanso ~/.config/espanso
