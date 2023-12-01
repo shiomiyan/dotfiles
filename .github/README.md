@@ -3,7 +3,7 @@
 `dnf` or `brew` needed.
 
 ```shell
-bash -c "$(curl -fsSL https://shiomiyan.github.io/bootstrap/bootstrap.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/bootstrap/bootstrap.sh)"
 ```
 
 ### Windows
