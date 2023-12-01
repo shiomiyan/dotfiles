@@ -45,7 +45,7 @@ function setup-common-utils() {
     elif [ -x "$(command -v apt)" ]; then
         sudo apt update
         sudo apt -y upgrade
-        sudo apt -y install git curl wget zsh unzip tig ca-certificates gnupg
+        sudo apt -y install git curl wget zsh unzip tig build-essential ca-certificates gnupg
     elif [ -x "$(command -v dnf)" ]; then
         sudo dnf -y upgrade
         sudo dnf -y install git curl wget zsh unzip tig
