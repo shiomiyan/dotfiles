@@ -48,7 +48,7 @@ function setup-common-utils() {
         sudo apt -y install git curl wget zsh unzip tig build-essential ca-certificates gnupg
     elif [ -x "$(command -v dnf)" ]; then
         sudo dnf -y upgrade
-        sudo dnf -y install git curl wget zsh unzip tig
+        sudo dnf -y install git curl wget zsh unzip tig xclip
     else
         error 'Unsupported operating system.'
     fi
