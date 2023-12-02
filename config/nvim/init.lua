@@ -50,7 +50,6 @@ require("lazy").setup({
     "folke/which-key.nvim",
     "airblade/vim-gitgutter",
     "mfussenegger/nvim-dap",
-    "nvimtools/none-ls.nvim",
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
@@ -240,28 +239,6 @@ lspconfig.rust_analyzer.setup({
 
 -- Rust
 vim.g.rustfmt_autosave = 1
-
--- null-ls (only use as formatter)
-local null_ls = require("null-ls")
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.stylua,
-    },
-    -- you can reuse a shared lspconfig on_attach callback here
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                    vim.lsp.buf.format({ async = false })
-                end,
-            })
-        end
-    end,
-})
 
 -- Fuzzy search config in Telescope
 local telescope = require("telescope")
