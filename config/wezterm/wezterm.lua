@@ -19,8 +19,8 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ "FiraCode Nerd Font", "BIZ UDGothic" }),
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+    font = wezterm.font_with_fallback({ { family = "IBM Plex Mono", weight = 500 }, "BIZ UDGothic" }),
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
@@ -41,8 +41,8 @@ local config = {
     keys = {
         -- Key bindings for tab operation
         { key = "w", mods = "LEADER", action = "ShowTabNavigator" },
-        { key = "[", mods = "ALT", action = wezterm.action.ActivateTabRelativeNoWrap(-1) },
-        { key = "]", mods = "ALT", action = wezterm.action.ActivateTabRelativeNoWrap(1) },
+        { key = "[", mods = "ALT",    action = wezterm.action.ActivateTabRelativeNoWrap(-1) },
+        { key = "]", mods = "ALT",    action = wezterm.action.ActivateTabRelativeNoWrap(1) },
         { key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
         { key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
 
@@ -61,20 +61,20 @@ local config = {
                 SplitVertical = { domain = "CurrentPaneDomain" },
             }),
         },
-        { key = "w", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Next") },
-        { key = "LeftArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Left", 2 }) },
-        { key = "DownArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Down", 2 }) },
-        { key = "UpArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Up", 2 }) },
-        { key = "RightArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Right", 2 }) },
+        { key = "w",          mods = "ALT",        action = wezterm.action.ActivatePaneDirection("Next") },
+        { key = "LeftArrow",  mods = "ALT",        action = wezterm.action.AdjustPaneSize({ "Left", 2 }) },
+        { key = "DownArrow",  mods = "ALT",        action = wezterm.action.AdjustPaneSize({ "Down", 2 }) },
+        { key = "UpArrow",    mods = "ALT",        action = wezterm.action.AdjustPaneSize({ "Up", 2 }) },
+        { key = "RightArrow", mods = "ALT",        action = wezterm.action.AdjustPaneSize({ "Right", 2 }) },
 
         -- Window Scrolling
-        { key = "j", mods = "ALT", action = wezterm.action.ScrollByLine(2) },
-        { key = "k", mods = "ALT", action = wezterm.action.ScrollByLine(-2) },
-        { key = "j", mods = "ALT|SHIFT", action = wezterm.action.ScrollByPage(0.5) },
-        { key = "k", mods = "ALT|SHIFT", action = wezterm.action.ScrollByPage(-0.5) },
+        { key = "j",          mods = "ALT",        action = wezterm.action.ScrollByLine(2) },
+        { key = "k",          mods = "ALT",        action = wezterm.action.ScrollByLine(-2) },
+        { key = "j",          mods = "ALT|SHIFT",  action = wezterm.action.ScrollByPage(0.5) },
+        { key = "k",          mods = "ALT|SHIFT",  action = wezterm.action.ScrollByPage(-0.5) },
 
         -- Copy text
-        { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
+        { key = "c",          mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
 
         -- Launch menu for launcher
         {
@@ -84,7 +84,7 @@ local config = {
         },
 
         -- Launch menu for tabs
-        { key = "9", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
+        { key = "9", mods = "ALT",    action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
         { key = "n", mods = "LEADER", action = wezterm.action.ToggleFullScreen },
     },
     mouse_bindings = {
@@ -192,9 +192,10 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuratio
     config.font_size = 17
     config.line_height = 1.2
     config.window_padding.right = 16 -- Scrollbar width
-else -- Linux configuration
+else                                 -- Linux configuration
     config.default_prog = { "zsh", "--login" }
-    config.font_size = 13
+    config.font_size = 12
+    config.line_height = 1.2
 end
 
 return config
