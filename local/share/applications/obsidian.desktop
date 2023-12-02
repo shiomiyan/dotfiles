@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Obsidian
+Exec=/opt/obsidian/Obsidian.AppImage %u
+Terminal=false
+Type=Application
+Icon=/opt/obsidian/obsidian.png
+MimeType=text/html;x-scheme-handler/obsidian;
+

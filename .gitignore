@@ -27,6 +27,8 @@
 !config/nvim/vscode.lua
 !config/nvim/ftplugin/
 !config/nvim/ftplugin/gitconfig.lua
+!config/obsidian/
+!config/obsidian/obsidian.png
 !config/powershell/
 !config/powershell/Microsoft.PowerShell_profile.ps1
 !config/powershell/powershell.config.json
@@ -41,6 +43,10 @@
 !config/zsh/.zshrc
 !config/zsh/zi.zsh
 !config/starship.toml
+!local/
+!local/share/
+!local/share/applications/
+!local/share/applications/obsidian.desktop
 !windows/
 !windows/.wslconfig
 !windows/wsl.conf
