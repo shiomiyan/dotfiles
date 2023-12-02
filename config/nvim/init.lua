@@ -39,7 +39,7 @@ require("lazy").setup({
 
     -- Syntactic language support
     "rust-lang/rust.vim",
-    { "cespare/vim-toml", branch = "main" },
+    { "cespare/vim-toml",              branch = "main" },
     "nvim-treesitter/nvim-treesitter",
 
     -- Fuzzy finder
@@ -55,11 +55,6 @@ require("lazy").setup({
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         dependencies = { "MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons" },
-    },
-    {
-        "akinsho/bufferline.nvim",
-        version = "*",
-        dependencies = "nvim-tree/nvim-web-devicons",
     },
 })
 
@@ -271,14 +266,22 @@ null_ls.setup({
 -- Fuzzy search config in Telescope
 local telescope = require("telescope")
 local telescope_config = require("telescope.config")
+local actions = require("telescope.actions")
 
--- Clone the default Telescope configuration
 local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
 table.insert(vimgrep_arguments, "--hidden")
 table.insert(vimgrep_arguments, "--glob")
 table.insert(vimgrep_arguments, "!.git/*")
 telescope.setup({
-    defaults = { vimgrep_arguments = vimgrep_arguments },
+    defaults = {
+        vimgrep_arguments = vimgrep_arguments,
+        mappings = {
+            i = {
+                -- Mapping <Esc> to quit in insert mode
+                ["<esc>"] = actions.close
+            },
+        },
+    },
     pickers = {
         find_files = {
             find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
@@ -286,10 +289,11 @@ telescope.setup({
     },
 })
 
-vim.api.nvim_set_keymap("n", "<Leader>ff", ":Telescope find_files<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fg", ":Telescope live_grep<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fb", ":Telescope buffers<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>fh", ":Telescope help_tags<CR>", { noremap = true, silent = true })
+local telescope_builtin = require('telescope.builtin')
+vim.keymap.set("n", "<Leader>ff", telescope_builtin.find_files, {})
+vim.keymap.set("n", "<Leader>fg", telescope_builtin.live_grep, {})
+vim.keymap.set("n", "<Leader>fb", telescope_builtin.buffers, {})
+vim.keymap.set("n", "<Leader>fh", telescope_builtin.help_tags, {})
 
 -- `:` cmdline setup.
 cmp.setup.cmdline(":", {
@@ -321,8 +325,6 @@ require("kanagawa").setup({
     transparent = true,
 })
 vim.cmd("colorscheme kanagawa")
-
-require("bufferline").setup({})
 
 ---------------------
 -- Editor Settings --
