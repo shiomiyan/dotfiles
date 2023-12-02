@@ -41,70 +41,43 @@ local config = {
     keys = {
         -- Key bindings for tab operation
         { key = "w", mods = "LEADER", action = "ShowTabNavigator" },
-        { key = "[", mods = "ALT",    action = wezterm.action.ActivateTabRelativeNoWrap(-1) },
-        { key = "]", mods = "ALT",    action = wezterm.action.ActivateTabRelativeNoWrap(1) },
+        { key = "[", mods = "ALT", action = wezterm.action.ActivateTabRelativeNoWrap(-1) },
+        { key = "]", mods = "ALT", action = wezterm.action.ActivateTabRelativeNoWrap(1) },
         { key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
         { key = "x", mods = "LEADER", action = wezterm.action({ CloseCurrentTab = { confirm = true } }) },
 
         -- Key bindings for pane operation
-        {
-            key = "h",
-            mods = "ALT",
-            action = wezterm.action({
-                SplitHorizontal = { domain = "CurrentPaneDomain" },
-            }),
-        },
-        {
-            key = "v",
-            mods = "ALT",
-            action = wezterm.action({
-                SplitVertical = { domain = "CurrentPaneDomain" },
-            }),
-        },
-        { key = "w",          mods = "ALT",        action = wezterm.action.ActivatePaneDirection("Next") },
-        { key = "LeftArrow",  mods = "ALT",        action = wezterm.action.AdjustPaneSize({ "Left", 2 }) },
-        { key = "DownArrow",  mods = "ALT",        action = wezterm.action.AdjustPaneSize({ "Down", 2 }) },
-        { key = "UpArrow",    mods = "ALT",        action = wezterm.action.AdjustPaneSize({ "Up", 2 }) },
-        { key = "RightArrow", mods = "ALT",        action = wezterm.action.AdjustPaneSize({ "Right", 2 }) },
+        { key = "h", mods = "ALT", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
+        { key = "v", mods = "ALT", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
+        { key = "w", mods = "ALT", action = wezterm.action.ActivatePaneDirection("Next") },
+        { key = "LeftArrow",  mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Left", 2 }) },
+        { key = "DownArrow",  mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Down", 2 }) },
+        { key = "UpArrow",    mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Up", 2 }) },
+        { key = "RightArrow", mods = "ALT", action = wezterm.action.AdjustPaneSize({ "Right", 2 }) },
 
         -- Window Scrolling
-        { key = "j",          mods = "ALT",        action = wezterm.action.ScrollByLine(2) },
-        { key = "k",          mods = "ALT",        action = wezterm.action.ScrollByLine(-2) },
-        { key = "j",          mods = "ALT|SHIFT",  action = wezterm.action.ScrollByPage(0.5) },
-        { key = "k",          mods = "ALT|SHIFT",  action = wezterm.action.ScrollByPage(-0.5) },
+        { key = "j", mods = "ALT", action = wezterm.action.ScrollByLine(2) },
+        { key = "k", mods = "ALT", action = wezterm.action.ScrollByLine(-2) },
+        { key = "j", mods = "ALT|SHIFT", action = wezterm.action.ScrollByPage(0.5) },
+        { key = "k", mods = "ALT|SHIFT", action = wezterm.action.ScrollByPage(-0.5) },
 
         -- Copy text
-        { key = "c",          mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
+        { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
 
         -- Launch menu for launcher
-        {
-            key = "l",
-            mods = "ALT",
-            action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }),
-        },
+        { key = "l", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }), },
 
         -- Launch menu for tabs
-        { key = "9", mods = "ALT",    action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
+        { key = "9", mods = "ALT", action = wezterm.action.ShowLauncherArgs({ flags = "TABS" }) },
         { key = "n", mods = "LEADER", action = wezterm.action.ToggleFullScreen },
     },
     mouse_bindings = {
         -- Right-Click will open the link under the mouse cursor
-        {
-            event = { Up = { streak = 1, button = "Right" } },
-            action = wezterm.action.OpenLinkAtMouseCursor,
-        },
+        { event = { Up   = { streak = 1, button = "Right" } }, action = wezterm.action.OpenLinkAtMouseCursor, },
         -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
-        {
-            event = { Down = { streak = 1, button = "Left" } },
-            mods = "CTRL",
-            action = wezterm.action.Nop,
-        },
+        { event = { Down = { streak = 1, button = "Left"  } }, mods = "CTRL", action = wezterm.action.Nop, },
         -- Disable open the link with only Left-Click
-        {
-            event = { Up = { streak = 1, button = "Left" } },
-            mods = "",
-            action = wezterm.action.Nop,
-        },
+        { event = { Up   = { streak = 1, button = "Left"  } }, mods = "", action = wezterm.action.Nop, },
     },
 }
 
