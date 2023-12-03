@@ -142,10 +142,10 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "path" },
+        { name = "crates" },
     }, {
         { name = "buffer" },
     }, {
-        { name = "crates" },
     }),
     window = {
         completion = {
