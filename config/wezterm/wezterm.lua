@@ -81,63 +81,16 @@ local config = {
     },
 }
 
-local function basename(s)
-    return string.gsub(s, "(.*[/\\])(.*)", "%2")
-end
-
-local ACTIVE_PANE_ICON = utf8.char("0xf444")
-
-wezterm.on("format-tab-title", function(tab)
-    local pane = tab.active_pane
-    local cwd = string.gsub(pane.current_working_dir, ".+/(.+)/?$", "%1")
-    local title = basename(pane.foreground_process_name) .. " " .. cwd
-    local color = "#383838"
-
-    if tab.is_active then
-        color = "#242424"
-        title = ACTIVE_PANE_ICON .. " " .. title
-    end
-    title = " " .. title .. " "
-    return {
-        { Background = { Color = color } },
-        { Text = title },
-    }
-end)
-
-wezterm.on("format-window-title", function(tab, pane, tabs, panes, config)
-    local zoomed = ""
-    if tab.active_pane.is_zoomed then
-        zoomed = "[Z] "
-    end
-
-    local index = ""
-    if #tabs > 1 then
-        index = string.format("[%d/%d] ", tab.tab_index + 1, #tabs)
-    end
-
-    local title = ""
-    if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-        title = string.gsub(tab.active_pane.title, ".+\\", "")
-    else
-        title = tab.active_pane.title
-    end
-
-    return zoomed .. index .. title
-end)
-
--- Initialize launch menu table
-local launch_menu = {}
-
--- Switch configuration depends on OS
-if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configuration
+-- Switch configuration depends on operating system
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { "pwsh.exe", "-NoLogo" }
-
     config.initial_rows = 42
     config.initial_cols = 120
     config.font_size = 12
     config.line_height = 1.2
 
     -- Add PowerShell to launch menu
+    local launch_menu = {}
     table.insert(launch_menu, { label = "pwsh", args = { "pwsh.exe", "-NoLogo" } })
 
     -- Enumerate any WSL distributions that are installed and add those to the menu
@@ -156,16 +109,15 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then -- Windows configurati
             end
         end
     end
-
     config.launch_menu = launch_menu
-elseif wezterm.target_triple == "x86_64-apple-darwin" then -- MacOS configuration
+elseif wezterm.target_triple == "x86_64-apple-darwin" then
     -- https://github.com/wez/wezterm/issues/2669
     config.window_background_opacity = 0.9999
     config.default_prog = { "zsh", "--login" }
     config.font_size = 17
     config.line_height = 1.2
     config.window_padding.right = 16 -- Scrollbar width
-else                                 -- Linux configuration
+else
     config.default_prog = { "zsh", "--login" }
     config.font_size = 12
     config.line_height = 1.2
