@@ -4,16 +4,12 @@ set -o nounset # error when referencing undefined variable
 set -o errexit # exit when command fails
 
 BOLD="$(tput bold 2>/dev/null || printf "")"
-UNDERLINE="$(tput smul 2>/dev/null || printf "")"
 RED="$(tput setaf 1 2>/dev/null || printf "")"
 GREEN="$(tput setaf 2 2>/dev/null || printf "")"
-YELLOW="$(tput setaf 3 2>/dev/null || printf "")"
-BLUE="$(tput setaf 4 2>/dev/null || printf "")"
-MAGENTA="$(tput setaf 5 2>/dev/null || printf "")"
 NO_COLOUR="$(tput sgr0 2>/dev/null || printf "")"
 
 function info() {
-    printf '%s\n' "${BOLD}${MAGENTA} :: $*${NO_COLOUR}"
+    printf '%s\n' "${BOLD}${GREEN} :: $*${NO_COLOUR}"
 }
 
 function error() {
@@ -32,20 +28,17 @@ function main() {
     setup-neovim
     setup-rust
     setup-deno
-    setup-nodejs
     setup-ripgrep
     setup-bat
     setup-zoxide
     setup-espanso
+    setup-wezterm
+    setup-gui-applications
 }
 
 function setup-common-utils() {
     if [ "$(uname)" == "Darwin" ]; then
         brew install git curl wget zsh unzip tig
-    elif [ -x "$(command -v apt)" ]; then
-        sudo apt update
-        sudo apt -y upgrade
-        sudo apt -y install git curl wget zsh unzip tig build-essential ca-certificates gnupg
     elif [ -x "$(command -v dnf)" ]; then
         sudo dnf -y upgrade
         sudo dnf -y install git curl wget zsh unzip tig xclip
@@ -96,31 +89,11 @@ function setup-deno() {
     curl -fsSL https://deno.land/install.sh | sh
 }
 
-function setup-nodejs() {
-    if [ "$(uname)" == "Darwin" ]; then
-        brew install node
-    elif [ -x "$(command -v dnf)" ]; then
-        sudo dnf -y install nodejs
-    elif [ -x "$(command -v apt)" ]; then
-        # Install NodeJS. ref: https://github.com/nodesource/distributions
-        sudo mkdir -p /etc/apt/keyrings
-        curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
-        NODE_MAJOR=20
-        echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
-        sudo apt update && sudo apt -y install nodejs
-    fi
-}
-
 function setup-ripgrep() {
     if [ "$(uname)" == "Darwin" ]; then
         brew install ripgrep
     elif [ -x "$(command -v dnf)" ]; then
         sudo dnf -y install ripgrep
-    elif [ -x "$(command -v apt)" ]; then
-        pushd $DOTFILES_INSTALLER_TMP
-        curl -LO https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
-        sudo dpkg -i ripgrep_13.0.0_amd64.deb
-        popd
     fi
 }
 
@@ -129,19 +102,14 @@ function setup-bat() {
         brew install bat
     elif [ -x "$(command -v dnf)" ]; then
         sudo dnf -y install bat
-    elif [ -x "$(command -v apt)" ]; then
-        pushd $DOTFILES_INSTALLER_TMP
-        curl -LO https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-musl_0.24.0_amd64.deb
-        sudo dpkg -i bat-musl_0.24.0_amd64.deb
-        popd
     fi
 }
 
 function setup-zoxide() {
     if [ "$(uname)" == "Darwin" ]; then
         brew install zoxide
-    else
-        curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+    elif [ -x "$(command -v dnf)" ]; then
+        sudo dnf -y install zoxide fzf
     fi
 }
 
@@ -149,17 +117,8 @@ function setup-espanso() {
     if [ "$(uname)" == "Darwin" ]; then
         brew tap espanso/espanso
         brew install espanso
-    elif [ -x "$(command -v dnf)" ]; then
-        info "build from source: https://espanso.org/docs/install/linux/#wayland-compile"
-    elif [ -x "$(command -v apt)" ]; then
-        pushd $DOTFILES_INSTALLER_TMP
-        wget https://github.com/federico-terzi/espanso/releases/download/v2.1.8/espanso-debian-x11-amd64.deb
-        sudo apt install ./espanso-debian-x11-amd64.deb
-        espanso service register
-        espanso start
-        popd
     else
-        info "Unsupported distribution."
+        info "Manual install needed."
     fi
 
     ln -sf ~/dotfiles/config/espanso ~/.config/espanso
@@ -171,11 +130,6 @@ function setup-wezterm() {
     elif [ -x "$(command -v dnf)" ]; then
         sudo dnf copr enable wezfurlong/wezterm-nightly
         sudo dnf install wezterm
-    elif [ -x "$(command -v apt)" ]; then
-        pushd $DOTFILES_INSTALLER_TMP
-        curl -LO https://github.com/wez/wezterm/releases/download/nightly/wezterm-nightly.Debian12.deb
-        sudo apt install -y wezterm-nightly.Debian12.deb
-        popd
     fi
 
     ln -sf ~/dotfiles/config/wezterm ~/.config/wezterm
@@ -185,7 +139,6 @@ function setup-gui-applications() {
     if [ "$(uname)" == "Darwin" ]; then
         brew tap wez/wezterm
         brew install --cask \
-            alacritty \
             firefox \
             google-japanese-ime \
             karabiner-elements \

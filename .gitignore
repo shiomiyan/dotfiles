@@ -52,6 +52,5 @@
 !windows/.wslconfig
 !windows/wsl.conf
 !Xmodmap
-!.stylua.toml
 !zshenv
 !ideavimrc
