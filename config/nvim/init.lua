@@ -17,8 +17,11 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 require("lazy").setup({
     -- GUI enhancements
+    "rebelot/kanagawa.nvim",
+    "machakann/vim-highlightedyank",
     {
         "nvim-lualine/lualine.nvim",
+        dependencies = { "arkav/lualine-lsp-progress" },
         config = function ()
             -- Status line
             require("lualine").setup({
@@ -38,10 +41,6 @@ require("lazy").setup({
             })
         end,
     },
-    "arkav/lualine-lsp-progress",
-    "rebelot/kanagawa.nvim",
-    "machakann/vim-highlightedyank",
-    "onsails/lspkind.nvim",
 
     -- Semantic language support
     "neovim/nvim-lspconfig",
@@ -49,16 +48,22 @@ require("lazy").setup({
     "williamboman/mason-lspconfig.nvim",
 
     -- Completion plugins
-    "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/vim-vsnip", -- required as a nvim-cmp dependency, even if not using snippet
+    {
+        "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
+        dependencies = {
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "hrsh7th/vim-vsnip",
+            "onsails/lspkind.nvim", -- GUI enhancement for completion
+        },
+    },
 
     -- Syntactic language support
-    "rust-lang/rust.vim",
-    { "cespare/vim-toml", branch = "main" },
+    { "rust-lang/rust.vim", ft = "rust" },
+    { "cespare/vim-toml", branch = "main", ft = { "toml" } },
     {
         "nvim-treesitter/nvim-treesitter",
         config = function ()
@@ -84,9 +89,12 @@ require("lazy").setup({
 
     -- Utilities
     "tpope/vim-surround",
-    "folke/which-key.nvim",
     "airblade/vim-gitgutter",
     "mfussenegger/nvim-dap",
+    {
+        "folke/which-key.nvim",
+        cmd = { "WhichKey" },
+    },
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
