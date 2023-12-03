@@ -25,6 +25,7 @@
 !config/nvim/
 !config/nvim/init.lua
 !config/nvim/vscode.lua
+!config/nvim/.luarc.json
 !config/nvim/ftplugin/
 !config/nvim/ftplugin/gitconfig.lua
 !config/obsidian/

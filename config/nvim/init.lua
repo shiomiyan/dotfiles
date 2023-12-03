@@ -1,7 +1,6 @@
 ------------------
 -- Load Plugins --
 ------------------
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
     vim.fn.system({
@@ -18,7 +17,27 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 require("lazy").setup({
     -- GUI enhancements
-    "nvim-lualine/lualine.nvim",
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function ()
+            -- Status line
+            require("lualine").setup({
+                options = {
+                    icons_enabled = false,
+                    component_separators = { left = "", right = "" },
+                    section_separators = { left = "", right = "" },
+                },
+                sections = {
+                    lualine_a = { "mode" },
+                    lualine_b = { "branch", "diff", "diagnostics" },
+                    lualine_c = { "filename", "lsp_progress" },
+                    lualine_x = { "encoding", "fileformat", "filetype" },
+                    lualine_y = { "progress" },
+                    lualine_z = { "location" },
+                },
+            })
+        end,
+    },
     "arkav/lualine-lsp-progress",
     "rebelot/kanagawa.nvim",
     "machakann/vim-highlightedyank",
@@ -27,7 +46,7 @@ require("lazy").setup({
     -- Semantic language support
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim", -- alternative to nvim-lsp-installer
+    "williamboman/mason-lspconfig.nvim",
 
     -- Completion plugins
     "hrsh7th/nvim-cmp",
@@ -39,8 +58,26 @@ require("lazy").setup({
 
     -- Syntactic language support
     "rust-lang/rust.vim",
-    { "cespare/vim-toml",              branch = "main" },
-    "nvim-treesitter/nvim-treesitter",
+    { "cespare/vim-toml", branch = "main" },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        config = function ()
+            require("nvim-treesitter.configs").setup({
+                ensure_installed = { "gitcommit", "lua", "rust", "javascript", "typescript", "php" },
+                auto_install = false,
+                highlight = { enable = true },
+            })
+        end,
+    },
+    {
+        "saecki/crates.nvim",
+        event = { "BufRead Cargo.toml" },
+        tag = 'stable',
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function()
+            require('crates').setup()
+        end,
+    },
 
     -- Fuzzy finder
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
@@ -53,62 +90,33 @@ require("lazy").setup({
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
-        dependencies = { "MunifTanjim/nui.nvim", "nvim-tree/nvim-web-devicons" },
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "nvim-lua/plenary.nvim",
+        },
+        config = function ()
+            require("neo-tree").setup({
+                window = {
+                    position = "float",
+                    popup = {
+                        -- settings that apply to float position only
+                        size = { height = "80%", width = "50%" },
+                        position = "50%",
+                    },
+                },
+                filesystem = {
+                    filtered_items = { visible = true, hidden_dotfiles = false },
+                },
+            })
+            vim.api.nvim_set_keymap("n", "<Leader>nt", ":Neotree<CR>", {})
+        end,
     },
 })
 
 ---------------------
 -- Plugin Settings --
 ---------------------
-
--- Status line
-require("lualine").setup({
-    options = {
-        icons_enabled = false,
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-    },
-    sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = { "filename", "lsp_progress" },
-        lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
-    },
-})
-
--- File Explorer
-require("neo-tree").setup({
-    window = {
-        position = "float",
-        popup = {
-            -- settings that apply to float position only
-            size = {
-                height = "80%",
-                width = "50%",
-            },
-            position = "50%",
-        },
-    },
-    filesystem = {
-        filtered_items = {
-            visible = true,
-            hidden_dotfiles = false,
-        },
-    },
-})
-vim.api.nvim_set_keymap("n", "<Leader>nt", ":Neotree<CR>", { noremap = true, silent = true })
-
--- treesitter
-require("nvim-treesitter.configs").setup({
-    ensure_installed = { "gitcommit", "lua", "rust", "javascript", "typescript", "php" },
-    auto_install = false,
-    highlight = {
-        enable = true,
-    },
-})
-
 -- LSP settings
 local cmp = require("cmp")
 cmp.setup({
@@ -128,6 +136,8 @@ cmp.setup({
         { name = "path" },
     }, {
         { name = "buffer" },
+    }, {
+        { name = "crates" },
     }),
     window = {
         completion = {
@@ -152,74 +162,51 @@ cmp.setup({
     },
 })
 
-local opts = { noremap = true, silent = true }
-vim.keymap.set("n", "<Space>e", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-vim.keymap.set("n", "<Space>q", vim.diagnostic.setloclist, opts)
+-- Global LSP mappings
+vim.keymap.set("n", "<Space>e", vim.diagnostic.open_float)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<Space>q", vim.diagnostic.setloclist)
 
--- Setup lspconfig.
-local on_attach = function(client, bufnr)
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
+-- Additional LSP mappings after the language server attaches to the current buffer.
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+    callback = function(ev)
+        --Enable completion triggered by <c-x><c-o>
+        vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-    --Enable completion triggered by <c-x><c-o>
-    buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    -- Mappings.
-    local bufopts = { noremap = true, silent = true, buffer = bufnr }
-
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-    vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
-    vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename, bufopts)
-    vim.keymap.set("n", "<Leader>a", vim.lsp.buf.code_action, bufopts)
-    vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-    vim.keymap.set("n", "<Leader>F", function()
-        vim.lsp.buf.format({ async = true })
-    end, bufopts)
-end
-
--- Easy install and setup LSP
-require("mason").setup()
-local mason_lspconfig = require("mason-lspconfig")
-
-mason_lspconfig.setup({
-    ensure_installed = { "rust_analyzer", "lua_ls" },
-})
-
-local lspconfig = require("lspconfig")
-
--- Automatically setup all language servers
-mason_lspconfig.setup_handlers({
-    function(server_name)
-        lspconfig[server_name].setup({
-            on_attach = on_attach,
-        })
+        -- Mappings. ref: https://github.com/neovim/nvim-lspconfig#suggested-configuration
+        local opts = { buffer = ev.buf }
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+        vim.keymap.set("n", "<Leader>D", vim.lsp.buf.type_definition, opts)
+        vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "<Leader>a", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+        vim.keymap.set("n", "<Leader>F", function()
+            vim.lsp.buf.format({ async = true })
+        end, opts)
     end,
 })
 
--- Setup Lua language server
-lspconfig.lua_ls.setup({
-    settings = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-        },
-    },
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = { "rust_analyzer", "lua_ls" },
+})
+
+-- Automatically setup all language servers
+require("mason-lspconfig").setup_handlers({
+    function(server_name)
+        require("lspconfig")[server_name].setup {}
+    end,
 })
 
 -- Setup Rust language server
-lspconfig.rust_analyzer.setup({
-    flags = {
-        debounce_text_changes = 150,
-    },
+require("lspconfig").rust_analyzer.setup({
+    flags = { debounce_text_changes = 150 },
     settings = {
         ["rust-analyzer"] = {
             cargo = {
