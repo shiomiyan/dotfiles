@@ -7,6 +7,8 @@
 !bootstrap/bootstrap.ps1
 !bootstrap/bootstrap.sh
 !bootstrap/extra.ps1
+!bootstrap/helper/
+!bootstrap/helper/setup-obsidian.sh
 !config/
 !config/efm-langserver/
 !config/efm-langserver/config.yaml
