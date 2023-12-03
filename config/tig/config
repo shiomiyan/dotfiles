@@ -4,3 +4,4 @@ set vertical-split = false
 
 bind main <Ctrl-r> !git pull
 bind main U ?git push "%(branch)"
+bind main ! ?git revert %(commit)
