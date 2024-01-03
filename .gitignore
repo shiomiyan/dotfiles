@@ -9,6 +9,7 @@
 !bootstrap/extra.ps1
 !bootstrap/helper/
 !bootstrap/helper/setup-obsidian.sh
+!bootstrap/helper/setup-yubico-authenticator.sh
 !config/
 !config/efm-langserver/
 !config/efm-langserver/config.yaml
