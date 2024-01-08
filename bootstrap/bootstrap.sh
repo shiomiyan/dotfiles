@@ -83,6 +83,7 @@ function setup-neovim() {
 
 function setup-rust() {
     curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    sudo dnf -y install rust-libudev-devel rust-x11+xtst-devel
 }
 
 function setup-deno() {
