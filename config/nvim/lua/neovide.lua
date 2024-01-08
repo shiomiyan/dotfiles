@@ -2,7 +2,7 @@
 -- see: https://neovide.dev/config-file.html
 vim.o.guifont = "Fira Code,BIZ UDGothic,Symbols Nerd Font Mono:h10"
 vim.opt.linespace = 8
-if vim.fn.has("osx") then
+if vim.fn.has("mac") then
     vim.o.guifont = "Fira Code,BIZ UDGothic,Symbols Nerd Font Mono:h16"
     vim.opt.linespace = 16
 end
