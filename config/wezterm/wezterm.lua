@@ -119,7 +119,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.window_padding.right = 16 -- Scrollbar width
 else
     config.default_prog = { "zsh", "--login" }
-    config.font_size = 13
+    config.font_size = 12
     config.line_height = 1.3
 end
 
