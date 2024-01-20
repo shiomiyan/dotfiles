@@ -411,3 +411,10 @@ vim.keymap.set("v", "p", "_dp")
 
 -- Exit terminal mode with Ctrl-[
 vim.keymap.set("t", "<C-[>", "<C-\\><C-n>")
+
+-------------
+-- Neovide --
+-------------
+if vim.g.neovide then
+    require('neovide')
+end

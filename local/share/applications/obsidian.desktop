@@ -3,6 +3,7 @@ Name=Obsidian
 Exec=/opt/obsidian/Obsidian.AppImage %u
 Terminal=false
 Type=Application
-Icon=/opt/obsidian/obsidian.png
+Icon=obsidian
+StartupWMClass=obsidian
+Categories=Office;
 MimeType=text/html;x-scheme-handler/obsidian;
-

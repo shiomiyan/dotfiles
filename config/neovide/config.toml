@@ -1,0 +1,5 @@
+vsync = false
+
+#[font]
+#normal = ["Fira Code", "BIZ UDGothic", "Symbols nerd Font Mono"]
+#size = 14

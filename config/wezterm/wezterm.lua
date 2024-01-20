@@ -19,8 +19,8 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ { family = "IBM Plex Mono", weight = 500 }, "BIZ UDGothic" }),
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0", "zero" },
+    font = wezterm.font_with_fallback({ { family = "Fira Code", weight = 400 }, "BIZ UDGothic", "Symbols Nerd Font Mono" }),
+    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
@@ -120,7 +120,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
 else
     config.default_prog = { "zsh", "--login" }
     config.font_size = 12
-    config.line_height = 1.2
+    config.line_height = 1.3
 end
 
 return config
