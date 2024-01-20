@@ -126,8 +126,9 @@ function setup-espanso() {
 
 function setup-wezterm() {
     if [ "$(uname)" == "Darwin" ]; then
+        brew tap wez/wezterm
         brew install --cask wezterm
-    elif [ -x "$(command -v dnf)" ]; then
+    elif [ -x "$(command -v dnf)" ] && [ -n "$DESKTOP_SESSION" ]; then
         sudo dnf copr enable wezfurlong/wezterm-nightly
         sudo dnf install wezterm
     fi
@@ -137,7 +138,6 @@ function setup-wezterm() {
 
 function setup-gui-applications() {
     if [ "$(uname)" == "Darwin" ]; then
-        brew tap wez/wezterm
         brew install --cask \
             firefox \
             google-japanese-ime \
@@ -145,10 +145,9 @@ function setup-gui-applications() {
             keyboardcleantool \
             spotify \
             wireshark
-        brew install wez/wezterm/wezterm-nightly
+    elif [ -x "$(command -v dnf)" ] && [ -n "$DESKTOP_SESSION" ]; then
+        # TODO: LinuxでインストールしているGUIアプリのインストール行を書く
     fi
-
-    # TODO: LinuxでGUIアプリをインストールするコマンドを書く
 }
 
 main
