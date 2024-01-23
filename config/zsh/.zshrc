@@ -51,6 +51,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Golang
 export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
 
+# Deno
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
 # Gradle (manual install: https://gradle.org/install/#manually)
 if [ -d "/opt/gradle/" ]; then
     export PATH="$PATH:/opt/gradle/$(ls /opt/gradle/)/bin"
