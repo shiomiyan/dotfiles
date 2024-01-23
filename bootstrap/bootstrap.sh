@@ -150,6 +150,7 @@ function setup-gui-applications() {
             wireshark
     elif [ -x "$(command -v dnf)" ] && [ -n "$DESKTOP_SESSION" ]; then
         # TODO: LinuxでインストールしているGUIアプリのインストール行を書く
+        info "Install GUI applications if you need."
     fi
 }
 
