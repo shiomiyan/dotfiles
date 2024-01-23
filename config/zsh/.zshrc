@@ -11,9 +11,6 @@ setopt sharehistory
 # ================================
 # Aliases
 # ================================
-alias ls="lsd"
-alias la="lsd -la"
-
 if [ -x "$(command -v xclip)" ]; then
     alias clip="xclip -sel clip"
 fi
