@@ -351,7 +351,7 @@ local is_wsl = (function()
 end)()
 
 if is_wsl then
-    local win32yank = "/mnt/c/tools/neovim/nvim-win64/bin/win32yank.exe"
+    local win32yank = "win32yank.exe"
     vim.g.clipboard = {
         name = "win32yank",
         copy = {
