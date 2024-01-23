@@ -67,6 +67,8 @@ function setup-neovim() {
     if [ "$(uname)" == "Darwin" ]; then
         # If failed to install Neovim, see https://github.com/neovim/neovim/issues/16217#issuecomment-959793388
         brew install --HEAD neovim
+    elif [ -x "$(command -v dnf)" ]; then
+        sudo dnf -y install neovim
     else
         # ref: https://github.com/neovim/neovim/wiki/Installing-Neovim#appimage-universal-linux-package
         pushd $DOTFILES_INSTALLER_TMP
