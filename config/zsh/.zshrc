@@ -24,6 +24,11 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 # ================================
+# Load config for WSL
+# ================================
+source $ZDOTDIR/wsl.zsh
+
+# ================================
 # Settings for toolchains
 # ================================
 export PATH="$HOME/.local/bin:$PATH"
