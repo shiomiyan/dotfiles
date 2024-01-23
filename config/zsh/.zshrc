@@ -26,7 +26,9 @@ fi
 # ================================
 # Load config for WSL
 # ================================
-source $ZDOTDIR/wsl.zsh
+if uname -r | grep -q 'microsoft'; then
+    source $ZDOTDIR/wsl.zsh
+fi
 
 # ================================
 # Settings for toolchains
