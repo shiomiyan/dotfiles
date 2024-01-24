@@ -114,8 +114,8 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
     -- https://github.com/wez/wezterm/issues/2669
     config.window_background_opacity = 0.9999
     config.default_prog = { "zsh", "--login" }
-    config.font_size = 17
-    config.line_height = 1.2
+    config.font_size = 18
+    config.line_height = 1.3
     config.window_padding.right = 16 -- Scrollbar width
 else
     config.default_prog = { "zsh", "--login" }
