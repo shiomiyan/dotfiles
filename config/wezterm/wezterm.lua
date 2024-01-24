@@ -19,7 +19,7 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ { family = "Fira Code", weight = 400 }, "BIZ UDGothic", "Symbols Nerd Font Mono" }),
+    font = wezterm.font_with_fallback({ { family = "Inconsolata", weight = 400 }, "BIZ UDGothic", "Symbols Nerd Font Mono" }),
     harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
     -- Pane appearance
     inactive_pane_hsb = {
@@ -86,8 +86,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.default_prog = { "pwsh.exe", "-NoLogo" }
     config.initial_rows = 42
     config.initial_cols = 120
-    config.font_size = 12
-    config.line_height = 1.2
+    config.font_size = 14
+    config.line_height = 1.3
 
     -- Add PowerShell to launch menu
     local launch_menu = {}
