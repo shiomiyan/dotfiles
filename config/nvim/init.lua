@@ -202,7 +202,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    ensure_installed = { "rust_analyzer", "lua_ls" },
+    ensure_installed = { "rust_analyzer", "lua_ls", "denols" },
 })
 
 -- Automatically setup all language servers
