@@ -9,12 +9,13 @@
 [core]
 	autocrlf = input
 	editor = nvim -d
+	quotepath = false
+	symlinks = true
 [alias]
 	c = commit
 	s = status
 	gone = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
-[commit]
-#	gpgsign = true
+	force-reset = "git reset --hard && git clean -fdx"
 [merge]
 	tool = nvim -d
 [push]
@@ -22,3 +23,7 @@
 [diff]
 	algorithm = patience
 	compactionHeuristic = true
+[include]
+	path = ubsecure.gitconfig
+
+# vim: ft=gitconfig ts=4 sw=4
