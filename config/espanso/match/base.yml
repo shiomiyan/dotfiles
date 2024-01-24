@@ -54,6 +54,9 @@ matches:
       :)
       </div></details>
 
+  - trigger: ";;evi"
+    replace: "テスト🦐デンス"
+
   # For job attendance
   - trigger: ";;start"
     replace: "/jobcan_touch kaishi"
