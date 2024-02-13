@@ -57,6 +57,9 @@ matches:
   - trigger: ";;evi"
     replace: "テスト🦐デンス"
 
+  - trigger: ";;xss"
+    replace: "<img src=x onerror=alert();>"
+
   # For job attendance
   - trigger: ";;start"
     replace: "/jobcan_touch kaishi"
