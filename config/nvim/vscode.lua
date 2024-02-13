@@ -18,10 +18,11 @@ require("lazy").setup({
 
 local vscode = require("vscode-neovim")
 vim.opt.clipboard = "unnamedplus"
-vim.keymap.set("n", "H", "^")
+vim.keymap.set({ "n", "v" }, "H", "^")
 vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 vim.keymap.set("n", "<Tab>", "gt")
 vim.keymap.set("n", "<S-Tab>", "gT")
 vim.api.nvim_set_keymap("n", "C-h", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "p", "_dp", { noremap = false, silent = true })
+vim.opt.matchpairs = "(:),{:},[:],（:）,「:」,【:】"
