@@ -1,10 +1,8 @@
 -- Neovide config also in neovide/config.toml
 -- see: https://neovide.dev/config-file.html
-vim.o.guifont = "Fira Code,BIZ UDGothic,Symbols Nerd Font Mono:h10"
-vim.opt.linespace = 8
+vim.o.guifont = "Moralerspace Argon HW,Symbols Nerd Font Mono:h18"
 if vim.fn.has("mac") then
-    vim.o.guifont = "Fira Code,BIZ UDGothic,Symbols Nerd Font Mono:h16"
-    vim.opt.linespace = 16
+    vim.o.guifont = "Moralerspace Argon HW,Symbols Nerd Font Mono:h18"
 end
 vim.g.neovide_transparency = 0.8
 vim.g.neovide_cursor_vfx_mode = "pixiedust"

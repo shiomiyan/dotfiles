@@ -19,8 +19,8 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ { family = "Inconsolata", weight = 500 }, "BIZ UDGothic", "Symbols Nerd Font Mono" }),
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+    font = wezterm.font_with_fallback({ { family = "Moralerspace Argon HW", weight = 400 }, "BIZ UDGothic", "Symbols Nerd Font Mono" }),
+    harfbuzz_features = { "calt", "zero" },
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
@@ -114,8 +114,8 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
     -- https://github.com/wez/wezterm/issues/2669
     config.window_background_opacity = 0.9999
     config.default_prog = { "zsh", "--login" }
-    config.font_size = 18
-    config.line_height = 1.3
+    config.font_size = 17
+    config.line_height = 1.0
     config.window_padding.right = 16 -- Scrollbar width
 else
     config.default_prog = { "zsh", "--login" }
