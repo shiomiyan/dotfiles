@@ -15,6 +15,13 @@ if [ -x "$(command -v xclip)" ]; then
     alias clip="xclip -sel clip"
 fi
 
+if [ -x "$(command -v docker)" ]; then
+    function docker-horobi() {
+        docker compose down --rmi all --volumes --remove-orphans
+        docker stop $(docker ps -q) && docker system prune --volumes
+    }
+fi
+
 if [[ $(uname) == "Darwin" ]]; then
     alias clip="pbcopy"
     alias reset-launchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
@@ -59,6 +66,9 @@ fi
 
 # npm
 export PATH="$PATH:$HOME/.npm/bin"
+if [ -x "$(command -v npm)" ]; then
+    eval "$(npm completion)"
+fi
 
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
@@ -68,9 +78,13 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 export PNPM_HOME="$HOME/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
+# llvm
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
 # Load local configuration
 if [ -f "$ZDOTDIR/local.zsh" ]; then
     source "$ZDOTDIR/local.zsh"
 else
     touch "$ZDOTDIR/local.zsh"
 fi
+

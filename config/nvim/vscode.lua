@@ -26,3 +26,10 @@ vim.keymap.set("n", "<S-Tab>", "gT")
 vim.api.nvim_set_keymap("n", "C-h", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "p", "_dp", { noremap = false, silent = true })
 vim.opt.matchpairs = "(:),{:},[:],（:）,「:」,【:】"
+
+vim.filetype.add({
+    extension = {
+        mdx = 'mdx'
+    }
+})
+

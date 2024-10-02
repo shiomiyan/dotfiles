@@ -1,4 +1,3 @@
 # Global gitignore https://git-scm.com/docs/gitignore
 .DS_Store
 .idea/
-.vscode/

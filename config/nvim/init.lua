@@ -72,6 +72,7 @@ require("lazy").setup({
                 auto_install = false,
                 highlight = { enable = true },
             })
+            vim.treesitter.language.register("markdown", "mdx")
         end,
     },
     {

@@ -112,7 +112,8 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.launch_menu = launch_menu
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
     -- https://github.com/wez/wezterm/issues/2669
-    config.window_background_opacity = 0.9999
+    -- config.window_background_opacity = 0.9999
+    config.window_background_opacity = 0.9
     config.default_prog = { "zsh", "--login" }
     config.font_size = 17
     config.line_height = 1.0
