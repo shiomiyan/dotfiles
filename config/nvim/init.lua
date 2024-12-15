@@ -86,7 +86,50 @@ require("lazy").setup({
     },
 
     -- Fuzzy finder
-    { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+    {
+        "nvim-telescope/telescope.nvim",
+        branch = "0.1.x",
+        dependencies = { "nvim-lua/plenary.nvim" },
+        config = function ()
+            -- Fuzzy search config in Telescope
+            local telescope = require("telescope")
+            local telescope_config = require("telescope.config")
+            local actions = require("telescope.actions")
+
+            local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
+            table.insert(vimgrep_arguments, "--hidden")
+            table.insert(vimgrep_arguments, "--glob")
+            table.insert(vimgrep_arguments, "!.git/*")
+
+            telescope.setup({
+                defaults = {
+                    vimgrep_arguments = vimgrep_arguments,
+                    mappings = {
+                        i = {
+                            -- Mapping <Esc> to quit in insert mode
+                            ["<esc>"] = actions.close
+                        },
+                    },
+                },
+                pickers = {
+                    find_files = {
+                        find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
+                    },
+                },
+            })
+
+            -- Keymaps for Telescope
+            local telescope_builtin = require('telescope.builtin')
+            vim.keymap.set("n", "<C-p>", telescope_builtin.find_files, {})
+            vim.keymap.set("n", "<C-g>", telescope_builtin.live_grep, {})
+            vim.keymap.set("n", "<Leader>fb", telescope_builtin.buffers, {})
+            vim.keymap.set("n", "<Leader>fh", telescope_builtin.help_tags, {})
+        end
+    },
+    {
+        "nvim-telescope/telescope-file-browser.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+    },
 
     -- Utilities
     "tpope/vim-surround",
@@ -95,31 +138,6 @@ require("lazy").setup({
     {
         "folke/which-key.nvim",
         cmd = { "WhichKey" },
-    },
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "nvim-tree/nvim-web-devicons",
-            "nvim-lua/plenary.nvim",
-        },
-        config = function ()
-            require("neo-tree").setup({
-                window = {
-                    position = "float",
-                    popup = {
-                        -- settings that apply to float position only
-                        size = { height = "80%", width = "50%" },
-                        position = "50%",
-                    },
-                },
-                filesystem = {
-                    filtered_items = { visible = true, hidden_dotfiles = false },
-                },
-            })
-            vim.api.nvim_set_keymap("n", "<Leader>nt", ":Neotree<CR>", {})
-        end,
     },
 })
 
@@ -235,38 +253,6 @@ require("lspconfig").rust_analyzer.setup({
 
 -- Rust
 vim.g.rustfmt_autosave = 1
-
--- Fuzzy search config in Telescope
-local telescope = require("telescope")
-local telescope_config = require("telescope.config")
-local actions = require("telescope.actions")
-
-local vimgrep_arguments = { unpack(telescope_config.values.vimgrep_arguments) }
-table.insert(vimgrep_arguments, "--hidden")
-table.insert(vimgrep_arguments, "--glob")
-table.insert(vimgrep_arguments, "!.git/*")
-telescope.setup({
-    defaults = {
-        vimgrep_arguments = vimgrep_arguments,
-        mappings = {
-            i = {
-                -- Mapping <Esc> to quit in insert mode
-                ["<esc>"] = actions.close
-            },
-        },
-    },
-    pickers = {
-        find_files = {
-            find_command = { "rg", "--files", "--hidden", "--glob", "!.git/*" },
-        },
-    },
-})
-
-local telescope_builtin = require('telescope.builtin')
-vim.keymap.set("n", "<Leader>ff", telescope_builtin.find_files, {})
-vim.keymap.set("n", "<Leader>fg", telescope_builtin.live_grep, {})
-vim.keymap.set("n", "<Leader>fb", telescope_builtin.buffers, {})
-vim.keymap.set("n", "<Leader>fh", telescope_builtin.help_tags, {})
 
 -- `:` cmdline setup.
 cmp.setup.cmdline(":", {
