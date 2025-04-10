@@ -25,4 +25,4 @@ nnoremap <C-h> :nohlsearch<CR>
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 
-vmap p _dp
+vnoremap p "_dP
