@@ -47,6 +47,7 @@
 !config/wezterm/wezterm.lua
 !config/zsh/
 !config/zsh/.zshrc
+!config/zsh/.zshenv
 !config/zsh/zi.zsh
 !config/starship.toml
 !local/
