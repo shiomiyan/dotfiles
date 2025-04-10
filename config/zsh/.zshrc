@@ -88,3 +88,6 @@ else
     touch "$ZDOTDIR/local.zsh"
 fi
 
+# mise
+eval "$(mise activate zsh --shims)"
+
