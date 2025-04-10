@@ -19,8 +19,8 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ "UDEV Gothic NFLG", "BIZ UDGothic", "Symbols Nerd Font Mono" }),
-    harfbuzz_features = { "calt=0", "clig=0", "liga=0", "cv06", "cv07", "cv11" },
+    font = wezterm.font_with_fallback({ "Moralerspace Neon HWNF", "BIZ UDGothic", "Symbols Nerd Font Mono" }),
+    harfbuzz_features = { "" },
     cell_width = 1.1,
     -- Pane appearance
     inactive_pane_hsb = {
