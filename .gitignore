@@ -40,6 +40,7 @@
 !config/powershell/Modules/
 !config/powershell/Modules/Windows/
 !config/powershell/Modules/Windows/Windows.psm1
+!config/sheldon/
 !config/sheldon/plugins.toml
 !config/tig/
 !config/tig/config
