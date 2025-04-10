@@ -21,14 +21,19 @@
 !config/git/
 !config/git/config
 !config/git/ignore
+!config/ideavim/
+!config/ideavim/ideavimrc
 !config/karabiner/
 !config/karabiner/karabiner.json
 !config/lsd/
 !config/lsd/config.yaml
+!config/mise/
+!config/mise/config.toml
 !config/neovide/
 !config/neovide/config.toml
 !config/nvim/
 !config/nvim/init.lua
+!config/nvim/filetype.lua
 !config/nvim/lua/
 !config/nvim/lua/neovide.lua
 !config/nvim/vscode.lua
@@ -41,6 +46,7 @@
 !config/powershell/Modules/
 !config/powershell/Modules/Windows/
 !config/powershell/Modules/Windows/Windows.psm1
+!config/sheldon/plugins.toml
 !config/tig/
 !config/tig/config
 !config/wezterm/

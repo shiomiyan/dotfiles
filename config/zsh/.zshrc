@@ -4,9 +4,17 @@ export EDITOR=nvim
 # ================================
 # Configure zsh and load extension
 # ================================
-source $ZDOTDIR/zi.zsh
+eval "$(sheldon source)"
 setopt hist_ignore_dups
 setopt sharehistory
+if [ ! -d "$XDG_CACHE_HOME"/zsh ]; then
+    mkdir -p "$XDG_CACHE_HOME"/zsh
+fi
+if [ ! -d "$XDG_STATE_HOME"/zsh ]; then
+    mkdir -p "$XDG_STATE_HOME"/zsh
+fi
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 # ================================
 # Aliases
@@ -38,6 +46,9 @@ fi
 # Settings for toolchains
 # ================================
 export PATH="$HOME/.local/bin:$PATH"
+
+# less
+export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 
 # Starship
 export STARSHIP_CONFIG="$HOME/.config/starship.toml"
