@@ -57,6 +57,9 @@
 !local/share/applications/obsidian.desktop
 !local/share/icons/
 !local/share/icons/obsidian.png
+!system/
+!system/evremap/
+!system/evremap/*.toml
 !windows/
 !windows/.wslconfig
 !windows/wsl.conf
