@@ -32,50 +32,57 @@ vim.api.nvim_set_keymap("v", "p", "_dp", { noremap = false, silent = true })
 -- gj gk for vscode: START
 -- https://zenn.dev/januswel/articles/bf117ede3f5091
 local mappings = {
-    up = 'k',
-    down = 'j',
-    wrappedLineStart = '0',
-    wrappedLineFirstNonWhitespaceCharacter = '^',
-    wrappedLineEnd = '$',
+    up = "k",
+    down = "j",
+    wrappedLineStart = "0",
+    wrappedLineFirstNonWhitespaceCharacter = "^",
+    wrappedLineEnd = "$",
 }
 
 local function moveCursor(to, select)
     return function()
         local mode = vim.api.nvim_get_mode()
-        if mode.mode == 'V' or mode.mode == '' then
+        if mode.mode == "V" or mode.mode == "^V" then
             return mappings[to]
         end
 
-        vscode.action('cursorMove', {
+        vscode.action("cursorMove", {
             args = {
                 {
                     to = to,
-                    by = 'wrappedLine',
+                    by = "wrappedLine",
                     value = vim.v.count1,
                     select = select
                 },
             },
         })
-        return '<Ignore>'
+        return "<Ignore>"
     end
 end
 
-vim.keymap.set('n', 'k', moveCursor('up'), { expr = true })
-vim.keymap.set('n', 'j', moveCursor('down'), { expr = true })
-vim.keymap.set('n', '0', moveCursor('wrappedLineStart'), { expr = true })
-vim.keymap.set('n', '^', moveCursor('wrappedLineFirstNonWhitespaceCharacter'), { expr = true })
-vim.keymap.set('n', '$', moveCursor('wrappedLineEnd'), { expr = true })
+vim.keymap.set("n", "k", moveCursor("up"), { expr = true })
+vim.keymap.set("n", "j", moveCursor("down"), { expr = true })
+vim.keymap.set("n", "0", moveCursor("wrappedLineStart"), { expr = true })
+vim.keymap.set("n", "^", moveCursor("wrappedLineFirstNonWhitespaceCharacter"), { expr = true })
+vim.keymap.set("n", "$", moveCursor("wrappedLineEnd"), { expr = true })
 
-vim.keymap.set('v', 'k', moveCursor('up', true), { expr = true })
-vim.keymap.set('v', 'j', moveCursor('down', true), { expr = true })
-vim.keymap.set('v', '0', moveCursor('wrappedLineStart', true), { expr = true })
-vim.keymap.set('v', '^', moveCursor('wrappedLineFirstNonWhitespaceCharacter', true), { expr = true })
-vim.keymap.set('v', '$', moveCursor('wrappedLineEnd', true), { expr = true })
+vim.keymap.set("v", "k", moveCursor("up", true), { expr = true })
+vim.keymap.set("v", "j", moveCursor("down", true), { expr = true })
+vim.keymap.set("v", "0", moveCursor("wrappedLineStart", true), { expr = true })
+vim.keymap.set("v", "^", moveCursor("wrappedLineFirstNonWhitespaceCharacter", true), { expr = true })
+vim.keymap.set("v", "$", moveCursor("wrappedLineEnd", true), { expr = true })
 -- gj gk for vscode: END
+
+-- Linux: disable IME when switch to INSERT mode
+if vim.fn.has("unix") and not is_wsl then
+    vim.api.nvim_create_autocmd("InsertLeave", {
+        command = "call system('fcitx5-remote -c')",
+    })
+end
 
 vim.filetype.add({
     extension = {
-        mdx = 'mdx'
+        mdx = "mdx"
     }
 })
 
