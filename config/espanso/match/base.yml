@@ -48,7 +48,7 @@ matches:
     replace: "Path of Exile"
 
   # Foldable syntax in Markdown
-  - trigger: ";;fold"
+  - trigger: ";;details"
     replace: |
       <details><summary>$|$</summary><div>
       :)
