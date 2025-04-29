@@ -6,6 +6,12 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/bootstrap/bootstrap.sh)"
 ```
 
+- https://sheldon.cli.rs/Installation.html
+- https://github.com/wez/evremap
+  - `sudo dnf group install 'development-tools'`
+  - `sudo dnf install -y libevdev-devel`
+  - clone repo, build it, `sudo cp target/release/evremap /usr/bin/evremap`
+
 ### Windows
 
 `winget` and `choco` and `scoop` needed.

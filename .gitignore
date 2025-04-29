@@ -60,6 +60,8 @@
 !system/
 !system/evremap/
 !system/evremap/*.toml
+!system/systemd/
+!system/systemd/*.service
 !windows/
 !windows/.wslconfig
 !windows/wsl.conf
