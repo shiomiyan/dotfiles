@@ -84,6 +84,7 @@ fi
 if [ -x "$(command -v pnpm)" ]; then
     export PNPM_HOME="$HOME/.local/share/pnpm"
     export PATH="$PNPM_HOME:$PATH"
+    alias pp="pnpm"
 fi
 
 # llvm
