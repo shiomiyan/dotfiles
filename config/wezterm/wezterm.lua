@@ -19,8 +19,8 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ "Cascadia Mono", "BIZ UDGothic", "Symbols Nerd Font Mono" }),
-    harfbuzz_features = { "zero" },
+    font = wezterm.font_with_fallback({ "Bizin Gothic NF", "Symbols Nerd Font Mono" }),
+    harfbuzz_features = { "" },
     cell_width = 1.0,
     -- Pane appearance
     inactive_pane_hsb = {
@@ -121,7 +121,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.window_padding.right = 16 -- Scrollbar width
 else
     config.default_prog = { "zsh", "--login" }
-    config.font_size = 14
+    config.font_size = 16
     config.line_height = 1.0
     config.enable_wayland = false
     config.window_decorations = "TITLE | RESIZE"
