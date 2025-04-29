@@ -5,7 +5,7 @@ local config = {
     -- GUI Customization --
     -----------------------
     color_scheme = "Kanagawa (Gogh)",
-    window_background_opacity = 1.0,
+    window_background_opacity = 0.9,
     tab_bar_at_bottom = true,
     use_fancy_tab_bar = false,
     tab_max_width = 25,
@@ -19,9 +19,9 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ "Moralerspace Neon HWNF", "BIZ UDGothic", "Symbols Nerd Font Mono" }),
-    harfbuzz_features = { "" },
-    cell_width = 1.1,
+    font = wezterm.font_with_fallback({ "Cascadia Mono", "BIZ UDGothic", "Symbols Nerd Font Mono" }),
+    harfbuzz_features = { "zero" },
+    cell_width = 1.0,
     -- Pane appearance
     inactive_pane_hsb = {
         saturation = 0.5,
@@ -121,8 +121,10 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.window_padding.right = 16 -- Scrollbar width
 else
     config.default_prog = { "zsh", "--login" }
-    config.font_size = 12
-    config.line_height = 1.3
+    config.font_size = 14
+    config.line_height = 1.0
+    config.enable_wayland = false
+    config.window_decorations = "TITLE | RESIZE"
 end
 
 return config

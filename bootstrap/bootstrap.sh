@@ -47,7 +47,6 @@ function setup-common-utils() {
     fi
 
     git clone https://github.com/shiomiyan/dotfiles.git ~/dotfiles
-    ln -sf ~/dotfiles/zshenv ~/.zshenv
     ln -sf ~/dotfiles/config/zsh ~/.config/zsh
     ln -sf ~/dotfiles/config/git ~/.config/git
     ln -sf ~/dotfiles/config/tig ~/.config/tig

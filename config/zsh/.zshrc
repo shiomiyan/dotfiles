@@ -102,3 +102,11 @@ fi
 # mise
 eval "$(mise activate zsh --shims)"
 
+
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh --disable-up-arrow)"
+
+export SSH_AUTH_SOCK="$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
+
+
+. "$HOME/.local/share/../bin/env"
