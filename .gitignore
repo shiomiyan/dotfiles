@@ -8,8 +8,7 @@
 !bootstrap/bootstrap.sh
 !bootstrap/extra.ps1
 !bootstrap/helper/
-!bootstrap/helper/setup-obsidian.sh
-!bootstrap/helper/setup-yubico-authenticator.sh
+!bootstrap/helper/setup-*.sh
 !config/
 !config/espanso/
 !config/espanso/config/
