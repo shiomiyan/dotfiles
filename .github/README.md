@@ -1,4 +1,36 @@
-### Linux or Mac
+## Setup on Fedora
+
+一応bootstrapスクリプトを用意している。
+
+```shell
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/bootstrap/bootstrap.sh)"
+```
+
+ただ、セットアップ頻度自体が少なくflakyになりがちなので、必要になったらインストールしていくほうが無難。
+
+### Zsh
+
+自動化してないので手でやる。Zshとそのプラグインマネージャーを入れる。
+
+```
+sudo dnf install -y zsh
+cargo install sheldon
+```
+
+`/etc/zshenv`に以下を追記する。
+
+```
+export XDG_CONFIG_HOME="$HOME/.config/"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
+```
+
+Zshの設定にsymlinkを張る。
+
+```
+ln -s ~/dotfiles/config/zsh ~/.config/zsh
+```
+
+## macOS
 
 `dnf` or `brew` needed.
 
@@ -6,13 +38,7 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/bootstrap/bootstrap.sh)"
 ```
 
-- https://sheldon.cli.rs/Installation.html
-- https://github.com/wez/evremap
-  - `sudo dnf group install 'development-tools'`
-  - `sudo dnf install -y libevdev-devel`
-  - clone repo, build it, `sudo cp target/release/evremap /usr/bin/evremap`
-
-### Windows
+## Windows
 
 `winget` and `choco` and `scoop` needed.
 

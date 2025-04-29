@@ -4,25 +4,25 @@ export EDITOR=nvim
 # ================================
 # Configure zsh and load extension
 # ================================
+# setup zsh plugin
 eval "$(sheldon source)"
+
+# distinct duplicate command history
 setopt hist_ignore_dups
+
+# share history
 setopt sharehistory
-if [ ! -d "$XDG_CACHE_HOME"/zsh ]; then
-    mkdir -p "$XDG_CACHE_HOME"/zsh
-fi
-if [ ! -d "$XDG_STATE_HOME"/zsh ]; then
-    mkdir -p "$XDG_STATE_HOME"/zsh
-fi
+
+# remove duplicate PATH
+typeset -U path PATH
+
+# setup cache directory depends on xdg base directory
+[[ ! -d "$XDG_CACHE_HOME"/zsh ]] && mkdir -p "$XDG_CACHE_HOME"/zsh
+[[ ! -d "$XDG_STATE_HOME"/zsh ]] && mkdir -p "$XDG_STATE_HOME"/zsh
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
-# ================================
-# Aliases
-# ================================
-if [ -x "$(command -v xclip)" ]; then
-    alias clip="xclip -sel clip"
-fi
-
+# docker utility command if docker exists
 if [ -x "$(command -v docker)" ]; then
     function docker-horobi() {
         docker compose down --rmi all --volumes --remove-orphans
@@ -30,78 +30,75 @@ if [ -x "$(command -v docker)" ]; then
     }
 fi
 
+if [ -x "$(command -v xclip)" ]; then
+    alias clip="xclip -sel clip"
+fi
+
 if [[ $(uname) == "Darwin" ]]; then
     alias clip="pbcopy"
     alias reset-launchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
 fi
 
-# ================================
-# Load config for WSL
-# ================================
+# load config for WSL
 if uname -r | grep -q 'microsoft'; then
     source $ZDOTDIR/wsl.zsh
 fi
 
-# ================================
-# Settings for toolchains
-# ================================
-export PATH="$HOME/.local/bin:$PATH"
+# set path for executables
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
 # less
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 
-# Starship
-export STARSHIP_CONFIG="$HOME/.config/starship.toml"
-eval "$(starship init zsh)"
+# starship
+if [[ -x "$(command -v starship)" ]]; then
+    export STARSHIP_CONFIG="$HOME/.config/starship.toml"
+    eval "$(starship init zsh)"
+fi
 
 # zoxide
-eval "$(zoxide init zsh)"
+if [[ -x "$(command -v zoxide)" ]]; then
+    eval "$(zoxide init zsh)"
+fi
 
 # GnuPG
 export GPG_TTY=$(tty)
 
 # Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# Golang
-export PATH="/usr/local/go/bin:$HOME/go/bin:$PATH"
+[[ -d "$HOME/.cargo" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
 # Deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 # Gradle (manual install: https://gradle.org/install/#manually)
-if [ -d "/opt/gradle/" ]; then
-    export PATH="$PATH:/opt/gradle/$(ls /opt/gradle/)/bin"
-fi
+[[ -d "/opt/gradle/" ]] && export PATH="$PATH:/opt/gradle/$(ls /opt/gradle/)/bin"
 
 # npm
-export PATH="$PATH:$HOME/.npm/bin"
 if [ -x "$(command -v npm)" ]; then
+    export PATH="$PATH:$HOME/.npm/bin"
     eval "$(npm completion)"
 fi
 
-# nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
-# llvm
-export PATH="/usr/local/opt/llvm/bin:$PATH"
-
-# Load local configuration
-if [ -f "$ZDOTDIR/local.zsh" ]; then
-    source "$ZDOTDIR/local.zsh"
-else
-    touch "$ZDOTDIR/local.zsh"
+if [ -x "$(command -v pnpm)" ]; then
+    export PNPM_HOME="$HOME/.local/share/pnpm"
+    export PATH="$PNPM_HOME:$PATH"
 fi
 
+# llvm
+[[ -d "/usr/local/opt/llvm/bin" ]] && export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# Load local configuration
+[[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
+
 # mise
-eval "$(mise activate zsh --shims)"
+if [ -x "$(command -v mise)" ]; then
+    eval "$(mise activate zsh --shims)"
+fi
 
 # atuin
-eval "$(atuin init zsh --disable-up-arrow)"
+if [ -x "$(command -v atuin)" ]; then
+    eval "$(atuin init zsh --disable-up-arrow)"
+fi
 
