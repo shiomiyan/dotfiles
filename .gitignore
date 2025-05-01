@@ -18,6 +18,8 @@
 !config/git/
 !config/git/config
 !config/git/ignore
+!config/ghostty/
+!config/ghostty/config
 !config/ideavim/
 !config/ideavim/ideavimrc
 !config/karabiner/
