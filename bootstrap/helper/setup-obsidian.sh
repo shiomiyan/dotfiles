@@ -2,13 +2,14 @@
 
 set -e
 
-mkdir -p /opt/obsidian/
+sudo mkdir -p /opt/obsidian/
 BROWSER_DOWNLOAD_URL="$(curl -s https://api.github.com/repos/obsidianmd/obsidian-releases/releases/latest | jq -r '.assets[] | select(.name | match("^(?!.*arm64).*\\.AppImage$")) | .browser_download_url')"
-curl -L $BROWSER_DOWNLOAD_URL -o /opt/obsidian/Obsidian.AppImage
-chmod +x /opt/obsidian/Obsidian.AppImage
+sudo curl -L $BROWSER_DOWNLOAD_URL -o /opt/obsidian/Obsidian.AppImage
+sudo chmod +x /opt/obsidian/Obsidian.AppImage
 
-ln -sf ~/dotfiles/local/share/applications/obsidian.desktop ~/.local/share/applications/obsidian.desktop
-ln -sf ~/dotfiles/local/share/icons/obsidian.png ~/.local/share/icons/obsidian.png
+mkdir -p ~/.local/share/{applications,icons}
+ln -s ~/dotfiles/local/share/applications/obsidian.desktop ~/.local/share/applications/obsidian.desktop
+ln -s ~/dotfiles/local/share/icons/obsidian.png ~/.local/share/icons/obsidian.png
 
 chmod 755 ~/.local/share/applications/obsidian.desktop
 
