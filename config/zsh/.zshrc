@@ -1,9 +1,6 @@
 export LC_MESSAGES=en_US.UTF-8
 export EDITOR=nvim
 
-# ================================
-# Configure zsh and load extension
-# ================================
 # setup zsh plugin
 eval "$(sheldon source)"
 
@@ -22,15 +19,21 @@ typeset -U path PATH
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
 export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
+# atuin
+if [[ -x "$(command -v atuin)" ]]; then
+    eval "$(atuin init zsh --disable-up-arrow)"
+fi
+
 # docker utility command if docker exists
-if [ -x "$(command -v docker)" ]; then
+if [[ -x "$(command -v docker)" ]]; then
     function docker-horobi() {
         docker compose down --rmi all --volumes --remove-orphans
         docker stop $(docker ps -q) && docker system prune --volumes
     }
 fi
 
-if [ -x "$(command -v xclip)" ]; then
+# copy text (example: echo "hello world" | clip)
+if [[ -x "$(command -v xclip)" ]]; then
     alias clip="xclip -sel clip"
 fi
 
@@ -40,7 +43,7 @@ if [[ $(uname) == "Darwin" ]]; then
 fi
 
 # load config for WSL
-if uname -r | grep -q 'microsoft'; then
+if [[ "$(uname -r)" =~ 'microsoft' ]]; then
     source $ZDOTDIR/wsl.zsh
 fi
 
@@ -61,27 +64,21 @@ if [[ -x "$(command -v zoxide)" ]]; then
     eval "$(zoxide init zsh)"
 fi
 
-# GnuPG
-export GPG_TTY=$(tty)
-
-# Rust
+# rust
 [[ -d "$HOME/.cargo" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
-# Deno
+# deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
-# Gradle (manual install: https://gradle.org/install/#manually)
-[[ -d "/opt/gradle/" ]] && export PATH="$PATH:/opt/gradle/$(ls /opt/gradle/)/bin"
-
 # npm
-if [ -x "$(command -v npm)" ]; then
+if [[ -x "$(command -v npm)" ]]; then
     export PATH="$PATH:$HOME/.npm/bin"
     eval "$(npm completion)"
 fi
 
 # pnpm
-if [ -x "$(command -v pnpm)" ]; then
+if [[ -x "$(command -v pnpm)" ]]; then
     export PNPM_HOME="$HOME/.local/share/pnpm"
     export PATH="$PNPM_HOME:$PATH"
     alias pp="pnpm"
@@ -90,16 +87,10 @@ fi
 # llvm
 [[ -d "/usr/local/opt/llvm/bin" ]] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 
-# Load local configuration
+# load local configuration / create local configuration file if not exists
 [[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
 
 # mise
-if [ -x "$(command -v mise)" ]; then
+if [[ -x "$(command -v mise)" ]]; then
     eval "$(mise activate zsh --shims)"
 fi
-
-# atuin
-if [ -x "$(command -v atuin)" ]; then
-    eval "$(atuin init zsh --disable-up-arrow)"
-fi
-
