@@ -1,4 +1,6 @@
 font-family = "consolas"
+font-family = "BIZ UDGothic"
 font-size   = 14
 window-padding-x = 2
-background-opacity = 0.9
+background-opacity = 0.95
+
