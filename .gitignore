@@ -47,6 +47,8 @@
 !config/tig/config
 !config/wezterm/
 !config/wezterm/wezterm.lua
+!config/vim/
+!config/vim/vscode.vim
 !config/zsh/
 !config/zsh/.zshrc
 !config/zsh/.zshenv
@@ -66,4 +68,3 @@
 !windows/
 !windows/.wslconfig
 !windows/wsl.conf
-!Xmodmap
