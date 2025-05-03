@@ -2,7 +2,7 @@ let mapleader = " "
 set clipboard=unnamedplus
 set matchpairs=(:),{:},[:],(：),（:）,「:」,【:】
 
-noremap <expr> H ^
+noremap H ^
 nnoremap j gj
 nnoremap k gk
 nnoremap <Tab> gt

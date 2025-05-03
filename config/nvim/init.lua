@@ -17,27 +17,23 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 require("lazy").setup({
     -- GUI enhancements
-    "rebelot/kanagawa.nvim",
+    {
+        "catppuccin/nvim", name = "catppuccin", priority = 1000,
+        config = function ()
+            require("catppuccin").setup({
+                flavour = "mocha",
+                integrations = { treesitter = true }
+            })
+        end
+    },
     "machakann/vim-highlightedyank",
     {
-        "nvim-lualine/lualine.nvim",
-        dependencies = { "arkav/lualine-lsp-progress" },
-        config = function ()
-            -- Status line
-            require("lualine").setup({
-                options = {
-                    icons_enabled = false,
-                    component_separators = { left = "", right = "" },
-                    section_separators = { left = "", right = "" },
-                },
-                sections = {
-                    lualine_a = { "mode" },
-                    lualine_b = { "branch", "diff", "diagnostics" },
-                    lualine_c = { "filename", "lsp_progress" },
-                    lualine_x = { "encoding", "fileformat", "filetype" },
-                    lualine_y = { "progress" },
-                    lualine_z = { "location" },
-                },
+        "beauwilliams/statusline.lua",
+        dependencies = { "nvim-lua/lsp-status.nvim" },
+        config = function()
+            require('statusline').setup({
+                match_colorscheme = false,
+                tabline = false,
             })
         end,
     },
@@ -231,29 +227,6 @@ require("mason-lspconfig").setup_handlers({
     end,
 })
 
--- Setup Rust language server
-require("lspconfig").rust_analyzer.setup({
-    flags = { debounce_text_changes = 150 },
-    settings = {
-        ["rust-analyzer"] = {
-            cargo = {
-                features = { "all" },
-            },
-            completion = {
-                postfix = {
-                    enable = false,
-                },
-            },
-            checkOnSave = {
-                command = "clippy",
-            },
-        },
-    },
-})
-
--- Rust
-vim.g.rustfmt_autosave = 1
-
 -- `:` cmdline setup.
 cmp.setup.cmdline(":", {
     mapping = cmp.mapping.preset.cmdline(),
@@ -272,7 +245,6 @@ cmp.setup.cmdline(":", {
 ------------------
 -- GUI Settings --
 ------------------
-vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.number = true
 vim.opt.cursorline = true
@@ -280,15 +252,11 @@ vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 5
 vim.opt.laststatus = 2
 vim.opt.showmode = false
-require("kanagawa").setup({
-    transparent = true,
-})
-vim.cmd("colorscheme kanagawa")
+vim.cmd("colorscheme catppuccin-mocha")
 
 ---------------------
 -- Editor Settings --
 ---------------------
-vim.opt.smartindent = true
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
@@ -296,7 +264,6 @@ vim.opt.expandtab = true
 vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.updatetime = 300
-vim.opt.encoding = "utf-8"
 vim.opt.fileencodings = { "utf-8", "sjis", "euc-jp", "iso-2022-jp" }
 vim.opt.fileencoding = "utf-8"
 vim.opt.fileformat = "unix"
@@ -312,11 +279,11 @@ vim.opt.mouse = ""
 vim.opt.cmdheight = 2
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 vim.opt.wrap = false
+vim.opt.mouse = "a"
 
 ---------------------
 -- Search Settings --
 ---------------------
-vim.opt.showmatch = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.wrapscan = false
@@ -399,9 +366,3 @@ vim.keymap.set("v", "p", "_dp")
 -- Exit terminal mode with Ctrl-[
 vim.keymap.set("t", "<C-[>", "<C-\\><C-n>")
 
--------------
--- Neovide --
--------------
-if vim.g.neovide then
-    require('neovide')
-end
