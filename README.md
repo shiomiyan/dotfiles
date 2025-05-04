@@ -1,6 +1,6 @@
 ## Setup on Fedora
 
-Use [stow](https://www.gnu.org/software/stow/).
+Use [stow](https://www.gnu.org/software/stow/) to create symlinks.
 
 ```
 sudo dnf install -y stow
@@ -9,43 +9,31 @@ sudo dnf install -y stow
 stow home -t "$HOME"
 ```
 
-一応bootstrapスクリプトを用意している。
+Install packages (but flaky).
 
 ```shell
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/bootstrap/bootstrap.sh)"
+./bootstrap/install.sh
 ```
-
-ただ、セットアップ頻度自体が少なくflakyになりがちなので、必要になったらインストールしていくほうが無難。
 
 ### Zsh
 
-自動化してないので手でやる。Zshとそのプラグインマネージャーを入れる。
+Manual.
 
 ```
 sudo dnf install -y zsh
 cargo install sheldon
 ```
 
-`/etc/zshenv`に以下を追記する。
+Add lines below to `/etc/zshenv`.
 
 ```
 export XDG_CONFIG_HOME="$HOME/.config/"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
 ```
 
-## macOS
-
-`dnf` or `brew` needed.
-
-```shell
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/shiomiyan/dotfiles/master/bootstrap/bootstrap.sh)"
-```
-
-## Windows
+## Setup on Windows
 
 `winget` and `choco` and `scoop` needed.
-
-Winget will not be automatically installed. Make sure [`winget`](https://docs.microsoft.com/en-us/windows/package-manager/winget/) is installed.
 
 ```powershell
 iwr "https://shiomiyan.github.io/dotfiles/bootstrap/bootstrap.ps1" -useb | iex
