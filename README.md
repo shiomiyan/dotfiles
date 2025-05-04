@@ -38,3 +38,11 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
 ```powershell
 iwr "https://shiomiyan.github.io/dotfiles/bootstrap/bootstrap.ps1" -useb | iex
 ```
+
+## Help
+
+Example to apply changes.
+
+```
+stow home -R
+```
