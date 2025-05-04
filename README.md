@@ -1,5 +1,14 @@
 ## Setup on Fedora
 
+Use [stow](https://www.gnu.org/software/stow/).
+
+```
+sudo dnf install -y stow
+
+# config under home directory
+stow home -t "$HOME"
+```
+
 一応bootstrapスクリプトを用意している。
 
 ```shell
@@ -22,12 +31,6 @@ cargo install sheldon
 ```
 export XDG_CONFIG_HOME="$HOME/.config/"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
-```
-
-Zshの設定にsymlinkを張る。
-
-```
-ln -s ~/dotfiles/config/zsh ~/.config/zsh
 ```
 
 ## macOS
