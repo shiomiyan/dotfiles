@@ -19,6 +19,7 @@ function error() {
 # Install packages
 function main() {
     install-common-utils
+    install-atuin
     install-starship
     install-neovim
     install-rust
@@ -37,6 +38,10 @@ function install-common-utils() {
     elif [[ -x "$(command -v dnf)" ]]; then
         sudo dnf -y upgrade
         sudo dnf -y install git curl wget zsh unzip tig xclip
+        sudo dnf -y group install development-tools
+
+        # change default shell to zsh
+        chsh -s $(which zsh)
     fi
 }
 
@@ -103,10 +108,48 @@ function install-espanso() {
     fi
 }
 
-function install-ghostty() {
+function install-gui-ghostty() {
     if [[ -x "$(command -v dnf)" ]]; then
         sudo dnf copr enable pgdev/ghostty
         sudo dnf install ghostty
+    fi
+}
+
+function install-gui-ime() {
+    if [[ -x "$(command -v dnf)" ]]; then
+        sudo dnf -y install fcitx5 fcitx5-mozc
+    fi
+}
+
+function install-gui-evremap() {
+    if [[ -x "$(command -v dnf)" ]]; then
+        sudo dnf -y group install development-tools
+        sudo dnf -y install libevdev-devel
+
+        TMP=$(mktemp -d)
+        git clone --depth=1 https://github.com/wez/evremap.git "$TMP"
+
+        pushd $TMP
+        cargo build --release
+        sudo cp target/release/evremap /usr/bin/evremap
+        popd
+    fi
+}
+
+function install-flatpak-apps() {
+    if [[ -x "$(command -v flatpak)" ]]; then
+        flatpak install -y com.bitwarden.desktop
+        flatpak install -y com.discordapp.Discord
+        flatpak install -y com.github.maoschanz.drawing
+        flatpak install -y com.github.tchx84.Flatseal
+        flatpak install -y com.slack.Slack
+        flatpak install -y com.spotify.Client
+        flatpak install -y io.podman_desktop.PodmanDesktop
+        flatpak install -y org.localsend.localsend_app
+
+        if [[ "$(echo $DESKTOP_SESSION)" == "gnome" ]]; then
+            flatpak install -y org.gnome.Extensions
+        fi
     fi
 }
 
@@ -120,8 +163,10 @@ function install-gui-applications() {
             spotify \
             wireshark
     elif [[ -x "$(command -v dnf)" ]] && [[ -n "$DESKTOP_SESSION" ]]; then
-        # TODO: LinuxでインストールしているGUIアプリのインストール行を書く
-        info "Install GUI applications if you need."
+        install-gui-ghostty
+        install-gui-ime
+        install-gui-evremap
+        install-flatpak-apps
     fi
 }
 

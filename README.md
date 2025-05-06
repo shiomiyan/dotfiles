@@ -2,7 +2,7 @@
 
 Use [stow](https://www.gnu.org/software/stow/) to create symlinks.
 
-```
+```shell
 sudo dnf install -y stow
 
 # config under home directory
@@ -15,18 +15,32 @@ Install packages (but flaky).
 ./bootstrap/install.sh
 ```
 
+### System
+
+```shell
+sudo stow -vt / system
+sudo install -v -m 644 systemd-units/*.service -t /usr/lib/systemd/system/
+
+# reload udev and systemd
+sudo udevadm control --reload
+sudo systemctl daemon-reload
+
+# enable key-remapper services
+sudo systemctl enable --now 'evremap.service' 'evremap-keychron-k2.service'
+```
+
 ### Zsh
 
 Manual.
 
-```
+```shell
 sudo dnf install -y zsh
 cargo install sheldon
 ```
 
 Add lines below to `/etc/zshenv`.
 
-```
+```shell
 export XDG_CONFIG_HOME="$HOME/.config/"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
 ```
