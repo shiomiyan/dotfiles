@@ -19,7 +19,7 @@ local config = {
     colors = { scrollbar_thumb = "Gray" },
     -- Reverse Curor Colors
     force_reverse_video_cursor = true,
-    font = wezterm.font_with_fallback({ "Bizin Gothic NF", "Symbols Nerd Font Mono" }),
+    font = wezterm.font_with_fallback({ "consolas", "BIZ UDGothic", "Symbols Nerd Font Mono" }),
     harfbuzz_features = { "" },
     cell_width = 1.0,
     -- Pane appearance
