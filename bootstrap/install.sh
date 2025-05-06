@@ -41,15 +41,21 @@ function install-common-utils() {
         sudo dnf -y group install development-tools
 
         # change default shell to zsh
-        chsh -s $(which zsh)
+        if [[ "$(echo $SHELL)" != "zsh" ]]; then
+            chsh -s $(which zsh)
+        fi
     fi
 }
 
 function install-atuin() {
+    [[ -x "$(command -v atuin)" ]] && info "atuin already installed" && return
+
     curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 }
 
 function install-starship() {
+    [[ -x "$(command -v starship)" ]] && info "starship already installed" && return
+
     if [[ "$(uname)" == "Darwin" ]]; then
         brew install starship
     else
@@ -58,6 +64,8 @@ function install-starship() {
 }
 
 function install-neovim() {
+    [[ -x "$(command -v nvim)" ]] && info "neovim already installed" && return
+
     if [[ "$(uname)" == "Darwin" ]]; then
         # If failed to install Neovim, see https://github.com/neovim/neovim/issues/16217#issuecomment-959793388
         brew install --HEAD neovim
@@ -67,15 +75,21 @@ function install-neovim() {
 }
 
 function install-rust() {
+    [[ -x "$(command -v cargo)" ]] && info "rust toolchains already installed" && return
+
     curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
     sudo dnf -y install rust-libudev-devel rust-x11+xtst-devel
 }
 
 function install-deno() {
-    curl -fsSL https://deno.land/install.sh | sh
+    [[ -x "$(command -v deno)" ]] && info "deno already installed" && return
+
+    curl -fsSL https://deno.land/install.sh | sh -s -- -y
 }
 
 function install-ripgrep() {
+    [[ -x "$(command -v rg)" ]] && info "ripgrep already installed" && return
+
     if [[ "$(uname)" == "Darwin" ]]; then
         brew install ripgrep
     elif [[ -x "$(command -v dnf)" ]]; then
@@ -84,6 +98,8 @@ function install-ripgrep() {
 }
 
 function install-bat() {
+    [[ -x "$(command -v bat)" ]] && info "bat already installed" && return
+
     if [[ "$(uname)" == "Darwin" ]]; then
         brew install bat
     elif [[ -x "$(command -v dnf)" ]]; then
@@ -92,6 +108,8 @@ function install-bat() {
 }
 
 function install-zoxide() {
+    [[ -x "$(command -v zoxide)" ]] && info "zoxide already installed" && return
+
     if [[ "$(uname)" == "Darwin" ]]; then
         brew install zoxide
     elif [[ -x "$(command -v dnf)" ]]; then
@@ -100,6 +118,8 @@ function install-zoxide() {
 }
 
 function install-espanso() {
+    [[ -x "$(command -v espanso)" ]] && info "espanso already installed" && return
+
     if [[ "$(uname)" == "Darwin" ]]; then
         brew tap espanso/espanso
         brew install espanso
@@ -109,6 +129,8 @@ function install-espanso() {
 }
 
 function install-gui-ghostty() {
+    [[ -x "$(command -v ghostty)" ]] && info "ghostty already installed" && return
+
     if [[ -x "$(command -v dnf)" ]]; then
         sudo dnf copr enable pgdev/ghostty
         sudo dnf install ghostty
@@ -138,14 +160,16 @@ function install-gui-evremap() {
 
 function install-flatpak-apps() {
     if [[ -x "$(command -v flatpak)" ]]; then
-        flatpak install -y com.bitwarden.desktop
-        flatpak install -y com.discordapp.Discord
-        flatpak install -y com.github.maoschanz.drawing
-        flatpak install -y com.github.tchx84.Flatseal
-        flatpak install -y com.slack.Slack
-        flatpak install -y com.spotify.Client
-        flatpak install -y io.podman_desktop.PodmanDesktop
-        flatpak install -y org.localsend.localsend_app
+        sudo flatpak remote-add --if-not-exists --system flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+        flatpak install -y flathub com.bitwarden.desktop
+        flatpak install -y flathub com.discordapp.Discord
+        flatpak install -y flathub com.github.maoschanz.drawing
+        flatpak install -y flathub com.github.tchx84.Flatseal
+        flatpak install -y flathub com.slack.Slack
+        flatpak install -y flathub com.spotify.Client
+        flatpak install -y flathub io.podman_desktop.PodmanDesktop
+        flatpak install -y flathub org.localsend.localsend_app
 
         if [[ "$(echo $DESKTOP_SESSION)" == "gnome" ]]; then
             flatpak install -y org.gnome.Extensions
