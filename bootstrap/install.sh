@@ -28,7 +28,6 @@ function main() {
     install-bat
     install-zoxide
     install-espanso
-    install-wezterm
     install-gui-applications
 }
 
