@@ -18,7 +18,7 @@ Install packages (but flaky).
 ### System
 
 ```shell
-sudo stow -vt / system
+sudo stow system -vt /
 sudo install -v -m 644 systemd-units/*.service -t /usr/lib/systemd/system/
 
 # reload udev and systemd
@@ -31,14 +31,7 @@ sudo systemctl enable --now 'evremap.service' 'evremap-keychron-k2.service'
 
 ### Zsh
 
-Manual.
-
-```shell
-sudo dnf install -y zsh
-cargo install sheldon
-```
-
-Add lines below to `/etc/zshenv`.
+Add lines below to `/etc/zshenv` to use xdg base directory.
 
 ```shell
 export XDG_CONFIG_HOME="$HOME/.config/"
