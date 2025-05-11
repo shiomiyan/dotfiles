@@ -13,12 +13,6 @@ setopt sharehistory
 # remove duplicate PATH
 typeset -U path PATH
 
-# setup cache directory depends on xdg base directory
-[[ ! -d "$XDG_CACHE_HOME"/zsh ]] && mkdir -p "$XDG_CACHE_HOME"/zsh
-[[ ! -d "$XDG_STATE_HOME"/zsh ]] && mkdir -p "$XDG_STATE_HOME"/zsh
-zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
-export HISTFILE="$XDG_STATE_HOME"/zsh/history
-
 # atuin
 if [[ -x "$(command -v atuin)" ]]; then
     eval "$(atuin init zsh --disable-up-arrow)"
