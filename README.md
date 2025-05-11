@@ -38,7 +38,7 @@ export XDG_CONFIG_HOME="$HOME/.config/"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
 ```
 
-## Setup on Windows
+## ~~Setup on Windows~~
 
 `winget` and `choco` and `scoop` needed.
 
