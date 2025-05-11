@@ -21,9 +21,6 @@ github = "romkatv/zsh-defer"
 github = "zsh-users/zsh-syntax-highlighting"
 use = ["{{ name }}.zsh"]
 
-[plugins.zsh-autosuggestions]
-github = "zsh-users/zsh-autosuggestions"
-
 # For example:
 #
 # [plugins.base16]
