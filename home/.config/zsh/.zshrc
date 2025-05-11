@@ -4,8 +4,20 @@ export EDITOR=nvim
 # setup zsh plugin
 eval "$(sheldon source)"
 
+# distinct duplicate command history
+setopt hist_ignore_dups
+
+# share history
+setopt sharehistory
+
 # remove duplicate PATH
 typeset -U path PATH
+
+# setup cache directory depends on xdg base directory
+[[ ! -d "$XDG_CACHE_HOME"/zsh ]] && mkdir -p "$XDG_CACHE_HOME"/zsh
+[[ ! -d "$XDG_STATE_HOME"/zsh ]] && mkdir -p "$XDG_STATE_HOME"/zsh
+zstyle ':completion:*' cache-path "$XDG_CACHE_HOME"/zsh/zcompcache
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
 
 # atuin
 if [[ -x "$(command -v atuin)" ]]; then
@@ -75,14 +87,13 @@ if [[ -x "$(command -v pnpm)" ]]; then
     alias pp="pnpm"
 fi
 
-# mise
-if [[ -x "$(command -v mise)" ]]; then
-    eval "$(mise activate zsh --shims)"
-fi
-
 # llvm
 [[ -d "/usr/local/opt/llvm/bin" ]] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # load local configuration / create local configuration file if not exists
 [[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
 
+# mise
+if [[ -x "$(command -v mise)" ]]; then
+    eval "$(mise activate zsh --shims)"
+fi
