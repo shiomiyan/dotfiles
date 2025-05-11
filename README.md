@@ -6,7 +6,7 @@ Use [stow](https://www.gnu.org/software/stow/) to create symlinks.
 sudo dnf install -y stow
 
 # config under home directory
-stow home -t "$HOME"
+stow home -vt "$HOME"
 ```
 
 Install packages (but flaky).
@@ -18,15 +18,15 @@ Install packages (but flaky).
 ### System
 
 ```shell
+# create system configuration symlinks
 sudo stow system -vt /
+
+# install systemd units
 sudo install -v -m 644 systemd-units/*.service -t /usr/lib/systemd/system/
 
-# reload udev and systemd
-sudo udevadm control --reload
-sudo systemctl daemon-reload
-
 # enable key-remapper services
-sudo systemctl enable --now 'evremap.service' 'evremap-keychron-k2.service'
+sudo systemctl daemon-reload
+sudo systemctl enable --now 'xremap.service'
 ```
 
 ### Zsh

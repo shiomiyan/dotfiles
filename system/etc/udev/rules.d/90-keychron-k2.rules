@@ -1,5 +1,0 @@
-# /etc/udev/rules.d/90-keychron-k2.rules
-ACTION=="add", SUBSYSTEM=="input", KERNEL=="event*", \
-  ATTRS{product}=="Keychron K2", \
-  TAG+="systemd", \
-  ENV{SYSTEMD_WANTS}="evremap-keychron-k2.service"

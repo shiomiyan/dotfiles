@@ -1,0 +1,8 @@
+modmap:
+  - name: Caps to Ctrl
+    remap:
+      CapsLock: Ctrl_L
+keymap:
+  - name: Ctrl-[ as Esc for global
+    remap:
+      C-leftbrace: Esc

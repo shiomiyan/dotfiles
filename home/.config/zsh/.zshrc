@@ -67,6 +67,9 @@ fi
 # rust
 [[ -d "$HOME/.cargo" ]] && export PATH="$HOME/.cargo/bin:$PATH"
 
+# golang
+[[ -d "/usr/local/go/bin" ]] && export PATH="$PATH:/usr/local/go/bin"
+
 # deno
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
