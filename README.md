@@ -38,14 +38,6 @@ export XDG_CONFIG_HOME="$HOME/.config/"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
 ```
 
-## ~~Setup on Windows~~
-
-`winget` and `choco` and `scoop` needed.
-
-```powershell
-iwr "https://shiomiyan.github.io/dotfiles/bootstrap/bootstrap.ps1" -useb | iex
-```
-
 ## Help
 
 Example to apply changes.
