@@ -1,7 +1,11 @@
 [user]
 	name = shiomiyan
 	email = 35842766+shiomiyan@users.noreply.github.com
-	signingkey = B1CA0F7EFB364367A6819B64DE3AA2C3F82145B2
+	signingkey = F64DBFC93685BF53
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
 [ui "color"]
 	ui = always
 [color]

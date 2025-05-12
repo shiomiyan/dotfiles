@@ -18,6 +18,9 @@ if [[ -x "$(command -v atuin)" ]]; then
     eval "$(atuin init zsh --disable-up-arrow)"
 fi
 
+# GPG
+export GPG_TTY=$(tty)
+
 # docker utility command if docker exists
 if [[ -x "$(command -v docker)" ]]; then
     function docker-horobi() {
