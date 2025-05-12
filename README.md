@@ -21,12 +21,8 @@ Install packages (but flaky).
 # create system configuration symlinks
 sudo stow system -vt /
 
-# install systemd units
-sudo install -v -m 644 systemd-units/*.service -t /usr/lib/systemd/system/
-
 # enable key-remapper services
-sudo systemctl daemon-reload
-sudo systemctl enable --now 'xremap.service'
+systemctl --user enable --now 'xremap.service'
 ```
 
 ### Zsh
