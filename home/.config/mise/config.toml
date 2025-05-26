@@ -1,6 +1,7 @@
 [tools]
 node = "lts"
 "npm:git-cz" = "latest"
+"npm:pnpm" = "latest"
 uv = "latest"
 
 [settings]

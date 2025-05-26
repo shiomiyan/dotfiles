@@ -34,6 +34,11 @@ if [[ -x "$(command -v xclip)" ]]; then
     alias clip="xclip -sel clip"
 fi
 
+# `open` command
+if [[ -x "$(command -v xdg-open)" ]]; then
+    alias open="xdg-open"
+fi
+
 if [[ $(uname) == "Darwin" ]]; then
     alias clip="pbcopy"
     alias reset-launchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
