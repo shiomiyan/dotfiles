@@ -56,3 +56,6 @@ matches:
   - trigger: ";;xss"
     replace: "<img src=x onerror=alert();>"
 
+  - trigger: ";;hr"
+    replace: "--------------------"
+
