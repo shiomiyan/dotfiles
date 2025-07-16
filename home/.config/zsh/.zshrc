@@ -89,6 +89,11 @@ if [[ -x "$(command -v pnpm)" ]]; then
     alias pp="pnpm"
 fi
 
+# ocaml
+if [[ -x "$(command -v opam)" ]]; then
+    [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
+fi
+
 # llvm
 [[ -d "/usr/local/opt/llvm/bin" ]] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 
