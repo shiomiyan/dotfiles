@@ -39,9 +39,14 @@ require("lazy").setup({
     },
 
     -- Semantic language support
-    "neovim/nvim-lspconfig",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    {
+        "mason-org/mason-lspconfig.nvim",
+        opts = {},
+        dependencies = {
+            { "mason-org/mason.nvim", opts = {} },
+            "neovim/nvim-lspconfig",
+        }
+    },
 
     -- Completion plugins
     {
@@ -212,18 +217,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<Leader>F", function()
             vim.lsp.buf.format({ async = true })
         end, opts)
-    end,
-})
-
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = { "rust_analyzer", "lua_ls", "denols" },
-})
-
--- Automatically setup all language servers
-require("mason-lspconfig").setup_handlers({
-    function(server_name)
-        require("lspconfig")[server_name].setup {}
     end,
 })
 
