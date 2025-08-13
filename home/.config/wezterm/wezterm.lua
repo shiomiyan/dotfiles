@@ -6,9 +6,15 @@ local config = wezterm.config_builder()
 -----------------------
 config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.9
+config.kde_window_background_blur = true
 config.tab_bar_at_bottom = true
-config.use_fancy_tab_bar = false
 config.tab_max_width = 25
+
+-- Custom font for fancy tab
+config.window_frame = {
+  font = require('wezterm').font 'Lato',
+  font_size = 12,
+}
 
 -- Initial window size on startup
 config.initial_rows = 32
@@ -74,7 +80,7 @@ elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.window_padding.right = 16 -- Scrollbar width
 else
     config.default_prog = { "zsh", "--login" }
-    config.font_size = 16
+    config.font_size = 12
     config.enable_wayland = false
     config.window_decorations = "TITLE | RESIZE"
 end

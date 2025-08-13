@@ -1,0 +1,22 @@
+swipe:
+  3:
+    left:
+    #  command: "xdotool key alt+Right" # History forward
+    right:
+    #  command: "xdotool key alt+Left" # History back
+    up:
+      command: "qdbus-qt6 org.kde.kglobalaccel /component/kwin invokeShortcut 'Overview'"
+    down:
+      command: "qdbus-qt6 org.kde.kglobalaccel /component/kwin invokeShortcut 'Overview'"
+  4:
+    left:
+      command: "qdbus-qt6 org.kde.kglobalaccel /component/kwin invokeShortcut 'Switch to Next Desktop'"
+    right:
+      command: "qdbus-qt6 org.kde.kglobalaccel /component/kwin invokeShortcut 'Switch to Previous Desktop'"
+    up:
+    #  command: "xdotool key ctrl+alt+Down" # Switch to next workspace
+    down:
+    #  command: "xdotool key ctrl+alt+Up" # Switch to previous workspace
+
+threshold:
+  swipe: 0.1
