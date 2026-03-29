@@ -12,7 +12,7 @@ end)
 -----------------------
 -- GUI Customization --
 -----------------------
-config.color_scheme = "One Light (base16)"
+config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.95
 config.kde_window_background_blur = true
 config.tab_bar_at_bottom = true
@@ -38,7 +38,7 @@ config.colors = { scrollbar_thumb = "Gray" }
 
 -- Reverse Curor Colors
 config.force_reverse_video_cursor = true
-config.font = wezterm.font_with_fallback({ "Moralerspace Argon JPDOC", "Symbols Nerd Font Mono" })
+config.font = wezterm.font_with_fallback({ "Consolas", "Moralerspace Argon JPDOC", "Symbols Nerd Font Mono" })
 
 -- Pane appearance
 config.inactive_pane_hsb = {
@@ -83,10 +83,10 @@ config.mouse_bindings = {
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     config.initial_rows = 42
     config.initial_cols = 120
-    config.font_size = 10
+    config.font_size = 11
 
     -- Styling
-    config.window_background_opacity = 0
+    config.window_background_opacity = 1
     config.win32_system_backdrop = 'Acrylic'
 
     config.wsl_domains = wezterm.default_wsl_domains()
