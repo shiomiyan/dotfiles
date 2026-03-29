@@ -1,19 +1,26 @@
 local wezterm = require("wezterm")
+local utils = require("utils")
 local config = wezterm.config_builder()
+local launch_menu = {}
+
+wezterm.on("format-tab-title", function(tab, _, _, _, _, max_width)
+  return utils.format_tab_title(wezterm, tab, max_width)
+end)
 
 -----------------------
 -- GUI Customization --
 -----------------------
-config.color_scheme = "Catppuccin Mocha"
-config.window_background_opacity = 0.9
+config.color_scheme = "One Light (base16)"
+config.window_background_opacity = 0.95
 config.kde_window_background_blur = true
 config.tab_bar_at_bottom = true
 config.tab_max_width = 25
+config.use_fancy_tab_bar = true
 
 -- Custom font for fancy tab
 config.window_frame = {
-  font = require('wezterm').font 'Lato',
-  font_size = 12,
+  font = wezterm.font_with_fallback({ "Lato", "Symbols Nerd Font Mono" }),
+  font_size = 10,
 }
 
 -- Initial window size on startup
@@ -29,7 +36,7 @@ config.colors = { scrollbar_thumb = "Gray" }
 
 -- Reverse Curor Colors
 config.force_reverse_video_cursor = true
-config.font = wezterm.font_with_fallback({ "Cica", "Symbols Nerd Font Mono" })
+config.font = wezterm.font_with_fallback({ "Moralerspace Argon JPDOC", "Symbols Nerd Font Mono" })
 
 -- Pane appearance
 config.inactive_pane_hsb = {
@@ -53,7 +60,11 @@ config.adjust_window_size_when_changing_font_size = false
 config.keys = {
     -- Copy text
     { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
+    -- Open launcher menu for shell selection
+    { key = "l", mods = "CTRL|SHIFT", action = wezterm.action.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS" } },
 }
+
+config.launch_menu = launch_menu
 
 config.mouse_bindings = {
     -- Right-Click will open the link under the mouse cursor
@@ -68,10 +79,26 @@ config.mouse_bindings = {
 
 -- Switch configuration depends on operating system
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-    config.default_prog = { "pwsh.exe", "-NoLogo" }
     config.initial_rows = 42
-    config.initial_cols = 140
-    config.font_size = 14
+    config.initial_cols = 120
+    config.font_size = 10
+
+    -- Styling
+    config.window_background_opacity = 0
+    config.win32_system_backdrop = 'Acrylic'
+
+    config.wsl_domains = wezterm.default_wsl_domains()
+    config.default_prog = { "pwsh.exe", "-NoLogo" }
+    table.insert(launch_menu, {
+        label = "PowerShell 7",
+        args = { "pwsh.exe", "-NoLogo" },
+    })
+    for _, dom in ipairs(config.wsl_domains) do
+        table.insert(launch_menu, {
+            label = dom.distribution,
+            domain = { DomainName = dom.name },
+        })
+    end
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
     config.default_prog = { "zsh", "--login" }
     -- https://github.com/wez/wezterm/issues/2669

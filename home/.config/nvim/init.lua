@@ -246,6 +246,9 @@ vim.opt.sidescrolloff = 5
 vim.opt.laststatus = 2
 vim.opt.showmode = false
 vim.cmd("colorscheme catppuccin-mocha")
+if vim.fn.has('gui_running') == 1 then
+  vim.opt.guifont = "Sarasa Fixed J Nerd Font:h14"
+end
 
 ---------------------
 -- Editor Settings --
