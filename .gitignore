@@ -1,0 +1,17 @@
+# Allowlist mode: ignore everything by default.
+*
+
+# Keep directories traversable so nested allowlist rules can work.
+!*/
+
+# Keep only root allowlist files available.
+!/.gitignore
+!/home/.config/.gitignore
+!/home/.local/.gitignore
+
+# Explicitly allow currently tracked files.
+!Dockerfile
+!README.md
+!bootstrap/helper/setup-obsidian.sh
+!bootstrap/helper/setup-yubico-authenticator.sh
+!bootstrap/install.sh
