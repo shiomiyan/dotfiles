@@ -3,6 +3,8 @@ local utils = require("utils")
 local config = wezterm.config_builder()
 local launch_menu = {}
 
+config.ssh_domains = wezterm.default_ssh_domains()
+
 wezterm.on("format-tab-title", function(tab, _, _, _, _, max_width)
   return utils.format_tab_title(wezterm, tab, max_width)
 end)
@@ -61,7 +63,7 @@ config.keys = {
     -- Copy text
     { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
     -- Open launcher menu for shell selection
-    { key = "l", mods = "CTRL|SHIFT", action = wezterm.action.ShowLauncherArgs { flags = "LAUNCH_MENU_ITEMS" } },
+    { key = "l", mods = "CTRL|SHIFT", action = wezterm.action.ShowLauncherArgs { flags = "DOMAINS|LAUNCH_MENU_ITEMS" } },
 }
 
 config.launch_menu = launch_menu

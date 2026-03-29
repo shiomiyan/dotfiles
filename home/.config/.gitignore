@@ -27,6 +27,7 @@
 !/tig/config
 !/vim/vscode.vim
 !/wezterm/wezterm.lua
+!/wezterm/utils.lua
 !/xremap/xremap.yml
 !/zsh/.zshenv
 !/zsh/.zshrc
