@@ -36,7 +36,7 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
 
 ## Help
 
-Example to apply changes.
+Example to apply changes. 
 
 ```
 stow home -R
