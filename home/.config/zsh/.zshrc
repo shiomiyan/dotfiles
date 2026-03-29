@@ -1,6 +1,9 @@
 export LC_MESSAGES=en_US.UTF-8
 export EDITOR=nvim
 
+# set path for executables
+[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+
 # setup zsh plugin
 eval "$(sheldon source)"
 
@@ -14,6 +17,7 @@ setopt sharehistory
 typeset -U path PATH
 
 # atuin
+[[ -d "$HOME/.atuin" ]] && export PATH="$HOME/.atuin/bin:$PATH"
 if [[ -x "$(command -v atuin)" ]]; then
     eval "$(atuin init zsh --disable-up-arrow)"
 fi
@@ -48,9 +52,6 @@ fi
 if [[ "$(uname -r)" =~ 'microsoft' ]]; then
     source $ZDOTDIR/wsl.zsh
 fi
-
-# set path for executables
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
 # less
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
@@ -105,3 +106,10 @@ fi
 if [[ -x "$(command -v mise)" ]]; then
     eval "$(mise activate zsh --shims)"
 fi
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# bun completions
+[ -s "/home/sk736b/.bun/_bun" ] && source "/home/sk736b/.bun/_bun"

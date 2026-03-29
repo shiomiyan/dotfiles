@@ -40,9 +40,9 @@ function install-common-utils() {
         sudo dnf -y group install development-tools
 
         # change default shell to zsh
-        if [[ "$(echo $SHELL)" != "zsh" ]]; then
-            chsh -s $(which zsh)
-        fi
+#        if [[ "$(echo $SHELL)" != "zsh" ]]; then
+#            chsh -s $(which zsh)
+#        fi
     fi
 }
 

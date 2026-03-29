@@ -1,7 +1,10 @@
 [tools]
+actionlint = "1.7.11"
+ghalint = "latest"
 node = "lts"
 "npm:git-cz" = "latest"
 "npm:pnpm" = "latest"
+pinact = "latest"
 uv = "latest"
 
 [settings]

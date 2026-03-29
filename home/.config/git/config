@@ -1,11 +1,13 @@
 [user]
 	name = shiomiyan
 	email = 35842766+shiomiyan@users.noreply.github.com
-	signingkey = F64DBFC93685BF53
+	signingkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEaYKfWmRpj//39xyJNj/WRTCp14HVhiHf2fNuQH5TDz"
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedsignersfile = ~/.ssh/allowed_signers
 [commit]
 	gpgsign = true
-[tag]
-	gpgSign = true
 [ui "color"]
 	ui = always
 [color]
