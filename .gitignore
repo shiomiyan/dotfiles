@@ -15,3 +15,8 @@
 !bootstrap/helper/setup-obsidian.sh
 !bootstrap/helper/setup-yubico-authenticator.sh
 !bootstrap/install.sh
+
+# nix home-manager
+!flake.lock
+!flake.nix
+!home.nix

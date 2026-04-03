@@ -4,9 +4,6 @@ export EDITOR=nvim
 # set path for executables
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
-# setup zsh plugin
-eval "$(sheldon source)"
-
 # distinct duplicate command history
 setopt hist_ignore_dups
 
@@ -56,12 +53,6 @@ fi
 # less
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 
-# starship
-if [[ -x "$(command -v starship)" ]]; then
-    export STARSHIP_CONFIG="$HOME/.config/starship.toml"
-    eval "$(starship init zsh)"
-fi
-
 # zoxide
 if [[ -x "$(command -v zoxide)" ]]; then
     eval "$(zoxide init zsh)"
@@ -100,7 +91,7 @@ fi
 [[ -d "/usr/local/opt/llvm/bin" ]] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # load local configuration / create local configuration file if not exists
-[[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
+#[[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
 
 # mise
 if [[ -x "$(command -v mise)" ]]; then
