@@ -1,43 +1,11 @@
-## Setup on Fedora
+# Dotfiles
 
-Use [stow](https://www.gnu.org/software/stow/) to create symlinks.
+dotfilesです。
 
-```shell
-sudo dnf install -y stow
+## Setup
 
-# config under home directory
-stow home -vt "$HOME"
-```
-
-Install packages (but flaky).
-
-```shell
-./bootstrap/install.sh
-```
-
-### System
-
-```shell
-# create system configuration symlinks
-sudo stow system -vt /
-
-# enable key-remapper services
-systemctl --user enable --now 'xremap.service'
-```
-
-### Zsh
-
-Add lines below to `/etc/zshenv` to use xdg base directory.
-
-```shell
-export XDG_CONFIG_HOME="$HOME/.config/"
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
-```
-
-## Help
-
-Example to apply changes. 
+Pre-requirements: Install [Nix](https://nixos.org/download/) and [Home Manager (Standalone)](https://nix-community.github.io/home-manager/index.xhtml).
 
 ```
-stow home -R
+home-manager switch --flake ~/dotfiles#default
 ```
