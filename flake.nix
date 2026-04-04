@@ -27,5 +27,14 @@
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
       };
+
+      devShells.${system}.default = pkgs.mkShell {
+        packages = with pkgs; [
+          nixd
+          nixfmt-rfc-style
+          statix
+          deadnix
+        ];
+      };
     };
 }

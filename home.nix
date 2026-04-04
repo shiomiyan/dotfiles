@@ -56,6 +56,9 @@
     pkgs.rustfmt
     pkgs.clippy
 
+    # Misc
+    pkgs.codex
+
     # WSL Utilities
     pkgs.socat
     pkgs.wslu
