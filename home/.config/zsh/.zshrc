@@ -124,3 +124,28 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 if [[ -x "$(command -v direnv)" ]]; then
     eval "$(direnv hook zsh)"
 fi
+
+# prompt
+autoload -Uz add-zsh-hook vcs_info
+
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:git*' check-for-changes true
+zstyle ':vcs_info:git*' formats '(%b)'
+zstyle ':vcs_info:git*' actionformats '(%b|%a)'
+
+function _update_prompt() {
+    emulate -L zsh
+
+    vcs_info
+
+    if [[ -n "$vcs_info_msg_0_" ]] && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
+            vcs_info_msg_0_="${vcs_info_msg_0_%)} *)"
+        fi
+    fi
+}
+
+add-zsh-hook precmd _update_prompt
+setopt prompt_subst
+PROMPT='%n@%m [%~]${vcs_info_msg_0_:+ ${vcs_info_msg_0_}}
+%% '
