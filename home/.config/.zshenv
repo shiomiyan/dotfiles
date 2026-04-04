@@ -5,4 +5,8 @@ export XDG_CACHE_HOME=$HOME/.cache
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
-. "$HOME/.cargo/env"
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+# Load home-manager session variables
+# https://nix-community.github.io/home-manager/index.xhtml#sec-install-standalone
+[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"

@@ -18,5 +18,4 @@
 
 # nix home-manager
 !flake.lock
-!flake.nix
-!home.nix
+!*.nix

@@ -51,17 +51,10 @@
     pkgs.nodejs
     pkgs.deno
     pkgs.zig
-    pkgs.rustc
-    pkgs.cargo
-    pkgs.rustfmt
-    pkgs.clippy
+    pkgs.rustup
 
     # Misc
     pkgs.codex
-
-    # WSL Utilities
-    pkgs.socat
-    pkgs.wslu
   ];
 
   programs.neovim = {
