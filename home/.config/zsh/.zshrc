@@ -91,7 +91,7 @@ fi
 [[ -d "/usr/local/opt/llvm/bin" ]] && export PATH="/usr/local/opt/llvm/bin:$PATH"
 
 # load local configuration / create local configuration file if not exists
-#[[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
+[[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
 
 # mise
 if [[ -x "$(command -v mise)" ]]; then
@@ -104,3 +104,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # bun completions
 [ -s "/home/sk736b/.bun/_bun" ] && source "/home/sk736b/.bun/_bun"
+
+# direnv
+if [[ -x "$(command -v direnv)" ]]; then
+    eval "$(direnv hook zsh)"
+fi

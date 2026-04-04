@@ -6,6 +6,7 @@
 
 # Keep only root allowlist files available.
 !/.gitignore
+!/.envrc
 !/home/.config/.gitignore
 !/home/.local/.gitignore
 
