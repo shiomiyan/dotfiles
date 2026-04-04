@@ -4,6 +4,21 @@ export EDITOR=nvim
 # set path for executables
 [[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
 
+# load zsh completions
+autoload -Uz compinit
+compinit
+
+# zsh completion styles
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|=*' 'l:|=*'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:descriptions' format '[%d]'
+
+# keybindings
+bindkey '^I' expand-or-complete
+bindkey '^P' up-line-or-search
+bindkey '^N' down-line-or-search
+
 # distinct duplicate command history
 setopt hist_ignore_dups
 
