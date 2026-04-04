@@ -55,6 +55,7 @@
 
     # Misc
     pkgs.codex
+    pkgs.codex-acp
   ];
 
   programs.neovim = {
