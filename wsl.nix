@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     socat
-    wslu
   ];
 
   systemd.user.services.windows-ssh-agent-relay = {

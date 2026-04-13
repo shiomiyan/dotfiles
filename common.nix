@@ -85,22 +85,35 @@
     nix-direnv.enable = true;
   };
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
-  home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
+  programs.zsh = {
+    enable = true;
+    package = pkgs.zsh;
+    dotDir = "${config.home.homeDirectory}/.config/zsh";
 
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
 
-    # Zsh
-    ".zshenv".source = ./home/.config/.zshenv;
+    history = {
+      ignoreDups = true;
+      ignoreSpace = true;
+      share = true;
+    };
+
+    envExtra = ''
+      export XDG_DATA_HOME="$HOME/.local/share"
+      export XDG_CONFIG_HOME="$HOME/.config"
+      export XDG_STATE_HOME="$HOME/.local/state"
+      export XDG_CACHE_HOME="$HOME/.cache"
+
+      [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+    '';
+
+    initContent = lib.mkOrder 1500 ''
+      [ -r "$ZDOTDIR/rc.zsh" ] && source "$ZDOTDIR/rc.zsh"
+    '';
+
+    plugins = [ ];
   };
 
   xdg.configFile = {
@@ -112,10 +125,6 @@
       source = ./home/.config/tig;
       recursive = true;
     };
-    "zsh" = {
-      source = ./home/.config/zsh;
-      recursive = true;
-    };
     "nvim" = {
       source = ./home/.config/nvim;
       recursive = true;
@@ -124,6 +133,8 @@
       source = ./home/.config/mise;
       recursive = true;
     };
+    "zsh/rc.zsh".source = ./home/.config/zsh/rc.zsh;
+    "zsh/wsl.zsh".source = ./home/.config/zsh/wsl.zsh;
   };
 
   # Home Manager can also manage your environment variables through
@@ -142,9 +153,7 @@
   #
   #  /etc/profiles/per-user/sk/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    # EDITOR = "emacs";
-  };
+  home.sessionVariables = { };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
