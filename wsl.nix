@@ -3,6 +3,14 @@
 {
   home.packages = with pkgs; [
     socat
+    (pkgs.writeShellScriptBin "wsl-fix-interop" ''
+      set -euo pipefail
+
+      printf '%s\n' ':WSLInterop:M::MZ::/init:PF' | sudo tee /usr/lib/binfmt.d/WSLInterop.conf >/dev/null
+      sudo systemctl unmask systemd-binfmt.service
+      sudo systemctl restart systemd-binfmt
+      sudo systemctl mask systemd-binfmt.service
+    '')
   ];
 
   systemd.user.services.windows-ssh-agent-relay = {

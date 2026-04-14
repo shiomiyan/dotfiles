@@ -1,7 +1,7 @@
 export LC_MESSAGES=en_US.UTF-8
 export EDITOR=nvim
 
-[[ -d "$HOME/.local/bin" ]] && export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 typeset -U path PATH
 

@@ -23,7 +23,10 @@
 
           # Specify your home configuration modules here, for example,
           # the path to your home.nix.
-          modules = [ ./common.nix ./wsl.nix ];
+          modules = [
+            ./common.nix
+            ./wsl.nix
+          ];
 
           # Optionally use extraSpecialArgs
           # to pass through arguments to home.nix
@@ -33,6 +36,7 @@
       devShells.${system}.default = pkgs.mkShell {
         packages = with pkgs; [
           nixd
+          nil
           nixfmt-rfc-style
           statix
           deadnix
