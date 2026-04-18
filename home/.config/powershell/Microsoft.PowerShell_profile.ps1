@@ -6,12 +6,6 @@ if ($PSVersionTable.Platform -eq "Win32NT") {
 
 Import-Module PSReadLine
 
-# starship
-if (Get-Command starship -errorAction SilentlyContinue) {
-    Invoke-Expression (&starship init powershell)
-    $Env:STARSHIP_LOG = "error"
-}
-
 # zoxide
 
 if (Get-Command zoxide -errorAction SilentlyContinue) {

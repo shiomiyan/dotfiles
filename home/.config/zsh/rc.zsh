@@ -42,38 +42,10 @@ fi
 
 export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 
-[[ -d "$HOME/.cargo" ]] && export PATH="$HOME/.cargo/bin:$PATH"
-
-[[ -d "/usr/local/go/bin" ]] && export PATH="$PATH:/usr/local/go/bin"
 [[ -d "$HOME/go/bin" ]] && export PATH="$PATH:$HOME/go/bin"
-
-export DENO_INSTALL="$HOME/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
-
-if [[ -x "$(command -v npm)" ]]; then
-    export PATH="$PATH:$HOME/.npm/bin"
-    eval "$(npm completion)"
-fi
-
-if [[ -x "$(command -v pnpm)" ]]; then
-    export PNPM_HOME="$HOME/.local/share/pnpm"
-    export PATH="$PNPM_HOME:$PATH"
-    alias pp="pnpm"
-fi
 
 if [[ -x "$(command -v opam)" ]]; then
     [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
 fi
 
-[[ -d "/usr/local/opt/llvm/bin" ]] && export PATH="/usr/local/opt/llvm/bin:$PATH"
-
 [[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
-
-if [[ -x "$(command -v mise)" ]]; then
-    eval "$(mise activate zsh --shims)"
-fi
-
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-[ -s "/home/sk736b/.bun/_bun" ] && source "/home/sk736b/.bun/_bun"

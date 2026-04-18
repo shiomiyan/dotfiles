@@ -45,12 +45,11 @@
     pkgs.unzip
     pkgs.tig
     pkgs.gh
-    pkgs.mise
 
     # Languages
-    pkgs.nodejs
-    pkgs.deno
     pkgs.zig
+    pkgs.go
+    pkgs.clang
     pkgs.rustup
 
     # Misc
@@ -84,6 +83,11 @@
     enable = true;
     enableZshIntegration = true;
     nix-direnv.enable = true;
+  };
+
+  programs.mise = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.zsh = {

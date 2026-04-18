@@ -16,43 +16,11 @@ function error() {
     printf '%s\n' "${BOLD}${RED} :: $*${NO_COLOUR}"
 }
 
-# Install packages
+# Install GUI and OS-specific helpers that remain outside Home Manager.
 function main() {
-    install-common-utils
-    install-starship
     install-neovim
-    install-rust
-    install-deno
-    install-ripgrep
-    install-bat
-    install-zoxide
     install-espanso
     install-gui-applications
-}
-
-function install-common-utils() {
-    if [[ "$(uname)" == "Darwin" ]]; then
-        brew install git curl wget zsh unzip tig
-    elif [[ -x "$(command -v dnf)" ]]; then
-        sudo dnf -y upgrade
-        sudo dnf -y install git curl wget zsh unzip tig xclip
-        sudo dnf -y group install development-tools
-
-        # change default shell to zsh
-#        if [[ "$(echo $SHELL)" != "zsh" ]]; then
-#            chsh -s $(which zsh)
-#        fi
-    fi
-}
-
-function install-starship() {
-    [[ -x "$(command -v starship)" ]] && info "starship already installed" && return
-
-    if [[ "$(uname)" == "Darwin" ]]; then
-        brew install starship
-    else
-        sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y
-    fi
 }
 
 function install-neovim() {
@@ -63,49 +31,6 @@ function install-neovim() {
         brew install --HEAD neovim
     elif [[ -x "$(command -v dnf)" ]]; then
         sudo dnf -y install neovim
-    fi
-}
-
-function install-rust() {
-    [[ -x "$(command -v cargo)" ]] && info "rust toolchains already installed" && return
-
-    curl --proto ='https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-    sudo dnf -y install rust-libudev-devel rust-x11+xtst-devel
-}
-
-function install-deno() {
-    [[ -x "$(command -v deno)" ]] && info "deno already installed" && return
-
-    curl -fsSL https://deno.land/install.sh | sh -s -- -y
-}
-
-function install-ripgrep() {
-    [[ -x "$(command -v rg)" ]] && info "ripgrep already installed" && return
-
-    if [[ "$(uname)" == "Darwin" ]]; then
-        brew install ripgrep
-    elif [[ -x "$(command -v dnf)" ]]; then
-        sudo dnf -y install ripgrep
-    fi
-}
-
-function install-bat() {
-    [[ -x "$(command -v bat)" ]] && info "bat already installed" && return
-
-    if [[ "$(uname)" == "Darwin" ]]; then
-        brew install bat
-    elif [[ -x "$(command -v dnf)" ]]; then
-        sudo dnf -y install bat
-    fi
-}
-
-function install-zoxide() {
-    [[ -x "$(command -v zoxide)" ]] && info "zoxide already installed" && return
-
-    if [[ "$(uname)" == "Darwin" ]]; then
-        brew install zoxide
-    elif [[ -x "$(command -v dnf)" ]]; then
-        sudo dnf -y install zoxide fzf
     fi
 }
 

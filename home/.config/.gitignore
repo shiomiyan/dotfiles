@@ -20,7 +20,6 @@
 !/powershell/Microsoft.PowerShell_profile.ps1
 !/powershell/Modules/Windows/Windows.psm1
 !/powershell/powershell.config.json
-!/starship.toml
 !/systemd/user/xremap.service
 !/tig/config
 !/vim/vscode.vim
