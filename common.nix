@@ -50,6 +50,7 @@
     pkgs.zig
     pkgs.go
     pkgs.clang
+    pkgs.nodejs
     pkgs.rustup
 
     # Misc
@@ -88,6 +89,12 @@
   programs.mise = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    presets = [ "pure-preset" ];
   };
 
   programs.zsh = {

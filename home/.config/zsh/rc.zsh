@@ -5,15 +5,6 @@ export PATH="$HOME/.local/bin:$PATH"
 
 typeset -U path PATH
 
-autoload -Uz add-zsh-hook vcs_info
-add-zsh-hook precmd vcs_info
-
-zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git:*' formats '(%b) '
-
-setopt PROMPT_SUBST
-PROMPT='%F{blue}%~%f %F{red}${vcs_info_msg_0_}%f%# '
-
 export GPG_TTY=$(tty)
 
 if [[ -x "$(command -v docker)" ]]; then
