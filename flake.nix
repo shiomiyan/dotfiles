@@ -48,7 +48,7 @@
         packages = with pkgs; [
           nixd
           nil
-          nixfmt-rfc-style
+          pkgs.nixfmt
           statix
           deadnix
         ];
