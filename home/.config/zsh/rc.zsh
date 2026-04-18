@@ -14,8 +14,6 @@ zstyle ':vcs_info:git:*' formats '(%b) '
 setopt PROMPT_SUBST
 PROMPT='%F{blue}%~%f %F{red}${vcs_info_msg_0_}%f%# '
 
-[[ -d "$HOME/.atuin" ]] && export PATH="$HOME/.atuin/bin:$PATH"
-
 export GPG_TTY=$(tty)
 
 if [[ -x "$(command -v docker)" ]]; then

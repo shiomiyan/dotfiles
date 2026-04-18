@@ -19,7 +19,6 @@ function error() {
 # Install packages
 function main() {
     install-common-utils
-    install-atuin
     install-starship
     install-neovim
     install-rust
@@ -44,12 +43,6 @@ function install-common-utils() {
 #            chsh -s $(which zsh)
 #        fi
     fi
-}
-
-function install-atuin() {
-    [[ -x "$(command -v atuin)" ]] && info "atuin already installed" && return
-
-    curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh
 }
 
 function install-starship() {

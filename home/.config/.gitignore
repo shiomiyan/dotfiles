@@ -2,7 +2,6 @@
 !*/
 !/.gitignore
 
-!/atuin/config.toml
 !/espanso/config/default.yml
 !/espanso/match/base.yml
 !/fusuma/config.yml

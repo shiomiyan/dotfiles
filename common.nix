@@ -69,6 +69,7 @@
     flags = [ "--disable-up-arrow" ];
     settings = {
       auto_sync = true;
+      enter_accept = false;
       style = "compact";
       records = true;
     };
