@@ -1,6 +1,11 @@
 { pkgs, ... }:
 
 {
+  xdg.configFile."git/wsl.gitconfig".text = ''
+    [credential]
+      helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+  '';
+
   home.packages = with pkgs; [
     socat
     (pkgs.writeShellScriptBin "wsl-fix-interop" ''

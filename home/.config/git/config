@@ -31,5 +31,6 @@
 	compactionHeuristic = true
 [include]
 	path = ubsecure.gitconfig
+	path = wsl.gitconfig
 
 # vim: ft=gitconfig ts=4 sw=4
