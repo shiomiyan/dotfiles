@@ -45,6 +45,7 @@
     pkgs.unzip
     pkgs.tig
     pkgs.gh
+    pkgs.tree
 
     # Languages
     pkgs.zig
