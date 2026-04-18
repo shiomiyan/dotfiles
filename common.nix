@@ -102,11 +102,6 @@
     };
 
     envExtra = ''
-      export XDG_DATA_HOME="$HOME/.local/share"
-      export XDG_CONFIG_HOME="$HOME/.config"
-      export XDG_STATE_HOME="$HOME/.local/state"
-      export XDG_CACHE_HOME="$HOME/.cache"
-
       [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
     '';
 
@@ -154,7 +149,12 @@
   #
   #  /etc/profiles/per-user/sk/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = { };
+  home.sessionVariables = {
+    XDG_DATA_HOME = "${config.home.homeDirectory}/.local/share";
+    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
+    XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
+    XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

@@ -25,6 +25,17 @@
           # the path to your home.nix.
           modules = [
             ./common.nix
+          ];
+
+          # Optionally use extraSpecialArgs
+          # to pass through arguments to home.nix
+        };
+
+        "wsl" = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+
+          modules = [
+            ./common.nix
             ./wsl.nix
           ];
 

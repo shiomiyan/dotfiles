@@ -19,6 +19,12 @@ Deliver dotfiles.
 home-manager switch --flake ~/dotfiles#default
 ```
 
+Use the WSL-specific profile on WSL.
+
+```
+home-manager switch --flake ~/dotfiles#wsl
+```
+
 Change default shell.
 
 ```
