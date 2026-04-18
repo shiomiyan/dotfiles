@@ -45,6 +45,7 @@ jobs:
 
         tar \
           --create \
+          --dereference \
           --gzip \
           --file "$archive_name" \
           --directory "$(dirname "$out_path")" \
