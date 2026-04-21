@@ -1,12 +1,7 @@
 [tools]
-actionlint = "1.7.11"
+actionlint = "latest"
 bun = "latest"
 deno = "latest"
 ghalint = "latest"
-"aqua:pnpm/pnpm" = "latest"
 pinact = "latest"
 uv = "latest"
-
-[settings]
-experimental = true
-idiomatic_version_file_enable_tools = []

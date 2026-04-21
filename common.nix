@@ -13,7 +13,7 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "25.11"; # Please read the comment before changing.
+  home.stateVersion = "26.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -52,11 +52,16 @@
     pkgs.go
     pkgs.clang
     pkgs.nodejs
+    pkgs.pnpm
     pkgs.rustup
 
-    # Misc
+    # AI
     pkgs.codex
     pkgs.codex-acp
+    pkgs.gemini-cli
+
+    # Misc
+    pkgs.pure-prompt
   ];
 
   programs.neovim = {
@@ -92,12 +97,6 @@
     enableZshIntegration = true;
   };
 
-  programs.starship = {
-    enable = true;
-    enableZshIntegration = true;
-    presets = [ "pure-preset" ];
-  };
-
   programs.zsh = {
     enable = true;
     package = pkgs.zsh;
@@ -117,11 +116,20 @@
       [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
     '';
 
-    initContent = lib.mkOrder 1500 ''
+    initContent = ''
+      autoload -Uz promptinit
+      promptinit
+      prompt pure
+
       [ -r "$ZDOTDIR/rc.zsh" ] && source "$ZDOTDIR/rc.zsh"
     '';
 
-    plugins = [ ];
+    plugins = [
+      {
+        name = "pure";
+        src = pkgs.pure-prompt;
+      }
+    ];
   };
 
   xdg.configFile = {
