@@ -15,6 +15,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
+local treesitter_languages = { "gitcommit", "lua", "rust", "javascript", "typescript", "php" }
 require("lazy").setup({
     -- GUI enhancements
     {
@@ -67,13 +68,22 @@ require("lazy").setup({
     { "cespare/vim-toml", branch = "main", ft = { "toml" } },
     {
         "nvim-treesitter/nvim-treesitter",
+        lazy = false,
+        build = function()
+            require("nvim-treesitter").install(treesitter_languages):wait(300000)
+        end,
         config = function ()
-            require("nvim-treesitter.configs").setup({
-                ensure_installed = { "gitcommit", "lua", "rust", "javascript", "typescript", "php" },
-                auto_install = false,
-                highlight = { enable = true },
-            })
+            local treesitter = require("nvim-treesitter")
+
+            treesitter.setup()
             vim.treesitter.language.register("markdown", "mdx")
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = "*",
+                callback = function()
+                    pcall(vim.treesitter.start)
+                end,
+            })
         end,
     },
     {
@@ -361,4 +371,3 @@ vim.keymap.set("v", "p", "_dp")
 
 -- Exit terminal mode with Ctrl-[
 vim.keymap.set("t", "<C-[>", "<C-\\><C-n>")
-
