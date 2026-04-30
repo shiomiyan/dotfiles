@@ -4,8 +4,11 @@ on:
   push:
     branches:
     - master
+  workflow_dispatch:
 jobs:
-  tests:
+  # Check is valid nix config.
+  ci:
+    if: github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -17,11 +20,24 @@ jobs:
     - uses: cachix/install-nix-action@96951a368ba55167b55f1c916f7d416bac6505fe # v31.10.3
       with:
         nix_path: nixpkgs=channel:nixos-unstable
-    - run: nix build .#homeConfigurations.default.activationPackage
-  home-files-artifacts:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    - uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569 # v7.0.2
+      with:
+        primary-key: nix-${{ runner.os }}-${{ hashFiles('flake.lock', '**/*.nix') }}
+        restore-prefixes-first-match: nix-${{ runner.os }}-
+    - name: Check flake evaluation
+      run: nix flake check --no-build
+    - name: Evaluate activation packages
+      run: |
+        set -euo pipefail
+
+        nix eval --raw .#homeConfigurations.default.activationPackage.drvPath
+        nix eval --raw .#homeConfigurations.wsl.activationPackage.drvPath
+  # Manual full build for profiles that may require slow package builds.
+  # Also uploads the home-files tarball artifacts for each profile.
+  build:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     permissions:
       contents: read
     strategy:
@@ -36,6 +52,12 @@ jobs:
     - uses: cachix/install-nix-action@96951a368ba55167b55f1c916f7d416bac6505fe # v31.10.3
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+    - uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569 # v7.0.2
+      with:
+        primary-key: nix-${{ runner.os }}-${{ hashFiles('flake.lock', '**/*.nix') }}
+        restore-prefixes-first-match: nix-${{ runner.os }}-
+    - name: Build activation package
+      run: nix build ".#homeConfigurations.${{ matrix.profile }}.activationPackage"
     - name: Build home-files tarball
       run: |
         set -euo pipefail
