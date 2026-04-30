@@ -84,6 +84,9 @@
       style = "compact";
       records = true;
     };
+    daemon = {
+      enable = true;
+    };
   };
 
   programs.zoxide = {
