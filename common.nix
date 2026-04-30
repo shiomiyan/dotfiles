@@ -1,4 +1,9 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -56,9 +61,9 @@
     pkgs.rustup
 
     # AI
-    pkgs.codex
-    pkgs.codex-acp
-    pkgs.gemini-cli
+    pkgs.llm-agents.codex
+    pkgs.llm-agents.codex-acp
+    pkgs.llm-agents.gemini-cli
 
     # Misc
     pkgs.pure-prompt

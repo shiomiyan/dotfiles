@@ -6,11 +6,14 @@ dotfilesです。
 
 **Pre-requirements**: Install [Nix](https://nixos.org/download/) and [Home Manager (Standalone)](https://nix-community.github.io/home-manager/index.xhtml).
 
-Enable nix-command and flakes.
+Enable nix-command and flakes, and set trusted users.
 
 ```
-mkdir -p ~/.config/nix
-echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+sudo mkdir -p /etc/nix
+printf '%s\n' \
+  'experimental-features = nix-command flakes' \
+  'trusted-users = root sk' \
+  | sudo tee /etc/nix/nix.conf
 ```
 
 Deliver dotfiles.
