@@ -7,6 +7,9 @@ typeset -U path PATH
 
 export GPG_TTY=$(tty)
 
+# keybindings
+bindkey -e
+
 if [[ -x "$(command -v docker)" ]]; then
     function docker-horobi() {
         docker compose down --rmi all --volumes --remove-orphans
