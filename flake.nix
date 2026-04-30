@@ -60,14 +60,6 @@
         };
       };
 
-      devShells.${system}.default = pkgs.mkShell {
-        packages = with pkgs; [
-          nixd
-          nil
-          pkgs.nixfmt
-          statix
-          deadnix
-        ];
-      };
+      devShells.${system}.default = import ./devshell.nix { inherit pkgs; };
     };
 }
