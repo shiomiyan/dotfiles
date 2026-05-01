@@ -34,8 +34,11 @@
     pkgs.wget
     pkgs.unzip
     pkgs.tig
-    pkgs.gh
     pkgs.tree
+    pkgs.gh
+    pkgs.ghq
+    pkgs.fzf
+    pkgs.jq
 
     # Languages
     pkgs.zig

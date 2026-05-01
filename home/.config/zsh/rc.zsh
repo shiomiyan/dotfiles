@@ -16,6 +16,22 @@ if [[ -x "$(command -v docker)" ]]; then
     }
 fi
 
+if [[ -x "$(command -v ghq)" && -x "$(command -v fzf)" ]]; then
+    function g() {
+        local repo
+        repo="$(ghq list --full-path | fzf)" || return
+        [[ -n "$repo" ]] && cd "$repo"
+    }
+
+    function ghq-fzf-widget() {
+        g
+        zle reset-prompt
+    }
+
+    zle -N ghq-fzf-widget
+    bindkey '^G' ghq-fzf-widget
+fi
+
 if [[ -x "$(command -v xclip)" ]]; then
     alias clip="xclip -sel clip"
 fi

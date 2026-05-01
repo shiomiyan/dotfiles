@@ -26,6 +26,8 @@
 	tool = nvim -d
 [push]
 	autoSetupRemote = true
+[ghq]
+	root = ~/repositories
 [diff]
 	algorithm = patience
 	compactionHeuristic = true
