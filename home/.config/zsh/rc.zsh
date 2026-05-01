@@ -1,14 +1,13 @@
 export LC_MESSAGES=en_US.UTF-8
 export EDITOR=nvim
-
-export PATH="$HOME/.local/bin:$PATH"
-
-typeset -U path PATH
-
 export GPG_TTY=$(tty)
 
 # keybindings
 bindkey -e
+
+export PATH="$HOME/.local/bin:$PATH"
+
+typeset -U path PATH
 
 if [[ -x "$(command -v docker)" ]]; then
     function docker-horobi() {
