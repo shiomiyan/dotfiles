@@ -30,8 +30,7 @@ jobs:
       run: |
         set -euo pipefail
 
-        nix eval --raw .#homeConfigurations.default.activationPackage.drvPath
-        nix eval --raw .#homeConfigurations.wsl.activationPackage.drvPath
+        nix eval --raw ".#homeConfigurations.sk@wsl.activationPackage.drvPath"
   # Manual full build for profiles that may require slow package builds.
   # Also uploads the home-files tarball artifacts for each profile.
   build:
@@ -43,8 +42,7 @@ jobs:
     strategy:
       matrix:
         profile:
-        - default
-        - wsl
+        - sk@wsl
     steps:
     - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       with:
