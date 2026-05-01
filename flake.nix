@@ -9,7 +9,6 @@
   };
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     blueprint = {
       url = "github:numtide/blueprint";
