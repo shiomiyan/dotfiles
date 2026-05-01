@@ -1,25 +1,10 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "sk";
-  home.homeDirectory = "/home/sk";
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "26.05"; # Please read the comment before changing.
-
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
@@ -142,23 +127,22 @@
 
   xdg.configFile = {
     "git" = {
-      source = ./home/.config/git;
+      source = ../../../home/.config/git;
       recursive = true;
     };
     "tig" = {
-      source = ./home/.config/tig;
+      source = ../../../home/.config/tig;
       recursive = true;
     };
     "nvim" = {
-      source = ./home/.config/nvim;
+      source = ../../../home/.config/nvim;
       recursive = true;
     };
     "mise" = {
-      source = ./home/.config/mise;
+      source = ../../../home/.config/mise;
       recursive = true;
     };
-    "zsh/rc.zsh".source = ./home/.config/zsh/rc.zsh;
-    "zsh/wsl.zsh".source = ./home/.config/zsh/wsl.zsh;
+    "zsh/rc.zsh".source = ../../../home/.config/zsh/rc.zsh;
   };
 
   # Home Manager can also manage your environment variables through

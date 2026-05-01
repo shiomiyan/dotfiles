@@ -1,10 +1,23 @@
-{ pkgs, ... }:
+{
+  flake,
+  pkgs,
+  ...
+}:
 
 {
-  xdg.configFile."git/wsl.gitconfig".text = ''
-    [credential]
-      helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
-  '';
+  imports = [
+    flake.homeModules.common
+  ];
+
+  home.stateVersion = "26.05";
+
+  xdg.configFile = {
+    "git/wsl.gitconfig".text = ''
+      [credential]
+        helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+    '';
+    "zsh/wsl.zsh".source = ../../../../../home/.config/zsh/wsl.zsh;
+  };
 
   home.packages = with pkgs; [
     socat

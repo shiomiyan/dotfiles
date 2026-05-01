@@ -11,6 +11,10 @@
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    blueprint = {
+      url = "github:numtide/blueprint";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,47 +23,11 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      llm-agents,
-      ...
-    }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ llm-agents.overlays.default ];
-      };
-    in
-    {
-      homeConfigurations = {
-        "default" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          # Specify your home configuration modules here, for example,
-          # the path to your home.nix.
-          modules = [
-            ./common.nix
-          ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-        };
-
-        "wsl" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-          modules = [
-            ./common.nix
-            ./wsl.nix
-          ];
-
-          # Optionally use extraSpecialArgs
-          # to pass through arguments to home.nix
-        };
-      };
-
-      devShells.${system}.default = import ./devshell.nix { inherit pkgs; };
+    inputs:
+    inputs.blueprint {
+      inherit inputs;
+      prefix = "nix/";
+      systems = [ "x86_64-linux" ];
+      nixpkgs.overlays = [ inputs.llm-agents.overlays.default ];
     };
 }
