@@ -45,11 +45,18 @@
     };
 
     wslConf = {
+      user.default = "sk";
+      boot.systemd = true;
+      
       interop = {
         enabled = true;
         appendWindowsPath = false;
       };
-      user.default = "sk";
+    };
+
+    ssh-agent = {
+      enable = true;
+      users = [ "sk" ];
     };
   };
 
