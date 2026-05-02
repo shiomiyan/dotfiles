@@ -19,13 +19,7 @@ printf '%s\n' \
 Deliver dotfiles.
 
 ```
-home-manager switch --flake ~/dotfiles#default
-```
-
-Use the WSL-specific profile on WSL.
-
-```
-home-manager switch --flake ~/dotfiles#wsl
+home-manager switch --flake ~/dotfiles#sk@wsl
 ```
 
 Change default shell.
