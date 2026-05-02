@@ -37,7 +37,7 @@ jobs:
 
         nix eval --raw ".#homeConfigurations.sk@wsl.activationPackage.drvPath"
   # Manual full build for profiles that may require slow package builds.
-  # Also uploads the home-files tarball artifacts for each profile.
+  # Also uploads the materialized home-files artifacts for each profile.
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -65,24 +65,11 @@ jobs:
         gc-max-store-size-linux: 5G
     - name: Build activation package
       run: nix build ".#homeConfigurations.${{ matrix.profile }}.activationPackage"
-    - name: Build home-files tarball
-      run: |
-        set -euo pipefail
-
-        out_path="$(nix build --print-out-paths ".#homeConfigurations.${{ matrix.profile }}.config.home-files")"
-        archive_name="home-files-${{ matrix.profile }}.tar.gz"
-
-        tar \
-          --create \
-          --dereference \
-          --gzip \
-          --file "$archive_name" \
-          --directory "$(dirname "$out_path")" \
-          --transform "s#^$(basename "$out_path")#home-files-${{ matrix.profile }}#" \
-          "$(basename "$out_path")"
+    - name: Build home-files
+      run: nix build --out-link "home-files-${{ matrix.profile }}" ".#homeConfigurations.${{ matrix.profile }}.config.home-files"
     - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v7.0.1
       with:
         name: home-files-${{ matrix.profile }}
-        path: home-files-${{ matrix.profile }}.tar.gz
+        path: home-files-${{ matrix.profile }}/
         if-no-files-found: error
-        compression-level: 0
+        include-hidden-files: true
