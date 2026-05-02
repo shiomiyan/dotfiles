@@ -27,6 +27,7 @@
     nodejs
     pnpm
     rustup
+    uv
 
     # Utilities
     ghalint
