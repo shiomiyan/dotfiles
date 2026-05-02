@@ -20,10 +20,15 @@ jobs:
     - uses: cachix/install-nix-action@96951a368ba55167b55f1c916f7d416bac6505fe # v31.10.3
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          accept-flake-config = true
     - uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569 # v7.0.2
       with:
-        primary-key: nix-${{ runner.os }}-${{ hashFiles('flake.lock', '**/*.nix') }}
-        restore-prefixes-first-match: nix-${{ runner.os }}-
+        primary-key: nix-${{ runner.os }}-ci-${{ hashFiles('flake.lock', '**/*.nix') }}
+        restore-prefixes-first-match: |
+          nix-${{ runner.os }}-ci-
+          nix-${{ runner.os }}-build-
+        gc-max-store-size-linux: 3G
     - name: Check flake evaluation
       run: nix flake check --no-build
     - name: Evaluate activation packages
@@ -34,7 +39,6 @@ jobs:
   # Manual full build for profiles that may require slow package builds.
   # Also uploads the home-files tarball artifacts for each profile.
   build:
-    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -50,10 +54,15 @@ jobs:
     - uses: cachix/install-nix-action@96951a368ba55167b55f1c916f7d416bac6505fe # v31.10.3
       with:
         nix_path: nixpkgs=channel:nixos-unstable
+        extra_nix_config: |
+          accept-flake-config = true
     - uses: nix-community/cache-nix-action@7df957e333c1e5da7721f60227dbba6d06080569 # v7.0.2
       with:
-        primary-key: nix-${{ runner.os }}-${{ hashFiles('flake.lock', '**/*.nix') }}
-        restore-prefixes-first-match: nix-${{ runner.os }}-
+        primary-key: nix-${{ runner.os }}-build-${{ matrix.profile }}-${{ hashFiles('flake.lock', '**/*.nix') }}
+        restore-prefixes-first-match: |
+          nix-${{ runner.os }}-build-${{ matrix.profile }}-
+          nix-${{ runner.os }}-ci-
+        gc-max-store-size-linux: 5G
     - name: Build activation package
       run: nix build ".#homeConfigurations.${{ matrix.profile }}.activationPackage"
     - name: Build home-files tarball
