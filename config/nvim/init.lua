@@ -272,8 +272,6 @@ vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.updatetime = 300
 vim.opt.fileencodings = { "utf-8", "sjis", "euc-jp", "iso-2022-jp" }
-vim.opt.fileencoding = "utf-8"
-vim.opt.fileformat = "unix"
 vim.opt.fileformats = { "unix", "dos", "mac" }
 vim.opt.list = true
 vim.opt.listchars = { tab = "▸-" }
