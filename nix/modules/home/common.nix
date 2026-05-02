@@ -133,11 +133,11 @@
 
   home.sessionVariables = {
     LC_MESSAGES = "en_US.UTF-8";
-    XDG_DATA_HOME = "${config.home.homeDirectory}/.local/share";
+    XDG_DATA_HOME   = "${config.home.homeDirectory}/.local/share";
     XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-    XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
-    XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
-    LESSHISTFILE = "${config.home.homeDirectory}/.local/state/less/history";
+    XDG_STATE_HOME  = "${config.home.homeDirectory}/.local/state";
+    XDG_CACHE_HOME  = "${config.home.homeDirectory}/.cache";
+    LESSHISTFILE    = "${config.home.homeDirectory}/.local/state/less/history";
   };
 
   home.sessionPath = [
