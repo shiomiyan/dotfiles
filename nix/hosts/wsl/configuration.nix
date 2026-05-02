@@ -39,6 +39,11 @@
     enable = true;
     defaultUser = "sk";
 
+    interop = {
+      register = true;
+      includePath = false;
+    };
+
     wslConf = {
       interop = {
         enabled = true;
