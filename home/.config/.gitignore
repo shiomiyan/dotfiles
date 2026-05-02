@@ -26,5 +26,5 @@
 !/wezterm/wezterm.lua
 !/wezterm/utils.lua
 !/xremap/xremap.yml
-!/zsh/.zshrc
+!/zsh/rc.zsh
 !/zsh/wsl.zsh

@@ -21,7 +21,7 @@
 
   home.packages = with pkgs; [
     socat
-    (pkgs.writeShellScriptBin "wsl-fix-interop" ''
+    (writeShellScriptBin "wsl-fix-interop" ''
       set -euo pipefail
 
       printf '%s\n' ':WSLInterop:M::MZ::/init:PF' | sudo tee /usr/lib/binfmt.d/WSLInterop.conf >/dev/null
