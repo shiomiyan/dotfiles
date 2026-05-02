@@ -17,6 +17,9 @@
 !/nvim/init.lua
 !/nvim/lazy-lock.json
 !/nvim/undo/.gitkeep
+!/obsidian/.gitignore
+!/obsidian/share/applications/obsidian.desktop
+!/obsidian/share/icons/obsidian.png
 !/powershell/Microsoft.PowerShell_profile.ps1
 !/powershell/Modules/Windows/Windows.psm1
 !/powershell/powershell.config.json

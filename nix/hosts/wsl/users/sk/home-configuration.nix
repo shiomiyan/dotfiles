@@ -16,7 +16,7 @@
       [credential]
         helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
     '';
-    "zsh/wsl.zsh".source = ../../../../../home/.config/zsh/wsl.zsh;
+    "zsh/wsl.zsh".source = ../../../../../config/zsh/wsl.zsh;
   };
 
   home.packages = with pkgs; [

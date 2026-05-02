@@ -7,8 +7,8 @@
 # Keep only root allowlist files available.
 !/.gitignore
 !/.envrc
-!/home/.config/.gitignore
-!/home/.local/.gitignore
+!/config/.gitignore
+!/config/obsidian/.gitignore
 
 # Explicitly allow currently tracked files.
 !Dockerfile

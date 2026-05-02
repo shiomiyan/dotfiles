@@ -113,22 +113,22 @@
 
   xdg.configFile = {
     "git" = {
-      source = ../../../home/.config/git;
+      source = ../../../config/git;
       recursive = true;
     };
     "tig" = {
-      source = ../../../home/.config/tig;
+      source = ../../../config/tig;
       recursive = true;
     };
     "nvim" = {
-      source = ../../../home/.config/nvim;
+      source = ../../../config/nvim;
       recursive = true;
     };
     "mise" = {
-      source = ../../../home/.config/mise;
+      source = ../../../config/mise;
       recursive = true;
     };
-    "zsh/rc.zsh".source = ../../../home/.config/zsh/rc.zsh;
+    "zsh/rc.zsh".source = ../../../config/zsh/rc.zsh;
   };
 
   home.sessionVariables = {
