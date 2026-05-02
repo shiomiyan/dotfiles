@@ -28,3 +28,8 @@ Change default shell.
 which zsh | sudo tee -a /etc/shells
 chsh -s $(which zsh)
 ```
+
+## Structure / Tech Stack
+
+- Package and dotfiles management: Nix flakes + Home Manager
+- Flake structure and conventions: [numtide/blueprint](https://numtide.github.io/blueprint/main/)
