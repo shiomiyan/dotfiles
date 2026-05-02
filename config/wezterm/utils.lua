@@ -49,6 +49,10 @@ function M.get_shell_kind(pane_info)
     return "wsl-kali"
   end
 
+  if domain_name_lower:match("nixos") then
+    return "wsl-nixos"
+  end
+
   return "wsl-other"
 end
 
@@ -63,6 +67,10 @@ function M.get_shell_icon(wezterm, shell_kind)
 
   if shell_kind == "wsl-kali" then
     return wezterm.nerdfonts.linux_kali_linux
+  end
+
+  if shell_kind == "wsl-nixos" then
+    return wezterm.nerdfonts.linux_nixos
   end
 
   if shell_kind == "wsl-other" then

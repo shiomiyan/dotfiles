@@ -22,7 +22,7 @@ config.use_fancy_tab_bar = true
 -- Custom font for fancy tab
 config.window_frame = {
   font = wezterm.font_with_fallback({ "Lato", "Symbols Nerd Font Mono" }),
-  font_size = 10,
+  font_size = 12,
 }
 
 -- Initial window size on startup
