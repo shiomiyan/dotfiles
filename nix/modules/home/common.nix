@@ -19,6 +19,7 @@
     ghq
     fzf
     jq
+    pure-prompt
 
     # Languages
     zig
@@ -103,13 +104,6 @@
 
       [ -r "$ZDOTDIR/rc.zsh" ] && source "$ZDOTDIR/rc.zsh"
     '';
-
-    plugins = [
-      {
-        name = "pure";
-        src = pkgs.pure-prompt;
-      }
-    ];
   };
 
   xdg.configFile = {
