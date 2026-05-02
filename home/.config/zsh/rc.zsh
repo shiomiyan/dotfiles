@@ -2,9 +2,6 @@ export LC_MESSAGES=en_US.UTF-8
 export EDITOR=nvim
 export GPG_TTY=$(tty)
 
-# keybindings
-bindkey -e
-
 export PATH="$HOME/.local/bin:$PATH"
 
 typeset -U path PATH
@@ -48,8 +45,6 @@ fi
 if [[ "$(uname -r)" =~ 'microsoft' ]]; then
     source "$ZDOTDIR/wsl.zsh"
 fi
-
-export LESSHISTFILE="$XDG_STATE_HOME"/less/history
 
 [[ -d "$HOME/go/bin" ]] && export PATH="$PATH:$HOME/go/bin"
 

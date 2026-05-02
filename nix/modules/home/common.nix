@@ -48,6 +48,12 @@
     pkgs.pnpm
     pkgs.rustup
 
+    # Utilities
+    pkgs.ghalint
+    pkgs.pinact
+    pkgs.actionlint
+    pkgs.betterleaks
+
     # AI
     pkgs.llm-agents.codex
     pkgs.llm-agents.codex-acp
@@ -101,6 +107,7 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    defaultKeymap = "emacs";
 
     history = {
       ignoreDups = true;
@@ -169,6 +176,7 @@
     XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
     XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
     XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
+    LESSHISTFILE = "${config.home.homeDirectory}/.local/state/less/history";
   };
 
   # Let Home Manager install and manage itself.
