@@ -20,6 +20,7 @@
     fzf
     jq
     pure-prompt
+    gnupg
 
     # Languages
     zig
@@ -124,6 +125,12 @@
       recursive = true;
     };
     "zsh/rc.zsh".source = ../../../config/zsh/rc.zsh;
+  };
+
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-curses;
   };
 
   home.sessionVariables = {

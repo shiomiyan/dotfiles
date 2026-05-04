@@ -10,6 +10,8 @@
     inputs.nixos-wsl.nixosModules.default
   ];
 
+  system.stateVersion = "26.05";
+
   nixpkgs.hostPlatform = "x86_64-linux";
 
   networking.hostName = hostName;
@@ -60,18 +62,18 @@
     };
   };
 
-  users.users.sk = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ];
-    shell = pkgs.zsh;
-  };
-
   programs.zsh.enable = true;
+
+  services.pcscd.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
 
   time.timeZone = "Asia/Tokyo";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  system.stateVersion = "26.05";
+  users.users.sk = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+    shell = pkgs.zsh;
+  };
 }
