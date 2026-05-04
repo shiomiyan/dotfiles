@@ -31,7 +31,12 @@
     rustup
     uv
 
-    # Utilities
+    # Packages for gnupg support
+    usbutils
+    pcsclite
+    ccid
+
+    # Development utilities
     ghalint
     pinact
     actionlint
