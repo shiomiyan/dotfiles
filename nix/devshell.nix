@@ -29,6 +29,7 @@ pkgs.mkShell {
       nixfmt
       statix
       deadnix
+      terraform
     ])
     ++ preCommitCheck.enabledPackages;
 

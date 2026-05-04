@@ -21,3 +21,6 @@
 # nix home-manager
 !flake.lock
 !*.nix
+
+# infra
+!infra/.gitkeep

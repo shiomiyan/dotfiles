@@ -52,6 +52,7 @@
       inherit inputs;
       prefix = "nix/";
       systems = [ "x86_64-linux" ];
+      nixpkgs.config.allowUnfreePredicate = pkg: inputs.nixpkgs.lib.getName pkg == "terraform";
       nixpkgs.overlays = [ inputs.llm-agents.overlays.default ];
     };
 }
