@@ -1,117 +1,109 @@
 local wezterm = require("wezterm")
 local utils = require("utils")
 local config = wezterm.config_builder()
-local launch_menu = {}
 
 config.ssh_domains = wezterm.default_ssh_domains()
+config.launch_menu = {}
 
 wezterm.on("format-tab-title", function(tab, _, _, _, _, max_width)
   return utils.format_tab_title(wezterm, tab, max_width)
 end)
 
------------------------
--- GUI Customization --
------------------------
+-- GUIの見た目
 config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.95
 config.kde_window_background_blur = true
 config.tab_bar_at_bottom = true
 config.tab_max_width = 25
-config.use_fancy_tab_bar = true
 
--- Custom font for fancy tab
+-- Fancy Tab用のフォント
 config.window_frame = {
-  font = wezterm.font_with_fallback({ "Lato", "Symbols Nerd Font Mono" }),
-  font_size = 12,
+  font = wezterm.font_with_fallback({
+    { family = "Noto Sans", weight = "Medium" },
+    { family = "Symbols Nerd Font Mono" },
+  }),
+  font_size = 10,
 }
 
--- Initial window size on startup
+-- 起動時のウィンドウサイズ
 config.initial_rows = 32
 config.initial_cols = 100
 
--- Window Padding for scrollbar
+-- スクロールバー用の余白
 config.window_padding = { right = 10, top = 0, bottom = 0 }
 
--- Scrollbar Appearance
+-- スクロールバーの見た目
 config.enable_scroll_bar = true
 config.colors = { scrollbar_thumb = "Gray" }
 
--- Reverse Curor Colors
+-- カーソル色を反転
 config.force_reverse_video_cursor = true
 config.font = wezterm.font_with_fallback({ "Consolas", "Moralerspace Argon JPDOC", "Symbols Nerd Font Mono" })
 
--- Pane appearance
+-- 非アクティブペインの見た目
 config.inactive_pane_hsb = {
   saturation = 0.5,
   brightness = 0.8,
 }
 
------------------------
--- App Configuration --
------------------------
+-- Application settings
 config.use_ime = true
 config.audible_bell = "Disabled"
-
--- Check Update manually
 config.check_for_updates = false
 config.adjust_window_size_when_changing_font_size = false
 
-------------------
--- Key bindings --
-------------------
+-- キーバインド
 config.keys = {
-  -- Copy text
+  -- テキストコピー
   { key = "c", mods = "CTRL|SHIFT", action = wezterm.action.CopyTo("ClipboardAndPrimarySelection") },
-  -- Open launcher menu for shell selection
+  -- ランチャー
   { key = "l", mods = "CTRL|SHIFT", action = wezterm.action.ShowLauncherArgs({ flags = "DOMAINS|LAUNCH_MENU_ITEMS" }) },
 }
 
-config.launch_menu = launch_menu
-
 config.mouse_bindings = {
-  -- Right-Click will open the link under the mouse cursor
+  -- 右クリックでカーソル下のリンクを開く
   { event = { Up = { streak = 1, button = "Right" } }, action = wezterm.action.OpenLinkAtMouseCursor },
 
-  -- Disable the 'Down' event of CTRL-Click to avoid weird program behaviors
+  -- Ctrl+クリックのDownイベントによる誤動作を防ぐ
   { event = { Down = { streak = 1, button = "Left" } }, mods = "CTRL", action = wezterm.action.Nop },
 
-  -- Disable open the link with only Left-Click
+  -- 左クリックだけでリンクを開かない
   { event = { Up = { streak = 1, button = "Left" } }, mods = "", action = wezterm.action.Nop },
 }
 
--- Switch configuration depends on operating system
+-- OSごとに設定を切り替える
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.initial_rows = 42
   config.initial_cols = 120
   config.font_size = 11
-
-  -- Styling
   config.window_background_opacity = 1
   config.win32_system_backdrop = "Acrylic"
 
   config.wsl_domains = wezterm.default_wsl_domains()
   config.default_prog = { "pwsh.exe", "-NoLogo" }
-  table.insert(launch_menu, {
+  table.insert(config.launch_menu, {
     label = "PowerShell 7",
     args = { "pwsh.exe", "-NoLogo" },
+    domain = { DomainName = "local" },
   })
   for _, dom in ipairs(config.wsl_domains) do
-    table.insert(launch_menu, {
+    table.insert(config.launch_menu, {
       label = dom.distribution,
       domain = { DomainName = dom.name },
     })
   end
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
-  config.default_prog = { "zsh", "--login" }
-  -- https://github.com/wez/wezterm/issues/2669
-  config.window_background_opacity = 0.9999
   config.font_size = 16
-  config.window_padding.right = 16 -- Scrollbar width
-else
+  -- macOSで透明度を安定させるための回避策: https://github.com/wez/wezterm/issues/2669
+  config.window_background_opacity = 0.9999
+  -- スクロールバー幅
+  config.window_padding.right = 16
   config.default_prog = { "zsh", "--login" }
+else
   config.font_size = 12
   config.enable_wayland = false
   config.window_decorations = "TITLE | RESIZE"
+  config.default_prog = { "zsh", "--login" }
 end
 
 return config
