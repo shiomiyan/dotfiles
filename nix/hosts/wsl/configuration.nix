@@ -47,7 +47,7 @@
     wslConf = {
       user.default = "sk";
       boot.systemd = true;
-      
+
       interop = {
         enabled = true;
         appendWindowsPath = false;
@@ -74,4 +74,9 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   system.stateVersion = "26.05";
+
+  environment.systemPackages = [
+    pkgs.wget
+  ];
+  programs.nix-ld.enable = true;
 }
