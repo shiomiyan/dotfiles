@@ -19,7 +19,7 @@ printf '%s\n' \
 Deliver dotfiles.
 
 ```
-home-manager switch --flake ~/dotfiles#sk@wsl
+home-manager switch --experimental-features "nix-command flakes" --flake ~/dotfiles#sk@wsl
 ```
 
 Change default shell.
