@@ -1,10 +1,15 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }:
 
 {
+  imports = [
+    inputs.agent-skills.homeManagerModules.default
+  ];
+
   home.packages = with pkgs; [
     # Commons
     git
@@ -136,6 +141,21 @@
   services.gpg-agent = {
     enable = true;
     pinentry.package = pkgs.pinentry-curses;
+  };
+
+  programs.agent-skills = {
+    enable = true;
+    sources.grill-me = {
+      input = "grill-me";
+      subdir = "skills";
+    };
+    skills.enable = [
+      "productivity/grill-me"
+    ];
+    targets.codex = {
+      enable = true;
+      structure = "copy-tree";
+    };
   };
 
   home.sessionVariables = {
