@@ -38,8 +38,7 @@
 
     # Packages for gnupg support
     usbutils
-    pcsclite
-    ccid
+    pcsc-tools
 
     # Development utilities
     ghalint

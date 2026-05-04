@@ -64,16 +64,15 @@
 
   programs.zsh.enable = true;
 
-  services.pcscd.enable = true;
+  services.pcscd = {
+    enable = true;
+    plugins = [ pkgs.ccid ];
+  };
 
   security.sudo.wheelNeedsPassword = false;
 
   time.timeZone = "Asia/Tokyo";
   i18n.defaultLocale = "en_US.UTF-8";
-
-  environment.systemPackages = [
-    pkgs.wget
-  ];
 
   # VSCode remote server support
   programs.nix-ld.enable = true;
