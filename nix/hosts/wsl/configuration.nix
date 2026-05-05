@@ -60,6 +60,11 @@
       enable = true;
       users = [ "sk" ];
     };
+
+    usbip = {
+      enable = true;
+      autoAttach = [ "2-1" ];
+    };
   };
 
   programs.zsh.enable = true;

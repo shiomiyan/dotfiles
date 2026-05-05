@@ -27,7 +27,6 @@
     fzf
     jq
     pure-prompt
-    gnupg
     devenv
 
     # Languages
@@ -139,10 +138,21 @@
     "zsh/rc.zsh".source = ../../../config/zsh/rc.zsh;
   };
 
-  programs.gpg.enable = true;
+  programs.gpg = {
+    enable = true;
+    scdaemonSettings = {
+      disable-ccid = true;
+    };
+  };
+
   services.gpg-agent = {
     enable = true;
-    pinentry.package = pkgs.pinentry-curses;
+    enableSshSupport = true;
+    defaultCacheTtl = 34560000;
+    maxCacheTtl = 34560000;
+    extraConfig = ''
+      pinentry-program ${pkgs.pinentry-all}/bin/pinentry
+    '';
   };
 
   programs.agent-skills = {
