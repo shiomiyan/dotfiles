@@ -26,6 +26,7 @@
     jq
     pure-prompt
     gnupg
+    devenv
 
     # Languages
     zig
