@@ -24,3 +24,7 @@
 
 # infra
 !infra/.gitkeep
+
+# docs
+!docs/.gitkeep
+!docs/GPG.md

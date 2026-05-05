@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  perSystem,
   pkgs,
   ...
 }:
@@ -18,6 +19,7 @@
     curl
     wget
     unzip
+    perSystem.self.mo
     tig
     tree
     gh
