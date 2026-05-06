@@ -6,7 +6,8 @@
 }:
 
 let
-  preCommitCheck = inputs.git-hooks.lib.${system}.run {
+  git-hooks = inputs.git-hooks.lib.${system};
+  preCommitCheck = git-hooks.run {
     src = ../.;
     package = pkgs.prek;
     hooks.betterleaks = {
@@ -19,9 +20,10 @@ let
       stages = [ "pre-commit" ];
       package = pkgs.betterleaks;
     };
+    hooks.nixfmt.enable = true;
   };
 in
-pkgs.mkShell {
+pkgs.mkShellNoCC {
   packages =
     (with pkgs; [
       nixd
