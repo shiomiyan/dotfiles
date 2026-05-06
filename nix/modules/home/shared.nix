@@ -12,41 +12,41 @@
   ];
 
   home.packages = with pkgs; [
-    # Commons
-    git
-    ripgrep
+    # Shell tools
     bat
     curl
-    wget
-    unzip
-    perSystem.self.mo
-    tig
-    tree
-    gh
-    ghq
     fzf
     jq
+    perSystem.self.mo
     pure-prompt
+    ripgrep
+    tree
+    unzip
+    wget
+
+    # Development
+    ghalint
+    gh
+    ghq
+    git
+    actionlint
+    betterleaks
     devenv
+    pinact
+    tig
 
     # Languages
-    zig
-    go
     clang
+    go
     nodejs
     pnpm
     rustup
     uv
+    zig
 
-    # Packages for gnupg support
-    usbutils
+    # GPG support
     pcsc-tools
-
-    # Development utilities
-    ghalint
-    pinact
-    actionlint
-    betterleaks
+    usbutils
 
     # AI
     llm-agents.codex
@@ -54,9 +54,53 @@
     llm-agents.gemini-cli
   ];
 
+  xdg.configFile = {
+    "git" = {
+      source = ../../../config/git;
+      recursive = true;
+    };
+    "tig" = {
+      source = ../../../config/tig;
+      recursive = true;
+    };
+    "nvim" = {
+      source = ../../../config/nvim;
+      recursive = true;
+    };
+    "zsh/rc.zsh".source = ../../../config/zsh/rc.zsh;
+  };
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+  };
+
+  programs.zsh = {
+    enable = true;
+    dotDir = "${config.home.homeDirectory}/.config/zsh";
+
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    defaultKeymap = "emacs";
+
+    history = {
+      ignoreDups = true;
+      ignoreSpace = true;
+      share = true;
+    };
+
+    envExtra = ''
+      [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+    '';
+
+    initContent = ''
+      autoload -Uz promptinit
+      promptinit
+      prompt pure
+
+      [ -r "$ZDOTDIR/rc.zsh" ] && source "$ZDOTDIR/rc.zsh"
+    '';
   };
 
   programs.atuin = {
@@ -88,54 +132,10 @@
   programs.mise = {
     enable = true;
     enableZshIntegration = true;
-  };
-
-  programs.zsh = {
-    enable = true;
-    dotDir = "${config.home.homeDirectory}/.config/zsh";
-
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    defaultKeymap = "emacs";
-
-    history = {
-      ignoreDups = true;
-      ignoreSpace = true;
-      share = true;
+    globalConfig.tools = {
+      bun = "latest";
+      deno = "latest";
     };
-
-    envExtra = ''
-      [ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
-    '';
-
-    initContent = ''
-      autoload -Uz promptinit
-      promptinit
-      prompt pure
-
-      [ -r "$ZDOTDIR/rc.zsh" ] && source "$ZDOTDIR/rc.zsh"
-    '';
-  };
-
-  xdg.configFile = {
-    "git" = {
-      source = ../../../config/git;
-      recursive = true;
-    };
-    "tig" = {
-      source = ../../../config/tig;
-      recursive = true;
-    };
-    "nvim" = {
-      source = ../../../config/nvim;
-      recursive = true;
-    };
-    "mise" = {
-      source = ../../../config/mise;
-      recursive = true;
-    };
-    "zsh/rc.zsh".source = ../../../config/zsh/rc.zsh;
   };
 
   programs.gpg = {
