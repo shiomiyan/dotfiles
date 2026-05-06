@@ -6,8 +6,17 @@ YubiKeyを中心にGPG鍵を管理している。
 | --- | --- | --- |
 | GitHub commit/tag signing | `[S]` signing | Local per-device subkey |
 | GitHub SSH authentication | `[A]` authentication | YubiKey |
-| OpenPGP decryption | `[E]` encryption | YubiKey |
+| SOPS/OpenPGP decryption | `[E]` encryption | YubiKey |
 | OpenPGP key management | `[C]` certification | YubiKey |
+
+GnuPG homeはXDG data directoryに置く。
+
+```plaintext
+~/.local/share/gnupg
+```
+
+YubiKeyが必要になるのは、初回のsmartcard stub作成、SOPS secretの復号、SOPS secretの編集時。
+復号済みsecretは`sops-nix`標準のログインセッション中だけの保存場所を使い、永続的な平文secretキャッシュは作らない。
 
 ## Windows端末
 
@@ -32,6 +41,16 @@ gpg --armor --export 30B3D66B945D4F401B63338C0D24BF6D3FBDACB0 > github-gpg-publi
   - サブキーfingerprintにはしない。`!` も付けない。
 - WSLでは、Windows側のGpg4winを使う。
 
+## SOPSで使うもの
+
+- SOPSはGPG recipientとして主キーfingerprintを指定する。
+- 復号にはYubiKey上の`[E]`サブキーを使う。
+- 新しいsecretは必要になったときだけ`secrets/`配下に作る。
+
+```plaintext
+sops secrets/default.yaml
+```
+
 ## バックアップ
 
 下記は別途バックアップを作成している。
@@ -45,10 +64,19 @@ gpg --armor --export 30B3D66B945D4F401B63338C0D24BF6D3FBDACB0 > github-gpg-publi
 
 ## 端末移行時
 
-新しい端末では、まず公開鍵をimportする。
+新しい端末では、Home Manager適用後にYubiKeyから公開鍵URLを読み、公開鍵importとsmartcard stub作成を行う。
+`gpg --card-edit`の`fetch`は、カードに登録された`URL of public key`から公開鍵を取得する。
 
 ```plaintext
-gpg --import ./public.asc
+gpg --card-edit
+gpg/card> fetch
+gpg/card> quit
+```
+
+repository内の公開鍵ファイルからimportする場合は下記を使う。
+
+```plaintext
+gpg --import ./keys/openpgp/shiomiyan.asc
 ```
 
 YubiKeyを挿して、鍵が見えることを確認する。

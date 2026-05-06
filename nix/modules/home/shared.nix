@@ -9,6 +9,7 @@
 {
   imports = [
     inputs.agent-skills.homeManagerModules.default
+    inputs.sops-nix.homeManagerModules.sops
   ];
 
   home.packages = with pkgs; [
@@ -46,6 +47,7 @@
 
     # GPG support
     pcsc-tools
+    sops
     usbutils
 
     # AI
@@ -140,6 +142,12 @@
 
   programs.gpg = {
     enable = true;
+    homedir = "${config.xdg.dataHome}/gnupg";
+    publicKeys = [
+      {
+        source = ../../../keys/openpgp/shiomiyan.asc;
+      }
+    ];
     scdaemonSettings = {
       disable-ccid = true;
     };
