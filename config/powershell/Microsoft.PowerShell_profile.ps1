@@ -1,5 +1,4 @@
 # This profile is used only on Windows.
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 Import-Module PSReadLine
 
