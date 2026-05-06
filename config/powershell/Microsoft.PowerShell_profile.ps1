@@ -1,14 +1,18 @@
-# load windows specific modules on windows
-if ($PSVersionTable.Platform -eq "Win32NT") {
-    Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
-    Import-Module Windows
-}
+# This profile is used only on Windows.
+Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 Import-Module PSReadLine
 
+function which {
+    Get-Command -ShowCommandInfo $args | ForEach-Object { $_.Definition }
+}
+
+Set-Alias -Name e -Value explorer.exe
+Set-Alias -Name tig -Value "C:\Program Files\Git\usr\bin\tig.exe"
+
 # zoxide
 
-if (Get-Command zoxide -errorAction SilentlyContinue) {
+if (Get-Command zoxide -ErrorAction SilentlyContinue) {
     Invoke-Expression (& {
         (zoxide init --hook pwd powershell | Out-String)
     })
