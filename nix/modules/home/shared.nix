@@ -185,6 +185,12 @@
     "${config.home.homeDirectory}/.local/bin"
   ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
