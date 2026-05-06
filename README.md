@@ -30,7 +30,7 @@ Clone, bootstrapping.
 ```plaintext
 nix --extra-experimental-features 'nix-command flakes' shell nixpkgs#git -c git clone https://github.com/shiomiyan/dotfiles
 cd dotfiles
-sudo nixos-rebuild switch --experimental-features "nix-command flakes" --flake .#wsl
+sudo nixos-rebuild switch --flake .#wsl
 ```
 
 ## Structure / Tech Stack
