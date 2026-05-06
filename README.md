@@ -28,6 +28,7 @@ Install [NixOS-WSL](https://nix-community.github.io/NixOS-WSL/index.html).
 Clone, bootstrapping.
 
 ```plaintext
+nix --extra-experimental-features 'nix-command flakes' shell nixpkgs#git -c git clone https://github.com/shiomiyan/dotfiles
 cd dotfiles
 sudo nixos-rebuild switch --experimental-features "nix-command flakes" --flake .#wsl
 ```
