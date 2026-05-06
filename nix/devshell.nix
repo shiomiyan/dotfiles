@@ -7,6 +7,7 @@
 
 let
   git-hooks = inputs.git-hooks.lib.${system};
+  formatter = import ./formatter.nix { inherit inputs pkgs; };
   preCommitCheck = git-hooks.run {
     src = ../.;
     package = pkgs.prek;
@@ -20,7 +21,10 @@ let
       stages = [ "pre-commit" ];
       package = pkgs.betterleaks;
     };
-    hooks.nixfmt.enable = true;
+    hooks.treefmt = {
+      enable = true;
+      package = formatter;
+    };
   };
 in
 pkgs.mkShellNoCC {
@@ -28,7 +32,6 @@ pkgs.mkShellNoCC {
     (with pkgs; [
       nixd
       nil
-      nixfmt
       statix
       deadnix
       terraform
