@@ -1,6 +1,8 @@
-export GPG_TTY=$(tty)
-
 typeset -U path PATH
+
+if [[ -t 0 ]]; then
+    export GPG_TTY="$(tty)"
+fi
 
 if [[ -x "$(command -v docker)" ]]; then
     function docker-horobi() {
@@ -43,9 +45,5 @@ if [[ "$(uname -r)" =~ 'microsoft' ]]; then
 fi
 
 [[ -d "$HOME/go/bin" ]] && export PATH="$PATH:$HOME/go/bin"
-
-if [[ -x "$(command -v opam)" ]]; then
-    [[ ! -r "$HOME/.opam/opam-init/init.zsh" ]] || source "$HOME/.opam/opam-init/init.zsh" > /dev/null 2> /dev/null
-fi
 
 [[ -f "$ZDOTDIR/local.zsh" ]] && source "$ZDOTDIR/local.zsh" || touch "$ZDOTDIR/local.zsh"
