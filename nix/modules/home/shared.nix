@@ -54,6 +54,9 @@
     llm-agents.codex
     llm-agents.codex-acp
     llm-agents.gemini-cli
+
+    # Misc
+    bitwarden-cli
   ];
 
   xdg.configFile = {
