@@ -1,5 +1,4 @@
 {
-  config,
   flake,
   pkgs,
   ...
@@ -8,6 +7,7 @@
 {
   imports = [
     flake.homeModules.shared
+    ./windows-ssh-agent-relay.nix
   ];
 
   home.stateVersion = "26.05";
@@ -24,7 +24,6 @@
   };
 
   home.packages = with pkgs; [
-    socat
     (writeShellScriptBin "wsl-fix-interop" ''
       set -euo pipefail
 
@@ -35,32 +34,4 @@
     '')
   ];
 
-  home.sessionVariables = {
-    SSH_AUTH_SOCK = "${config.home.homeDirectory}/.ssh/agent.sock";
-  };
-
-  home.sessionPath = [
-    "/mnt/c/tools/bin"
-  ];
-
-  systemd.user.services.windows-ssh-agent-relay = {
-    Unit = {
-      Description = "Windows OpenSSH Agent relay for WSL";
-      ConditionPathExists = "/mnt/c/tools/bin/npiperelay.exe";
-    };
-
-    Service = {
-      Restart = "on-failure";
-      ExecStartPre = [
-        "${pkgs.coreutils}/bin/mkdir -p %h/.ssh"
-        "${pkgs.coreutils}/bin/rm -f %h/.ssh/agent.sock"
-      ];
-      ExecStart = "${pkgs.socat}/bin/socat UNIX-LISTEN:%h/.ssh/agent.sock,fork EXEC:'/mnt/c/tools/bin/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent',nofork";
-      ExecStopPost = "${pkgs.coreutils}/bin/rm -f %h/.ssh/agent.sock";
-    };
-
-    Install = {
-      WantedBy = [ "default.target" ];
-    };
-  };
 }
