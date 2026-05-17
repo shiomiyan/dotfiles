@@ -12,6 +12,8 @@
     inputs.sops-nix.homeManagerModules.sops
   ];
 
+  xdg.enable = true;
+
   home.packages = with pkgs; [
     # Shell tools
     bat
@@ -82,7 +84,7 @@
 
   programs.zsh = {
     enable = true;
-    dotDir = "${config.home.homeDirectory}/.config/zsh";
+    dotDir = "${config.xdg.configHome}/zsh";
 
     enableCompletion = true;
     autosuggestion.enable = true;
@@ -184,12 +186,7 @@
   home.sessionVariables = {
     LC_MESSAGES = "en_US.UTF-8";
 
-    XDG_CONFIG_HOME = "${config.home.homeDirectory}/.config";
-    XDG_DATA_HOME = "${config.home.homeDirectory}/.local/share";
-    XDG_STATE_HOME = "${config.home.homeDirectory}/.local/state";
-    XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
-
-    LESSHISTFILE = "${config.home.homeDirectory}/.local/state/less/history";
+    LESSHISTFILE = "${config.xdg.stateHome}/less/history";
   };
 
   home.sessionPath = [
