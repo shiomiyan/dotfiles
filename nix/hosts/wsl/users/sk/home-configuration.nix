@@ -1,4 +1,5 @@
 {
+  config,
   flake,
   pkgs,
   ...
@@ -32,6 +33,14 @@
       sudo systemctl restart systemd-binfmt
       sudo systemctl mask systemd-binfmt.service
     '')
+  ];
+
+  home.sessionVariables = {
+    SSH_AUTH_SOCK = "${config.home.homeDirectory}/.ssh/agent.sock";
+  };
+
+  home.sessionPath = [
+    "/mnt/c/tools/bin"
   ];
 
   systemd.user.services.windows-ssh-agent-relay = {
