@@ -1,0 +1,17 @@
+[helpers]
+
+[default]
+depends = []
+
+[default.files]
+"config/espanso"    = "~/AppData/Roaming/espanso"
+"config/nvim"       = "~/AppData/Local/nvim"
+"config/git"        = "~/.config/git"
+"config/tig"        = "~/.config/tig"
+"config/wezterm"    = "~/.config/wezterm"
+"config/powershell" = "~/Documents/PowerShell"
+
+[default.variables]
+
+[settings]
+default_target_type = "automatic"
