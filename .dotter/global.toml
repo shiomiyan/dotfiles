@@ -4,7 +4,7 @@
 depends = []
 
 [default.files]
-"config/espanso"    = "~/AppData/Roaming/espanso"
+"config/espanso"    = { target = "~/AppData/Roaming/espanso", type = "symbolic" }
 "config/nvim"       = "~/AppData/Local/nvim"
 "config/git"        = "~/.config/git"
 "config/tig"        = "~/.config/tig"
