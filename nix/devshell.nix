@@ -34,7 +34,7 @@ pkgs.mkShellNoCC {
       nil
       statix
       deadnix
-      terraform
+      opentofu
     ])
     ++ preCommitCheck.enabledPackages;
 
