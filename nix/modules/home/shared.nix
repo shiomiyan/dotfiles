@@ -35,6 +35,7 @@
     actionlint
     betterleaks
     devenv
+    opentofu
     pinact
     tig
 
@@ -59,6 +60,7 @@
 
     # Misc
     bitwarden-cli
+    ast-grep
   ];
 
   xdg.configFile = {
@@ -174,8 +176,12 @@
       input = "grill-me";
       subdir = "skills";
     };
+    sources.dotfiles = {
+      path = ../../../config/agent-skills;
+    };
     skills.enable = [
       "productivity/grill-me"
+      "private-iac-credentials"
     ];
     targets.codex = {
       enable = true;
