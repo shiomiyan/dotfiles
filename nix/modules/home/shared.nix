@@ -64,6 +64,10 @@
   ];
 
   xdg.configFile = {
+    "emacs" = {
+      source = ../../../config/emacs;
+      recursive = true;
+    };
     "git" = {
       source = ../../../config/git;
       recursive = true;
@@ -77,6 +81,11 @@
       recursive = true;
     };
     "zsh/rc.zsh".source = ../../../config/zsh/rc.zsh;
+  };
+
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacs;
   };
 
   programs.neovim = {
