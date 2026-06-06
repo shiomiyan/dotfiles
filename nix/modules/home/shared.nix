@@ -57,6 +57,7 @@
     llm-agents.codex
     llm-agents.codex-acp
     llm-agents.gemini-cli
+    rtk
 
     # Misc
     bitwarden-cli
