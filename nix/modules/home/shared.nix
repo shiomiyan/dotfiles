@@ -57,7 +57,6 @@
     llm-agents.codex
     llm-agents.codex-acp
     llm-agents.gemini-cli
-    rtk
 
     # Misc
     bitwarden-cli
@@ -186,11 +185,16 @@
       input = "grill-me";
       subdir = "skills";
     };
+    sources.superpowers = {
+      input = "superpowers";
+      subdir = "skills";
+    };
     sources.dotfiles = {
       path = ../../../config/agent-skills;
     };
     skills.enable = [
       "productivity/grill-me"
+      "japanese-tech-writing"
       "private-iac-credentials"
     ];
     targets.codex = {

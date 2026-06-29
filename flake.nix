@@ -48,6 +48,10 @@
       url = "github:mattpocock/skills";
       flake = false;
     };
+    superpowers = {
+      url = "github:obra/superpowers";
+      flake = false;
+    };
   };
 
   outputs =

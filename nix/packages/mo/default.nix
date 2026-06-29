@@ -2,11 +2,11 @@
 
 pkgs.stdenvNoCC.mkDerivation rec {
   pname = "mo";
-  version = "1.5.2";
+  version = "1.6.3";
 
   src = pkgs.fetchurl {
     url = "https://github.com/k1LoW/mo/releases/download/v${version}/mo_v${version}_linux_amd64.tar.gz";
-    hash = "sha256-5X/kbDScVqe5cLuveS15wUnLGzpB/ykmXon4ECKyBRY=";
+    hash = "sha256-sobqdBSeLI9zzbjjioK9YiOnhpYoAb3pq2p1CcJcjfA=";
   };
 
   sourceRoot = ".";
