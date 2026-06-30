@@ -3,19 +3,14 @@
 Import-Module PSReadLine
 
 function Attach-YubiKeyToWsl {
-    # WHY: BUSID changes across reconnects, so this keeps the attach step short.
-    $yubiKeyBusId = usbipd list |
-        Select-String 'YubiKey|Yubico' |
-        ForEach-Object { $_.Line.Split()[0] } |
-        Select-Object -First 1
+    $yubiKeyBusId = (usbipd list | Select-String "1050:0407" | ForEach-Object { $_.Line.Split()[0] })
 
     if ($yubiKeyBusId) {
         usbipd attach --wsl --busid $yubiKeyBusId
         Write-Host "YubiKey attached to WSL with busid $yubiKeyBusId."
-        return
+    } else {
+        Write-Host "YubiKey not found."
     }
-
-    Write-Host 'YubiKey not found.'
 }
 
 function which {
