@@ -23,6 +23,16 @@
     "zsh/wsl.zsh".source = ../../../../../config/zsh/wsl.zsh;
   };
 
+  programs.ssh = {
+    enable = true;
+    extraConfig = ''
+      Host 192.168.10.13
+        # The Windows OpenSSH agent relay rejects the unbound mode in WSL,
+        # so constrain the workaround to the affected host for now.
+        PubkeyAuthentication yes
+    '';
+  };
+
   home.packages = with pkgs; [
     (writeShellScriptBin "wsl-fix-interop" ''
       set -euo pipefail

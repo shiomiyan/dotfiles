@@ -194,6 +194,9 @@
     };
     skills.enable = [
       "productivity/grill-me"
+      # Enable the Superpowers entrypoint first so the workflow can opt into
+      # additional skills later without committing to the full methodology now.
+      "using-superpowers"
       "japanese-tech-writing"
       "private-iac-credentials"
     ];
