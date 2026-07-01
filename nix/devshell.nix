@@ -28,6 +28,8 @@ let
   };
 in
 pkgs.mkShellNoCC {
+  inherit (preCommitCheck) shellHook;
+
   packages =
     (with pkgs; [
       nixd
@@ -38,5 +40,4 @@ pkgs.mkShellNoCC {
     ])
     ++ preCommitCheck.enabledPackages;
 
-  shellHook = preCommitCheck.shellHook;
 }

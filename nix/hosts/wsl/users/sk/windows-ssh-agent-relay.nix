@@ -5,17 +5,19 @@
 }:
 
 {
-  home.packages = with pkgs; [
-    socat
-  ];
+  home = {
+    packages = with pkgs; [
+      socat
+    ];
 
-  home.sessionVariables = {
-    SSH_AUTH_SOCK = "${config.home.homeDirectory}/.ssh/agent.sock";
+    sessionVariables = {
+      SSH_AUTH_SOCK = "${config.home.homeDirectory}/.ssh/agent.sock";
+    };
+
+    sessionPath = [
+      "/mnt/c/tools/bin"
+    ];
   };
-
-  home.sessionPath = [
-    "/mnt/c/tools/bin"
-  ];
 
   systemd.user.services.windows-ssh-agent-relay = {
     Unit = {

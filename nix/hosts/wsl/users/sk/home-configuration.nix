@@ -6,7 +6,7 @@
 
 {
   imports = [
-    flake.homeModules.shared
+    flake.homeModules."home-shared"
     ./windows-ssh-agent-relay.nix
   ];
 
