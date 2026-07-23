@@ -15,54 +15,59 @@
   xdg.enable = true;
 
   home = {
-    packages = with pkgs; [
-      # Shell tools
-      bat
-      curl
-      fzf
-      jq
-      perSystem.self.mo
-      pure-prompt
-      ripgrep
-      tree
-      unzip
-      wget
+    packages =
+      with pkgs;
+      [
+        # Shell tools
+        bat
+        curl
+        fzf
+        jq
+        perSystem.self.mo
+        pure-prompt
+        ripgrep
+        tree
+        unzip
+        wget
 
-      # Development
-      ghalint
-      gh
-      ghq
-      git
-      actionlint
-      betterleaks
-      devenv
-      opentofu
-      pinact
-      tig
+        # Development
+        ghalint
+        gh
+        ghq
+        git
+        actionlint
+        betterleaks
+        devenv
+        opentofu
+        pinact
+        tig
 
-      # Languages
-      clang
-      go
-      nodejs
-      pnpm
-      rustup
-      uv
-      zig
+        # Languages
+        clang
+        go
+        nodejs
+        pnpm
+        rustup
+        uv
+        zig
 
-      # GPG support
-      pcsc-tools
-      sops
-      usbutils
+        # GPG support
+        pcsc-tools
+        sops
+        usbutils
+        inputs.crit.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-      # AI
-      llm-agents.codex
-      llm-agents.codex-acp
-      llm-agents.gemini-cli
-
-      # Misc
-      bitwarden-cli
-      ast-grep
-    ];
+        # Misc
+        bitwarden-cli
+        ast-grep
+      ]
+      ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+        # Keep the scope local so package names stay short without broadening
+        # lookup rules for the rest of home.packages.
+        codex
+        codex-acp
+        gemini-cli
+      ]);
 
     sessionVariables = {
       LC_MESSAGES = "en_US.UTF-8";
@@ -202,6 +207,7 @@
         # Enable the Superpowers entrypoint first so the workflow can opt into
         # additional skills later without committing to the full methodology now.
         "using-superpowers"
+        "jtf-documentation-style"
         "japanese-tech-writing"
         "private-iac-credentials"
       ];

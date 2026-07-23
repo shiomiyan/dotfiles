@@ -38,6 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
+    crit.url = "github:tomasz-tomczyk/crit";
     agent-skills = {
       url = "github:Kyure-A/agent-skills-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,6 +61,5 @@
       inherit inputs;
       prefix = "nix/";
       systems = [ "x86_64-linux" ];
-      nixpkgs.overlays = [ inputs.llm-agents.overlays.default ];
     };
 }
