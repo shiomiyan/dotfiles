@@ -1,0 +1,11 @@
+[settings]
+dotfiles.default_mode = "symlink"
+
+[dotfiles]
+"~/AppData/Roaming/espanso" = "config/espanso"
+"~/AppData/Local/nvim" = "config/nvim"
+"~/.config/git" = "config/git"
+"~/.config/tig" = "config/tig"
+"~/.config/wezterm" = "config/wezterm"
+"~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1" = "config/powershell/Microsoft.PowerShell_profile.ps1"
+"~/Documents/PowerShell/powershell.config.json" = "config/powershell/powershell.config.json"

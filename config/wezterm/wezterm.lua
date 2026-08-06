@@ -19,7 +19,7 @@ config.tab_max_width = 25
 -- Fancy Tab用のフォント
 config.window_frame = {
   font = wezterm.font_with_fallback({
-    { family = "Lato", weight = "Medium" },
+    { family = "Mulish", weight = 700 },
     { family = "Symbols Nerd Font Mono" },
   }),
   font_size = 10,
@@ -38,7 +38,7 @@ config.colors = { scrollbar_thumb = "Gray" }
 
 -- カーソル色を反転
 config.force_reverse_video_cursor = true
-config.font = wezterm.font_with_fallback({ "Recursive UD Mono Semi Casual", "Symbols Nerd Font Mono" })
+config.font = wezterm.font_with_fallback({ "CodeNewRoman Nerd Font", "BIZ UDGothic", "Symbols Nerd Font Mono" })
 
 -- 非アクティブペインの見た目
 config.inactive_pane_hsb = {
@@ -75,7 +75,7 @@ config.mouse_bindings = {
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
   config.initial_rows = 42
   config.initial_cols = 120
-  config.font_size = 11
+  config.font_size = 13
   config.window_background_opacity = 1
   config.win32_system_backdrop = "Acrylic"
 

@@ -4,6 +4,17 @@ dotfilesです。
 
 ## Setup
 
+### Windows
+
+```powershell
+winget install jdx.mise
+git clone https://github.com/shiomiyan/dotfiles
+cd dotfiles
+mise trust
+mise bootstrap --only dotfiles --dry-run
+mise bootstrap --only dotfiles
+```
+
 ### Standalone with Home Manager
 
 **Pre-requirements**: Install [Nix](https://nixos.org/download/) and [Home Manager (Standalone)](https://nix-community.github.io/home-manager/index.xhtml).
@@ -38,7 +49,7 @@ sudo nixos-rebuild switch --flake .#wsl
 Flake structure: [numtide/blueprint](https://numtide.github.io/blueprint/main/)
 
 - `bootstrap/`: Initial setup scripts for tools that remain outside Home Manager.
-- `config/`: Source files linked into XDG config locations by Home Manager.
+- `config/`: Source files linked into platform config locations by Home Manager and mise.
 - `docs/`: Operational notes for manual procedures.
 - `keys/`: Public key material that is safe to keep in the repository.
 - `nix/`: NixOS, Home Manager, package, formatter, and development shell definitions.

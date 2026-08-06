@@ -86,11 +86,5 @@ flycheck_*.el
 # undo-tree
 *.~undo-tree~
 
-# SuperCuber/dotter
-.dotter/*
-!.dotter/global.toml
-!.dotter/README.md
-
 # Local configuration files
 local.gitconfig
-
