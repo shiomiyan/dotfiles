@@ -41,6 +41,7 @@
         opentofu
         pinact
         tig
+        cloudflared
 
         # Languages
         clang
@@ -67,6 +68,7 @@
         codex
         codex-acp
         gemini-cli
+        opencode
       ]);
 
     sessionVariables = {
@@ -81,10 +83,6 @@
   };
 
   xdg.configFile = {
-    "emacs" = {
-      source = ../../../config/emacs;
-      recursive = true;
-    };
     "git" = {
       source = ../../../config/git;
       recursive = true;
@@ -101,11 +99,6 @@
   };
 
   programs = {
-    emacs = {
-      enable = true;
-      package = pkgs.emacs;
-    };
-
     neovim = {
       enable = true;
       defaultEditor = true;
@@ -139,20 +132,20 @@
       '';
     };
 
-    atuin = {
-      enable = true;
-      enableZshIntegration = true;
-      flags = [ "--disable-up-arrow" ];
-      settings = {
-        auto_sync = true;
-        enter_accept = false;
-        style = "compact";
-        records = true;
-      };
-      daemon = {
-        enable = true;
-      };
-    };
+    #atuin = {
+    #  enable = true;
+    #  enableZshIntegration = true;
+    #  flags = [ "--disable-up-arrow" ];
+    #  settings = {
+    #    auto_sync = true;
+    #    enter_accept = false;
+    #    style = "compact";
+    #    records = true;
+    #  };
+    #  daemon = {
+    #    enable = true;
+    #  };
+    #};
 
     zoxide = {
       enable = true;
