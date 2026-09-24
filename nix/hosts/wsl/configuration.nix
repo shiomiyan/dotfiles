@@ -8,6 +8,7 @@
 {
   imports = [
     inputs.nixos-wsl.nixosModules.default
+    inputs.paseo.nixosModules.default
   ];
 
   system.stateVersion = "26.05";
@@ -72,6 +73,22 @@
   services.pcscd = {
     enable = true;
     plugins = [ pkgs.ccid ];
+  };
+
+  services.paseo = {
+    enable = true;
+    user = "sk";
+    group = "users";
+    dataDir = "/home/sk/.paseo";
+    inheritUserEnvironment = true;
+    package = inputs.paseo.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+      # Recomputed for the nixpkgs revision locked by the Paseo input.
+      npmDepsHash = "sha256-9UWtpZrCdyYyGq3HGNgSpU1+2Imu3oYqtSumq2DtANc=";
+    };
+
+    environment = {
+      SSH_AUTH_SOCK = "/home/sk/.ssh/agent.sock";
+    };
   };
 
   security.sudo.wheelNeedsPassword = false;

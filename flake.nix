@@ -29,6 +29,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
+    paseo.url = "github:getpaseo/paseo/v0.9.1";
     git-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,21 +39,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     llm-agents.url = "github:numtide/llm-agents.nix";
-    crit.url = "github:tomasz-tomczyk/crit";
-    agent-skills = {
-      url = "github:Kyure-A/agent-skills-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Skills for AI agents
-    grill-me = {
-      url = "github:mattpocock/skills";
-      flake = false;
-    };
-    superpowers = {
-      url = "github:obra/superpowers";
-      flake = false;
-    };
   };
 
   outputs =

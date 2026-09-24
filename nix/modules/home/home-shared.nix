@@ -8,7 +8,6 @@
 
 {
   imports = [
-    inputs.agent-skills.homeManagerModules.default
     inputs.sops-nix.homeManagerModules.sops
   ];
 
@@ -46,8 +45,6 @@
         # Languages
         clang
         go
-        nodejs
-        pnpm
         rustup
         uv
         zig
@@ -56,17 +53,15 @@
         pcsc-tools
         sops
         usbutils
-        inputs.crit.packages.${pkgs.stdenv.hostPlatform.system}.default
 
         # Misc
         bitwarden-cli
         ast-grep
+        ffmpeg
       ]
       ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
         # Keep the scope local so package names stay short without broadening
         # lookup rules for the rest of home.packages.
-        codex
-        codex-acp
         gemini-cli
         opencode
       ]);
@@ -95,6 +90,8 @@
       source = ../../../config/nvim;
       recursive = true;
     };
+    "opencode/opencode.jsonc".source = ../../../config/opencode/opencode.jsonc;
+    "opencode/AGENTS.md".source = ../../../config/opencode/AGENTS.md;
     "zsh/rc.zsh".source = ../../../config/zsh/rc.zsh;
   };
 
@@ -132,6 +129,10 @@
       '';
     };
 
+    chromium = {
+      enable = true;
+    };
+
     #atuin = {
     #  enable = true;
     #  enableZshIntegration = true;
@@ -161,9 +162,16 @@
     mise = {
       enable = true;
       enableZshIntegration = true;
+      globalConfig.settings.all_compile = false;
       globalConfig.tools = {
         bun = "latest";
         deno = "latest";
+        node = "24.19.0";
+        pnpm = "11.22.0";
+        "npm:agent-browser" = {
+          version = "0.38.1";
+          allow_builds = [ "agent-browser" ];
+        };
       };
     };
 
@@ -177,36 +185,6 @@
       ];
       scdaemonSettings = {
         disable-ccid = true;
-      };
-    };
-
-    agent-skills = {
-      enable = true;
-      sources = {
-        grill-me = {
-          input = "grill-me";
-          subdir = "skills";
-        };
-        superpowers = {
-          input = "superpowers";
-          subdir = "skills";
-        };
-        dotfiles = {
-          path = ../../../config/agent-skills;
-        };
-      };
-      skills.enable = [
-        "productivity/grill-me"
-        # Enable the Superpowers entrypoint first so the workflow can opt into
-        # additional skills later without committing to the full methodology now.
-        "using-superpowers"
-        "jtf-documentation-style"
-        "japanese-tech-writing"
-        "private-iac-credentials"
-      ];
-      targets.codex = {
-        enable = true;
-        structure = "copy-tree";
       };
     };
 
