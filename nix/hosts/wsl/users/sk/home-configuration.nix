@@ -25,12 +25,11 @@
 
   programs.ssh = {
     enable = true;
-    extraConfig = ''
-      Host 192.168.10.13
-        # The Windows OpenSSH agent relay rejects the unbound mode in WSL,
-        # so constrain the workaround to the affected host for now.
-        PubkeyAuthentication yes
-    '';
+    enableDefaultConfig = false;
+    # The Windows OpenSSH agent relay rejects the unbound mode in WSL,
+    # so constrain the workaround to the affected host for now.
+    settings."100.64.186.85".PubkeyAuthentication = "yes";
+    settings."192.168.10.13".PubkeyAuthentication = "yes";
   };
 
   home.packages = with pkgs; [
