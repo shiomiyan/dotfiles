@@ -1,9 +1,12 @@
 {
   flake,
+  inputs,
   pkgs,
   ...
 }:
-
+let
+  opencode = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
+in
 {
   imports = [
     flake.homeModules."home-shared"
@@ -42,5 +45,20 @@
       sudo systemctl mask systemd-binfmt.service
     '')
   ];
+
+  systemd.user.services.opencode-web = {
+    Unit = {
+      Description = "OpenCode Web server";
+    };
+
+    Service = {
+      ExecStart = "${opencode}/bin/opencode serve --hostname 127.0.0.1 --port 4096";
+      Restart = "on-failure";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
 
 }
