@@ -29,7 +29,7 @@
     # The Windows OpenSSH agent relay rejects the unbound mode in WSL,
     # so constrain the workaround to the affected host for now.
     settings."rpi4-01".PubkeyAuthentication = "yes";
-    settings."192.168.10.13".PubkeyAuthentication = "yes";
+    settings."192.168.10.15".PubkeyAuthentication = "yes";
   };
 
   home.packages = with pkgs; [
