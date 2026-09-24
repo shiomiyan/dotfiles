@@ -13,6 +13,7 @@
 [core]
 	autocrlf = input
 	editor = nvim -d
+	hooksPath = ~/.config/git/hooks
 	quotepath = false
 	symlinks = true
 [alias]
