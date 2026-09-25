@@ -45,6 +45,8 @@
         # Languages
         clang
         go
+        nodejs_24
+        pnpm
         rustup
         uv
         zig
@@ -62,6 +64,7 @@
       ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
         # Keep the scope local so package names stay short without broadening
         # lookup rules for the rest of home.packages.
+        agent-browser
         gemini-cli
         opencode
       ]);
@@ -166,12 +169,6 @@
       globalConfig.tools = {
         bun = "latest";
         deno = "latest";
-        node = "24.19.0";
-        pnpm = "11.22.0";
-        "npm:agent-browser" = {
-          version = "0.38.1";
-          allow_builds = [ "agent-browser" ];
-        };
       };
     };
 
