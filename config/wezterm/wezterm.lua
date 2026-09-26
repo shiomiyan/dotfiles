@@ -12,7 +12,6 @@ end)
 -- GUIの見た目
 config.color_scheme = "Catppuccin Mocha"
 config.window_background_opacity = 0.95
-config.kde_window_background_blur = true
 config.tab_bar_at_bottom = true
 config.tab_max_width = 25
 
@@ -38,7 +37,7 @@ config.colors = { scrollbar_thumb = "Gray" }
 
 -- カーソル色を反転
 config.force_reverse_video_cursor = true
-config.font = wezterm.font_with_fallback({ "CodeNewRoman Nerd Font", "BIZ UDGothic", "Symbols Nerd Font Mono" })
+config.font = wezterm.font_with_fallback({ "Noto Sans Mono", "BIZ UDGothic", "Symbols Nerd Font Mono" })
 
 -- 非アクティブペインの見た目
 config.inactive_pane_hsb = {
@@ -93,7 +92,7 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
     })
   end
 elseif wezterm.target_triple == "x86_64-apple-darwin" then
-  config.font_size = 16
+  config.font_size = 14
   -- macOSで透明度を安定させるための回避策: https://github.com/wez/wezterm/issues/2669
   config.window_background_opacity = 0.9999
   -- スクロールバー幅
