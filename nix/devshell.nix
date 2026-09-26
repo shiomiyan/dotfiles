@@ -11,9 +11,18 @@ let
   preCommitCheck = git-hooks.run {
     src = ../.;
     package = pkgs.prek;
-    hooks.treefmt = {
-      enable = true;
-      package = perSystem.self.formatter;
+    hooks = {
+      actionlint.enable = true;
+      pinact = {
+        enable = true;
+        package = pkgs.pinact;
+        entry = "${pkgs.pinact}/bin/pinact run --fix=false --no-api";
+        files = "^\\.github/workflows/.*\\.ya?ml$";
+      };
+      treefmt = {
+        enable = true;
+        package = perSystem.self.formatter;
+      };
     };
   };
 in
