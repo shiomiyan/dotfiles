@@ -28,6 +28,7 @@
         tree
         unzip
         wget
+        helix
 
         # Development
         ghalint
