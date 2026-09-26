@@ -1,11 +1,11 @@
 {
   flake,
-  inputs,
+  perSystem,
   pkgs,
   ...
 }:
 let
-  opencode = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
+  opencode = perSystem.llm-agents.opencode;
 in
 {
   imports = [

@@ -1,5 +1,6 @@
 {
   inputs,
+  perSystem,
   pkgs,
   system,
   ...
@@ -7,7 +8,6 @@
 
 let
   git-hooks = inputs.git-hooks.lib.${system};
-  formatter = import ./formatter.nix { inherit inputs pkgs; };
   preCommitCheck = git-hooks.run {
     src = ../.;
     package = pkgs.prek;
@@ -23,7 +23,7 @@ let
     };
     hooks.treefmt = {
       enable = true;
-      package = formatter;
+      package = perSystem.self.formatter;
     };
   };
 in

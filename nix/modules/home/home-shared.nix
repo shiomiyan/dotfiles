@@ -61,7 +61,7 @@
         ast-grep
         ffmpeg
       ]
-      ++ (with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+      ++ (with perSystem.llm-agents; [
         # Keep the scope local so package names stay short without broadening
         # lookup rules for the rest of home.packages.
         agent-browser

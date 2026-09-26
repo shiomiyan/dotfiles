@@ -2,6 +2,7 @@
   config,
   hostName,
   inputs,
+  perSystem,
   pkgs,
   ...
 }:
@@ -45,7 +46,6 @@
 
     interop = {
       register = true;
-      includePath = false;
     };
 
     wslConf = {
@@ -82,7 +82,7 @@
     group = "users";
     dataDir = "${config.users.users.sk.home}/.paseo";
     inheritUserEnvironment = true;
-    package = inputs.paseo.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
+    package = perSystem.paseo.default.override {
       # Recomputed for the nixpkgs revision locked by the Paseo input.
       npmDepsHash = "sha256-9UWtpZrCdyYyGq3HGNgSpU1+2Imu3oYqtSumq2DtANc=";
     };
