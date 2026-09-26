@@ -1,4 +1,5 @@
 {
+  config,
   hostName,
   inputs,
   pkgs,
@@ -79,7 +80,7 @@
     enable = true;
     user = "sk";
     group = "users";
-    dataDir = "/home/sk/.paseo";
+    dataDir = "${config.users.users.sk.home}/.paseo";
     inheritUserEnvironment = true;
     package = inputs.paseo.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
       # Recomputed for the nixpkgs revision locked by the Paseo input.
@@ -87,7 +88,7 @@
     };
 
     environment = {
-      SSH_AUTH_SOCK = "/home/sk/.ssh/agent.sock";
+      SSH_AUTH_SOCK = "${config.users.users.sk.home}/.ssh/agent.sock";
     };
   };
 
