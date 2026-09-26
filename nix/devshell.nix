@@ -11,16 +11,6 @@ let
   preCommitCheck = git-hooks.run {
     src = ../.;
     package = pkgs.prek;
-    hooks.betterleaks = {
-      enable = true;
-      name = "Detect hardcoded secrets";
-      description = "Detect hardcoded secrets using Betterleaks";
-      entry = "betterleaks git --pre-commit --redact --staged --no-banner";
-      language = "system";
-      pass_filenames = false;
-      stages = [ "pre-commit" ];
-      package = pkgs.betterleaks;
-    };
     hooks.treefmt = {
       enable = true;
       package = perSystem.self.formatter;
@@ -37,6 +27,7 @@ pkgs.mkShellNoCC {
       statix
       deadnix
       opentofu
+      mcp-nixos
     ])
     ++ preCommitCheck.enabledPackages;
 
