@@ -1,11 +1,14 @@
 {
   config,
   inputs,
-  perSystem,
   pkgs,
   ...
 }:
 
+let
+  pinentryPackage =
+    if pkgs.stdenv.hostPlatform.isDarwin then pkgs.pinentry_mac else pkgs.pinentry-all;
+in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
@@ -14,61 +17,49 @@
   xdg.enable = true;
 
   home = {
-    packages =
-      with pkgs;
-      [
-        # Shell tools
-        bat
-        curl
-        fzf
-        jq
-        perSystem.self.mo
-        pure-prompt
-        ripgrep
-        tree
-        unzip
-        wget
-        helix
+    packages = with pkgs; [
+      # Shell tools
+      bat
+      curl
+      fzf
+      jq
+      pure-prompt
+      ripgrep
+      tree
+      unzip
+      wget
+      helix
 
-        # Development
-        ghalint
-        gh
-        ghq
-        git
-        actionlint
-        betterleaks
-        devenv
-        opentofu
-        pinact
-        tig
-        cloudflared
+      # Development
+      ghalint
+      gh
+      ghq
+      git
+      actionlint
+      betterleaks
+      devenv
+      opentofu
+      pinact
+      tig
+      cloudflared
 
-        # Languages
-        clang
-        go
-        nodejs_24
-        pnpm
-        rustup
-        uv
-        zig
+      # Languages
+      clang
+      go
+      nodejs_24
+      pnpm
+      rustup
+      uv
+      zig
 
-        # GPG support
-        pcsc-tools
-        sops
-        usbutils
+      # GPG support
+      sops
 
-        # Misc
-        bitwarden-cli
-        ast-grep
-        ffmpeg
-      ]
-      ++ (with perSystem.llm-agents; [
-        # Keep the scope local so package names stay short without broadening
-        # lookup rules for the rest of home.packages.
-        agent-browser
-        gemini-cli
-        opencode
-      ]);
+      # Misc
+      bitwarden-cli
+      ast-grep
+      ffmpeg
+    ];
 
     sessionVariables = {
       LC_MESSAGES = "en_US.UTF-8";
@@ -133,9 +124,7 @@
       '';
     };
 
-    chromium = {
-      enable = true;
-    };
+    chromium.enable = pkgs.stdenv.hostPlatform.isLinux;
 
     #atuin = {
     #  enable = true;
@@ -195,7 +184,7 @@
     defaultCacheTtl = 34560000;
     maxCacheTtl = 34560000;
     extraConfig = ''
-      pinentry-program ${pkgs.pinentry-all}/bin/pinentry
+      pinentry-program ${pkgs.lib.getExe pinentryPackage}
     '';
   };
 
