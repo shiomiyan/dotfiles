@@ -56,7 +56,6 @@ in
       sops
 
       # Misc
-      bitwarden-cli
       ast-grep
       ffmpeg
     ];
