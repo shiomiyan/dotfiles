@@ -76,7 +76,7 @@ gpg/card> quit
 repository内の公開鍵ファイルからimportする場合は下記を使う。
 
 ```plaintext
-gpg --import ./keys/openpgp/shiomiyan.asc
+gpg --import ./keys/openpgp/sotiak.asc
 ```
 
 YubiKeyを挿して、鍵が見えることを確認する。

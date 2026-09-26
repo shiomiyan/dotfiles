@@ -178,7 +178,7 @@
       homedir = "${config.xdg.dataHome}/gnupg";
       publicKeys = [
         {
-          source = ../../../keys/openpgp/shiomiyan.asc;
+          source = ../../../keys/openpgp/sotiak.asc;
         }
       ];
       scdaemonSettings = {

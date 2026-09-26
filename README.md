@@ -8,7 +8,7 @@ dotfilesです。
 
 ```powershell
 winget install jdx.mise
-git clone https://github.com/shiomiyan/dotfiles
+git clone https://github.com/sotiak/dotfiles
 cd dotfiles
 mise trust
 mise bootstrap --only dotfiles --dry-run
@@ -39,7 +39,7 @@ Install [NixOS-WSL](https://nix-community.github.io/NixOS-WSL/index.html).
 Clone, bootstrapping.
 
 ```plaintext
-nix --extra-experimental-features 'nix-command flakes' shell nixpkgs#git -c git clone https://github.com/shiomiyan/dotfiles
+nix --extra-experimental-features 'nix-command flakes' shell nixpkgs#git -c git clone https://github.com/sotiak/dotfiles
 cd dotfiles
 sudo nixos-rebuild switch --flake .#wsl
 ```
