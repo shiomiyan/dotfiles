@@ -13,9 +13,11 @@
 [core]
 	autocrlf = input
 	editor = nvim -d
-	hooksPath = ~/.config/git/hooks
 	quotepath = false
 	symlinks = true
+[hook "betterleaks"]
+	event = pre-commit
+	command = betterleaks git --pre-commit --redact --staged --no-banner
 [alias]
 	c = commit
 	s = status
